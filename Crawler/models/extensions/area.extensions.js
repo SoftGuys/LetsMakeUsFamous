@@ -1,5 +1,5 @@
-const { Area } = require('../landmark');
-const initParser = require('../dom-parser');
+const { Area } = require('../area');
+const initParser = require('../../dom-parser');
 
 Area.fromHtml = (html) => {
     return initParser(html)

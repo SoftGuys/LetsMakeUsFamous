@@ -6,4 +6,4 @@ class Area {
     }
 }
 
-module.exports = {Area};
+module.exports = { Area };
