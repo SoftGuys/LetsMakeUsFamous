@@ -1,15 +1,13 @@
 require('./polyfills');
-const { Area } = require('./models/area');
-const { Landmark } = require('./models/landmark');
 
+const {Area} = require('./models/area');
+const {Landmark} = require('./models/landmark');
+const {Selectors} = require('./selectors');
 const initDomParser = require('./dom-parser');
 const areas = [];
 const landmarks = [];
 
-const domain = 'http://100nto.org';
-const baseurl = domain + '/objects-po-oblasti/';
-
-fetch(baseurl)
+fetch(Selectors.baseurl)
     .then((response) => {
         return response.text();
     })
@@ -17,17 +15,17 @@ fetch(baseurl)
         return initDomParser(html);
     })
     .then(($) => {
-        $('h2 > a').each((_, elem) => {
+        $(Selectors.h2a).each((_, elem) => {
             const $elem = $(elem);
             const name = $elem.text().trim();
-            const route = $elem.attr('href').substring('/objects-po-oblasti/'.length);
+            const route = $elem.attr(Selectors.href).substring('/objects-po-oblasti/'.length);
             const area = new Area(name, route);
             areas.push(area);
         });
     })
     .then(() => {
         const promises = areas.map((area, index) => {
-            const landmarkRoute = baseurl + area.id;
+            const landmarkRoute = Selectors.baseurl + area.id;
 
             return fetch(landmarkRoute)
                 .then((response) => {
@@ -37,11 +35,11 @@ fetch(baseurl)
                     return initDomParser(html);
                 })
                 .then(($) => {
-                    const $elements = $('.itemList .catItemTitle a');
+                    const $elements = $(Selectors.itemlist);
                     $elements.each((_, elem) => {
                         const $elem = $(elem);
-                        const href = $elem.attr('href').split('/')[3];
-                        if (href === 'item') {
+                        const href = $elem.attr(Selectors.href).split('/')[3];
+                        if (href === Selectors.item) {
                             return;
                         }
 
@@ -67,7 +65,7 @@ fetch(baseurl)
 
 const gatherData = (area) => {
     const promises = area.landmarksIds.map(landmarkId => {
-        const url = (baseurl + area.id + "/" + landmarkId).replace('&nbsp;', '');
+        const url = (Selectors.baseurl + area.id + "/" + landmarkId).replace('&nbsp;', '');
         return fetch(url)
             .then((response) => {
                 return response.text();
@@ -77,7 +75,7 @@ const gatherData = (area) => {
             })
             .then(($) => {
                 const title = $('.itemHeader .itemTitle').text().trim();
-                const imageUrl = domain + $('.itemImage a img').attr('src');
+                const imageUrl = Selectors.domain + $('.itemImage a img').attr('src');
                 const description = $('.itemIntroText').last().text().replace('Описание:', '').trim();
 
                 const landmark = new Landmark(title, description, imageUrl);
