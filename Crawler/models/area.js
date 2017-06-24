@@ -1,10 +1,10 @@
 class Area {
 
-    constructor(landmarkIds, name) {
-        this.landmarkIds = landmarkIds;
+    constructor(name, id) {
         this.name = name;
+        this.id = id;
+        this.landmarksIds = [];
     }
-
 }
 
 module.exports = {Area};

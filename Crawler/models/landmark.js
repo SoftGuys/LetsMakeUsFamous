@@ -1,5 +1,4 @@
 class Landmark {
-
     constructor(description, name, picturesUrl) {
         this.description = description;
         this.name = name;
