@@ -1,25 +1,26 @@
 {
-  "name": "LetsMakeUsFamous",
-  "version": "1.0.0",
-  "description": "Telerik Academy Node.js Project",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SoftGuys/LetsMakeUsFamous.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/SoftGuys/LetsMakeUsFamous/issues"
-  },
-  "homepage": "https://github.com/SoftGuys/LetsMakeUsFamous#readme",
-  "dependencies": {
-    "isomorphic-fetch": "^2.2.1",
-    "jquery": "^3.2.1",
-    "jsdom": "^11.0.0"
-  }
+    "name": "LetsMakeUsFamous",
+    "version": "1.0.0",
+    "description": "Telerik Academy Node.js Project",
+    "main": "index.js",
+    "scripts": {
+        "start": "node ./crawler/capp.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/SoftGuys/LetsMakeUsFamous.git"
+    },
+    "keywords": [],
+    "author": "Urkov, Borisov, Voev",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/SoftGuys/LetsMakeUsFamous/issues"
+    },
+    "homepage": "https://github.com/SoftGuys/LetsMakeUsFamous#readme",
+    "dependencies": {
+        "isomorphic-fetch": "^2.2.1",
+        "jquery": "^3.2.1",
+        "jsdom": "^11.0.0"
+    }
 }

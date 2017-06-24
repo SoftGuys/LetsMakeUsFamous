@@ -1,9 +1,9 @@
 class Landmark {
-    constructor(description, name, picturesUrl) {
+    constructor(title, description, pictureUrl) {
+        this.title = title;
         this.description = description;
-        this.name = name;
-        this.picturesUrl = picturesUrl;
+        this.pictureUrl = pictureUrl;
     }
 }
 
-module.exports = {Landmark};
+module.exports = { Landmark };
