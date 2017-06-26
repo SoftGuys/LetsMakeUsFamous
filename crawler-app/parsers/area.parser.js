@@ -94,6 +94,4 @@ const parseAreas = (url) => {
 };
 
 
-module.exports = {
-    parseAreas,
-};
+module.exports = { parseAreas };
