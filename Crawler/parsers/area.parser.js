@@ -1,7 +1,9 @@
-const {Area} = require('../models/area');
-const {Selectors} = require('../selectors');
-const {parseLandmark} = require('./landmark.parser');
-const initDomParser = require('../dom-parser');
+/* globals __dirname */
+
+const { Area } = require('../models/area');
+const { Selectors } = require('../selectors');
+const { parseLandmark } = require('./landmark.parser');
+const { initDomParser } = require('./dom-parser');
 
 const REQUEST_SPEED = 3000;
 
@@ -27,19 +29,19 @@ const parseAreas = (url) => {
                         return;
                     }
 
-                    //new node
+                    // new node
 
-                    const landmarkUrl = Selectors.baseurl + area.id + "/" + href;
+                    const landmarkUrl = Selectors.baseurl + area.id + '/' + href;
                     parseLandmark(landmarkUrl)
                         .then((landmark) => {
-                            console.log(landmark.pictureUrl)
+                            console.log(landmark.pictureUrl);
                             area.landmarksIds.push(landmark);
-                            var fs = require('fs'),
-                                request = require('request'),
-                            path = require('path');
-//q sloji 1 path
-                            var download = function (uri, filename, callback) {
-                                request.head(uri, function (err, res, body) {
+                            const fs = require('fs');
+                            const request = require('request');
+                            const path = require('path');
+                            // q sloji 1 path
+                            const download = (uri, filename, callback) => {
+                                request.head(uri, (err, res, body) => {
                                     console.log('content-type:', res.headers['content-type']);
                                     console.log('content-length:', res.headers['content-length']);
 
@@ -49,37 +51,38 @@ const parseAreas = (url) => {
                                 });
                             };
 
-                            //sample code
+                            // sample code
                             // 'http://100nto.org/media/k2/items/cache/c9b002fe1bb0320831a8ae78670fdb6f_L.jpg', 'ba.jpg'
 
-                                    //url     // toq download tuka li trqbva da stoi ?? mi proprincip moje da e
+                            // url     // toq download tuka li trqbva da stoi ?? mi proprincip moje da e
                             // po nagore v scope-a samata funkciq ma ne bi trqbvalo da e problem sega tva
                             // iskash li da ti go pushna i az shte se connectna? 
                             // izlez 1 direktoriq nazad             filename
-                            download(landmark.pictureUrl, landmark.title+'.jpeg', function () {
+                            download(landmark.pictureUrl, landmark.title + '.jpeg', () => {
                                 console.log('done');
                             });
                         });
 
                     // imaha li title landmarcite :D  da emi q taka ne che koi znae kvo razlichno de ama
-                });//vij 4e tuka iska da suzdade nqkva nesushtestvuvashta direktoriq?
-                //to mai ochakva ime na fail a nie mu davame direktoriq mai tva e problema mi qvno da
+                }); // vij 4e tuka iska da suzdade nqkva nesushtestvuvashta direktoriq?
+                // to mai ochakva ime na fail a nie mu davame direktoriq mai tva e problema mi qvno da
                 // da ne bi da trqbva putishtata prez toq path obekt da se pravqt
             });
     };
 
     return fetch(url)
-        .then(response => {
+        .then((response) => {
             return response.text();
         })
-        .then(html => {
+        .then((html) => {
             return Area.fromHtml(html);
         })
-        .then(resAreas => {
+        .then((resAreas) => {
             areas = resAreas;
             const promises = resAreas.map((area, index) => {
                 return new Promise((resolve, reject) => {
-                    setTimeout(() => resolve(getAreaLandmarks(area)), index * REQUEST_SPEED);
+                    setTimeout(() =>
+                        resolve(getAreaLandmarks(area)), index * REQUEST_SPEED);
                 });
             });
 
@@ -92,5 +95,5 @@ const parseAreas = (url) => {
 
 
 module.exports = {
-    parseAreas
+    parseAreas,
 };

@@ -1,1 +1,1 @@
-require('./polyfills')
+require('isomorphic-fetch');
