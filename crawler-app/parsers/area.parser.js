@@ -44,7 +44,9 @@ const parseAreas = (url) => {
                                 request.head(uri, (err, res, body) => {
                                     console.log('content-type:', res.headers['content-type']);
                                     console.log('content-length:', res.headers['content-length']);
-
+                                    //todo we are losing the file in this case
+                                    
+                                    filename = 'file' + parseInt(Math.random() * (1 << 20), 10);
                                     request(uri)
                                         .pipe(fs.createWriteStream(path.join(__dirname, filename)))
                                         .on('close', callback);
