@@ -1,9 +1,9 @@
 /* globals __dirname */
 
-const { Area } = require('../models/area');
-const { Selectors } = require('../selectors');
-const { parseLandmark } = require('./landmark.parser');
-const { initDomParser } = require('./dom-parser');
+const {Area} = require('../models/area');
+const {selectors} = require('../selectors');
+const {parseLandmark} = require('./landmark.parser');
+const {initDomParser} = require('./dom-parser');
 
 const REQUEST_SPEED = 3000;
 
@@ -11,7 +11,7 @@ const parseAreas = (url) => {
     let areas = [];
 
     const getAreaLandmarks = (area) => {
-        const landmarkRoute = Selectors.baseurl + area.id;
+        const landmarkRoute = selectors.BASE_URL + area.id;
 
         return fetch(landmarkRoute)
             .then((response) => {
@@ -21,54 +21,42 @@ const parseAreas = (url) => {
                 return initDomParser(html);
             })
             .then(($) => {
-                const $elements = $(Selectors.itemlist);
+                const $elements = $(selectors.ITEMLIST);
                 $elements.each((_, elem) => {
                     const $elem = $(elem);
-                    const href = $elem.attr(Selectors.href).split('/')[3];
-                    if (href === Selectors.item) {
+                    const href = $elem.attr('href').split('/')[3];
+                    if (href === 'item') {
                         return;
                     }
 
-                    // new node
-
-                    const landmarkUrl = Selectors.baseurl + area.id + '/' + href;
+                    const landmarkUrl = selectors.BASE_URL + area.id + '/' + href;
                     parseLandmark(landmarkUrl)
                         .then((landmark) => {
-                            console.log(landmark.pictureUrl);
                             area.landmarksIds.push(landmark);
+
                             const fs = require('fs');
                             const request = require('request');
                             const path = require('path');
-                            // q sloji 1 path
-                            const download = (uri, filename, callback) => {
+
+                            console.log('.');
+
+                            const download = (uri, filename) => {
                                 request.head(uri, (err, res, body) => {
-                                    console.log('content-type:', res.headers['content-type']);
-                                    console.log('content-length:', res.headers['content-length']);
-                                    //todo we are losing the file in this case
-                                    
-                                    filename = 'file' + parseInt(Math.random() * (1 << 20), 10);
-                                    request(uri)
-                                        .pipe(fs.createWriteStream(path.join(__dirname, filename)))
-                                        .on('close', callback);
+
+                                    if (!uri.includes('undefined')) {
+                                        filename = filename.replace(/[\s+\-+\"+\'+\\+\/+:+]/gi, "");
+
+                                        filename = "../images/" + filename;
+                                        request(uri)
+                                            .pipe(fs.createWriteStream(path.join(__dirname, filename)));
+                                    }
+
                                 });
                             };
 
-                            // sample code
-                            // 'http://100nto.org/media/k2/items/cache/c9b002fe1bb0320831a8ae78670fdb6f_L.jpg', 'ba.jpg'
-
-                            // url     // toq download tuka li trqbva da stoi ?? mi proprincip moje da e
-                            // po nagore v scope-a samata funkciq ma ne bi trqbvalo da e problem sega tva
-                            // iskash li da ti go pushna i az shte se connectna? 
-                            // izlez 1 direktoriq nazad             filename
-                            download(landmark.pictureUrl, landmark.title + '.jpeg', () => {
-                                console.log('done');
-                            });
+                            download(landmark.pictureUrl, landmark.title + '.jpeg');
                         });
-
-                    // imaha li title landmarcite :D  da emi q taka ne che koi znae kvo razlichno de ama
-                }); // vij 4e tuka iska da suzdade nqkva nesushtestvuvashta direktoriq?
-                // to mai ochakva ime na fail a nie mu davame direktoriq mai tva e problema mi qvno da
-                // da ne bi da trqbva putishtata prez toq path obekt da se pravqt
+                });
             });
     };
 
@@ -96,4 +84,4 @@ const parseAreas = (url) => {
 };
 
 
-module.exports = { parseAreas };
+module.exports = {parseAreas};
