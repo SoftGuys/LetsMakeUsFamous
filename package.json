@@ -1,5 +1,5 @@
 {
-    "name": "national tourist sites",
+    "name": "Qjtexui",
     "version": "1.0.0",
     "description": "Telerik Academy Node.js Project",
     "main": "index.js",
@@ -10,7 +10,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/SoftGuys/LetsMakeUsFamous.git"
+        "url": "https://github.com/SoftGuys/LetsMakeUsFamous.git"
     },
     "keywords": [],
     "author": "Urkov, Borisov, Voev",
@@ -21,6 +21,7 @@
     "homepage": "https://github.com/SoftGuys/LetsMakeUsFamous#readme",
     "dependencies": {
         "body-parser": "^1.17.2",
+        "bootstrap": "^3.3.7",
         "express": "^4.15.3",
         "global": "^4.3.2",
         "gulp": "^3.9.1",

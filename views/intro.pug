@@ -1,0 +1,27 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', ntnt='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        meta(name='description', content='')
+        meta(name='author', content='')
+        title Bulgaria Attractions
+        // Bootstrap Core CSS
+        link(href='./static/css/bootstrap.css', rel='stylesheet')
+        // Custom CSS
+    body
+        // Navigation
+        nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+            .container
+                // Brand and toggle get grouped for better mobile display
+                .navbar-header
+                    button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    img.navbar-brand#logo(src='/static/images/logo.png')
+                    a.navbar-brand(href='/home') Home
+                    a.navbar-brand(href='/all') All
+                    a.navbar-brand(href='/gallery') Gallery

@@ -4,7 +4,7 @@ const attachRoutes = (app) => {
     const router = new Router();
 
     router.get('/', (req, res) => {
-        res.render('home', {});
+        res.render('intro', {});
     });
 
     app.use('/', router);
