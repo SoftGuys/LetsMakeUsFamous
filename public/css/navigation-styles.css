@@ -1,0 +1,30 @@
+iframe{
+    margin-top: 50px;
+    display: block;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+  /* position exactly in the middle */
+.center{
+    position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+}
+.bg {
+    /* The image used */
+    background-image: url("../images/varna.jpg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

@@ -10,6 +10,7 @@ html(lang='en')
         // Bootstrap Core CSS
         link(href='./static/css/bootstrap.css', rel='stylesheet')
         // Custom CSS
+        link(href='./static/css/navigation-styles.css', rel='stylesheet')
     body
         // Navigation
         nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
@@ -25,3 +26,6 @@ html(lang='en')
                     a.navbar-brand(href='/home') Home
                     a.navbar-brand(href='/all') All
                     a.navbar-brand(href='/gallery') Gallery
+        // Collect the nav links, forms, and other content for toggling
+        .bg
+    block content
