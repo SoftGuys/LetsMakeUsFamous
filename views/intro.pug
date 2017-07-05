@@ -8,10 +8,13 @@ html(lang='en')
         meta(name='author', content='')
         title Bulgaria Attractions
         // Bootstrap Core CSS
-        link(href='./static/css/bootstrap.css', rel='stylesheet')
+        link(rel='stylesheet', href='./static/css/bootstrap.css', )
         // Custom CSS
         link(href='./static/css/navigation-styles.css', rel='stylesheet')
         link(href='./static/css/footer.css', rel='stylesheet')
+        // from internet for .glyphicon
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+
     body
         // Navigation
         nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
@@ -24,9 +27,30 @@ html(lang='en')
                         span.icon-bar
                         span.icon-bar
                     img.navbar-brand#logo(src='/static/images/logo.png')
-                    a.navbar-brand(href='/home') Home
-                    a.navbar-brand(href='/all') All
-                    a.navbar-brand(href='/gallery') Gallery
+                    ul.nav.navbar-nav.navbar-left
+                        li
+                            a.navbar-brand(href='/home') Home
+                            a.navbar-brand(href='/destinations') Destinations
+                            a.navbar-brand(href='/users') Users
+
+                    //Check if Logged MyProfile and Logout,Else Rest
+                    ul.nav.navbar-nav.navbar-right
+                        li
+                            a(href='/profile')
+                                span.glyphicon.glyphicon-user
+                                |   MyProfile
+                        li
+                            a(href='/logout')
+                                span.glyphicon.glyphicon-log-out
+                                |   Logout
+                        li
+                            a(href='/register')
+                                span.glyphicon.glyphicon-user
+                                |  Sign Up
+                        li
+                            a(href='/login')
+                                span.glyphicon.glyphicon-log-in
+                                |  Login
         // Collect the nav links, forms, and other content for toggling
         .bg
     block content

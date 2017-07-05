@@ -28,7 +28,7 @@ body, html {
     background-repeat: no-repeat;
     background-size: cover;
 }
-body {
-    overflow:hidden;
+.nav.navbar-nav.navbar-right{
+    margin-left: 500px;
 }
 
