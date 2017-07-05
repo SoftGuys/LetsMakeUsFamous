@@ -1,0 +1,27 @@
+extends intro
+
+block content
+    .container
+        .row
+            .col-md-6.col-md-offset-3
+                .panel.panel-login
+                    .panel-heading
+                        .row
+                            .col-xs-6
+                                a#login-form-link.active(href='#') Login
+                            .col-xs-6
+                                a#register-form-link(href='/register') Register
+                        hr
+                    .panel-body
+                        .row
+                            .col-lg-12
+                                form#login-form(action='/login', method='post', role='form', style='display: block;')
+                                    .form-group
+                                        input#username.form-control(type='text', name='username', tabindex='1', placeholder='Username', value='')
+                                    .form-group
+                                        input#password.form-control(type='password', name='password', tabindex='2', placeholder='Password')
+                                    .form-group
+                                        .row
+                                            .col-sm-6.col-sm-offset-3
+                                                input#login-submit.btn-success.form-control.btn.btn-login(type='submit', name='login-submit', tabindex='4', value='Log In')
+
