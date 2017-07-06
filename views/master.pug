@@ -1,0 +1,13 @@
+include ./includes/nav.pug
+
+html(lang='en')
+    include ./includes/head.pug
+
+    body
+        .row
+            .col-sm-offset-2.col-sm-8#content
+                +nav
+
+                block content
+
+                include ./includes/footer.pug

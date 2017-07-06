@@ -2,7 +2,7 @@ function usersController(data) {
     return {
 
         getStartView(req, res, errorMessage) {
-            res.render('intro', {})
+            res.render('master', {})
         },
 
         getHomeView(req, res, errorMessage){

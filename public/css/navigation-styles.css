@@ -1,11 +1,12 @@
 iframe{
-    margin-top: 50px;
-    display: block;
+    min-width: 98%;
+    min-height: 100%;
 }
 
 body, html {
     height: 100%;
     margin: 0;
+    overflow: hidden;
 }
   /* position exactly in the middle */
 .center{
@@ -16,7 +17,7 @@ body, html {
     right: -9999px;
     margin: auto;
 }
-.bg {
+body {
     /* The image used */
     background-image: url("../images/varna.jpg");
 
@@ -30,5 +31,10 @@ body, html {
 }
 .nav.navbar-nav.navbar-right{
     margin-left: 500px;
+}
+
+#content{
+    border: 1px solid transparent;
+    min-height: 100%;
 }
 
