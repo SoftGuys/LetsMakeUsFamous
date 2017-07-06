@@ -8,6 +8,7 @@ module.exports = (app, data) => {
     router
         .get('/', usersController.getStartView)
         .get('/home',usersController.getHomeView)
+        .get('/destinations',usersController.getDestinationsView)
 
     app.use(router);
 }

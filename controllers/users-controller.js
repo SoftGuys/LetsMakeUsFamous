@@ -1,13 +1,16 @@
 function usersController(data) {
-    return{
+    return {
 
         getStartView(req, res, errorMessage) {
-            res.render('intro',{})
+            res.render('intro', {})
         },
 
-        getHomeView(req,res,errorMessage){
-            res.render('home')
+        getHomeView(req, res, errorMessage){
+            res.render('home',{})
         },
+        getDestinationsView(req, res, errorMessage){
+            res.render('destinations',{})
+        }
     }
 }
 

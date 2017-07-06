@@ -4,9 +4,10 @@
     "description": "Telerik Academy Node.js Project",
     "main": "index.js",
     "scripts": {
-        "start": "node ./crawler/capp.js",
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "server": "gulp server:start"
+        "start": "gulp server",
+        "dev": "gulp dev",
+        "crawler": "gulp crawler",
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
         "type": "git",
@@ -25,6 +26,7 @@
         "express": "^4.15.3",
         "global": "^4.3.2",
         "gulp": "^3.9.1",
+        "gulp-express": "^0.3.5",
         "isomorphic-fetch": "^2.2.1",
         "jquery": "^3.2.1",
         "jsdom": "^11.0.0",
@@ -34,6 +36,7 @@
         "babel-eslint": "^7.2.3",
         "eslint": "^4.1.1",
         "eslint-config-google": "^0.8.0",
+        "gulp-eslint": "^4.0.0",
         "gulp-nodemon": "^2.2.1",
         "morgan": "^1.8.2",
         "nodemon": "^1.11.0"

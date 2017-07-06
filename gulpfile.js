@@ -2,34 +2,19 @@
 
 const gulp = require('gulp');
 const nodemon = require('gulp-nodemon');
-const app = require('./app');
+const express = require('gulp-express');
 
-// eslint-disable-next-line no-process-env
-const port = process.env.PORT || 3001;
-
-const SERVER_RUNNING_MESSAGE = `Server is running on port ${port}...`;
-
-let server = null;
 gulp.task('server', () => {
-    server = app.listen(port, () => {
-        console.log(SERVER_RUNNING_MESSAGE);
-    });
+    express.run(['server.js']);
 });
 
-gulp.task('server:restart', () => {
-    if (server) {
-        server.close();
-    }
-
-    server = app.listen(port, () => {
-        console.log(SERVER_RUNNING_MESSAGE);
-    });
-});
-
-gulp.task('dev', ['server:restart'], () => {
+gulp.task('dev', () => {
     nodemon({
         ext: 'js',
-        tasks: ['server:restart'],
         script: 'server.js',
     });
 });
+
+gulp.task('crawler', ()=>{
+    express.run(['./crawler-app/capp.js'])
+})
