@@ -1,15 +1,19 @@
-iframe{
+iframe {
     min-width: 98%;
     min-height: 100%;
 }
 
-body, html {
+body,
+html {
     height: 100%;
     margin: 0;
     overflow: hidden;
 }
-  /* position exactly in the middle */
-.center{
+
+
+/* position exactly in the middle */
+
+.center {
     position: absolute;
     top: -9999px;
     bottom: -9999px;
@@ -17,24 +21,19 @@ body, html {
     right: -9999px;
     margin: auto;
 }
+
 body {
     /* The image used */
     background-image: url("../images/varna.jpg");
-
     /* Full height */
     height: 100%;
-
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
-.nav.navbar-nav.navbar-right{
-    margin-left: 500px;
-}
 
-#content{
+#content {
     border: 1px solid transparent;
     min-height: 100%;
 }
-
