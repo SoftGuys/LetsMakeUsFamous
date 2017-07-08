@@ -1,14 +1,17 @@
-const router = require('express').Router(),
-    createUsersController = require("../../controllers/users-controller");
+const { Router } = require('express');
+const createUsersController = require('../controllers/users-controller');
 
 
-module.exports = (app, data) => {
+const attachRoutes = (app, data) => {
+    const router = new Router();
     const usersController = createUsersController(data);
 
     router
         .get('/', usersController.getStartView)
-        .get('/home',usersController.getHomeView)
-        .get('/destinations',usersController.getDestinationsView)
+        .get('/home', usersController.getHomeView)
+        .get('/destinations', usersController.getDestinationsView);
 
     app.use(router);
-}
+};
+
+module.exports = attachRoutes;
