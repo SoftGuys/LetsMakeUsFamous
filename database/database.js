@@ -1,7 +1,7 @@
 const { MongoClient } = require('mongodb');
 
-const initialize = (connectionString) => {
+const init = (connectionString) => {
     return MongoClient.connect(connectionString);
 };
 
-module.exports = initialize;
+module.exports = init;

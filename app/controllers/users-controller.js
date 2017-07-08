@@ -5,7 +5,7 @@ const userController = (data) => {
         },
 
         getHomeView(req, res, errorMessage) {
-            res.render('home', {});
+            res.render('home', { dev: true });
         },
         getDestinationsView(req, res, errorMessage) {
             res.render('destinations', {});

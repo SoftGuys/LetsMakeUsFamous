@@ -12,7 +12,7 @@ class Data {
 
     add(model) {
         if (!this.validator.isModelValid(model)) {
-            return Promise.reject('Invalid model!' + this.ModelClass.name);
+            return Promise.reject('Invalid model ' + this.ModelClass.name);
         }
 
         return this.collection.insert(model);

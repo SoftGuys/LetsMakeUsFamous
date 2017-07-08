@@ -6,7 +6,7 @@ const selectors = {
     LANDMARK_TITLE_SELECTOR: '.itemHeader .itemTitle',
     LANDMARK_IMG_SELECTOR: '.itemImage a img',
     LANDMARK_DESCRIPTION_SELECTOR: '.itemIntroText',
-    ITEMLIST: '.itemList .catItemTitle a'
+    ITEMLIST: '.itemList .catItemTitle a',
 };
 
 module.exports = { selectors };

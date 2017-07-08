@@ -1,9 +1,9 @@
 /* globals __dirname */
 
-const {Area} = require('../models/area');
-const {selectors} = require('../selectors');
-const {parseLandmark} = require('./landmark.parser');
-const {initDomParser} = require('./dom-parser');
+const { Area } = require('../models/area');
+const { selectors } = require('../selectors');
+const { parseLandmark } = require('./landmark.parser');
+const { initDomParser } = require('./dom-parser');
 
 const REQUEST_SPEED = 3000;
 
@@ -42,15 +42,13 @@ const parseAreas = (url) => {
 
                             const download = (uri, filename) => {
                                 request.head(uri, (err, res, body) => {
-
                                     if (!uri.includes('undefined')) {
-                                        filename = filename.replace(/[\s+\-+\"+\'+\\+\/+:+]/gi, "");
+                                        filename = filename.replace(/[\s+\-+\"+\'+\\+\/+:+]/gi, '');
 
-                                        filename = "../images/" + filename;
+                                        filename = '../images/' + filename;
                                         request(uri)
                                             .pipe(fs.createWriteStream(path.join(__dirname, filename)));
                                     }
-
                                 });
                             };
 
@@ -84,4 +82,4 @@ const parseAreas = (url) => {
 };
 
 
-module.exports = {parseAreas};
+module.exports = { parseAreas };
