@@ -1,12 +1,12 @@
 /* globals __dirname */
 
-const {Area} = require('../models/area');
-const {selectors} = require('../selectors');
-const {parseLandmark} = require('./landmark.parser');
-const {initDomParser} = require('./dom-parser');
+const { Area } = require('../models/area');
+const { selectors } = require('../selectors');
+const { parseLandmark } = require('./landmark.parser');
+const { initDomParser } = require('./dom-parser');
 
 const REQUEST_SPEED = 3000;
-
+let indent = '';
 const parseAreas = (url) => {
     let areas = [];
 
@@ -30,6 +30,7 @@ const parseAreas = (url) => {
                     }
 
                     const landmarkUrl = selectors.BASE_URL + area.id + '/' + href;
+                    console.log(landmarkUrl);
                     parseLandmark(landmarkUrl)
                         .then((landmark) => {
                             area.landmarksIds.push(landmark);
@@ -38,19 +39,17 @@ const parseAreas = (url) => {
                             const request = require('request');
                             const path = require('path');
 
-                            console.log('.');
-
+                            indent = indent + '=';
                             const download = (uri, filename) => {
                                 request.head(uri, (err, res, body) => {
-
                                     if (!uri.includes('undefined')) {
-                                        filename = filename.replace(/[\s+\-+\"+\'+\\+\/+:+]/gi, "");
+                                        filename = filename.replace(/[\s+\-+\"+\'+\\+\/+:+]/gi, '');
 
-                                        filename = "../images/" + filename;
+                                        landmark.pictureUrl = `/static/images/areas/${filename}`;
+                                        filename = '../../public/images/areas/' + filename;
                                         request(uri)
                                             .pipe(fs.createWriteStream(path.join(__dirname, filename)));
                                     }
-
                                 });
                             };
 
@@ -84,4 +83,4 @@ const parseAreas = (url) => {
 };
 
 
-module.exports = {parseAreas};
+module.exports = { parseAreas };
