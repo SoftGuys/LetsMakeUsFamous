@@ -6,14 +6,18 @@ function usersController(data) {
         },
 
         getHomeView(req, res, errorMessage){
-            res.render('home',{})
+            res.render('home', {})
         },
         getDestinationsView(req, res, errorMessage){
-            res.render('destinations',{})
+            res.render('destinations', {})
         },
         getRegisterView(req, res, errorMessage){
-            res.render('register',{})
+            res.render('register', {})
         },
+
+        getLoginView(req, res, errorMessage){
+            res.render('login', {})
+        }
     }
 }
 

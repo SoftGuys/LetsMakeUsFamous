@@ -379,6 +379,10 @@ p.signin.button {
     text-align: right;
     margin: 5px 0;
 }
+p.back.button{
+    text-align: left;
+    margin: 5px 0;
+}
 
 /* styling the checkbox "keep me logged in"*/
 .keeplogin {

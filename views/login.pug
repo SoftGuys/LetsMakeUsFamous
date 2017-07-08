@@ -1,27 +1,42 @@
-extends master
+doctype html
+//if lt IE 7
+  html.no-js.ie6.lt8(lang='en')
+//if IE 7
+  html.no-js.ie7.lt8(lang='en')
+//if IE 8
+  html.no-js.ie8.lt8(lang='en')
+//if IE 9
+  html.no-js.ie9(lang='en')
+// [if (gt IE 9)|!(IE)] <!
+html.no-js(lang='en')
+    // <![endif]
+    head
+        meta(charset='UTF-8')
+        // <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        title Login and Registration Form with HTML5 and CSS3
+        link(href='/static/css/register.css' rel='stylesheet')
+        link(rel='stylesheet' href='/libs/bootstrap/dist/css/bootstrap.css')
+        link(href='https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i', rel='stylesheet')
+    body
+        .container
+            header
+                h1 Login Form
+            section
+                #container_demo
+                    // hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4
+                    a#toregister.hiddenanchor
+                    a#tologin.hiddenanchor
+                    #wrapper
+                        #login.animate.form
+                            h1  Login up
+                            p
+                                label.uname(for='usernamesignup') Your username
+                                input#usernamesignup(name='usernamesignup', required='required', type='text', placeholder='mysuperusername690')
+                            p
+                                label.youpasswd(for='passwordsignup') Your password
+                                input#passwordsignup(name='passwordsignup', required='required', type='password', placeholder='eg. X8df!90EO')
 
-block content
-    .container
-        .row
-            .col-md-6.col-md-offset-3
-                .panel.panel-login
-                    .panel-heading
-                        .row
-                            .col-xs-6
-                                a#login-form-link.active(href='#') Login
-                            .col-xs-6
-                                a#register-form-link(href='/register') Register
-                        hr
-                    .panel-body
-                        .row
-                            .col-lg-12
-                                form#login-form(action='/login', method='post', role='form', style='display: block;')
-                                    .form-group
-                                        input#username.form-control(type='text', name='username', tabindex='1', placeholder='Username', value='')
-                                    .form-group
-                                        input#password.form-control(type='password', name='password', tabindex='2', placeholder='Password')
-                                    .form-group
-                                        .row
-                                            .col-sm-6.col-sm-offset-3
-                                                input#login-submit.btn-success.form-control.btn.btn-login(type='submit', name='login-submit', tabindex='4', value='Log In')
-
+                            p
+                                input.btn.btn-info(type='submit', value='Login')
+                            a.btn-danger.p.back.button(href='/')
+                                input.btn-danger.p.back.button(type='submit', value='Back')

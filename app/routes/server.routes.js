@@ -10,6 +10,7 @@ module.exports = (app, data) => {
         .get('/home', usersController.getHomeView)
         .get('/destinations', usersController.getDestinationsView)
         .get('/register', usersController.getRegisterView)
+        .get('/login',usersController.getLoginView)
 
 
     app.use(router);
