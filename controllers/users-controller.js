@@ -10,7 +10,10 @@ function usersController(data) {
         },
         getDestinationsView(req, res, errorMessage){
             res.render('destinations',{})
-        }
+        },
+        getRegisterView(req, res, errorMessage){
+            res.render('register',{})
+        },
     }
 }
 
