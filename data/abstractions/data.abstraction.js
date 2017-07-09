@@ -40,6 +40,15 @@ class Data {
         return this.collection.insert(model);
     }
 
+    getById(id) {
+        const filter = {
+            name: id,
+        };
+
+        return this.collection.find(filter)
+            .toArray();
+    }
+
     isModelValid() {
         return true;
     }

@@ -1,34 +1,37 @@
 mixin nav
-    nav.navbar.navbar-inverse.navbar-static-top(role='navigation')
-        .container
-            .navbar-header
-                button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
-                    span.sr-only Toggle navigation
-                    span.icon-bar
-                    span.icon-bar
-                    span.icon-bar
-                img.navbar-brand#logo(src='/static/images/logo.png')
-                ul.nav.navbar-nav.navbar-left
-                    li
-                        a.navbar-brand(href='/home') Home
-                        a.navbar-brand(href='/destinations') Destinations
-                        a.navbar-brand(href='/users') Users
-
-                //Check if Logged MyProfile and Logout,Else Rest
-                ul.nav.navbar-nav.navbar-right
-                    li
-                        a(href='/profile')
-                            span.glyphicon.glyphicon-user
-                            |   MyProfile
-                    li
-                        a(href='/logout')
-                            span.glyphicon.glyphicon-log-out
-                            |   Logout
-                    li
-                        a(href='/register')
-                            span.glyphicon.glyphicon-user
-                            |  Sign Up
-                    li
-                        a(href='/login')
-                            span.glyphicon.glyphicon-log-in
-                            |  Login
+  nav.navbar.navbar-inverse.navbar-static-top
+    .container-fluid
+      .navbar-header
+        img.navbar-brand(href='/' src='/static/images/logo.png')
+      ul.nav.navbar-nav
+        li#go
+          a(href='/home')
+            span.glyphicon.glyphicon-home
+            |  Home
+        li
+          a(href='/destinations')
+            span.glyphicon.glyphicon-leaf
+            |  Destinations
+        li
+          a(href='/users')
+            span.glyphicon.glyphicon-book
+            |  Users
+      ul.nav.navbar-nav.navbar-right
+            //if !result.isAuthenticated
+            li
+                a(href='/register')
+                    span.glyphicon.glyphicon-user
+                        |  Register
+            li
+                 a(href='/login')
+                    span.glyphicon.glyphicon-log-in
+                        |  Login
+            // else
+            li
+                a(href='/profile')
+                    span.glyphicon.glyphicon-cog
+                        | Profile
+            li
+                a(href='/logout')
+                    span.glyphicon.glyphicon-off
+                        |  Logout

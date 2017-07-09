@@ -4,10 +4,8 @@ html(lang='en')
     include ./includes/head.pug
 
     body.background
-        .row
-            .col-sm-offset-2.col-sm-8#content
-                +nav
+        +nav
 
-                block content
+        block content
 
-                include ./includes/footer.pug
+        include ./includes/footer.pug

@@ -1,0 +1,54 @@
+include ./includes/nav.pug
+html(lang='en')
+    include ./includes/head.pug
+    body
+        +nav
+        .container
+            .row
+                .col-md-5.toppad.pull-right.col-md-offset-3
+                    a(href='edit') Edit Profile
+                    a(href='logout') Logout
+                    br
+                    p.text-info
+                .col-xs-12.col-sm-12.col-md-6.col-lg-6.col-xs-offset-0.col-sm-offset-0.col-md-offset-3.col-lg-offset-3.toppad
+                    .panel.panel-info
+                        .panel-heading
+                            h3.panel-title #{result.username}
+                        .panel-body
+                            .row
+                                .col-md-3.col-lg-3(align='center')
+                                    img.img-circle.img-responsive(alt='User Pic', src=result.image)
+                                .col-md-9.col-lg-9
+                                    table.table.table-user-information
+                                        tbody
+                                            tr
+                                                td Department:
+                                                td Programming
+                                            tr
+                                                td Date of Birth
+                                                td 01/24/1988
+                                            tr
+                                            tr
+                                                td Gender
+                                                td Male
+                                            tr
+                                                td Home Address
+                                                td Bulgaria
+                                            tr
+                                                td Email
+                                                td
+                                                    a(href=result.email) #{result.user.email}
+                                            td Phone Number
+                                            td
+                                                | 123-4567-890(Landline)
+                                                br
+                                                br
+                                                | 555-4567-890(Mobile)
+                        .panel-footer
+                            a.btn.btn-sm.btn-primary(data-original-title='Broadcast Message', data-toggle='tooltip', type='button')
+                                i.glyphicon.glyphicon-envelope
+                            span.pull-right
+                                a.btn.btn-sm.btn-warning(href='edit', data-original-title='Edit this user', data-toggle='tooltip', type='button')
+                                    i.glyphicon.glyphicon-edit
+                                a.btn.btn-sm.btn-danger(href='/')
+                                    i.glyphicon.glyphicon-remove

@@ -13,7 +13,8 @@ const attachRoutes = (app, data) => {
         .post('/register', usersController.registerUser)
         .get('/login', usersController.getLoginView)
         .post('/login', usersController.logUser)
-        .get('/auth/facebook', usersController.logFacebook);
+        .get('/auth/facebook', usersController.logFacebook)
+        .get('/profile', usersController.getProfileView);
 
     app.use('/', router);
 };
