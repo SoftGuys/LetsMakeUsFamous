@@ -3,11 +3,11 @@ const { Strategy } = require('passport-local');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
-const configAuth = (server, userData) => {
+const configAuth = (server, { users }) => {
     passport.use(new Strategy(
         (username, password, done) => {
-            return userData.findUserByUsername(username)
-                .then((user) => userData.validateUserPassword(user, password))
+            return users.findUserByUsername(username)
+                .then((user) => users.validateUserPassword(user, password))
                 .then((user) => done(null, user))
                 .catch((error) => done(error));
         }
@@ -23,7 +23,7 @@ const configAuth = (server, userData) => {
     });
 
     passport.deserializeUser((id, done) => {
-        return userData.findUserById(id)
+        return users.findUserById(id)
             .then((user) => done(null, user))
             .catch((error) => done(error));
     });

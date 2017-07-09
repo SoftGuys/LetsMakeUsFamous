@@ -1,6 +1,6 @@
 const passport = require('passport');
 
-const userController = (userData) => {
+const userController = (data) => {
     return {
         getStartView(req, res, errorMessage) {
             res.render('master', {});
@@ -24,7 +24,7 @@ const userController = (userData) => {
         },
         registerUser(req, res, errorMessage) {
             const user = req.body;
-            userData.add(user);
+            data.users.add(user);
 
             res.status(201)
                 .redirect('/');
