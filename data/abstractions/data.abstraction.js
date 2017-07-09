@@ -24,7 +24,7 @@ class Data {
         }
 
         if (!this.isModelValid(model)) {
-            return Promise.reject('Invalid model ' + this.ModelClass.name);
+            throw new Error('Invalid model for ' + this.collectionName);
         }
 
         return this.collection.insert(model);

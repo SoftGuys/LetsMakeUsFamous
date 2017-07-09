@@ -3,8 +3,7 @@ iframe {
     min-height: 100%;
 }
 
-body,
-html {
+.background{
     height: 100%;
     margin: 0;
     overflow: hidden;
@@ -22,7 +21,7 @@ html {
     margin: auto;
 }
 
-body {
+.background {
     /* The image used */
     background-image: url("../images/varna.jpg");
     /* Full height */
