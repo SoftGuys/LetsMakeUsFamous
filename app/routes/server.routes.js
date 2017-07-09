@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const createUsersController = require('../controllers/users-controller');
 
-
 const attachRoutes = (app, data) => {
     const router = new Router();
     const usersController = createUsersController(data);
