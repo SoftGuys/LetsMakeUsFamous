@@ -14,7 +14,8 @@ class Data {
     }
 
     getAll() {
-        return this.collection.find();
+        return this.collection.find({}, {})
+            .toArray();
     }
 
     add(model) {
