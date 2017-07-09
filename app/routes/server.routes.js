@@ -17,7 +17,9 @@ const attachRoutes = (app, data) => {
             successRedirect: '/',
             failureRedirect: '/login',
             failureFlash: true,
-        }));
+        }))
+        .get('/profile',usersController.getProfileView);
+
 
     app.use('/', router);
 };
