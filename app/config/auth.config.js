@@ -1,9 +1,19 @@
-const passport = require('passport');
 const { Strategy } = require('passport-local');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const passport = require('passport');
+const flash = require('connect-flash');
 
 const configAuth = (server, userData) => {
+    server.use(cookieParser());
+    server.use(session({
+        secret: 'bobidjei',
+    }));
+
+    server.use(passport.initialize());
+    server.use(passport.session());
+    // server.use(flash()); setup later
+
     passport.use(new Strategy(
         (username, password, done) => {
             return userData.findUserByUsername(username)
@@ -13,31 +23,14 @@ const configAuth = (server, userData) => {
         }
     ));
 
-    server.use(cookieParser());
-    server.use(session({
-        secret: 'tourist sites',
-        maxAge: new Date(Date.now() + 100000),
-    }));
-
-    server.use(passport.initialize());
-    server.use(passport.session());
-
     passport.serializeUser((user, done) => {
         return done(null, user._id);
     });
 
     passport.deserializeUser((id, done) => {
-        return userData.findUserById(id)
+        return userData.findById(id)
             .then((user) => done(null, user))
             .catch((error) => done(error));
-    });
-
-    // trying to pass the user in the views
-    server.use((req, res, next) => {
-        res.locals = res.locals || {};
-
-        res.locals.user = req.user;
-        next();
     });
 };
 
