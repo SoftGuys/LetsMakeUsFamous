@@ -1,9 +1,16 @@
 class Data {
-    constructor(database, ModelClass, validator) {
+    constructor(database, collectionName) {
+        if (typeof database === 'undefined') {
+            throw new Error('Database is undefined!');
+        }
+
+        if (typeof collectionName !== 'string') {
+            throw new Error('Incorrect collection name!');
+        }
+
         this.database = database;
-        this.collectionName = ModelClass.name.toLowerCase() + 's';
+        this.collectionName = collectionName;
         this.collection = this.database.collection(this.collectionName);
-        this.validator = validator;
     }
 
     getAll() {
@@ -11,11 +18,19 @@ class Data {
     }
 
     add(model) {
-        if (!this.validator.isModelValid(model)) {
+        if (typeof model === 'undefined') {
+            throw new Error('Model is undefined!');
+        }
+
+        if (!this.isModelValid(model)) {
             return Promise.reject('Invalid model ' + this.ModelClass.name);
         }
 
         return this.collection.insert(model);
+    }
+
+    isModelValid() {
+        return true;
     }
 }
 
