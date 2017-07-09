@@ -6,7 +6,6 @@ const { parseLandmark } = require('./landmark.parser');
 const { initDomParser } = require('./dom-parser');
 
 const REQUEST_SPEED = 3000;
-let indent = '';
 const parseAreas = (url) => {
     let areas = [];
 
@@ -30,7 +29,6 @@ const parseAreas = (url) => {
                     }
 
                     const landmarkUrl = selectors.BASE_URL + area.id + '/' + href;
-                    console.log(landmarkUrl);
                     parseLandmark(landmarkUrl)
                         .then((landmark) => {
                             area.landmarksIds.push(landmark);
@@ -39,7 +37,6 @@ const parseAreas = (url) => {
                             const request = require('request');
                             const path = require('path');
 
-                            indent = indent + '=';
                             const download = (uri, filename) => {
                                 request.head(uri, (err, res, body) => {
                                     if (!uri.includes('undefined')) {
