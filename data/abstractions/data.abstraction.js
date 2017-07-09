@@ -16,8 +16,7 @@ class Data {
     }
 
     getAll() {
-        return this.collection.find({}, {})
-            .toArray();
+        return this.collection.find().toArray();
     }
 
     findById(id) {

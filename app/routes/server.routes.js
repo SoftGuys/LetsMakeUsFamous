@@ -12,7 +12,8 @@ const attachRoutes = (app, data) => {
         .get('/register', usersController.getRegisterView)
         .post('/register', usersController.registerUser)
         .get('/login', usersController.getLoginView)
-        .post('/login', usersController.logUser);
+        .post('/login', usersController.logUser)
+        .get('/auth/facebook', usersController.logFacebook);
 
     app.use('/', router);
 };

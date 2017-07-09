@@ -36,6 +36,11 @@ const userController = (data) => {
                 failureFlash: true,
             })(req, res, errorMessage);
         },
+        logFacebook(req, res, errorMessage) {
+            passport.authenticate('facebook', {
+                scope: ['user_friends', 'manage_pages'],
+            })(req, res, errorMessage);
+        },
     };
 };
 
