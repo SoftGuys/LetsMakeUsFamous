@@ -1,3 +1,5 @@
+/* globals __dirname */
+
 const path = require('path');
 
 require('fs')

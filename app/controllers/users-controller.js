@@ -1,4 +1,4 @@
-const passport = require('passport');
+// const passport = require('passport');
 
 const userController = (userData) => {
     return {
@@ -9,7 +9,7 @@ const userController = (userData) => {
             res.render('home', { dev: true });
         },
         getDestinationsView(req, res, errorMessage) {
-            data.areas.getAll()
+            userData.areas.getAll()
                 .then((areas) => {
                     return res.render('destinations', {
                         model: areas,
