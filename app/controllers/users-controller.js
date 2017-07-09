@@ -48,24 +48,13 @@ const userController = (data) => {
             // console.log(result)
             res.render('profile', {});
         },
-
-
-        // logUser(req, res, errorMessage) {
-        //     passport.authenticate('local', {
-        //         successRedirect: '/',
-        //         failureRedirect: '/login',
-        //         failureFlash: true,
-        //     });
-        // },
-
         logUser(req, res, errorMessage) {
             passport.authenticate('local', {
                 successRedirect: '/',
                 failureRedirect: '/login',
                 failureFlash: true,
             })(req, res, errorMessage);
-        }
-
+        },
     };
 };
 
