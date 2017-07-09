@@ -1,5 +1,5 @@
 mixin nav
-  nav.navbar.navbar-inverse
+  nav.navbar.navbar-inverse.navbar-static-top
     .container-fluid
       .navbar-header
         img.navbar-brand(href='/' src='/static/images/logo.png')
@@ -17,19 +17,21 @@ mixin nav
             span.glyphicon.glyphicon-book
             |  Users
       ul.nav.navbar-nav.navbar-right
-        li
-          a(href='/register')
-            span.glyphicon.glyphicon-user
-            |  Register
-        li
-          a(href='/login')
-            span.glyphicon.glyphicon-log-in
-            |  Login
-        li
-          a(href='/profile')
-            span.glyphicon.glyphicon-cog
-                | Profile
-        li
-          a(href='/logout')
-            span.glyphicon.glyphicon-off
-            |  Logout
+            //if !result.isAuthenticated
+            li
+                a(href='/register')
+                    span.glyphicon.glyphicon-user
+                        |  Register
+            li
+                 a(href='/login')
+                    span.glyphicon.glyphicon-log-in
+                        |  Login
+            // else
+            li
+                a(href='/profile')
+                    span.glyphicon.glyphicon-cog
+                        | Profile
+            li
+                a(href='/logout')
+                    span.glyphicon.glyphicon-off
+                        |  Logout
