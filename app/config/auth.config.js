@@ -14,7 +14,11 @@ const configAuth = (server, userData) => {
     ));
 
     server.use(cookieParser());
-    server.use(session({ secret: 'sedemte rilski laina' }));
+    server.use(session({
+        secret: 'tourist sites',
+        maxAge: new Date(Date.now() + 100000),
+    }));
+
     server.use(passport.initialize());
     server.use(passport.session());
 
@@ -26,6 +30,14 @@ const configAuth = (server, userData) => {
         return userData.findUserById(id)
             .then((user) => done(null, user))
             .catch((error) => done(error));
+    });
+
+    // trying to pass the user in the views
+    server.use((req, res, next) => {
+        res.locals = res.locals || {};
+
+        res.locals.user = req.user;
+        next();
     });
 };
 

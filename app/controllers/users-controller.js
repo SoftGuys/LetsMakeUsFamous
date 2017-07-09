@@ -1,15 +1,17 @@
 // const passport = require('passport');
 
-const userController = (userData) => {
+const userController = (data) => {
     return {
         getStartView(req, res, errorMessage) {
             res.render('master', {});
         },
         getHomeView(req, res, errorMessage) {
+            console.log(req.session);
             res.render('home', { dev: true });
         },
         getDestinationsView(req, res, errorMessage) {
-            userData.areas.getAll()
+            console.log(req.session);
+            data.areas.getAll()
                 .then((areas) => {
                     return res.render('destinations', {
                         model: areas,
@@ -24,7 +26,7 @@ const userController = (userData) => {
         },
         registerUser(req, res, errorMessage) {
             const user = req.body;
-            userData.add(user);
+            data.users.add(user);
 
             res.status(201)
                 .redirect('/');
