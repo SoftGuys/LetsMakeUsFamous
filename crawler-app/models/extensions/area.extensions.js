@@ -8,8 +8,8 @@ Area.fromHtml = (html) => {
             const areas = [];
             $(selectors.AREA_SELECTOR).each((_, elem) => {
                 const $elem = $(elem);
-
-                const name = $elem.text().trim();
+                let name = $elem.text().trim();
+                name = name.substring(0, name.lastIndexOf(' '));
                 const route = $elem.attr('href')
                     .substring(selectors.BASE_RESOURCE.length);
 

@@ -23,13 +23,13 @@ const parseAreas = (url) => {
                 const $elements = $(selectors.ITEMLIST);
                 $elements.each((_, elem) => {
                     const $elem = $(elem);
-                    const href = $elem.attr('href').split('/')[3];
+                    const hrefParts = $elem.attr('href').split('/');
+                    const href = hrefParts[3];
                     if (href === 'item') {
                         return;
                     }
 
-                    const landmarkUrl =
-                        selectors.BASE_URL + area.id + '/' + href;
+                    const landmarkUrl = 'http://100nto.org' + hrefParts.join('/');
 
                     parseLandmark(landmarkUrl)
                         .then((landmark) => {
@@ -51,7 +51,6 @@ const parseAreas = (url) => {
                                         filename =
                                             '../../public/images/areas/' +
                                             filename;
-
                                         request(uri)
                                             .pipe(
                                                 fs.createWriteStream(
