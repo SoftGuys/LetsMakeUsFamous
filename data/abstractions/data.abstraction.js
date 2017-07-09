@@ -4,7 +4,7 @@ class Data {
             throw new Error('Database is undefined!');
         }
 
-        if (typeof collectionName === 'string') {
+        if (typeof collectionName !== 'string') {
             throw new Error('Incorrect collection name!');
         }
 
