@@ -3,10 +3,14 @@ const passport = require('passport');
 const userController = (data) => {
     return {
         getStartView(req, res, errorMessage) {
-            res.render('master', {});
+            let result = {
+                isAuthenticated: req.isAuthenticated(),
+                user: req.user
+            };
+            res.render('master',{result} );
         },
         getHomeView(req, res, errorMessage) {
-            res.render('home', { dev: true });
+            res.render('home', {dev: true});
         },
         getDestinationsView(req, res, errorMessage) {
             data.areas.getAll()
@@ -17,7 +21,12 @@ const userController = (data) => {
                 });
         },
         getLoginView(req, res, errorMessage) {
-            res.render('login', {});
+            if (req.isAuthenticated()) {
+                //You are already logged in
+            }
+            else{
+                res.render(res.render('login',{}))
+            }
         },
         getRegisterView(req, res, errorMessage) {
             res.render('register', {});
@@ -30,23 +39,25 @@ const userController = (data) => {
                 .redirect('/');
         },
         getProfileView(req, res, errorMessage) {
-            // let username, imageUrl;
-            // console.log(req.session);
-            //
-            // if (req.isAuthenticated()) {
-            //     username = req.user.image ? req.user.username : "newuser";
-            //     imageUrl = '/static/images/profile' + username + '.jpg';
-            // }
-            //
-            // let result = {
-            //     username: req.user.username,
-            //     image: req.user.image,
-            //     isAuthenticated: req.isAuthenticated(),
-            //     user: req.user
-            // };
-            //
-            // console.log(result)
-            res.render('profile', {});
+            if (!req.isAuthenticated()) {
+                //You are not Logged
+            }
+            else {
+                let username, imageUrl;
+                console.log(req.session);
+                (req.isAuthenticated())
+                username = req.user.image ? req.user.username : "/newuser";
+                imageUrl = '/static/images/profile' + username + '.jpg';
+                console.log(imageUrl);
+                let result = {
+                    username: req.user.username,
+                    image: imageUrl,
+                    isAuthenticated: req.isAuthenticated(),
+                    user: req.user
+                };
+                console.log(result)
+                res.render('profile', {result});
+            }
         },
         logUser(req, res, errorMessage) {
             passport.authenticate('local', {

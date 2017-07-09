@@ -13,11 +13,11 @@ html(lang='en')
                 .col-xs-12.col-sm-12.col-md-6.col-lg-6.col-xs-offset-0.col-sm-offset-0.col-md-offset-3.col-lg-offset-3.toppad
                     .panel.panel-info
                         .panel-heading
-                            h3.panel-title Dani Petkanov
+                            h3.panel-title #{result.username}
                         .panel-body
                             .row
                                 .col-md-3.col-lg-3(align='center')
-                                    img.img-circle.img-responsive(alt='User Pic', src='/static/images/profile/dp.jpg')
+                                    img.img-circle.img-responsive(alt='User Pic', src=result.image)
                                 .col-md-9.col-lg-9
                                     table.table.table-user-information
                                         tbody
@@ -25,22 +25,19 @@ html(lang='en')
                                                 td Department:
                                                 td Programming
                                             tr
-                                                td Hire date:
-                                                td 06/23/2013
-                                            tr
                                                 td Date of Birth
                                                 td 01/24/1988
                                             tr
                                             tr
                                                 td Gender
-                                                td Female
+                                                td Male
                                             tr
                                                 td Home Address
-                                                td Kathmandu,Nepal
+                                                td Bulgaria
                                             tr
                                                 td Email
                                                 td
-                                                    a(href='mailto:info@support.com') info@support.com
+                                                    a(href=result.email) #{result.user.email}
                                             td Phone Number
                                             td
                                                 | 123-4567-890(Landline)

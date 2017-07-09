@@ -16,19 +16,21 @@ mixin nav
 
                 //Check if Logged MyProfile and Logout,Else Rest
                 ul.nav.navbar-nav.navbar-right
-                    li
-                        a(href='/profile')
-                            span.glyphicon.glyphicon-user
-                            |   MyProfile
-                    li
-                        a(href='/logout')
-                            span.glyphicon.glyphicon-log-out
-                            |   Logout
-                    li
-                        a(href='/register')
-                            span.glyphicon.glyphicon-user
-                            |  Sign Up
-                    li
-                        a(href='/login')
-                            span.glyphicon.glyphicon-log-in
-                            |  Login
+                    if result.isAuthenticated
+                        li
+                            a(href='/profile')
+                                span.glyphicon.glyphicon-user
+                                |   MyProfile
+                        li
+                            a(href='/logout')
+                                span.glyphicon.glyphicon-log-out
+                                |   Logout
+                    else
+                        li
+                            a(href='/register')
+                                span.glyphicon.glyphicon-user
+                                |  Sign Up
+                        li
+                            a(href='/login')
+                                span.glyphicon.glyphicon-log-in
+                                |  Login
