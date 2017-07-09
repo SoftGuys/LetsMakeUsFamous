@@ -1,4 +1,4 @@
-// const passport = require('passport');
+const passport = require('passport');
 
 const userController = (data) => {
     return {
@@ -6,11 +6,9 @@ const userController = (data) => {
             res.render('master', {});
         },
         getHomeView(req, res, errorMessage) {
-            console.log(req.session);
             res.render('home', { dev: true });
         },
         getDestinationsView(req, res, errorMessage) {
-            console.log(req.session);
             data.areas.getAll()
                 .then((areas) => {
                     return res.render('destinations', {
@@ -31,6 +29,27 @@ const userController = (data) => {
             res.status(201)
                 .redirect('/');
         },
+        getProfileView(req, res, errorMessage) {
+            // let username, imageUrl;
+            // console.log(req.session);
+            //
+            // if (req.isAuthenticated()) {
+            //     username = req.user.image ? req.user.username : "newuser";
+            //     imageUrl = '/static/images/profile' + username + '.jpg';
+            // }
+            //
+            // let result = {
+            //     username: req.user.username,
+            //     image: req.user.image,
+            //     isAuthenticated: req.isAuthenticated(),
+            //     user: req.user
+            // };
+            //
+            // console.log(result)
+            res.render('profile', {});
+        },
+
+
         // logUser(req, res, errorMessage) {
         //     passport.authenticate('local', {
         //         successRedirect: '/',
@@ -38,6 +57,15 @@ const userController = (data) => {
         //         failureFlash: true,
         //     });
         // },
+
+        logUser(req, res, errorMessage) {
+            passport.authenticate('local', {
+                successRedirect: '/',
+                failureRedirect: '/login',
+                failureFlash: true,
+            })(req, res, errorMessage);
+        }
+
     };
 };
 

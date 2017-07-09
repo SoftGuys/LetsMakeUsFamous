@@ -5,7 +5,6 @@ const COLLECTION_NAME = 'users';
 class UsersData extends Data {
     constructor(database) {
         super(database, COLLECTION_NAME);
-        this.secretKey = 'secret key 123';
     }
 
     findUserByUsername(username) {
@@ -14,14 +13,6 @@ class UsersData extends Data {
         }
 
         return this.collection.findOne({ username });
-    }
-
-    findUserById(_id) {
-        if (typeof _id !== 'string') {
-            throw new Error('Invalid id!');
-        }
-
-        return this.collection.findOne({ _id });
     }
 
     validateUserPassword(user, password) {
