@@ -29,20 +29,20 @@ html.no-js(lang='en')
                     a#toregister.hiddenanchor
                     a#tologin.hiddenanchor
                     #wrapper
-                        #login.animate.form
+                        form(action='/register' method='post')#login.animate.form
                                 h1  Sign up
                                 p
-                                    label.uname(for='usernamesignup') Your username
-                                    input#usernamesignup(name='usernamesignup', required='required', type='text', placeholder='mysuperusername690')
+                                    label.uname(for='username') Your username
+                                    input#usernamesignup(name='username', required='required', type='text', placeholder='mysuperusername690')
                                 p
-                                    label.youmail(for='emailsignup')  Your email
-                                    input#emailsignup(name='emailsignup', required='required', type='email', placeholder='mysupermail@mail.com')
+                                    label.youmail(for='email')  Your email
+                                    input#emailsignup(name='email', required='required', type='email', placeholder='mysupermail@mail.com')
                                 p
-                                    label.youpasswd(for='passwordsignup') Your password
-                                    input#passwordsignup(name='passwordsignup', required='required', type='password', placeholder='eg. X8df!90EO')
+                                    label.youpasswd(for='password') Your password
+                                    input#passwordsignup(name='password', required='required', type='password', placeholder='eg. X8df!90EO')
                                 p
-                                    label.youpasswd(for='passwordsignup_confirm') Please confirm your password
-                                    input#passwordsignup_confirm(name='passwordsignup_confirm', required='required', type='password', placeholder='eg. X8df!90EO')
+                                    label.youpasswd(for='password_confirm') Please confirm your password
+                                    input#passwordsignup_confirm(name='password_confirm', required='required', type='password', placeholder='eg. X8df!90EO')
                                 p
                                     input.btn.btn-info(type='submit', value='Sign up')
                                 a.btn-danger.p.back.button(href='/')

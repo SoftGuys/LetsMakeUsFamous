@@ -29,15 +29,14 @@ html.no-js(lang='en')
                     a#toregister.hiddenanchor
                     a#tologin.hiddenanchor
                     #wrapper
-                        #login.animate.form
+                        form(action='/login' method='post')#login.animate.form
                             h1  Login up
                             p
-                                label.uname(for='usernamesignup') Your username
-                                input#usernamesignup(name='usernamesignup', required='required', type='text', placeholder='mysuperusername690')
+                                label.uname(for='username') Your username
+                                input#usernamesignup(name='username', required='required', type='text', placeholder='mysuperusername690')
                             p
-                                label.youpasswd(for='passwordsignup') Your password
-                                input#passwordsignup(name='passwordsignup', required='required', type='password', placeholder='eg. X8df!90EO')
-
+                                label.youpasswd(for='password') Your password
+                                input#passwordsignup(name='password', required='required', type='password', placeholder='eg. X8df!90EO')
                             p
                                 input.btn.btn-info(type='submit', value='Login')
                             a.btn-danger.p.back.button(href='/')
