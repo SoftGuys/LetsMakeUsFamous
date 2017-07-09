@@ -28,7 +28,9 @@ const parseAreas = (url) => {
                         return;
                     }
 
-                    const landmarkUrl = selectors.BASE_URL + area.id + '/' + href;
+                    const landmarkUrl =
+                        selectors.BASE_URL + area.id + '/' + href;
+
                     parseLandmark(landmarkUrl)
                         .then((landmark) => {
                             area.landmarksIds.push(landmark);
@@ -40,17 +42,29 @@ const parseAreas = (url) => {
                             const download = (uri, filename) => {
                                 request.head(uri, (err, res, body) => {
                                     if (!uri.includes('undefined')) {
-                                        filename = filename.replace(/[\s+\-+\"+\'+\\+\/+:+]/gi, '');
+                                        filename = filename
+                                            .replace(/[\s\-\"\'\\\/:]/gi, '');
 
-                                        landmark.pictureUrl = `/static/images/areas/${filename}`;
-                                        filename = '../../public/images/areas/' + filename;
+                                        landmark.pictureUrl =
+                                            `/static/images/areas/${filename}`;
+
+                                        filename =
+                                            '../../public/images/areas/' +
+                                            filename;
+
                                         request(uri)
-                                            .pipe(fs.createWriteStream(path.join(__dirname, filename)));
+                                            .pipe(
+                                                fs.createWriteStream(
+                                                    path.join(
+                                                        __dirname,
+                                                        filename)));
                                     }
                                 });
                             };
 
-                            download(landmark.pictureUrl, landmark.title + '.jpeg');
+                            download(
+                                landmark.pictureUrl,
+                                landmark.title + '.jpeg');
                         });
                 });
             });

@@ -1,4 +1,4 @@
-const passport = require('passport');
+// const passport = require('passport');
 
 const userController = (data) => {
     return {
@@ -6,9 +6,11 @@ const userController = (data) => {
             res.render('master', {});
         },
         getHomeView(req, res, errorMessage) {
+            console.log(req.session);
             res.render('home', { dev: true });
         },
         getDestinationsView(req, res, errorMessage) {
+            console.log(req.session);
             data.areas.getAll()
                 .then((areas) => {
                     return res.render('destinations', {

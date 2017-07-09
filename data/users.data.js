@@ -42,6 +42,11 @@ class UsersData extends Data {
             throw new Error('Invalid model for ' + this.collectionName);
         }
 
+        if (user.password !== user.password_confirm) {
+            throw new Error('Passwords do not match!');
+        }
+
+        delete user.password_confirm;
         // eslint-disable-next-line new-cap
         user.password = CryptoJS.SHA1(user.password).toString();
         return this.collection.insert(user);
