@@ -1,3 +1,5 @@
+const ObjectId = require('mongodb').ObjectID;
+
 class Data {
     constructor(database, collectionName) {
         if (typeof database === 'undefined') {
@@ -16,6 +18,15 @@ class Data {
     getAll() {
         return this.collection.find({}, {})
             .toArray();
+    }
+
+    findById(id) {
+        if (typeof id !== 'string') {
+            throw new Error('Invalid id!');
+        }
+
+        // eslint-disable-next-line
+        return this.collection.findOne({ _id: ObjectId(id) });
     }
 
     add(model) {

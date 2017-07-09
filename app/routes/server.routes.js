@@ -1,6 +1,5 @@
 const { Router } = require('express');
 const createUsersController = require('../controllers/users-controller');
-const passport = require('passport');
 
 const attachRoutes = (app, data) => {
     const router = new Router();
@@ -13,12 +12,7 @@ const attachRoutes = (app, data) => {
         .get('/register', usersController.getRegisterView)
         .post('/register', usersController.registerUser)
         .get('/login', usersController.getLoginView)
-        .post('/login', passport.authenticate('local', {
-            successRedirect: '/',
-            failureRedirect: '/login',
-            failureFlash: true,
-        }))
-        .get('/profile',usersController.getProfileView);
+        .post('/login', usersController.logUser);
 
 
     app.use('/', router);
