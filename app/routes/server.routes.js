@@ -1,9 +1,11 @@
-const { Router } = require('express');
+const {Router} = require('express');
 const createUsersController = require('../controllers/users-controller');
+const createAuthorizationController = require('../controllers/auth-controller');
 
 const attachRoutes = (app, data) => {
     const router = new Router();
     const usersController = createUsersController(data);
+    const authController = createAuthorizationController(data);
 
     router
         .get('/', usersController.getStartView)
@@ -14,7 +16,9 @@ const attachRoutes = (app, data) => {
         .get('/login', usersController.getLoginView)
         .post('/login', usersController.logUser)
         .get('/auth/facebook', usersController.logFacebook)
-        .get('/profile', usersController.getProfileView);
+        .get('/profile', usersController.getProfileView)
+        .post('/logout', authController.logout)
+        .get('/about',authController.aboutUs)
 
     app.use('/', router);
 };

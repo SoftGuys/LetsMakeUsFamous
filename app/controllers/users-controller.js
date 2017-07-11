@@ -9,9 +9,11 @@ const userController = (data) => {
             };
             res.render('master', { result });
         },
+
         getHomeView(req, res, errorMessage) {
             res.render('home', { dev: true });
         },
+
         getDestinationsView(req, res, errorMessage) {
             data.areas.getAll()
                 .then((areas) => {
@@ -20,6 +22,7 @@ const userController = (data) => {
                     });
                 });
         },
+
         getLoginView(req, res, errorMessage) {
             if (req.isAuthenticated()) {
                 // You are already logged in
@@ -27,9 +30,11 @@ const userController = (data) => {
                 res.render(res.render('login', {}));
             }
         },
+
         getRegisterView(req, res, errorMessage) {
             res.render('register', {});
         },
+
         registerUser(req, res, errorMessage) {
             const user = req.body;
             data.users.add(user);
@@ -37,6 +42,7 @@ const userController = (data) => {
             res.status(201)
                 .redirect('/');
         },
+
         getProfileView(req, res, errorMessage) {
             if (!req.isAuthenticated()) {
                 return res.redirect('/home');
@@ -56,6 +62,7 @@ const userController = (data) => {
 
             return res.render('profile', { result });
         },
+
         logUser(req, res, errorMessage) {
             passport.authenticate('local', {
                 successRedirect: '/',
@@ -63,6 +70,7 @@ const userController = (data) => {
                 failureFlash: true,
             })(req, res, errorMessage);
         },
+
         logFacebook(req, res, errorMessage) {
             passport.authenticate('facebook', {
                 scope: ['user_friends', 'manage_pages'],
