@@ -1,19 +1,7 @@
 const passport = require('passport');
 
-const userController = (data) => {
+const usersController = (data) => {
     return {
-        getStartView(req, res, errorMessage) {
-            const result = {
-                isAuthenticated: req.isAuthenticated(),
-                user: req.user,
-            };
-            res.render('master', { result });
-        },
-
-        getHomeView(req, res, errorMessage) {
-            res.render('home', { dev: true });
-        },
-
         getDestinationsView(req, res, errorMessage) {
             data.areas.getAll()
                 .then((areas) => {
@@ -22,7 +10,6 @@ const userController = (data) => {
                     });
                 });
         },
-
         getLoginView(req, res, errorMessage) {
             if (req.isAuthenticated()) {
                 // You are already logged in
@@ -30,19 +17,9 @@ const userController = (data) => {
                 res.render('forms/login', {});
             }
         },
-
         getRegisterView(req, res, errorMessage) {
             res.render('forms/register', {});
         },
-
-        registerUser(req, res, errorMessage) {
-            const user = req.body;
-            data.users.add(user);
-
-            res.status(201)
-                .redirect('/');
-        },
-
         getProfileView(req, res, errorMessage) {
             if (!req.isAuthenticated()) {
                 return res.redirect('/home');
@@ -52,7 +29,6 @@ const userController = (data) => {
                 req.user.username :
                 '/newuser';
             const imageUrl = '/static/images/profile' + username + '.jpg';
-            console.log(imageUrl);
             const result = {
                 username: req.user.username,
                 image: imageUrl,
@@ -62,21 +38,7 @@ const userController = (data) => {
 
             return res.render('profile', { result });
         },
-
-        logUser(req, res, errorMessage) {
-            passport.authenticate('local', {
-                successRedirect: '/',
-                failureRedirect: '/login',
-                failureFlash: true,
-            })(req, res, errorMessage);
-        },
-
-        logFacebook(req, res, errorMessage) {
-            passport.authenticate('facebook', {
-                scope: ['user_friends', 'manage_pages'],
-            })(req, res, errorMessage);
-        },
     };
 };
 
-module.exports = userController;
+module.exports = usersController;

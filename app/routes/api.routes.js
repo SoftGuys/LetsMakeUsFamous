@@ -1,11 +1,8 @@
 const { Router } = require('express');
 
-const attachRoutes = (app, data) => {
+const attachRoutes = (app, controllers) => {
     const router = new Router();
-    const usersApiController =
-        require('../controllers/users.api.controller')(data);
-
-    router.get('/areas', usersApiController.getAreas);
+    router.get('/areas', controllers.usersApiController.getAreas);
 
     app.use('/api', router);
 };
