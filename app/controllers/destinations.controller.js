@@ -1,11 +1,25 @@
+const DEFAULT_VISIBLE_PAGES = 5;
+const DEFAULT_PAGE = 1;
+
 const destinationsController = (data) => {
+    const utils = require('../utils');
+
     return {
         getDestinationsView(req, res, errorMessage) {
-            data.landmarks.getRange(req.query.page, req.query.size)
+            const page = req.query.page || DEFAULT_PAGE;
+            const size = req.query.size;
+
+            data.landmarks.getRange(page, size)
                 .then((landmarks) => {
-                    console.log(landmarks);
+                    const pages = utils
+                        .getPagination(Number(page), DEFAULT_VISIBLE_PAGES);
+
                     return res.render('destinations', {
-                        model: landmarks,
+                        model: {
+                            landmarks,
+                            pages,
+                            currentPage: Number(page),
+                        },
                     });
                 });
         },

@@ -8,14 +8,30 @@ block content
                     | Bulgarian Destinations 
                     span.glyphicon.glyphicon-globe
         .row
-        each landmark, index in model
+        each landmark, index in model.landmarks
             if (index % 3) == 0
                 .row
             else
             .col-md-4.portfolio-item.landmark 
-                    a(href='#')
+                    a(href=landmark.pictureUrl)
                         img.img-responsive.thumbnail(src=landmark.pictureUrl)
                     h3
                         | #{landmark.title}
                     p.landmark-description
                         | #{landmark.description}
+    div.text-center
+        ul.pagination.pagination-lg
+            if (model.currentPage - 1 > 0)
+                li
+                    a(href='/destinations?page=' + (model.currentPage - 1)) «
+            each page in model.pages
+                if (page == model.currentPage)
+                    li.active
+                        a(href='/destinations?page=' + page)
+                            | #{page}
+                else
+                    li
+                        a(href='/destinations?page=' + page)
+                            | #{page}
+            li
+                a(href='/destinations?page=' + (model.currentPage + 1)) »
