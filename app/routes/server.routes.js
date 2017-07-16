@@ -1,4 +1,4 @@
-const {Router} = require('express');
+const { Router } = require('express');
 const createUsersController = require('../controllers/users-controller');
 const createAuthorizationController = require('../controllers/auth-controller');
 
@@ -18,7 +18,7 @@ const attachRoutes = (app, data) => {
         .get('/auth/facebook', usersController.logFacebook)
         .get('/profile', usersController.getProfileView)
         .post('/logout', authController.logout)
-        .get('/about',authController.aboutUs)
+        .get('/about', authController.aboutUs)
 
     app.use('/', router);
 };
