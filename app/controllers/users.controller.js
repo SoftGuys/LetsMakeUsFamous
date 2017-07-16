@@ -1,15 +1,5 @@
-const passport = require('passport');
-
 const usersController = (data) => {
     return {
-        getDestinationsView(req, res, errorMessage) {
-            data.areas.getAll()
-                .then((areas) => {
-                    return res.render('destinations', {
-                        model: areas,
-                    });
-                });
-        },
         getLoginView(req, res, errorMessage) {
             if (req.isAuthenticated()) {
                 // You are already logged in
@@ -37,6 +27,9 @@ const usersController = (data) => {
             };
 
             return res.render('profile', { result });
+        },
+        aboutUs(req, res) {
+            return res.render('about');
         },
     };
 };

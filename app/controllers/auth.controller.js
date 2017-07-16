@@ -4,13 +4,14 @@ const authController = (data) => {
     return {
         logout(req, res) {
             req.logout();
-            res.send(window.location.href = '/');
+            return res.status(304)
+                .redirect('/');
         },
         registerUser(req, res, errorMessage) {
             const user = req.body;
             data.users.add(user);
 
-            res.status(201)
+            return res.status(201)
                 .redirect('/');
         },
         logUser(req, res, errorMessage) {
@@ -24,9 +25,6 @@ const authController = (data) => {
             passport.authenticate('facebook', {
                 scope: ['user_friends', 'manage_pages'],
             })(req, res, errorMessage);
-        },
-        aboutUs(req, res) {
-            return res.render('about');
         },
     };
 };
