@@ -10,17 +10,15 @@ const usersController = (data) => {
                     });
                 });
         },
-
         getLoginView(req, res, errorMessage) {
             if (req.isAuthenticated()) {
                 // You are already logged in
             } else {
-                res.render(res.render('forms/login', {}));
+                res.render('login', {});
             }
         },
-
         getRegisterView(req, res, errorMessage) {
-            res.render('forms/register', {});
+            res.render('register', {});
         },
         getProfileView(req, res, errorMessage) {
             if (!req.isAuthenticated()) {
@@ -39,20 +37,6 @@ const usersController = (data) => {
             };
 
             return res.render('profile', { result });
-        },
-
-        logUser(req, res, errorMessage) {
-            passport.authenticate('local', {
-                successRedirect: '/',
-                failureRedirect: '/login',
-                failureFlash: true,
-            })(req, res, errorMessage);
-        },
-
-        logFacebook(req, res, errorMessage) {
-            passport.authenticate('facebook', {
-                scope: ['user_friends', 'manage_pages'],
-            })(req, res, errorMessage);
         },
     };
 };
