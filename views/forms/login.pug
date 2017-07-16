@@ -1,0 +1,27 @@
+extends master
+
+block header
+    h1
+        |   Login form
+
+block wrapper
+    form(action='/login' method='post')#login.animate.form
+        h1
+            |   Login up
+        p
+            label.uname(for='username')
+                |   Your username
+
+            input#usernamesignup(name='username', required='required', type='text', placeholder='mysuperusername690')
+        p
+            label.youpasswd(for='password')
+                |   Your password
+                
+            input#passwordsignup(name='password', required='required', type='password', placeholder='eg. X8df!90EO')
+        p
+            input.btn.btn-info(type='submit', value='Login')
+        a.btn-danger.p.back.button(href='/')
+            input.btn-danger.p.back.button(type='submit', value='Back')
+
+    form(action="/auth/facebook" method="get")#login.animate.form.row
+        input(type="submit" value="Login with Facebook").btn.btn-facebook

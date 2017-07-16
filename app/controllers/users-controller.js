@@ -27,12 +27,12 @@ const userController = (data) => {
             if (req.isAuthenticated()) {
                 // You are already logged in
             } else {
-                res.render(res.render('login', {}));
+                res.render(res.render('forms/login', {}));
             }
         },
 
         getRegisterView(req, res, errorMessage) {
-            res.render('register', {});
+            res.render('forms/register', {});
         },
 
         registerUser(req, res, errorMessage) {
