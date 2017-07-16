@@ -3,7 +3,7 @@ iframe {
     min-height: 100%;
 }
 
-.background{
+.background {
     height: 100%;
     margin: 0;
     overflow: hidden;
@@ -36,7 +36,8 @@ iframe {
     border: 1px solid transparent;
     min-height: 100%;
 }
-#sound{
+
+#sound {
     color: white;
     padding-top: 30px;
 }
