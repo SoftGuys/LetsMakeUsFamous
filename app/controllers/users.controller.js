@@ -32,6 +32,14 @@ const usersController = (data) => {
         aboutUs(req, res) {
             return res.render('about');
         },
+        getAll(req, res) {
+            data.users.getAll()
+                .then((users) => {
+                    return res.render('users', {
+                        model: users,
+                    });
+                });
+        },
     };
 };
 
