@@ -1,3 +1,4 @@
+/* eslint-disable semi */
 const usersController = (data) => {
     return {
         getLoginView(req, res, errorMessage) {
@@ -18,14 +19,14 @@ const usersController = (data) => {
             const username = req.user.image ?
                 req.user.username :
                 '/newuser';
-            const imageUrl = '/static/images/profile' + username + '.jpg';
+            const imageUrl = '/static/images/profile/' + 'dp' + '.jpg';
             const result = {
                 username: req.user.username,
+                email: req.user.email,
                 image: imageUrl,
                 isAuthenticated: req.isAuthenticated(),
                 user: req.user,
             };
-
             return res.render('profile', { result });
         },
         aboutUs(req, res) {
