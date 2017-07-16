@@ -1,24 +1,20 @@
 const { Router } = require('express');
-const createUsersController = require('../controllers/users-controller');
-const createAuthorizationController = require('../controllers/auth-controller');
 
-const attachRoutes = (app, data) => {
+const attachRoutes = (app, controllers) => {
     const router = new Router();
-    const usersController = createUsersController(data);
-    const authController = createAuthorizationController(data);
 
     router
-        .get('/', usersController.getStartView)
-        .get('/home', usersController.getHomeView)
-        .get('/destinations', usersController.getDestinationsView)
-        .get('/register', usersController.getRegisterView)
-        .post('/register', usersController.registerUser)
-        .get('/login', usersController.getLoginView)
-        .post('/login', usersController.logUser)
-        .get('/auth/facebook', usersController.logFacebook)
-        .get('/profile', usersController.getProfileView)
-        .post('/logout', authController.logout)
-        .get('/about', authController.aboutUs)
+        .get('/', controllers.homeController.getStartView)
+        .get('/home', controllers.homeController.getHomeView)
+        .get('/destinations', controllers.usersController.getDestinationsView)
+        .get('/register', controllers.usersController.getRegisterView)
+        .post('/register', controllers.authController.registerUser)
+        .get('/login', controllers.usersController.getLoginView)
+        .post('/login', controllers.authController.logUser)
+        .get('/auth/facebook', controllers.authController.logFacebook)
+        .get('/profile', controllers.usersController.getProfileView)
+        .post('/logout', controllers.authController.logout)
+        .get('/about', controllers.authController.aboutUs);
 
     app.use('/', router);
 };
