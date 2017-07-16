@@ -25,7 +25,7 @@ class Data {
 
     findById(id) {
         if (typeof id !== 'string') {
-            throw new Error('Invalid id!');
+            return Promise.reject('Invalid id!');
         }
 
         // eslint-disable-next-line
@@ -34,11 +34,11 @@ class Data {
 
     add(model) {
         if (typeof model === 'undefined') {
-            throw new Error('Model is undefined!');
+            return Promise.reject('Model is undefined!');
         }
 
         if (!this.isModelValid(model)) {
-            throw new Error('Invalid model for ' + this.collectionName);
+            return Promise.reject('Invalid model for ' + this.collectionName);
         }
 
         return this.collection.insert(model);
