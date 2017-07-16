@@ -1,4 +1,5 @@
 extends master
+include ./utils/pagination
 
 block content
     .main.container
@@ -19,19 +20,4 @@ block content
                         | #{landmark.title}
                     p.landmark-description
                         | #{landmark.description}
-    div.text-center
-        ul.pagination.pagination-lg
-            if (model.currentPage - 1 > 0)
-                li
-                    a(href='/destinations?page=' + (model.currentPage - 1)) «
-            each page in model.pages
-                if (page == model.currentPage)
-                    li.active
-                        a(href='/destinations?page=' + page)
-                            | #{page}
-                else
-                    li
-                        a(href='/destinations?page=' + page)
-                            | #{page}
-            li
-                a(href='/destinations?page=' + (model.currentPage + 1)) »
+    +pagination
