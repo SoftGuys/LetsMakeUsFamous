@@ -27,7 +27,7 @@ const userController = (data) => {
             if (req.isAuthenticated()) {
                 // You are already logged in
             } else {
-                res.render(res.render('forms/login', {}));
+                res.render('forms/login', {});
             }
         },
 

@@ -3,7 +3,7 @@ const nodemon = require('gulp-nodemon');
 const express = require('gulp-express');
 const eslint = require('gulp-eslint');
 
-gulp.task('server', () => {
+gulp.task('server', ['lint'], () => {
     express.run(['server.js']);
 });
 
