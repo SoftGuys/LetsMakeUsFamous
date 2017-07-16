@@ -6,7 +6,6 @@ iframe {
 .background {
     height: 100%;
     margin: 0;
-    overflow: hidden;
 }
 
 .center {
@@ -37,4 +36,9 @@ iframe {
 #sound {
     color: white;
     padding-top: 30px;
+}
+
+.landmark-description {
+    max-height: 100px;
+    overflow-y: hidden;
 }

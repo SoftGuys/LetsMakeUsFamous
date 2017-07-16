@@ -1,19 +1,21 @@
 extends master
 
 block content
-    main.destinations
-        each area in model
-            h2
-                |   #{area.name}
-
-                each x in area.landmarksIds
-                    row
-                        .col-md-4
-                            .thumbnail
-                                a.a(href=x.pictureUrl, target='_blank')
-                                    img.img-responsive.col.sm-4(src=x.pictureUrl)
-                                    .caption
-                                p
-                                    #{x.title}
-                                p
-                                    #{x.description}
+    .main.container
+        .row
+            .col-lg-12
+                h1.page-header
+                    | Bulgarian Destinations 
+                    span.glyphicon.glyphicon-globe
+        .row
+        each landmark, index in model
+            if (index % 3) == 0
+                .row
+            else
+            .col-md-4.portfolio-item.landmark 
+                    a(href='#')
+                        img.img-responsive.thumbnail(src=landmark.pictureUrl)
+                    h3
+                        | #{landmark.title}
+                    p.landmark-description
+                        | #{landmark.description}

@@ -1,5 +1,8 @@
 const ObjectId = require('mongodb').ObjectID;
 
+const DEFAULT_PAGE = 1;
+const DEFAULT_PAGE_SIZE = 12;
+
 class Data {
     constructor(database, collectionName) {
         if (typeof database === 'undefined') {
@@ -38,6 +41,24 @@ class Data {
         }
 
         return this.collection.insert(model);
+    }
+
+    getRange(start, size) {
+        start = Number(start);
+        size = Number(size);
+
+        if (Number.isNaN(start) || start < 1) {
+            start = DEFAULT_PAGE;
+        }
+
+        if (Number.isNaN(size) || size < 1) {
+            size = DEFAULT_PAGE_SIZE;
+        }
+
+        return this.collection.find()
+            .skip((start - 1) * size)
+            .limit(size)
+            .toArray();
     }
 
     getById(id) {
