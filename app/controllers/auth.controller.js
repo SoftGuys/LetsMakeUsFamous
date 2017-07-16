@@ -3,22 +3,22 @@ const passport = require('passport');
 const authController = (data) => {
     return {
         logout(req, res) {
-            req.logout();
-            return res.status(304)
-                .redirect('/');
+            req.logout().flash('info', 'User logged out successfully!');
+            return res.status(304).redirect('/');
         },
         registerUser(req, res, errorMessage) {
             const user = req.body;
             data.users.add(user);
 
-            return res.status(201)
-                .redirect('/');
+            req.flash('info', 'User registered successfully!');
+            return res.status(201).redirect('/');
         },
         logUser(req, res, errorMessage) {
             passport.authenticate('local', {
                 successRedirect: '/',
                 failureRedirect: '/login',
-                failureFlash: true,
+                successFlash: 'Successfully logged!',
+                failureFlash: 'Incorrect username or password!',
             })(req, res, errorMessage);
         },
         logFacebook(req, res, errorMessage) {

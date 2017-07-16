@@ -9,7 +9,7 @@ class UsersData extends Data {
 
     findUserByUsername(username) {
         if (typeof username !== 'string') {
-            throw new Error('Invalid username!');
+            return Promise.reject('Invalid username!');
         }
 
         return this.collection.findOne({ username });
@@ -18,7 +18,7 @@ class UsersData extends Data {
     validateUserPassword(user, password) {
         // eslint-disable-next-line new-cap
         if (user.password !== CryptoJS.SHA1(password).toString()) {
-            throw new Error('Invalid password!');
+            return Promise.reject('Invalid password!');
         }
 
         return Promise.resolve(user);
@@ -26,15 +26,15 @@ class UsersData extends Data {
 
     add(user) {
         if (typeof user === 'undefined') {
-            throw new Error('Model is undefined!');
+            return Promise.reject('Model is undefined!');
         }
 
         if (!this.isModelValid(user)) {
-            throw new Error('Invalid model for ' + this.collectionName);
+            return Promise.reject('Invalid model for ' + this.collectionName);
         }
 
         if (user.password !== user.password_confirm) {
-            throw new Error('Passwords do not match!');
+            return Promise.reject('Passwords do not match!');
         }
 
         delete user.password_confirm;
