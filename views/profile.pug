@@ -8,8 +8,6 @@ block content
                     .panel-heading
                         h3.panel-title
                             |   #{result.username}
-                            a(href='edit').pull-right
-                                |   Edit Profile
                     .panel-body
                         .row
                             .col-md-3(align='center')
@@ -48,9 +46,14 @@ block content
                                         td                                            
                                             |   555-4567-890(Mobile)
                     .panel-footer
-                        a.btn.btn-sm.btn-primary(data-original-title='Broadcast Message', data-toggle='tooltip', type='button')
-                            i.glyphicon.glyphicon-envelope
-                        span.pull-right
+                        form#profile-picture-form(method='post', enctype='multipart/form-data')
+                            label.btn.btn-default(for="profile-picture")
+                                |   Update profile picture
+                            input#profile-picture(type='file', name='imageupload', style='display:none', accept='image/*')
+                            
+                        span.pull-right.vcenter
+                            a.btn.btn-sm.btn-primary(data-original-title='Broadcast Message', data-toggle='tooltip', type='button')
+                                i.glyphicon.glyphicon-envelope
                             a.btn.btn-sm.btn-warning(href='edit', data-original-title='Edit this user', data-toggle='tooltip', type='button')
                                 i.glyphicon.glyphicon-edit
                             a.btn.btn-sm.btn-danger(href='/')

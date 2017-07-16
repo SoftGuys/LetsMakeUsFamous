@@ -1,3 +1,10 @@
+#profile-picture-form,
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
 iframe {
     min-width: 98%;
     min-height: 100%;

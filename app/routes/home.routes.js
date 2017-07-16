@@ -3,7 +3,8 @@ const { Router } = require('express');
 const attachRoutes = (app, { homeController }) => {
     const router = new Router();
 
-    router.get('/', (req, res) => {
+    router
+        .get('/', (req, res) => {
             return res
                 .status(304)
                 .redirect('/home');
