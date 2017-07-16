@@ -6,7 +6,8 @@ const attachRouter = (app, { usersController }) => {
         .get('/register', usersController.getRegisterView)
         .get('/login', usersController.getLoginView)
         .get('/profile', usersController.getProfileView)
-        .get('/about', usersController.aboutUs);
+        .get('/about', usersController.aboutUs)
+        .get('/users', usersController.getAll);
 
     app.use('/', router);
 };

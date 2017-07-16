@@ -861,6 +861,10 @@ expand-tilde@^2.0.2:
   dependencies:
     homedir-polyfill "^1.0.1"
 
+express-messages@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/express-messages/-/express-messages-1.0.1.tgz#9981a85a5d2b118c79fc33f52b41834ffee9685a"
+
 express-session@^1.15.3:
   version "1.15.3"
   resolved "https://registry.yarnpkg.com/express-session/-/express-session-1.15.3.tgz#db545f0435a7b1b228ae02da8197f65141735c67"

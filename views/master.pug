@@ -15,5 +15,6 @@ html(lang='en')
 
     body.background
         +nav
+        != messages('utils/message', locals)
         block content
         //- +footer
