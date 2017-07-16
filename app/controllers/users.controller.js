@@ -14,11 +14,11 @@ const usersController = (data) => {
             if (req.isAuthenticated()) {
                 // You are already logged in
             } else {
-                res.render('login', {});
+                res.render('forms/login', {});
             }
         },
         getRegisterView(req, res, errorMessage) {
-            res.render('register', {});
+            res.render('forms/register', {});
         },
         getProfileView(req, res, errorMessage) {
             if (!req.isAuthenticated()) {
