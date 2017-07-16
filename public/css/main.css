@@ -9,9 +9,6 @@ iframe {
     overflow: hidden;
 }
 
-
-/* position exactly in the middle */
-
 .center {
     position: absolute;
     top: -9999px;

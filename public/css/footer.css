@@ -5,8 +5,7 @@ footer {
 }
 
 .copyright {
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,051c1e+0,207cca+100,7db9e8+100 */
-    background: #1e5799;
+    background: black;
     /* Old browsers */
     background: -moz-linear-gradient(top, #1e5799 0%, #051c1e 0%, #207cca 100%, #7db9e8 100%);
     /* FF3.6-15 */
@@ -47,6 +46,7 @@ footer {
     color: #FFF;
     font-size: 12px;
 }
-#aboutli{
+
+#aboutli {
     margin-left: 35%;
 }
