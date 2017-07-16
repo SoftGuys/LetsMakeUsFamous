@@ -30,14 +30,14 @@ const usersController = (data) => {
             const username = req.user.image ?
                 req.user.username :
                 '/newuser';
-            const imageUrl = '/static/images/profile' + username + '.jpg';
+            const imageUrl = '/static/images/profile/' + 'dp' + '.jpg';
             const result = {
                 username: req.user.username,
+                email: req.user.email,
                 image: imageUrl,
                 isAuthenticated: req.isAuthenticated(),
                 user: req.user,
             };
-
             return res.render('profile', { result });
         },
         uploadProfilePictureSetup() {
@@ -49,6 +49,14 @@ const usersController = (data) => {
         },
         aboutUs(req, res) {
             return res.render('about');
+        },
+        getAll(req, res) {
+            data.users.getAll()
+                .then((users) => {
+                    return res.render('users', {
+                        model: users,
+                    });
+                });
         },
     };
 };

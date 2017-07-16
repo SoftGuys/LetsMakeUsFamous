@@ -17,21 +17,26 @@ mixin nav
             span.glyphicon.glyphicon-book
             |  Users
       ul.nav.navbar-nav.navbar-right
-            //if !result.isAuthenticated
-            li
-                a(href='/register')
-                    span.glyphicon.glyphicon-user
-                        |  Register
-            li
-                 a(href='/login')
-                    span.glyphicon.glyphicon-log-in
-                        |  Login
-            // else
-            li
-                a(href='/profile')
-                    span.glyphicon.glyphicon-cog
-                        | Profile
-            li
-                a(href='/logout')
-                    span.glyphicon.glyphicon-off
-                        |  Logout
+            if !req
+                li
+                    a(href='/register')
+                        span.glyphicon.glyphicon-user
+                            |  Register
+                li
+                     a(href='/login')
+                        span.glyphicon.glyphicon-log-in
+                            |  Login
+            else
+                li
+                    a
+                        span.glyphicon.glyphicon-user
+                            | #{user.username}
+                //img.mini-profile-image(src= result.imageUrl)
+                li
+                    a(href='/profile')
+                        span.glyphicon.glyphicon-cog
+                            | Profile
+                li
+                    a(href='/logout')
+                        span.glyphicon.glyphicon-off
+                            |  Logout
