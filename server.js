@@ -1,7 +1,7 @@
 const config = require('./config');
 
 Promise.resolve()
-    .then(() => require('./database')(config.connectionString))
+    .then(() => require('./database')(config.localConnectionString))
     .then((database) => require('./data')(database))
     .then((data) => require('./app')(data))
     .then((app) => {

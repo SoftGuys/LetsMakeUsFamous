@@ -1,24 +1,19 @@
-include ./includes/nav.pug
-html(lang='en')
-    include ./includes/head.pug
-    body
-        +nav
+extends master
 
-        main.destinations
-            each area in model
-                h2
-                    | #{area.name}
+block content
+    main.destinations
+        each area in model
+            h2
+                |   #{area.name}
 
-                    each x in area.landmarksIds
-                        row
-                            .col-md-4
-                                .thumbnail
-                                    a.a(href=x.pictureUrl, target='_blank')
-                                        img.img-responsive.col.sm-4(src=x.pictureUrl)
-                                        .caption
-                                    p
-                                        #{x.title}
-                                    p
-                                        #{x.description}
-
-
+                each x in area.landmarksIds
+                    row
+                        .col-md-4
+                            .thumbnail
+                                a.a(href=x.pictureUrl, target='_blank')
+                                    img.img-responsive.col.sm-4(src=x.pictureUrl)
+                                    .caption
+                                p
+                                    #{x.title}
+                                p
+                                    #{x.description}
