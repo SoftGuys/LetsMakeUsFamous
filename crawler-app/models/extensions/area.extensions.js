@@ -1,6 +1,6 @@
-const { Area } = require('../area');
-const { initDomParser } = require('../../parsers/dom-parser');
-const { selectors } = require('../../selectors');
+const Area = require('../area');
+const initDomParser = require('../../parsers/dom-parser');
+const selectors = require('../../selectors');
 
 Area.fromHtml = (html) => {
     return initDomParser(html)

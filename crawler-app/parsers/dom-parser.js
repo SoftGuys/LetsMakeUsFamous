@@ -9,4 +9,4 @@ const initDomParser = (html) => {
 };
 
 
-module.exports = { initDomParser };
+module.exports = initDomParser;

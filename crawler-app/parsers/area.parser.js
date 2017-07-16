@@ -1,9 +1,9 @@
 /* globals __dirname */
 
-const { Area } = require('../models/area');
-const { selectors } = require('../selectors');
-const { parseLandmark } = require('./landmark.parser');
-const { initDomParser } = require('./dom-parser');
+const Area = require('../models/area');
+const selectors = require('../selectors');
+const parseLandmark = require('./landmark.parser');
+const initDomParser = require('./dom-parser');
 
 const REQUEST_SPEED = 3000;
 const parseAreas = (url) => {
@@ -22,6 +22,7 @@ const parseAreas = (url) => {
             .then(($) => {
                 const $elements = $(selectors.ITEMLIST);
                 $elements.each((_, elem) => {
+                    console.log('.');
                     const $elem = $(elem);
                     const hrefParts = $elem.attr('href').split('/');
                     const href = hrefParts[3];
@@ -33,7 +34,7 @@ const parseAreas = (url) => {
 
                     parseLandmark(landmarkUrl)
                         .then((landmark) => {
-                            area.landmarksIds.push(landmark);
+                            area.landmarks.push(landmark);
 
                             const fs = require('fs');
                             const request = require('request');
@@ -92,4 +93,4 @@ const parseAreas = (url) => {
         });
 };
 
-module.exports = { parseAreas };
+module.exports = parseAreas;

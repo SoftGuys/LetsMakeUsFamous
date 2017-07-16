@@ -20,7 +20,3 @@ gulp.task('dev', () => {
         script: 'server.js',
     });
 });
-
-gulp.task('crawler', () => {
-    express.run(['./crawler-app/capp.js']);
-});

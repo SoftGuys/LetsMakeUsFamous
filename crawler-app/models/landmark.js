@@ -6,4 +6,4 @@ class Landmark {
     }
 }
 
-module.exports = { Landmark };
+module.exports = Landmark;

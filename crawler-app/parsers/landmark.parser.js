@@ -1,4 +1,4 @@
-const { Landmark } = require('../models/landmark');
+const Landmark = require('../models/landmark');
 
 const parseLandmark = (url) => {
     return fetch(url)
@@ -10,4 +10,4 @@ const parseLandmark = (url) => {
         });
 };
 
-module.exports = { parseLandmark };
+module.exports = parseLandmark;

@@ -1,6 +1,6 @@
-const { Landmark } = require('../landmark');
-const { initDomParser } = require('../../parsers/dom-parser');
-const { selectors } = require('../../selectors');
+const Landmark = require('../landmark');
+const initDomParser = require('../../parsers/dom-parser');
+const selectors = require('../../selectors');
 
 Landmark.fromHtml = (html) => {
     return initDomParser(html)
@@ -28,8 +28,7 @@ Landmark.fromHtml = (html) => {
 
             const mainDescription = mainDescriptionParts.join(' ');
 
-            const description = landmarkIntroDescription +
-                ' ' +
+            const description = landmarkIntroDescription + ' ' +
                 mainDescription;
 
             const landmark = new Landmark(title, description, imageUrl);

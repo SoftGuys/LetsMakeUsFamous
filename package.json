@@ -1,12 +1,12 @@
 {
-    "name": "Qjtexui",
+    "name": "touristsites",
     "version": "1.0.0",
     "description": "Telerik Academy Node.js Project",
     "main": "index.js",
     "scripts": {
         "start": "gulp server",
         "dev": "gulp dev",
-        "crawler": "gulp crawler",
+        "crawler": "node ./crawler-app/capp.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -45,6 +45,7 @@
         "eslint": "^4.1.1",
         "eslint-config-google": "^0.8.0",
         "gulp-eslint": "^4.0.0",
+        "gulp-exec": "^2.1.3",
         "gulp-nodemon": "^2.2.1",
         "morgan": "^1.8.2",
         "nodemon": "^1.11.0"
