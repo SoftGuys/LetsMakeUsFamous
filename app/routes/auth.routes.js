@@ -7,7 +7,7 @@ const attachRoutes = (app, { authController }) => {
         .get('/login/facebook', authController.logFacebook)
         .post('/register', authController.registerUser)
         .post('/login', authController.logUser)
-        .post('/logout', authController.logout);
+        .get('/logout', authController.logout);
 
     app.use('/', router);
 };
