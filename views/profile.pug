@@ -46,11 +46,11 @@ block content
                                         td                                            
                                             |   555-4567-890(Mobile)
                     .panel-footer
-                        form#profile-picture-form(method='post', enctype='multipart/form-data')
+                        form#profile-picture-form(action='/profile' method='post', enctype='multipart/form-data')
                             label.btn.btn-default(for="profile-picture")
                                 |   Update profile picture
-                            input#profile-picture(type='file', name='imageupload', style='display:none', accept='image/*')
-                            
+                            input#profile-picture(type='file', name='avatar', accept='image/*')
+
                         span.pull-right.vcenter
                             a.btn.btn-sm.btn-primary(data-original-title='Broadcast Message', data-toggle='tooltip', type='button')
                                 i.glyphicon.glyphicon-envelope
