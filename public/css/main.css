@@ -5,6 +5,10 @@
     float: none;
 }
 
+#profile-picture {
+    display: none;
+}
+
 iframe {
     min-width: 98%;
     min-height: 100%;
