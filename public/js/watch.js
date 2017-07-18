@@ -8,7 +8,6 @@ function startTime() {
     document.getElementById('watch').innerHTML =
         h + ':' + m + ':' + s;
     const t = setTimeout(startTime, 500);
-    console.log('x');
 }
 
 function checkTime(i) {

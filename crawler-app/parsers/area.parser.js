@@ -34,6 +34,7 @@ const parseAreas = (url) => {
 
                     parseLandmark(landmarkUrl)
                         .then((landmark) => {
+                            console.log(landmark.title);
                             area.landmarks.push(landmark);
 
                             const fs = require('fs');
