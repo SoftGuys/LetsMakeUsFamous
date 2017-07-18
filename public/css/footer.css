@@ -50,3 +50,11 @@ footer {
 #aboutli {
     margin-left: 35%;
 }
+#jumbo{
+    background-color: black;
+    opacity: 0.3;
+    width: 100%;
+    color: #38f7ff;
+    text-align: center;
+    font-family: Sans-serif;
+}
