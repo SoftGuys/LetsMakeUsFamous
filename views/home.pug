@@ -1,7 +1,12 @@
 extends master
 
 block content
-    if dev
-        iframe#myVideoHome.center(width="854" height="480" src="https://www.youtube.com/embed/bWd6vNaAGYI?data=highres&autoplay=1")
-    else
-        iframe#myVideoHome.center(width='854' height='480' src='https://www.youtube.com/embed/YhxEBGbcvJ4?data=highres&autoplay=1')        
+    main.container
+        .jumbotron
+            h1 Bulgaria's National Tourist Sites
+            p
+                | Some motivational stuff here :)
+            p
+                a.btn.btn-primary.btn-lg(href="/destinations") Explore sites
+    //- video(loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video")
+    //-     source(src="/static/videos/home-background-video-hd.webm" type="video/webm")
