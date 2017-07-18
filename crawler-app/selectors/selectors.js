@@ -7,6 +7,8 @@ const selectors = {
     LANDMARK_IMG_SELECTOR: '.itemImage a img',
     LANDMARK_DESCRIPTION_SELECTOR: '.itemIntroText',
     ITEMLIST: '.itemList .catItemTitle a',
+    GOOGLE_URL: 'https://www.google.bg/maps/place/',
+    GOOGLE_API_KEY: 'AIzaSyCswzaSDzKsdAdfPRt9ssO0YzrbiCOgkQo',
 };
 
 module.exports = selectors;

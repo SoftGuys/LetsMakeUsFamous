@@ -18,10 +18,12 @@ html(lang='en')
         script(src="/libs/toastr/build/toastr.min.js")
         script(src='/libs/bootstrap/dist/js/bootstrap.min.js')
         script(src='/static/js/profile.js')
+        script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCswzaSDzKsdAdfPRt9ssO0YzrbiCOgkQo')
+        script(async defer src='/static/js/cordinates.js')
 
     body.background
         +nav
         != toasts()
         
         block content
-        +footer
+        //- +footer

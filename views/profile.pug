@@ -41,6 +41,12 @@ block content
                                                 |   Email
                                             td
                                                 a(href=result) #{result.email}
+                                        tr
+                                            td
+                                                |   Your Last Location
+                                            td#location
+                                               script(async defer src='/static/js/cordinates.js')
+
                                         td
                                             |   Phone Number
                                         td                                            

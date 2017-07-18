@@ -1,5 +1,5 @@
-extends master
-include ./utils/pagination
+extends ../master
+include ../utils/pagination
 
 block content
     .main.container
@@ -14,7 +14,7 @@ block content
                 .row
             else
             .col-md-4.portfolio-item.landmark 
-                    a(href=landmark.pictureUrl)
+                    a(href='/destinations/' + landmark._id)
                         img.img-responsive.thumbnail(src=landmark.pictureUrl)
                     h3
                         | #{landmark.title}

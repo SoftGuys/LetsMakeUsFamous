@@ -65,15 +65,6 @@ class Data {
             .toArray();
     }
 
-    getById(id) {
-        const filter = {
-            name: id,
-        };
-
-        return this.collection.find(filter)
-            .toArray();
-    }
-
     isModelValid() {
         return true;
     }
