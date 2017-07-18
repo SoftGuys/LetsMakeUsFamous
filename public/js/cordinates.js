@@ -19,12 +19,17 @@ window.onload = () => {
                     lng: position.coords.longitude,
                 };
 
-                console.log(pos);
 
                 infoWindow.setPosition(pos);
                 infoWindow.setContent('Location found.');
                 infoWindow.open(map);
-                document.getElementById('location').innerHTML = 'Longtitude:'+pos.lat + ' '+'Latitude' + pos.lng;
+                if (document.getElementById('location') === null) {
+                    console.log(pos);
+                } else {
+                    document.getElementById('location').innerHTML =
+                        `Longtitude:${pos.lat} Latitude${pos.lng}`;
+                }
+
                 // }, function() {
                 //     handleLocationError(true, infoWindow, map.getCenter());
                 // });
