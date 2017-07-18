@@ -1,12 +1,12 @@
 extends master
 
 block content
-    main.container.col-md-12
+    main.container.pull-left
         #jumbo.jumbotron
             h1 Bulgaria's National Tourist Sites
             p
                 | Some motivational stuff here :)
             p
-                a.btn.btn-primary.btn-lg(href="/destinations") Explore sites
-    video(class="fullscreen-bg__video")
-             source(src="/static/videos/home.mp4" type="video/webm")
+                a.btn.btn-primary.btn-lg#explore(href="/destinations") Explore sites
+    video(loop autoplay)
+             source(src="/static/videos/home.webm" type="video/webm")
