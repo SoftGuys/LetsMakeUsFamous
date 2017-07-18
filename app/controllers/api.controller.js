@@ -12,6 +12,30 @@ const apiController = (data) => {
             return data.users.getAll()
                 .then((users) => res.status(200).send(users));
         },
+        addDestinationComment(req, res, errorMessage) {
+            if (!req.user) {
+                return res.status(401)
+                    .send({});
+            }
+
+            const landmarkId = req.params.id;
+            const comment = req.body;
+            comment.user = req.user;
+
+            return data.landmarks.findById(landmarkId)
+                .then((landmark) => {
+                    if (landmark === null) {
+                        return res.status(404)
+                            .send({ message: 'Landmark not found!' });
+                    }
+
+                    return data.landmarks.addComment(landmark, comment);
+                })
+                .then((updatedLandmark) => {
+                    return res.status(200)
+                        .send(updatedLandmark);
+                });
+        },
     };
 };
 
