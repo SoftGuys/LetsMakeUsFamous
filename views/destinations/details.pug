@@ -1,0 +1,29 @@
+extends ../master
+
+block content
+    .container.col-sm-offset-2
+      .row
+        .col-md-8.landmark-details
+          h1
+            | #{model.title}
+            small 
+                |  Secondary Text
+          img.img-responsive.landmark-details-img.img-thumbnail(src=model.pictureUrl)
+          hr
+          p.landmark-details-description
+            | #{model.description}
+          a.btn.btn-primary(href='#')
+            | Read More 
+            span.glyphicon.glyphicon-chevron-right
+          hr
+        if (model.comments)
+            each comment in model.comments
+                .col-md-8
+                    p.lead
+                        | by
+                        a(href='/users/#{comment.author._id}') #{comment.user.username}
+                    p
+                        span.glyphicon.glyphicon-time
+                        |  Posted on #{comment.postedOn.getMonth()} #{comment.postedOn.getDate()}, #{comment.postedOn.getYear()} at 10:00 PM
+                    p 
+                        | #{comment.text}

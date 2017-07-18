@@ -14,12 +14,27 @@ const destinationsController = (data) => {
                     const pages = utils
                         .getPagination(Number(page), DEFAULT_VISIBLE_PAGES);
 
-                    return res.render('destinations', {
+                    return res.render('destinations/all', {
                         model: {
                             landmarks,
                             pages,
                             currentPage: Number(page),
                         },
+                    });
+                });
+        },
+        getDestinationDetailsView(req, res, errorMessage) {
+            const targetLandmarkId = req.params.id;
+
+            if (typeof targetLandmarkId === 'undefined') {
+                return res.status(304)
+                    .redirect('/destinations');
+            }
+
+            return data.landmarks.findById(targetLandmarkId)
+                .then((landmark) => {
+                    return res.render('destinations/details', {
+                        model: landmark,
                     });
                 });
         },

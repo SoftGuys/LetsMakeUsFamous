@@ -64,3 +64,12 @@ video {
     background-size: cover;
     transition: 1s opacity;
 }
+
+.landmark-details-img {
+    width: 100%;
+}
+
+.landmark-details-description {
+    max-height: 100px;
+    overflow-y: hidden;
+}
