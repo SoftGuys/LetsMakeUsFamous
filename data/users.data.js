@@ -16,6 +16,10 @@ class UsersData extends Data {
     }
 
     validateUserPassword(user, password) {
+        if (user === null) {
+            return Promise.reject('Invalid user!');
+        }
+
         // eslint-disable-next-line new-cap
         if (user.password !== CryptoJS.SHA1(password).toString()) {
             return Promise.reject('Invalid password!');
@@ -30,7 +34,7 @@ class UsersData extends Data {
         }
 
         if (!this.isModelValid(user)) {
-            return Promise.reject('Invalid model for ' + this.collectionName);
+            return Promise.reject('Incorrect username or password characters!');
         }
 
         if (user.password !== user.password_confirm) {
@@ -40,7 +44,11 @@ class UsersData extends Data {
         delete user.password_confirm;
         // eslint-disable-next-line new-cap
         user.password = CryptoJS.SHA1(user.password).toString();
-        return this.collection.insert(user);
+        return this.collection.insert(user)
+            .then((userInfo) => {
+                const username = userInfo.ops[0].username;
+                return username + ' registered successfully!';
+            });
     }
 
     isModelValid(model) {

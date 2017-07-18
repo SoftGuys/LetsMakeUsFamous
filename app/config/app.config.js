@@ -10,6 +10,7 @@ const path = require('path');
 
 const messages = require('express-messages');
 const flash = require('connect-flash');
+const toastr = require('express-toastr');
 
 const configApp = (app) => {
     app.set('view engine', 'pug');
@@ -28,6 +29,12 @@ const configApp = (app) => {
     app.use(flash());
     app.use((req, res, next) => {
         res.locals.messages = messages(req, res);
+        next();
+    });
+
+    app.use(toastr());
+    app.use((req, res, next) => {
+        res.locals.toasts = req.toastr.render;
         next();
     });
 

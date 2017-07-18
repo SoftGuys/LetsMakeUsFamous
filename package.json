@@ -29,6 +29,7 @@
         "express": "^4.15.3",
         "express-messages": "^1.0.1",
         "express-session": "^1.15.3",
+        "express-toastr": "^2.0.2",
         "global": "^4.3.2",
         "gulp": "^3.9.1",
         "gulp-express": "^0.3.5",
@@ -40,7 +41,8 @@
         "passport": "^0.3.2",
         "passport-facebook": "^2.1.1",
         "passport-local": "^1.0.0",
-        "pug": "^2.0.0-rc.2"
+        "pug": "^2.0.0-rc.2",
+        "toastr": "^2.1.2"
     },
     "devDependencies": {
         "babel-eslint": "^7.2.3",

@@ -12,14 +12,16 @@ html(lang='en')
         link(href='/libs/bootstrap/dist/css/bootstrap.css' rel='stylesheet')
         link(href='/static/css/main.css' rel='stylesheet')
         link(href='/static/css/footer.css' rel='stylesheet')
-        script(src='/libs/jquery/dist/jquery.slim.js')
+        link(rel="stylesheet", href="/libs/toastr/build/toastr.min.css")
 
         script(src='/libs/jquery/dist/jquery.min.js')
+        script(src="/libs/toastr/build/toastr.min.js")
         script(src='/libs/bootstrap/dist/js/bootstrap.min.js')
         script(src='/static/js/profile.js')
 
     body.background
         +nav
-        != messages('utils/message', locals)
+        != toasts()
+        
         block content
         +footer
