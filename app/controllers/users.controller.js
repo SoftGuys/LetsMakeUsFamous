@@ -1,20 +1,8 @@
-const multer = require('multer');
-const storage = multer.diskStorage({
-    destination: (request, file, callback) => {
-        callback(null, './public/images/uploads');
-    },
-    filename: (request, file, callback) => {
-        const filename = file.originalname.split('.');
-        callback(null, Date.now() + '.' + filename[filename.length - 1]);
-    },
-});
-const upload = multer({ storage });
-
 const usersController = (data) => {
     return {
         getLoginView(req, res, errorMessage) {
             if (req.isAuthenticated()) {
-                // You are already logged in
+                res.redirect('/');
             } else {
                 res.render('forms/login', {});
             }
@@ -40,12 +28,9 @@ const usersController = (data) => {
             };
             return res.render('profile', { result });
         },
-        uploadProfilePictureSetup() {
-            upload.single('imageupload');
-        },
         uploadProfilePicture(req, res) {
-            const photo = req.file;
-            console.log(photo);
+            // const photo = req.file;
+            res.redirect('/profile');
         },
         aboutUs(req, res) {
             return res.render('about');
