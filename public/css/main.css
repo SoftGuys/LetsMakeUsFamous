@@ -77,3 +77,7 @@ video {
     max-height: 100px;
     overflow-y: hidden;
 }
+
+button {
+    margin-top: 3px;
+}

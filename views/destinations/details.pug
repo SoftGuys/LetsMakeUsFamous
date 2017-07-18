@@ -12,10 +12,21 @@ block content
           hr
           p.landmark-details-description
             | #{model.description}
-          a.btn.btn-primary(href='#')
+          button.btn.btn-primary
             | Read More 
             span.glyphicon.glyphicon-chevron-right
+          button.btn.btn-success.pull-right.btn-comment-form
+            span.glyphicon.glyphicon-comment
+            |  Comment
           hr
+          #add-destination-comment.form-group.hidden
+            label(for='comment-destination')
+                | Comment:
+            textarea#comment-destination.form-control(rows='5' name="comment-text")
+            button.btn.btn-success.btn-add-destination-comment(data-landmarkId=model._id)
+                | Add
+          h4
+            | Comments
         if (model.comments)
             each comment in model.comments
                 .col-md-8
@@ -24,6 +35,8 @@ block content
                         a(href='/users/#{comment.author._id}') #{comment.user.username}
                     p
                         span.glyphicon.glyphicon-time
-                        |  Posted on #{comment.postedOn.getMonth()} #{comment.postedOn.getDate()}, #{comment.postedOn.getYear()} at 10:00 PM
+                        |  Posted on #{comment.postedOn} at 10:00 PM
                     p 
                         | #{comment.text}
+
+    script(src="/static/js/destinations.js")

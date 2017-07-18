@@ -10,6 +10,7 @@ function startTime() {
     const t = setTimeout(startTime, 500);
     console.log('x');
 }
+
 function checkTime(i) {
     if (i < 10) {
         i = '0' + i;
