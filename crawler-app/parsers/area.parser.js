@@ -4,6 +4,18 @@ const Area = require('../models/area');
 const selectors = require('../selectors');
 const parseLandmark = require('./landmark.parser');
 const initDomParser = require('./dom-parser');
+const nodeGeocoder = require('node-geocoder');
+
+const options = {
+    provider: 'google',
+
+    // Optional depending on the providers
+    httpAdapter: 'https', // Default
+    apiKey: selectors.GOOGLE_API_KEY, // for Mapquest, OpenCage, Google Premier
+    formatter: null, // 'gpx', 'string', ... 
+};
+
+const geocoder = nodeGeocoder(options);
 
 const REQUEST_SPEED = 3000;
 const parseAreas = (url) => {
@@ -34,64 +46,70 @@ const parseAreas = (url) => {
 
                     parseLandmark(landmarkUrl)
                         .then((landmark) => {
-                            console.log(landmark.title);
-                            area.landmarks.push(landmark);
+                            geocoder.geocode(landmark.title)
+                                .then(function(res) {
+                                    res.map((x)=>{
+                                        landmark.latitude = x.latitude;
+                                        landmark.longitude = x.longitude;
+                                    })
+                                    area.landmarks.push(landmark);
 
-                            const fs = require('fs');
-                            const request = require('request');
-                            const path = require('path');
+                                    const fs = require('fs');
+                                    const request = require('request');
+                                    const path = require('path');
 
-                            const download = (uri, filename) => {
-                                request.head(uri, (err, res, body) => {
-                                    if (!uri.includes('undefined')) {
-                                        filename = filename
-                                            .replace(/[\s\-\"\'\\\/:]/gi, '');
+                                    const download = (uri, filename) => {
+                                        request.head(uri, (err, res, body) => {
+                                            if (!uri.includes('undefined')) {
+                                                filename = filename
+                                                    .replace(/[\s\-\"\'\\\/:]/gi, '');
 
-                                        landmark.pictureUrl =
-                                            `/static/images/areas/${filename}`;
+                                                landmark.pictureUrl =
+                                                    `/static/images/areas/${filename}`;
 
-                                        filename =
-                                            '../../public/images/areas/' +
-                                            filename;
-                                        request(uri)
-                                            .pipe(
-                                                fs.createWriteStream(
-                                                    path.join(
-                                                        __dirname,
-                                                        filename)));
-                                    }
+                                                filename =
+                                                    '../../public/images/areas/' +
+                                                    filename;
+                                                request(uri)
+                                                    .pipe(
+                                                        fs.createWriteStream(
+                                                            path.join(
+                                                                __dirname,
+                                                                filename)));
+                                            }
+                                        });
+                                    };
+
+                                    download(
+                                        landmark.pictureUrl,
+                                        landmark.title + '.jpeg');
                                 });
-                            };
-
-                            download(
-                                landmark.pictureUrl,
-                                landmark.title + '.jpeg');
                         });
                 });
             });
+    }
+
+        return fetch(url)
+            .then((response) => {
+                return response.text();
+            })
+            .then((html) => {
+                return Area.fromHtml(html);
+            })
+            .then((resAreas) => {
+                areas = resAreas;
+                const promises = resAreas.map((area, index) => {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() =>
+                            resolve(getAreaLandmarks(area)), index * REQUEST_SPEED);
+                    });
+                });
+
+                return Promise.all(promises);
+            })
+            .then(() => {
+                return areas;
+            });
     };
 
-    return fetch(url)
-        .then((response) => {
-            return response.text();
-        })
-        .then((html) => {
-            return Area.fromHtml(html);
-        })
-        .then((resAreas) => {
-            areas = resAreas;
-            const promises = resAreas.map((area, index) => {
-                return new Promise((resolve, reject) => {
-                    setTimeout(() =>
-                        resolve(getAreaLandmarks(area)), index * REQUEST_SPEED);
-                });
-            });
-
-            return Promise.all(promises);
-        })
-        .then(() => {
-            return areas;
-        });
-};
-
-module.exports = parseAreas;
+    module.exports = parseAreas;
