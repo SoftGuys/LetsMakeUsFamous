@@ -20,17 +20,28 @@ const authController = (data) => {
                     res.status(406).redirect('/register');
                 });
         },
-        logUser(req, res, errorMessage) {
+        logUser(req, res, next) {
             return passport.authenticate('local', (error, user, info) => {
                 if (error) {
-                    console.log(error);
                     req.toastr.error(error);
                     res.status(404).redirect('/login');
-                } else {
+                    return next(error);
+                }
+
+                req.logIn(user, (err) => {
+                    if (err) {
+                        req.toastr.error(err);
+                        res.status(404).redirect('/login');
+                        return next(err);
+                    }
+
                     req.toastr.success('Hello, ' + user.username + '!');
                     res.status(200).redirect('/');
-                }
-            })(req, res, errorMessage);
+                    return next();
+                });
+
+                return next();
+            })(req, res, next);
         },
         logFacebook(req, res, errorMessage) {
             return passport.authenticate('facebook', {

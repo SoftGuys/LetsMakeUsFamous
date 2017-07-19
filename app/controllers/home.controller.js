@@ -3,7 +3,7 @@ const homeController = (data) => {
         getHomeView(req, res, errorMessage) {
             res.render('home', {
                 dev: true,
-                req: req.isAuthenticated(),
+                isAuthenticated: req.isAuthenticated(),
                 user: req.user,
             });
         },

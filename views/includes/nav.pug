@@ -17,7 +17,7 @@ mixin nav
             span.glyphicon.glyphicon-book
             |  Users
       ul.nav.navbar-nav.navbar-right
-            if !req
+            if !isAuthenticated
                 li
                     a(href='/register')
                         span.glyphicon.glyphicon-user
@@ -30,7 +30,7 @@ mixin nav
                 li
                     a
                         span.glyphicon.glyphicon-user
-                            | #{user}
+                            | #{user.username}
                 //img.mini-profile-image(src= result.imageUrl)
                 li
                     a(href='/profile')

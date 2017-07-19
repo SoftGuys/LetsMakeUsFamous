@@ -8,7 +8,11 @@ const usersController = (data) => {
             }
         },
         getRegisterView(req, res, errorMessage) {
-            res.render('forms/register', {});
+            if (req.isAuthenticated()) {
+                res.redirect('/');
+            } else {
+                res.render('forms/register', {});
+            }
         },
         getProfileView(req, res, errorMessage) {
             if (!req.isAuthenticated()) {
@@ -26,7 +30,11 @@ const usersController = (data) => {
                 isAuthenticated: req.isAuthenticated(),
                 user: req.user,
             };
-            return res.render('profile', { result });
+            return res.render('profile', {
+                result,
+                isAuthenticated: req.isAuthenticated(),
+                user: req.user,
+            });
         },
         uploadProfilePicture(req, res) {
             // const photo = req.file;
@@ -40,6 +48,8 @@ const usersController = (data) => {
                 .then((users) => {
                     return res.render('users', {
                         model: users,
+                        isAuthenticated: req.isAuthenticated(),
+                        user: req.user,
                     });
                 });
         },
