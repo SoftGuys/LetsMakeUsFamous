@@ -16,6 +16,11 @@ const homeController = (data) => {
                     },
                 });
         },
+        aboutUs(req, res) {
+            return res
+                .status(200)
+                .render('about');
+        },
     };
 };
 

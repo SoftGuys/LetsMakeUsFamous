@@ -1,4 +1,4 @@
-/* globals $ */
+/* globals $ toastr */
 
 const ADD_COMMENT_URL = 'http://localhost:3001/api/destinations/';
 
@@ -31,7 +31,9 @@ $(() => {
                 success: (data) => {
                     displayComment(data, $commentsContainer);
                 },
-                error: (err) => {},
+                error: (err) => {
+                    toastr.error('You must be logged in in order to comment!');
+                },
             });
         });
 

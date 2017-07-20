@@ -5,7 +5,8 @@ const attachRoutes = (app, { homeController }) => {
 
     router
         .get('/', homeController.redirectHome)
-        .get('/home', homeController.getHomeView);
+        .get('/home', homeController.getHomeView)
+        .get('/about', homeController.aboutUs);
 
     app.use('/', router);
 };

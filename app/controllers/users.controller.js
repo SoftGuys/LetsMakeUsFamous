@@ -55,23 +55,6 @@ const usersController = (data) => {
                     return res.status(201).redirect('/users/profile');
                 });
         },
-        aboutUs(req, res) {
-            return res.status(200).render('about');
-        },
-        getAll(req, res) {
-            return data.users.getAll()
-                .then((users) => {
-                    return res
-                        .status(200)
-                        .render('users', {
-                            context: {
-                                users,
-                                isAuthenticated: req.isAuthenticated(),
-                                user: req.user,
-                            },
-                        });
-                });
-        },
         getUserDestinationsView(req, res) {
             const targetUsername = req.params.username;
 
