@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96a6308c-9b38-422d-a3fa-b5cc65131828" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/js/home.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/footer.css" afterPath="$PROJECT_DIR$/public/css/footer.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/main.css" afterPath="$PROJECT_DIR$/public/css/main.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/editprofile.js" afterPath="$PROJECT_DIR$/public/js/editprofile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/home.pug" afterPath="$PROJECT_DIR$/views/home.pug" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/includes/nav.pug" afterPath="$PROJECT_DIR$/views/includes/nav.pug" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/profile.pug" afterPath="$PROJECT_DIR$/views/profile.pug" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,7 +20,7 @@
       <file leaf-file-name="profile.pug" pinned="true" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/profile.pug">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="702">
+            <state relative-caret-position="654">
               <caret line="68" column="29" lean-forward="false" selection-start-line="68" selection-start-column="29" selection-end-line="68" selection-end-column="29" />
               <folding />
             </state>
@@ -37,8 +30,8 @@
       <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2707">
-              <caret line="132" column="5" lean-forward="false" selection-start-line="132" selection-start-column="5" selection-end-line="132" selection-end-column="5" />
+            <state relative-caret-position="2765">
+              <caret line="134" column="5" lean-forward="false" selection-start-line="134" selection-start-column="5" selection-end-line="134" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -54,7 +47,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="footer.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="footer.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/footer.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="351">
@@ -104,11 +97,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="editprofile.js" pinned="true" current-in-tab="false">
+      <file leaf-file-name="editprofile.js" pinned="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/editprofile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="17" column="121" lean-forward="false" selection-start-line="17" selection-start-column="115" selection-end-line="17" selection-end-column="121" />
+            <state relative-caret-position="578">
+              <caret line="24" column="22" lean-forward="false" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -183,13 +176,13 @@
         <option value="$PROJECT_DIR$/views/master.pug" />
         <option value="$PROJECT_DIR$/public/js/cordinates.js" />
         <option value="$PROJECT_DIR$/crawler-app/parsers/area.parser.js" />
-        <option value="$PROJECT_DIR$/public/js/editprofile.js" />
         <option value="$PROJECT_DIR$/views/profile.pug" />
         <option value="$PROJECT_DIR$/public/css/main.css" />
         <option value="$PROJECT_DIR$/public/js/home.js" />
         <option value="$PROJECT_DIR$/views/includes/nav.pug" />
         <option value="$PROJECT_DIR$/views/home.pug" />
         <option value="$PROJECT_DIR$/public/css/footer.css" />
+        <option value="$PROJECT_DIR$/public/js/editprofile.js" />
       </list>
     </option>
   </component>
@@ -607,12 +600,12 @@
       <workItem from="1500365909459" duration="22808000" />
       <workItem from="1500487874376" duration="710000" />
       <workItem from="1500538615925" duration="22797000" />
-      <workItem from="1500578053412" duration="6553000" />
+      <workItem from="1500578053412" duration="6879000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72551000" />
+    <option name="totallyTimeSpent" value="72877000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1932" height="1056" extended-state="0" />
@@ -966,14 +959,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/editprofile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="17" column="121" lean-forward="false" selection-start-line="17" selection-start-column="115" selection-end-line="17" selection-end-column="121" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/log.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -992,7 +977,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/profile.pug">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
+        <state relative-caret-position="654">
           <caret line="68" column="29" lean-forward="false" selection-start-line="68" selection-start-column="29" selection-end-line="68" selection-end-column="29" />
           <folding />
         </state>
@@ -1008,8 +993,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2707">
-          <caret line="132" column="5" lean-forward="false" selection-start-line="132" selection-start-column="5" selection-end-line="132" selection-end-column="5" />
+        <state relative-caret-position="2765">
+          <caret line="134" column="5" lean-forward="false" selection-start-line="134" selection-start-column="5" selection-end-line="134" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1042,6 +1027,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="351">
           <caret line="86" column="25" lean-forward="false" selection-start-line="86" selection-start-column="25" selection-end-line="86" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/editprofile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="24" column="22" lean-forward="false" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
           <folding />
         </state>
       </provider>
