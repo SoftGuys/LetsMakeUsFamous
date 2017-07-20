@@ -34,7 +34,6 @@ class UsersData extends Data {
         }
 
         user.pictureUrl = pictureUrl;
-        console.log(user);
         return this.collection.update({
             _id: user._id,
         }, user);

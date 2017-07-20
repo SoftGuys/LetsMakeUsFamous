@@ -1,0 +1,43 @@
+extends ../master
+
+block content
+    .row
+        .col-md-offset-2.col-md-8.col-lg-offset-3.col-lg-6
+             .col-xs-12.col-sm-4.text-center
+                figure
+                    img.img-circle.img-responsive(src=model.pictureUrl alt='user profile picture')
+             .col-sm-12
+                h2 #{model.username}
+                hr
+                .col-xs-12.col-sm-4.col-sm-4.emphasis
+                    h2
+                        strong  44
+                    p
+                        span Ranking
+                .col-xs-12.col-sm-4.emphasis
+                    h2
+                        strong #{model.visitedPlaces} / #{model.landmarks.length}
+                    p
+                        small  Visited Places
+                .col-xs-12.col-sm-4.emphasis
+                    h2
+                        strong 15h
+                    p
+                        small  Last active
+    hr
+    .row
+        .col-md-offset-3
+            each landmark, index in model.landmarks
+                if (index % 4) == 0
+                    .row
+                else
+                .col-md-2.portfolio-item.landmark 
+                        a(href='#')
+                            if (landmark.isVisited)
+                                img.img-responsive.thumbnail(src=landmark.pictureUrl)
+                            else
+                                img.img-responsive.thumbnail.transparent(src=landmark.pictureUrl)
+                        h5
+                            | #{landmark.title}
+                        p.landmark-description
+                            | #{landmark.description}
