@@ -51,19 +51,6 @@ footer {
     margin-left: 35%;
 }
 
-/*#jumbo{*/
-    /*background-color: rgba(15, 15, 15, 0.57);*/
-    /*width: 100%;*/
-    /*color: #2bff57;*/
-    /*text-align: center;*/
-    /*font-family: Sans-serif;*/
-/*}*/
-
-/*#jumbo p a{*/
-    /*border: 1px solid white;*/
-    /*opacity: 0.1;*/
-    /*color: white;*/
-/*}*/
 
 #jumbo{
     border-bottom-left-radius: 6px;
@@ -97,9 +84,18 @@ footer {
     padding:20px;
     background: rgba(8, 8, 8, 0.04);
 }
-
-
-
+.destinationsPara a:hover{
+    padding:20px;
+    background: rgba(8, 8, 8, 0.04);
+}
+.destinationsPara a:after{
+    background-color: rgba(8, 8, 8, 0.04);
+    content: 'Explore sites';
+}
+.destinationsPara a:hover:after{
+    background-color: rgba(8, 8, 8, 0.04);
+    content: '100 Most Famous Landmarks Around the Bulgaria';
+}
 .container{
     width: 100%;
 }
