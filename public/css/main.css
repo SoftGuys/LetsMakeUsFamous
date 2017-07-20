@@ -123,4 +123,13 @@ button {
 .transparent {
     filter: grayscale(90%);
 }
+.form-control::selection {
+    background: #ffb7b7; /* WebKit/Blink Browsers */
+}
+.form-control::-moz-selection{
+    background: #ffb7b7; /* Gecko Browsers */
+}
+.edittable:focus{
+    background: #fc9fff;   /* sexy hot pink */
+}
 
