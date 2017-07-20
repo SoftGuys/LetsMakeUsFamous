@@ -81,3 +81,22 @@ video {
 button {
     margin-top: 3px;
 }
+
+.img-comment-user {
+    width: 25px;
+    height: 25px;
+}
+
+.destination-comment-text,
+.destination-comment-details {
+    font-family: Goudy Old Style, Garamond, Big Caslon, Times New Roman, serif;
+    font-size: 25px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.destination-comment-details {
+    font-size: 20px;
+}

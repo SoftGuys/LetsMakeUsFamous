@@ -5,4 +5,5 @@ class Cordinate {
         this.allCordinates = allCordinates;
     }
 }
+
 module.exports = Cordinate;

@@ -19,26 +19,23 @@ const usersController = (data) => {
                 return res.redirect('/home');
             }
 
-            const username = req.user.image ?
-                req.user.username :
-                '/newuser';
-            const imageUrl = '/static/images/profile/' + 'dp' + '.jpg';
-            const result = {
-                username: req.user.username,
-                email: req.user.email,
-                image: imageUrl,
-                isAuthenticated: req.isAuthenticated(),
-                user: req.user,
-            };
             return res.render('profile', {
-                result,
                 isAuthenticated: req.isAuthenticated(),
                 user: req.user,
             });
         },
         uploadProfilePicture(req, res) {
             // const photo = req.file;
-            res.redirect('/profile');
+            if (!req.user) {
+                return res.status(401)
+                    .redirect('/home');
+            }
+
+            const pictureUrl = '/static/images/uploads/' + req.file.filename;
+            return data.users.updateProfilePicture(req.user, pictureUrl)
+                .then(() => {
+                    return res.redirect('/profile');
+                });
         },
         aboutUs(req, res) {
             return res.render('about');

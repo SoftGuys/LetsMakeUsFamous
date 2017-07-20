@@ -7,11 +7,14 @@ block content
                 .panel.panel-info
                     .panel-heading
                         h3.panel-title
-                            |   #{result.username}
+                            |   #{user.username}
                     .panel-body
                         .row
                             .col-md-3(align='center')
-                                img.img-circle.img-responsive(alt='User Picture', src=result.image)
+                                if (user.pictureUrl)
+                                    img.img-circle.img-responsive(alt='User Picture', src=user.pictureUrl)
+                                else
+                                    img.img-circle.img-responsive(alt='User Picture', src="http://www.teluguone.com/tonecmsuserfiles/Programmer%20Funny%20Responses(1).jpg")
                             .col-md-9
                                 table.table.table-user-information
                                     tbody
@@ -40,7 +43,7 @@ block content
                                             td
                                                 |   Email
                                             td
-                                                a(href=result) #{result.email}
+                                                a(href=result) #{user.email}
                                         tr
                                             td
                                                 |   Your Last Location

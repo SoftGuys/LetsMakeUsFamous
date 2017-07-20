@@ -28,6 +28,18 @@ class UsersData extends Data {
         return Promise.resolve(user);
     }
 
+    updateProfilePicture(user, pictureUrl) {
+        if (typeof pictureUrl !== 'string') {
+            throw new Error('Invalid profile picture url');
+        }
+
+        user.pictureUrl = pictureUrl;
+        console.log(user);
+        return this.collection.update({
+            _id: user._id,
+        }, user);
+    }
+
     add(user) {
         if (typeof user === 'undefined') {
             return Promise.reject('Model is undefined!');

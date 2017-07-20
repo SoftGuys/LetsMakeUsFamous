@@ -13,7 +13,7 @@ const authController = (data) => {
             return data.users.add(user)
                 .then((message) => {
                     req.toastr.success(message);
-                    res.status(201).redirect('/');
+                    return res.status(201).redirect('/');
                 })
                 .catch((message) => {
                     req.toastr.error(message);

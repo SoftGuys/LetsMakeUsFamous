@@ -27,16 +27,18 @@ block content
                 | Add
           h4
             | Comments
-        if (model.comments)
-            each comment in model.comments
-                .col-md-8
-                    p.lead
-                        | by
-                        a(href='/users/#{comment.author._id}') #{comment.user.username}
-                    p
-                        span.glyphicon.glyphicon-time
-                        |  Posted on #{comment.postedOn} at 10:00 PM
-                    p 
-                        | #{comment.text}
-
+            hr
+        section.destination-comments
+            if (model.comments)
+                each comment in model.comments
+                    .col-md-8.destination-comment
+                        p.destination-comment-text 
+                            | #{comment.text}
+                        p.destination-comment-details.text-primary
+                            span.glyphicon.glyphicon-time
+                            |  #{comment.postedOn} 
+                            img.img-comment-user(src=comment.user.pictureUrl) 
+                            a(href='/users/#{comment.author._id}') 
+                                | #{comment.user.username} 
+                        hr.col-md-8
     script(src="/static/js/destinations.js")

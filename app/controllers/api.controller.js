@@ -20,7 +20,11 @@ const apiController = (data) => {
 
             const landmarkId = req.params.id;
             const comment = req.body;
-            comment.user = req.user;
+            comment.user = {
+                username: req.user.username,
+                _id: req.user._id,
+                pictureUrl: req.user.pictureUrl,
+            };
 
             return data.landmarks.findById(landmarkId)
                 .then((landmark) => {

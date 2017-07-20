@@ -28,12 +28,20 @@ class LandmarksData extends Data {
             landmark.comments = [];
         }
 
-        console.log(landmark);
+        const postDate = new Date(comment.postedOn);
+        comment.postedOn = `${postDate.getDate()}.` +
+            `${postDate.getMonth()}.` +
+            `${postDate.getFullYear()} ` +
+            `${postDate.getHours()}:${postDate.getMinutes()}`;
+
         landmark.comments.push(comment);
 
         return this.collection.update({
-            _id: landmark._id,
-        }, landmark);
+                _id: landmark._id,
+            }, landmark)
+            .then(() => {
+                return comment;
+            });
     }
 }
 

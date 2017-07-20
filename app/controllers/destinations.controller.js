@@ -14,14 +14,12 @@ const destinationsController = (data) => {
                     const pages = utils
                         .getPagination(Number(page), DEFAULT_VISIBLE_PAGES);
 
-                    console.log(req.user);
                     return res.render('destinations/all', {
                         model: {
                             landmarks,
                             pages,
                             currentPage: Number(page),
                         },
-                        // fix
                         isAuthenticated: req.isAuthenticated(),
                         user: req.user,
                     });
@@ -36,6 +34,10 @@ const destinationsController = (data) => {
 
             return data.landmarks.findById(targetLandmarkId)
                 .then((landmark) => {
+                    if (landmark.comments && landmark.comments.length) {
+                        landmark.comments.reverse();
+                    }
+
                     return res.render('destinations/details', {
                         model: landmark,
                         isAuthenticated: req.isAuthenticated(),

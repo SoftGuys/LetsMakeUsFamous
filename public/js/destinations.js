@@ -13,6 +13,8 @@ $(() => {
 
             const landmarkId = $clickedButton.attr('data-landmarkId');
             const commentText = $('textarea').val();
+            $('textarea').val('');
+            $('#add-destination-comment').toggleClass('hidden');
 
             const comment = {
                 text: commentText,
@@ -20,14 +22,62 @@ $(() => {
             };
 
             const url = ADD_COMMENT_URL + 'comments/' + landmarkId;
+            const $commentsContainer = $('.destination-comments');
             $.ajax({
                 url: url,
                 type: 'POST',
                 data: JSON.stringify(comment),
                 contentType: 'application/json',
                 success: (data) => {
-                    console.log('success');
+                    displayComment(data, $commentsContainer);
                 },
+                error: (err) => {},
             });
         });
+
+    const displayComment = (comment, rootElement) => {
+        const $destinationComment = $('<div />')
+            .addClass('col-md-8')
+            .addClass('destination-comment');
+        const $destinationCommentText = $('<p />')
+            .addClass('destination-comment-text')
+            .text(comment.text);
+        const $destinationCommentDetails = $('<p />')
+            .addClass('destination-comment-details')
+            .addClass('text-primary');
+        const $timeGlyphicon = $('<span />')
+            .addClass('glyphicon')
+            .addClass('glyphicon-time');
+        const $userImage = $('<img/>')
+            .addClass('img-comment-user')
+            .attr('src', comment.user.pictureUrl);
+        const $userHref = $('<a />')
+            .attr('href', '/users/' + comment.user._id)
+            .text(' ' + comment.user.username);
+
+        $timeGlyphicon.appendTo($destinationCommentDetails);
+        $destinationCommentDetails.append(' ' + comment.postedOn + ' ');
+        $userImage.appendTo($destinationCommentDetails);
+        $userHref.appendTo($destinationCommentDetails);
+
+        $destinationCommentText.appendTo($destinationComment);
+        $destinationCommentDetails.appendTo($destinationComment);
+        $('<hr>').appendTo($destinationComment);
+
+        $destinationComment.prependTo($(rootElement));
+    };
+
+    /*
+     each comment in model.comments
+                .col-md-8.destination-comment
+                    p.destination-comment-text 
+                        | #{comment.text}
+                    p.destination-comment-details.text-primary
+                        span.glyphicon.glyphicon-time
+                        |  #{comment.postedOn} 
+                        img.img-comment-user(src=comment.user.pictureUrl) 
+                        a(href='/users/#{comment.author._id}') 
+                            | #{comment.user.username} 
+                    hr.col-md-8    
+    */
 });
