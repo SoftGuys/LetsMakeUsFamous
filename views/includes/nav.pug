@@ -17,31 +17,30 @@ mixin nav
             span.glyphicon.glyphicon-book
             |  Users
       ul.nav.navbar-nav.navbar-right
-            if !isAuthenticated
+            if !context.isAuthenticated
                 li
-                    a(href='/register')
+                    a(href='/users/register')
                         span.glyphicon.glyphicon-user
                             |  Register
                 li
-                     a(href='/login')
+                     a(href='/users/login')
                         span.glyphicon.glyphicon-log-in
                             |  Login
             else
                 li
-                    a(href='/profile')
-                        img.img-responsive.thumbnail.navbar-brand.small-profile-pic(src=user.pictureUrl)
+                    a(href='/users/profile')
+                        img.img-responsive.thumbnail.navbar-brand.small-profile-pic(src=context.user.pictureUrl)
                 li
-                    a(href='/profile')
-                            | #{user.username}
+                    a(href='/users/profile')
+                            | #{context.user.username}
                     li.dropdown
                         a.dropdown-toggle(data-toggle='dropdown', href='#')
                             | Profile
                             span.caret
                         ul.dropdown-menu#profileMenu
                             li
-                                a.glyphicon.glyphicon-cog(href='/profile')   Profile
+                                a.glyphicon.glyphicon-cog(href='/users/profile')   Profile
                             li
-                                a.glyphicon.glyphicon-hand-right(href='/users/'+ user.username)                                             MyLandmarks
+                                a.glyphicon.glyphicon-hand-right(href='/users/'+ context.user.username)                                             MyLandmarks
                             li
-                                a.glyphicon.glyphicon-off(href='/logout')    Logout
-    script(src='/static/js/home.js')
+                                a.glyphicon.glyphicon-off(href='/users/logout')    Logout

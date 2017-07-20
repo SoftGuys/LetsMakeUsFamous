@@ -1,17 +1,13 @@
-/* eslint-disable no-shadow */
-/* globals google */
-window.onload = () => {
+/* globals google $ */
+$(() => {
     // Note: This example requires that you consent to location sharing when
     // prompted by your browser. If you see the error "The Geolocation service
     // failed.", it means you probably did not give permission for the browser
     // to locate you.
-    let map;
-    let infoWindow;
 
     function initMap() {
-        infoWindow = new google.maps.InfoWindow;
+        const infoWindow = new google.maps.InfoWindow;
 
-        // Try HTML5 geolocation.
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
                 const pos = {
@@ -22,7 +18,7 @@ window.onload = () => {
 
                 infoWindow.setPosition(pos);
                 infoWindow.setContent('Location found.');
-                infoWindow.open(map);
+                // infoWindow.open(map);
                 if (document.getElementById('location') === null) {
                     console.log(pos);
                 } else {
@@ -46,6 +42,5 @@ window.onload = () => {
     //         'Error: Your browser doesn\'t support geolocation.');
     // }
 
-
     initMap();
-};
+});

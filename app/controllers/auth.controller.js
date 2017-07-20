@@ -1,5 +1,4 @@
 const passport = require('passport');
-
 const DEFAULT_PICTURE_URL = 'http://www.gibbahouse.com/wp-content/uploads/2014/12/Funny-Animals-With-Makeup_.jpg';
 
 const authController = (data) => {
@@ -10,7 +9,7 @@ const authController = (data) => {
 
             return res.status(200).redirect('/');
         },
-        registerUser(req, res, errorMessage) {
+        register(req, res) {
             const user = req.body;
             user.pictureUrl = DEFAULT_PICTURE_URL;
 
@@ -31,25 +30,25 @@ const authController = (data) => {
                 })
                 .then((message) => {
                     req.toastr.success(message);
-                    return res.status(201).redirect('/');
+                    return res.status(201).redirect('/users/login');
                 })
                 .catch((message) => {
                     req.toastr.error(message);
-                    res.status(406).redirect('/register');
+                    res.status(406).redirect('/users/register');
                 });
         },
-        logUser(req, res, next) {
+        login(req, res, next) {
             return passport.authenticate('local', (error, user, info) => {
                 if (error) {
                     req.toastr.error(error);
-                    res.status(404).redirect('/login');
+                    res.status(404).redirect('/users/login');
                     return next(error);
                 }
 
                 req.logIn(user, (err) => {
                     if (err) {
                         req.toastr.error(err);
-                        res.status(404).redirect('/login');
+                        res.status(404).redirect('/users/login');
                         return next(err);
                     }
 
@@ -60,11 +59,6 @@ const authController = (data) => {
 
                 return next();
             })(req, res, next);
-        },
-        logFacebook(req, res, errorMessage) {
-            return passport.authenticate('facebook', {
-                scope: ['user_friends', 'manage_pages'],
-            })(req, res, errorMessage);
         },
     };
 };

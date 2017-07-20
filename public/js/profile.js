@@ -1,6 +1,6 @@
 /* globals $ */
-$('document').ready(() => {
-    $('#profile-picture').on('change', (target) => {
+$(() => {
+    $('#profile-picture').on('change', () => {
         $('#profile-picture-form').submit();
     });
 });

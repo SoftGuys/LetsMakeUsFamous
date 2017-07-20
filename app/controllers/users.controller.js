@@ -1,28 +1,42 @@
 const usersController = (data) => {
     return {
-        getLoginView(req, res, errorMessage) {
+        getLoginView(req, res) {
             if (req.isAuthenticated()) {
-                res.redirect('/');
+                res.status(301).redirect('/');
             } else {
-                res.render('forms/login', {});
+                res.status(200).render('forms/login', {
+                    context: {
+                        isAuthenticated: req.isAuthenticated(),
+                        user: req.user,
+                    },
+                });
             }
         },
-        getRegisterView(req, res, errorMessage) {
+        getRegisterView(req, res) {
             if (req.isAuthenticated()) {
-                res.redirect('/');
+                res.status(301).redirect('/');
             } else {
-                res.render('forms/register', {});
+                res.status(200).render('forms/register', {
+                    context: {
+                        isAuthenticated: req.isAuthenticated(),
+                        user: req.user,
+                    },
+                });
             }
         },
-        getProfileView(req, res, errorMessage) {
+        getProfileView(req, res) {
             if (!req.isAuthenticated()) {
-                return res.redirect('/home');
+                res.status(301).redirect('/home');
+            } else {
+                res
+                    .status(200)
+                    .render('profile', {
+                        context: {
+                            isAuthenticated: req.isAuthenticated(),
+                            user: req.user,
+                        },
+                    });
             }
-
-            return res.render('profile', {
-                isAuthenticated: req.isAuthenticated(),
-                user: req.user,
-            });
         },
         uploadProfilePicture(req, res) {
             if (!req.user) {
@@ -33,20 +47,24 @@ const usersController = (data) => {
             const pictureUrl = '/static/images/uploads/' + req.file.filename;
             return data.users.updateProfilePicture(req.user, pictureUrl)
                 .then(() => {
-                    return res.redirect('/profile');
+                    return res.status(201).redirect('/users/profile');
                 });
         },
         aboutUs(req, res) {
-            return res.render('about');
+            return res.status(200).render('about');
         },
         getAll(req, res) {
             return data.users.getAll()
                 .then((users) => {
-                    return res.render('users', {
-                        model: users,
-                        isAuthenticated: req.isAuthenticated(),
-                        user: req.user,
-                    });
+                    return res
+                        .status(200)
+                        .render('users', {
+                            context: {
+                                users,
+                                isAuthenticated: req.isAuthenticated(),
+                                user: req.user,
+                            },
+                        });
                 });
         },
         getUserDestinationsView(req, res) {
@@ -54,17 +72,28 @@ const usersController = (data) => {
 
             return data.users.findUserByUsername(targetUsername)
                 .then((user) => {
-                    return res.render('users/info', {
-                        model: user,
-                    });
+                    return res
+                        .status(200)
+                        .render('users/info', {
+                            context: {
+                                user,
+                                isAuthenticated: req.isAuthenticated(),
+                            },
+                        });
                 });
         },
         getUsersView(req, res) {
             return data.users.getAll()
                 .then((users) => {
-                    return res.render('users/all', {
-                        model: users,
-                    });
+                    return res
+                        .status(200)
+                        .render('users/all', {
+                            context: {
+                                users,
+                                isAuthenticated: req.isAuthenticated(),
+                                user: req.user,
+                            },
+                        });
                 });
         },
     };

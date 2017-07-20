@@ -1,11 +1,11 @@
 mixin pagination
     div.text-center
         ul.pagination.pagination-lg
-            if (model.currentPage - 1 > 0)
+            if (context.currentPage - 1 > 0)
                 li
-                    a(href='/destinations?page=' + (model.currentPage - 1)) «
-            each page in model.pages
-                if (page == model.currentPage)
+                    a(href='/destinations?page=' + (context.currentPage - 1)) «
+            each page in context.pages
+                if (page == context.currentPage)
                     li.active
                         a(href='/destinations?page=' + page)
                             | #{page}
@@ -14,4 +14,4 @@ mixin pagination
                         a(href='/destinations?page=' + page)
                             | #{page}
             li
-                a(href='/destinations?page=' + (model.currentPage + 1)) »
+                a(href='/destinations?page=' + (context.currentPage + 1)) »

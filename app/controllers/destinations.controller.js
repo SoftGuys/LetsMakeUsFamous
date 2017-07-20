@@ -5,7 +5,7 @@ const destinationsController = (data) => {
     const utils = require('../utils');
 
     return {
-        getDestinationsView(req, res, errorMessage) {
+        getDestinationsView(req, res) {
             const page = req.query.page || DEFAULT_PAGE;
             const size = req.query.size;
 
@@ -14,18 +14,20 @@ const destinationsController = (data) => {
                     const pages = utils
                         .getPagination(Number(page), DEFAULT_VISIBLE_PAGES);
 
-                    return res.render('destinations/all', {
-                        model: {
-                            landmarks,
-                            pages,
-                            currentPage: Number(page),
-                        },
-                        isAuthenticated: req.isAuthenticated(),
-                        user: req.user,
-                    });
+                    return res
+                        .status(200)
+                        .render('destinations/all', {
+                            context: {
+                                landmarks,
+                                pages,
+                                currentPage: Number(page),
+                                isAuthenticated: req.isAuthenticated(),
+                                user: req.user,
+                            },
+                        });
                 });
         },
-        getDestinationDetailsView(req, res, errorMessage) {
+        getDestinationDetailsView(req, res) {
             const targetLandmarkId = req.params.id;
 
             if (typeof targetLandmarkId === 'undefined') {
@@ -38,11 +40,15 @@ const destinationsController = (data) => {
                         landmark.comments.reverse();
                     }
 
-                    return res.render('destinations/details', {
-                        model: landmark,
-                        isAuthenticated: req.isAuthenticated(),
-                        user: req.user,
-                    });
+                    return res
+                        .status(200)
+                        .render('destinations/details', {
+                            context: {
+                                landmark,
+                                isAuthenticated: req.isAuthenticated(),
+                                user: req.user,
+                            },
+                        });
                 });
         },
     };

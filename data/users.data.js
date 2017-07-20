@@ -30,7 +30,7 @@ class UsersData extends Data {
 
     updateProfilePicture(user, pictureUrl) {
         if (typeof pictureUrl !== 'string') {
-            throw new Error('Invalid profile picture url');
+            return Promise.reject('Invalid profile picture url');
         }
 
         user.pictureUrl = pictureUrl;

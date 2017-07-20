@@ -5,7 +5,7 @@ block header
         |   Login form
 
 block wrapper
-    form(action='/login' method='post')#login.animate.form
+    form(action='/users/login' method='post')#login.animate.form
         h1
             |   Login up
         p
@@ -22,6 +22,3 @@ block wrapper
             input.btn.btn-info(type='submit', value='Login')
         a.btn-danger.p.back.button(href='/')
             input.btn-danger.p.back.button(type='submit', value='Back')
-
-    //- form(action="/auth/facebook" method="get")#login.animate.form.row
-    //-     input(type="submit" value="Login with Facebook").btn.btn-facebook

@@ -1,19 +1,18 @@
 extends master
 
 block content
-    script(src='../static/js/editprofile.js')
     .container
         .row
             .col-md-6.col-md-offset-3
                 .panel.panel-info
                     .panel-heading
                         h3.panel-title
-                            |   #{user.username}
+                            |   #{context.user.username}
                     .panel-body
                         .row
                             .col-md-3(align='center')
-                                if (user.pictureUrl)
-                                    img.img-circle.img-responsive(alt='User Picture', src=user.pictureUrl)
+                                if (context.user.pictureUrl)
+                                    img.img-circle.img-responsive(alt='User Picture', src=context.user.pictureUrl)
                                 else
                                     img.img-circle.img-responsive(alt='User Picture', src="http://www.teluguone.com/tonecmsuserfiles/Programmer%20Funny%20Responses(1).jpg")
                             .col-md-9
@@ -44,19 +43,17 @@ block content
                                             td
                                                 |   Email
                                             td.edittable
-                                                a(href=result) #{user.email}
+                                                a(href=result) #{context.user.email}
                                         tr
                                             td
                                                 |   Your Last Location
                                             td#location
-                                               script(async defer src='/static/js/cordinates.js')
-
                                         td
                                             |   Phone Number
                                         td.edittable(contenteditable=true)
                                             |   555-4567-890(Mobile)
                     .panel-footer
-                        form#profile-picture-form(action='/profile' method='post', enctype='multipart/form-data')
+                        form#profile-picture-form(action='/users/profile' method='post', enctype='multipart/form-data')
                             label.btn.btn-primary(for="profile-picture")
                                 |   Update profile picture
                             input#profile-picture(type='file', name='avatar', accept='image/*')

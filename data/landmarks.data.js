@@ -21,7 +21,7 @@ class LandmarksData extends Data {
         if (typeof comment === 'undefined' ||
             typeof comment.text !== 'string' ||
             comment.text.length > 200) {
-            throw new Error('Invalid comment!');
+            return Promise.reject('Invalid comment!');
         }
 
         if (!Array.isArray(landmark.comments)) {

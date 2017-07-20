@@ -5,9 +5,9 @@ block content
         .col-md-offset-2.col-md-8.col-lg-offset-3.col-lg-6
              .col-xs-12.col-sm-4.text-center
                 figure
-                    img.img-circle.img-responsive(src=model.pictureUrl alt='user profile picture')
+                    img.img-circle.img-responsive(src=context.user.pictureUrl alt='user profile picture')
              .col-sm-12
-                h2 #{model.username}
+                h2 #{context.user.username}
                 hr
                 .col-xs-12.col-sm-4.col-sm-4.emphasis
                     h2
@@ -16,7 +16,7 @@ block content
                         span Ranking
                 .col-xs-12.col-sm-4.emphasis
                     h2
-                        strong #{model.visitedPlaces} / #{model.landmarks.length}
+                        strong #{context.user.visitedPlaces} / #{context.user.landmarks.length}
                     p
                         small  Visited Places
                 .col-xs-12.col-sm-4.emphasis
@@ -27,7 +27,7 @@ block content
     hr
     .row
         .col-md-offset-3
-            each landmark, index in model.landmarks
+            each landmark, index in context.user.landmarks
                 if (index % 4) == 0
                     .row
                 else

@@ -66,18 +66,4 @@ $(() => {
 
         $destinationComment.prependTo($(rootElement));
     };
-
-    /*
-     each comment in model.comments
-                .col-md-8.destination-comment
-                    p.destination-comment-text 
-                        | #{comment.text}
-                    p.destination-comment-details.text-primary
-                        span.glyphicon.glyphicon-time
-                        |  #{comment.postedOn} 
-                        img.img-comment-user(src=comment.user.pictureUrl) 
-                        a(href='/users/#{comment.author._id}') 
-                            | #{comment.user.username} 
-                    hr.col-md-8    
-    */
 });

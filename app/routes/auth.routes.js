@@ -4,12 +4,11 @@ const attachRoutes = (app, { authController }) => {
     const router = new Router();
 
     router
-        .get('/login/facebook', authController.logFacebook)
-        .post('/register', authController.registerUser)
-        .post('/login', authController.logUser)
+        .post('/register', authController.register)
+        .post('/login', authController.login)
         .get('/logout', authController.logout);
 
-    app.use('/', router);
+    app.use('/users', router);
 };
 
 module.exports = attachRoutes;

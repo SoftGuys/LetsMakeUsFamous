@@ -1,21 +1,20 @@
 const apiController = (data) => {
     return {
-        getAreas(req, res, errorMessage) {
+        getAreas(req, res) {
             return data.areas.getAll()
                 .then((areas) => res.status(200).send(areas));
         },
-        getLandmarks(req, res, errorMessage) {
+        getLandmarks(req, res) {
             return data.landmarks.getAll()
                 .then((landmarks) => res.status(200).send(landmarks));
         },
-        getUsers(req, res, errorMessage) {
+        getUsers(req, res) {
             return data.users.getAll()
                 .then((users) => res.status(200).send(users));
         },
-        addDestinationComment(req, res, errorMessage) {
+        addDestinationComment(req, res) {
             if (!req.user) {
-                return res.status(401)
-                    .send({});
+                return res.status(401).send({});
             }
 
             const landmarkId = req.params.id;
@@ -35,9 +34,9 @@ const apiController = (data) => {
 
                     return data.landmarks.addComment(landmark, comment);
                 })
-                .then((updatedLandmark) => {
-                    return res.status(200)
-                        .send(updatedLandmark);
+                .then((newComment) => {
+                    return res.status(201)
+                        .send(newComment);
                 });
         },
     };

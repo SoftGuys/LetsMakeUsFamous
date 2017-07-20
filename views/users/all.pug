@@ -2,7 +2,7 @@ extends ../master
 
 block content
     .row
-        each user in model
+        each user in context.users
              .col-xs-12.col-sm-6.col-md-6
                 .row
                     .col-sm-6.col-md-4
@@ -15,9 +15,9 @@ block content
                                 | #{user.email}
                         br
                         i.glyphicon.glyphicon-star
-                            |  Rank: #{model.rank}
+                            |  Rank: #{user.rank}
                         .btn-group
                         br
                         p
-                            a.btn.btn-primary(href='/users' + model.username)
+                            a.btn.btn-primary(href='/users' + user.username)
                                 | View

@@ -1,19 +1,23 @@
-function startTime() {
-    const today = new Date();
-    const h = today.getHours();
-    let m = today.getMinutes();
-    let s = today.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
-    document.getElementById('watch').innerHTML =
-        h + ':' + m + ':' + s;
-    const t = setTimeout(startTime, 500);
-}
+/* globals $ */
+$(() => {
+    const startTime = () => {
+        const today = new Date();
+        const hours = today.getHours();
+        const minutes = fixTimeUnit(today.getMinutes());
+        const seconds = fixTimeUnit(today.getSeconds());
 
-function checkTime(i) {
-    if (i < 10) {
-        i = '0' + i;
-    }
-    return i;
-}
-startTime();
+        document.getElementById('watch').innerHTML =
+            hours + ':' + minutes + ':' + seconds;
+
+        setTimeout(startTime, 500);
+    };
+
+    const fixTimeUnit = (timeUnit) => {
+        if (timeUnit < 10) {
+            timeUnit = '0' + timeUnit;
+        }
+        return timeUnit;
+    };
+
+    startTime();
+});

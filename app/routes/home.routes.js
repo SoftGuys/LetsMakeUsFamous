@@ -4,11 +4,7 @@ const attachRoutes = (app, { homeController }) => {
     const router = new Router();
 
     router
-        .get('/', (req, res) => {
-            return res
-                .status(304)
-                .redirect('/home');
-        })
+        .get('/', homeController.redirectHome)
         .get('/home', homeController.getHomeView);
 
     app.use('/', router);
