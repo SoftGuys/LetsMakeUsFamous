@@ -28,10 +28,11 @@ mixin nav
                             |  Login
             else
                 li
-                    a
-                        span.glyphicon.glyphicon-user
+                    a(href='/profile')
+                        img.img-responsive.thumbnail.navbar-brand.small-profile-pic(src=user.pictureUrl)
+                li
+                    a(href='/profile')
                             | #{user.username}
-                //img.mini-profile-image(src= result.imageUrl)
                 li
                     a(href='/profile')
                         span.glyphicon.glyphicon-cog
