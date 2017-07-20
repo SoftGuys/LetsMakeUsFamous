@@ -112,10 +112,12 @@ button {
     bottom: 1px;
     top: 6px;
 }
-#profileMenu{
+
+#profileMenu {
     background-color: #222222;
 }
-#profileMenu li a{
+
+#profileMenu li a {
     color: #9d9d9d;
     background-color: #222222;
 }
@@ -133,3 +135,8 @@ button {
     background: #fc9fff;   /* sexy hot pink */
 }
 
+small {
+    display: block;
+    line-height: 1.428571429;
+    color: #999;
+}

@@ -19,6 +19,7 @@ const destinationsController = (data) => {
                             landmarks,
                             pages,
                             currentPage: Number(page),
+                            pageLink: 'destinations',
                         },
                         isAuthenticated: req.isAuthenticated(),
                         user: req.user,

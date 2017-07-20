@@ -2,18 +2,18 @@ extends ../master
 
 block content
     .row
-        .col-md-offset-2.col-md-8.col-lg-offset-3.col-lg-6
+        .col-md-offset-1.col-md-8.col-lg-6
              .col-xs-12.col-sm-4.text-center
                 figure
                     img.img-circle.img-responsive(src=model.pictureUrl alt='user profile picture')
              .col-sm-12
                 h2 #{model.username}
-                hr
+                hr.col-lg-12
                 .col-xs-12.col-sm-4.col-sm-4.emphasis
                     h2
-                        strong  44
+                        strong  #{model.rank}
                     p
-                        span Ranking
+                        span Rank
                 .col-xs-12.col-sm-4.emphasis
                     h2
                         strong #{model.visitedPlaces} / #{model.landmarks.length}
@@ -24,11 +24,10 @@ block content
                         strong 15h
                     p
                         small  Last active
-    hr
     .row
-        .col-md-offset-3
+        .col-md-offset-1
             each landmark, index in model.landmarks
-                if (index % 4) == 0
+                if (index % 5) == 0
                     .row
                 else
                 .col-md-2.portfolio-item.landmark 
