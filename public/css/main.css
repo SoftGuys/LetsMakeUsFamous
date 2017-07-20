@@ -1,3 +1,7 @@
+body {
+    overflow-x: hidden;
+}
+
 #profile-picture-form,
 .vcenter {
     display: inline-block;
@@ -107,4 +111,8 @@ button {
     height: 35px;
     bottom: 1px;
     top: 6px;
+}
+
+.transparent {
+    filter: grayscale(90%);
 }

@@ -15,8 +15,10 @@ const attachRouter = (app, { usersController }) => {
         .get('/login', usersController.getLoginView)
         .get('/profile', usersController.getProfileView)
         .get('/about', usersController.aboutUs)
-        .get('/users', usersController.getAll)
-        .post('/profile', usersController.uploadProfilePicture);
+        .get('/users', usersController.getUsersView)
+        .post('/profile', usersController.uploadProfilePicture)
+        .get('/users/:username',
+            usersController.getUserDestinationsView);
 
     app.use('/', router);
 };

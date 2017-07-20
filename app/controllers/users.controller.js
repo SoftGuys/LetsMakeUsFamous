@@ -25,7 +25,6 @@ const usersController = (data) => {
             });
         },
         uploadProfilePicture(req, res) {
-            // const photo = req.file;
             if (!req.user) {
                 return res.status(401)
                     .redirect('/home');
@@ -41,12 +40,30 @@ const usersController = (data) => {
             return res.render('about');
         },
         getAll(req, res) {
-            data.users.getAll()
+            return data.users.getAll()
                 .then((users) => {
                     return res.render('users', {
                         model: users,
                         isAuthenticated: req.isAuthenticated(),
                         user: req.user,
+                    });
+                });
+        },
+        getUserDestinationsView(req, res) {
+            const targetUsername = req.params.username;
+
+            return data.users.findUserByUsername(targetUsername)
+                .then((user) => {
+                    return res.render('users/info', {
+                        model: user,
+                    });
+                });
+        },
+        getUsersView(req, res) {
+            return data.users.getAll()
+                .then((users) => {
+                    return res.render('users/all', {
+                        model: users,
                     });
                 });
         },

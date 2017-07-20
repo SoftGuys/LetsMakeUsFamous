@@ -1,0 +1,23 @@
+extends ../master
+
+block content
+    .row
+        each user in model
+             .col-xs-12.col-sm-6.col-md-6
+                .row
+                    .col-sm-6.col-md-4
+                        img.img-rounded.img-responsive(src=user.pictureUrl)
+                    .col-sm-6.col-md-8
+                        h4
+                            | #{user.username}
+                        p
+                            i.glyphicon.glyphicon-envelope 
+                                | #{user.email}
+                        br
+                        i.glyphicon.glyphicon-star
+                            |  Rank: #{model.rank}
+                        .btn-group
+                        br
+                        p
+                            a.btn.btn-primary(href='/users' + model.username)
+                                | View
