@@ -1,23 +1,32 @@
 extends ../master
+include ../utils/pagination
 
 block content
-    .row
+    .container
         each user in context.users
-             .col-xs-12.col-sm-6.col-md-6
-                .row
-                    .col-sm-6.col-md-4
-                        img.img-rounded.img-responsive(src=user.pictureUrl)
-                    .col-sm-6.col-md-8
-                        h4
-                            | #{user.username}
-                        p
-                            i.glyphicon.glyphicon-envelope 
-                                | #{user.email}
-                        br
-                        i.glyphicon.glyphicon-star
-                            |  Rank: #{user.rank}
-                        .btn-group
-                        br
-                        p
-                            a.btn.btn-primary(href='/users' + user.username)
-                                | View
+            .col-xs-4.col-sm-4.col-md-4
+                .well.well-sm
+                    .row
+                        .col-sm-6.col-md-4
+                            img.img-rounded.img-responsive(src=user.pictureUrl alt='')
+                        .col-sm-6.col-md-8
+                            h4
+                                a(href='/users/' + user.username)
+                                | #{user.username}
+                            small
+                                cite(title='San Francisco, USA')
+                                    i.glyphicon.glyphicon-map-marker
+                                    | Visited #{user.visitedPlaces} places!
+                            p
+                                i.glyphicon.glyphicon-envelope
+                                |  #{user.email}
+                                br
+                                i.glyphicon.glyphicon-star
+                                |  #{user.rank}
+                                br
+                                i.glyphicon.glyphicon-gift
+                                | #{user.age}
+                            .btn-group
+                                a.btn.btn-primary(href='/users/' + user.username)
+                                    | View
+    +pagination

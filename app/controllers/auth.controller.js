@@ -1,5 +1,7 @@
 const passport = require('passport');
 const DEFAULT_PICTURE_URL = 'http://www.gibbahouse.com/wp-content/uploads/2014/12/Funny-Animals-With-Makeup_.jpg';
+const DEFAULT_RANK = 1;
+const DEFAULT_VISITED_PLACES = 0;
 
 const authController = (data) => {
     return {
@@ -12,6 +14,8 @@ const authController = (data) => {
         register(req, res) {
             const user = req.body;
             user.pictureUrl = DEFAULT_PICTURE_URL;
+            user.rank = DEFAULT_RANK;
+            user.visitedPlaces = DEFAULT_VISITED_PLACES;
 
             return data.landmarks.getAll()
                 .then((landmarks) => {

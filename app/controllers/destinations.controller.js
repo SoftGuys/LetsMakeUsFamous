@@ -23,6 +23,7 @@ const destinationsController = (data) => {
                                 currentPage: Number(page),
                                 isAuthenticated: req.isAuthenticated(),
                                 user: req.user,
+                                pageLink: 'destinations',
                             },
                         });
                 });

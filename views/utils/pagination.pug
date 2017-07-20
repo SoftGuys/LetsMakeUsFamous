@@ -3,15 +3,15 @@ mixin pagination
         ul.pagination.pagination-lg
             if (context.currentPage - 1 > 0)
                 li
-                    a(href='/destinations?page=' + (context.currentPage - 1)) «
+                    a(href='/' + context.pageLink + '?page=' + (context.currentPage - 1)) «
             each page in context.pages
                 if (page == context.currentPage)
                     li.active
-                        a(href='/destinations?page=' + page)
+                        a(href='/' + context.pageLink + '?page=' + (page))
                             | #{page}
                 else
                     li
-                        a(href='/destinations?page=' + page)
+                        a(href='/' + context.pageLink + '?page=' + (page))
                             | #{page}
             li
-                a(href='/destinations?page=' + (context.currentPage + 1)) »
+                a(href='/' + context.pageLink + '?page=' + (context.currentPage + 1)) »
