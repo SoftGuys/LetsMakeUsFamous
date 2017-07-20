@@ -6,7 +6,7 @@ const utils = {
 
         const pages = [currentPage];
         let pagesCount = 0;
-        while (pages.length < pagesVisibleCount) {
+        while (pagesCount < pagesVisibleCount) {
             const prevPage = pages[0] - 1;
             const nextPage = pages[pages.length - 1] + 1;
 
