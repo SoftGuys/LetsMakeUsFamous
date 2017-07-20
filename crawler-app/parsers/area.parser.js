@@ -11,10 +11,9 @@ const options = {
 
     // Optional depending on the providers
     httpAdapter: 'https', // Default
-    apiKey: selectors.GOOGLE_API_KEY, // for Mapquest, OpenCage, Google Premier
+    apiKey: selectors.GOOGLE_API_KEY, // for Map quest, OpenCage, Google Premier
     formatter: null, // 'gpx', 'string', ... 
 };
-
 const geocoder = nodeGeocoder(options);
 
 const REQUEST_SPEED = 3000;

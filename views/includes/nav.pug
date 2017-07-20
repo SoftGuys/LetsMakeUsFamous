@@ -33,12 +33,15 @@ mixin nav
                 li
                     a(href='/profile')
                             | #{user.username}
-                li
-                    a(href='/profile')
-                        span.glyphicon.glyphicon-cog
+                    li.dropdown
+                        a.dropdown-toggle(data-toggle='dropdown', href='#')
                             | Profile
-                li
-                    a(href='/logout')
-                        span.glyphicon.glyphicon-off
-                            |  Logout
+                            span.caret
+                        ul.dropdown-menu#profileMenu
+                            li
+                                a.glyphicon.glyphicon-cog(href='/profile')   Profile
+                            li
+                                a.glyphicon.glyphicon-hand-right(href='/users/'+ user.username)                                             MyLandmarks
+                            li
+                                a.glyphicon.glyphicon-off(href='/logout')    Logout
     script(src='/static/js/home.js')

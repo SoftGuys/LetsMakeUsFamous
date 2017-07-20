@@ -1,6 +1,7 @@
 extends master
 
 block content
+    script(src='../static/js/editprofile.js')
     .container
         .row
             .col-md-6.col-md-offset-3
@@ -21,28 +22,28 @@ block content
                                         tr
                                             td
                                                 |   Department:
-                                            td
+                                            td.edittable
                                                 |   Programming
                                         tr
                                             td
                                                 |   Date of Birth:
-                                            td
+                                            td.edittable
                                                 |   01/24/1988
                                         tr
                                         tr
                                             td
                                                 |   Gender
-                                            td
+                                            td.edittable
                                                 |   Male
                                         tr
                                             td
                                                 |   Home Address
-                                            td
+                                            td.edittable
                                                 |   Bulgaria
                                         tr
                                             td
                                                 |   Email
-                                            td
+                                            td.edittable
                                                 a(href=result) #{user.email}
                                         tr
                                             td
@@ -52,18 +53,23 @@ block content
 
                                         td
                                             |   Phone Number
-                                        td                                            
+                                        td.edittable(contenteditable=true)
                                             |   555-4567-890(Mobile)
                     .panel-footer
                         form#profile-picture-form(action='/profile' method='post', enctype='multipart/form-data')
-                            label.btn.btn-default(for="profile-picture")
+                            label.btn.btn-primary(for="profile-picture")
                                 |   Update profile picture
                             input#profile-picture(type='file', name='avatar', accept='image/*')
 
                         span.pull-right.vcenter
                             a.btn.btn-sm.btn-primary(data-original-title='Broadcast Message', data-toggle='tooltip', type='button')
                                 i.glyphicon.glyphicon-envelope
-                            a.btn.btn-sm.btn-warning(href='edit', data-original-title='Edit this user', data-toggle='tooltip', type='button')
+                            button.btn.btn-sm.btn-warning#buttonEditProfile(data-original-title='Edit this user', data-toggle='tooltip', type='button')
                                 i.glyphicon.glyphicon-edit
+
+                                button.btn.btn-sm.btn-success#saveButton(data-original-title='Edit this user', data-toggle='tooltip', type='button')
+                                    i.glyphicon.glyphicon-ok
+
+
                             a.btn.btn-sm.btn-danger(href='/')
                                 i.glyphicon.glyphicon-remove
