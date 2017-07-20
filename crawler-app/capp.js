@@ -8,7 +8,7 @@ const fileSystem = require('fs');
 const landmarks = [];
 parseAreas(selectors.BASE_URL)
     .then((data) => {
-        fileSystem.writeFileSync('result.json', JSON.stringify(data));
+        fileSystem.writeFileSync('areas.json', JSON.stringify(data));
         data.forEach((a) => {
             a.landmarks.forEach((l) => {
                 landmarks.push(l);

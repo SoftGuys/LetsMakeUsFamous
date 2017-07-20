@@ -8,15 +8,14 @@ const nodeGeocoder = require('node-geocoder');
 
 const options = {
     provider: 'google',
-
-    // Optional depending on the providers
-    httpAdapter: 'https', // Default
-    apiKey: selectors.GOOGLE_API_KEY, // for Map quest, OpenCage, Google Premier
-    formatter: null, // 'gpx', 'string', ... 
+    httpAdapter: 'https',
+    apiKey: selectors.GOOGLE_API_KEY,
+    formatter: null,
 };
-const geocoder = nodeGeocoder(options);
 
+const geocoder = nodeGeocoder(options);
 const REQUEST_SPEED = 3000;
+
 const parseAreas = (url) => {
     let areas = [];
 
@@ -46,7 +45,7 @@ const parseAreas = (url) => {
                     parseLandmark(landmarkUrl)
                         .then((landmark) => {
                             geocoder.geocode(landmark.title)
-                                .then(function(res) {
+                                .then((res) => {
                                     res.map((x) => {
                                         landmark.latitude = x.latitude;
                                         landmark.longitude = x.longitude;
