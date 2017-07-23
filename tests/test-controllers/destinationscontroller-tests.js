@@ -21,9 +21,9 @@ const req = {
     }
 };
 
-const controller = require("../../app/controllers/destination-controller")(data);
+const controller = require("../../app/controllers/destinations.controller")(data);
 
-describe("NationalTouristSites/app/controllers/destination-controller.js tests", ()=>{
+describe("NationalTouristSites/app/controllers/destinations.controller.js tests", ()=>{
     let res = {};
     beforeEach(() => {
             res.redirect = sinon.stub();
