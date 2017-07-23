@@ -6,5 +6,7 @@ $(() => {
         console.log(landmarkName.text());
         console.log('x');
         console.log('x');
+        console.log('x');
+
     });
 });
