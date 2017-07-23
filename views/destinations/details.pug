@@ -6,8 +6,6 @@ block content
         .col-md-6.landmark-details
           h1
             | #{context.landmark.title}
-            small 
-                |  Secondary Text
           img.img-responsive.landmark-details-img.img-thumbnail(src=context.landmark.pictureUrl)
           hr
           p.landmark-details-description
@@ -18,6 +16,7 @@ block content
           button.btn.btn-success.pull-right.btn-comment-form
             span.glyphicon.glyphicon-comment
             |  Comment
+            button.btn.btn.pull-right.glyphicon.glyphicon-map-marker#googleMapActivate(type='button') Map
           if (context.user)
                 label.btn.btn-primary(for='btn-upload-destination-picture')
                     |   Upload picture from here
@@ -47,3 +46,4 @@ block content
                         hr.col-md-8
     script(src="/scripts/destinations.js")
     script(src="/scripts/verify.destination.js")
+    script(src="/scripts/showgooglemap.js")

@@ -1,5 +1,6 @@
 /* globals $*/
-const VERIFY_VISITED_DESTINATION_URL = 'localhost:3001/api/destinations/';
+const VERIFY_VISITED_DESTINATION_URL =
+    'http:localhost:3001/api/destinations/:id';
 
 $(() => {
     'use strict';

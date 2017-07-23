@@ -1,3 +1,9 @@
-/**
- * Created by Vladimir on 7/23/2017.
- */
+/* globals $ */
+
+$(() => {
+    $('#googleMapActivate').on('click', (ev) => {
+        const landmarkName = $('h1');
+        console.log(landmarkName.text());
+        console.log('x');
+    });
+});

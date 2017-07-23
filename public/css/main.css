@@ -147,3 +147,7 @@ small {
     line-height: 1.428571429;
     color: #999;
 }
+#googleMapActivate{
+    width: 100px;
+    background-color: sandybrown;
+}
