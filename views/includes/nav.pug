@@ -27,9 +27,16 @@ mixin nav
                         span.glyphicon.glyphicon-log-in
                             |  Login
             else
+                li.dropdown#alert-dropdown
+                    a.dropdown-toggle(data-toggle='dropdown', href='#')
+                        img(src='/static/images/notification.png').img-responsive.notification
+                        img(src='/static/images/alert.jpg').img-responsive.notification-alert.hidden
+                            
+                    ul.dropdown-menu#alerts
+
                 li
                     a(href='/users/profile')
-                        img.img-responsive.thumbnail.navbar-brand.small-profile-pic(src=context.user.pictureUrl)
+                        img.img-responsive.thumbnail.navbar-brand.small-pic(src=context.user.pictureUrl)
                 li
                     a(href='/users/profile')
                             | #{context.user.username}

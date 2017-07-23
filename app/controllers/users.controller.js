@@ -65,6 +65,7 @@ const usersController = (data) => {
                         .render('users/info', {
                             context: {
                                 user,
+                                current: req.user,
                                 isAuthenticated: req.isAuthenticated(),
                             },
                         });
@@ -78,7 +79,6 @@ const usersController = (data) => {
                 .then((users) => {
                     const pages = utils
                         .getPagination(Number(page), DEFAULT_VISIBLE_PAGES);
-
                     return res
                         .status(200)
                         .render('users/all', {

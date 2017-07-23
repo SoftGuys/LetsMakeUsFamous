@@ -39,6 +39,28 @@ class UsersData extends Data {
         }, user);
     }
 
+    addFriendship(firstUser, secondUser) {
+        const userMaker = (userData) => {
+            return {
+                _id: userData._id,
+                username: userData.username,
+                rank: userData.rank,
+                email: userData.email,
+                pictureUrl: userData.pictureUrl,
+            };
+        };
+
+        firstUser.friends.push(userMaker(secondUser));
+        this.collection.update({
+            _id: firstUser._id,
+        }, firstUser);
+
+        secondUser.friends.push(userMaker(firstUser));
+        this.collection.update({
+            _id: secondUser._id,
+        }, secondUser);
+    }
+
     add(user) {
         if (typeof user === 'undefined') {
             return Promise.reject('Model is undefined!');

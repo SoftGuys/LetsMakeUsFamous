@@ -1,13 +1,20 @@
 extends ../master
 
 block content
-    .row
-        .col-md-offset-1.col-md-8.col-lg-6
-             .col-xs-12.col-sm-4.text-center
+    .row#user-id(user-id=context.user._id)
+        .col-md-offset-1.col-md-6
+             .col-sm-4.text-center
                 figure
                     img.img-circle.img-responsive(src=context.user.pictureUrl alt='user profile picture')
              .col-sm-12
                 h2 #{context.user.username}
+                if context.isAuthenticated
+                    if context.current.friends.some(x=> x._id.toString() === context.user._id.toString())
+                        a.btn.btn-primary#chat
+                            | Chat
+                    else
+                        a.btn.btn-primary#add-friend
+                            | Add friend
                 hr
                 .col-xs-12.col-sm-4.col-sm-4.emphasis
                     h2

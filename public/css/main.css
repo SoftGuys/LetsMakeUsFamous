@@ -105,7 +105,23 @@ button {
     font-size: 20px;
 }
 
-.small-profile-pic {
+.notification {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    top: 6px;
+    right: 4px;
+}
+
+.notification-alert {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 26px;
+    right: 4px;
+}
+
+.small-pic {
     position: absolute;
     width: 35px;
     height: 35px;
@@ -125,14 +141,20 @@ button {
 .transparent {
     filter: grayscale(90%);
 }
+
 .form-control::selection {
-    background: #ffb7b7; /* WebKit/Blink Browsers */
+    background: #ffb7b7;
+    /* WebKit/Blink Browsers */
 }
-.form-control::-moz-selection{
-    background: #ffb7b7; /* Gecko Browsers */
+
+.form-control::-moz-selection {
+    background: #ffb7b7;
+    /* Gecko Browsers */
 }
-.edittable:focus{
-    background: #fc9fff;   /* sexy hot pink */
+
+.edittable:focus {
+    background: #fc9fff;
+    /* sexy hot pink */
 }
 
 small {

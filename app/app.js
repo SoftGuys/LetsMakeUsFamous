@@ -1,5 +1,4 @@
 /* globals __dirname */
-
 const path = require('path');
 
 const express = require('express');
@@ -16,7 +15,8 @@ const init = (data) => {
     const controllers = require('./controllers')(data);
     require('./routes')(app, controllers);
 
-    return Promise.resolve(app);
+    const server = require('./config/socket.config')(app, data);
+    return Promise.resolve(server);
 };
 
 module.exports = init;
