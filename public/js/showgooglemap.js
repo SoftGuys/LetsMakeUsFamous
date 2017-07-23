@@ -5,5 +5,6 @@ $(() => {
         const landmarkName = $('h1');
         console.log(landmarkName.text());
         console.log('x');
+        console.log('x');
     });
 });
