@@ -52,6 +52,14 @@ const destinationsController = (data) => {
                         });
                 });
         },
+        showMap(req, res) {
+            const id = req.params.id;
+            data.landmarks.findById(id)
+                .then((details)=>{
+                    console.log(details);
+                    return res.render('destinations/googlemap', {});
+                });
+        },
     };
 };
 
