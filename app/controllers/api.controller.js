@@ -39,6 +39,21 @@ const apiController = (data) => {
                         .send(newComment);
                 });
         },
+        verifyVisitedDestinations(req, res) {
+            console.log('here');
+            if (!req.user) {
+                return res.status(401)
+                    .redirect('/destinations');
+            }
+
+            const landmarkId = req.params.landmarkId;
+            const file = req.params.file;
+
+            console.log(landmarkId);
+            console.log(file.name);
+
+            return res.status(200).redirect('/');
+        },
     };
 };
 

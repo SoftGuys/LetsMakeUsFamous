@@ -1,12 +1,13 @@
 body {
     overflow-x: hidden;
+    background: url('http://localhost:3001/static/images/background.jpg') repeat;
+    background-size: 50px;
 }
 
 #profile-picture-form,
 .vcenter {
     display: inline-block;
     vertical-align: middle;
-    float: none;
 }
 
 #profile-picture {
@@ -125,14 +126,20 @@ button {
 .transparent {
     filter: grayscale(90%);
 }
+
 .form-control::selection {
-    background: #ffb7b7; /* WebKit/Blink Browsers */
+    background: #ffb7b7;
+    /* WebKit/Blink Browsers */
 }
-.form-control::-moz-selection{
-    background: #ffb7b7; /* Gecko Browsers */
+
+.form-control::-moz-selection {
+    background: #ffb7b7;
+    /* Gecko Browsers */
 }
-.edittable:focus{
-    background: #fc9fff;   /* sexy hot pink */
+
+.edittable:focus {
+    background: #fc9fff;
+    /* sexy hot pink */
 }
 
 small {

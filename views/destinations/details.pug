@@ -18,6 +18,10 @@ block content
           button.btn.btn-success.pull-right.btn-comment-form
             span.glyphicon.glyphicon-comment
             |  Comment
+          if (context.user)
+                label.btn.btn-primary(for='btn-upload-destination-picture')
+                    |   Upload picture from here
+                    input#btn-upload-destination-picture(type='file', name='avatar', accept='image/*' data-destination-id=context.landmark._id)
           hr
           #add-destination-comment.form-group.hidden
             label(for='comment-destination')
@@ -42,3 +46,4 @@ block content
                                 | #{comment.user.username} 
                         hr.col-md-8
     script(src="/scripts/destinations.js")
+    script(src="/scripts/verify.destination.js")

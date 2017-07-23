@@ -45,7 +45,7 @@ const configApp = (app) => {
             },
             destination: (_, file, callback) => {
                 callback(null,
-                    path.join(__dirname, '../../public/images/uploads/'));
+                    path.join(__dirname, '../../front-end/images/uploads/'));
             },
         }),
     }).single('avatar'));
