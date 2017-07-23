@@ -7,8 +7,8 @@
         "start": "gulp server",
         "dev": "gulp dev",
         "crawler": "node ./crawler-app/capp.js",
-		"test": "nyc --reporter=html --reporter=text mocha \"tests/test-*/**/*.js\"",
-		"coverage": "nyc report --reporter=text-lcov | coveralls"
+        "test": "nyc --reporter=html --reporter=text mocha \"tests/test-*/**/*.js\"",
+        "coverage": "nyc report --reporter=text-lcov | coveralls"
     },
     "repository": {
         "type": "git",
@@ -59,6 +59,7 @@
         "eslint-config-google": "^0.8.0",
         "gulp-eslint": "^4.0.0",
         "gulp-nodemon": "^2.2.1",
-        "morgan": "^1.8.2"
+        "morgan": "^1.8.2",
+        "sinon": "^2.3.8"
     }
 }
