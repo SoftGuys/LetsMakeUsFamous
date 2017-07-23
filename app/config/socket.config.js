@@ -39,7 +39,8 @@ const configSocket = (app, { users }) => {
                     );
                 });
 
-            socket.broadcast.emit('add-friend', 'You have new friend request!');
+            socket.broadcast.emit('add-friend',
+                `${socket.request.user.username} added you as a friend!`);
         });
     });
 

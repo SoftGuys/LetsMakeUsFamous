@@ -33,6 +33,9 @@ mixin nav
                         img(src='/static/images/alert.jpg').img-responsive.notification-alert.hidden
                             
                     ul.dropdown-menu#alerts
+                        each alert in context.user.notifications
+                            li.btn.btn-success
+                                a #{alert}
 
                 li
                     a(href='/users/profile')

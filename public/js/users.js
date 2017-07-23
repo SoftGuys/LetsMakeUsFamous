@@ -7,7 +7,7 @@ $(() => {
         $('.notification-alert').addClass('hidden');
 
         if ($('#alerts').children().length === 0) {
-            $('#alerts').append($('<li>').html('No alerts!'));
+            $('#alerts').append($('<li>').append($('<a>').html('No alerts!')));
             return;
         }
     });
@@ -24,6 +24,7 @@ $(() => {
         $('#alerts').append(
             $('<li>')
             .addClass('btn')
+            .addClass('btn-success')
             .on('click', (ev) => {
                 $(ev.target).remove();
             })

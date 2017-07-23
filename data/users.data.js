@@ -39,7 +39,7 @@ class UsersData extends Data {
         }, user);
     }
 
-    addFriendship(firstUser, secondUser) {
+    addFriendship(user, friend) {
         const userMaker = (userData) => {
             return {
                 _id: userData._id,
@@ -50,15 +50,16 @@ class UsersData extends Data {
             };
         };
 
-        firstUser.friends.push(userMaker(secondUser));
+        user.friends.push(userMaker(friend));
         this.collection.update({
-            _id: firstUser._id,
-        }, firstUser);
+            _id: user._id,
+        }, user);
 
-        secondUser.friends.push(userMaker(firstUser));
+        friend.notifications.push(`${user.username} added you as a friend!`);
+        friend.friends.push(userMaker(user));
         this.collection.update({
-            _id: secondUser._id,
-        }, secondUser);
+            _id: friend._id,
+        }, friend);
     }
 
     add(user) {
