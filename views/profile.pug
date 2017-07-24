@@ -56,7 +56,7 @@ block content
                         form#profile-picture-form(action='/users/profile' method='post', enctype='multipart/form-data')
                             label.btn.btn-primary(for="profile-picture")
                                 |   Update profile picture
-                            input#profile-picture(type='file', name='avatar', accept='image/*')
+                            input#profile-picture(type='file', name='uploadFile', accept='image/*')
 
                         span.pull-right.vcenter
                             a.btn.btn-sm.btn-primary(href='/users/messages' data-original-title='Broadcast Message', data-toggle='tooltip', type='button')
