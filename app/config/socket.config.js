@@ -37,10 +37,17 @@ const configSocket = (app, { users }) => {
                         socket.request.user,
                         friend
                     );
+
+                    return friend;
                 })
-                .then(() => {
-                    // target specific user
-                    socket.broadcast.emit('add-friend', socket.request.user);
+                .then((targetUser) => {
+                    passportSocket.filterSocketsByUser(io, (user) => {
+                            return user._id.toString() ===
+                                targetUser._id.toString();
+                        })
+                        .forEach((sock) => {
+                            sock.emit('add-friend', socket.request.user);
+                        });
                 });
         });
 
