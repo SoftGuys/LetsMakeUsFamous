@@ -9,7 +9,6 @@ $(() => {
     $('.btn-add-destination-comment')
         .on('click', (ev) => {
             const $clickedButton = $(ev.target);
-
             const landmarkId = $clickedButton.attr('data-landmarkId');
             const commentText = $('textarea').val();
             $('textarea').val('');
@@ -29,6 +28,7 @@ $(() => {
                 contentType: 'application/json',
                 success: (data) => {
                     displayComment(data, $commentsContainer);
+                    toastr.success('Comment added successfully!');
                 },
                 error: (err) => {
                     toastr.error('You must be logged in in order to comment!');

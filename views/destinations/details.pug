@@ -18,14 +18,9 @@ block content
           button.btn.btn-success.pull-right.btn-comment-form
             span.glyphicon.glyphicon-comment
             |  Comment
-          if (context.user)
-                label.btn.btn-primary(for='btn-upload-destination-picture')
-                    |   Upload picture from here
-                    input#btn-upload-destination-picture(type='file', name='avatar', accept='image/*' data-destination-id=context.landmark._id)
           hr
           #add-destination-comment.form-group.hidden
-            label(for='comment-destination')
-                | Comment:
+            | Comment:
             textarea#comment-destination.form-control(rows='5' name="comment-text")
             button.btn.btn-success.btn-add-destination-comment(data-landmarkId=context.landmark._id)
                 | Add
@@ -45,5 +40,3 @@ block content
                             a(href='/users/#{comment.author._id}') 
                                 | #{comment.user.username} 
                         hr.col-md-8
-    script(src="/scripts/destinations.js")
-    script(src="/scripts/verify.destination.js")
