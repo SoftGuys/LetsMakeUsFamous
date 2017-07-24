@@ -20,6 +20,14 @@ const destinationsController = (data) => {
                     const pages = utils
                         .getPagination(Number(page), DEFAULT_VISIBLE_PAGES);
 
+                    if (req.user) {
+                        landmarks.forEach((l) => {
+                            l.isVisited = req.user.landmarks.some((ul) => {
+                                return ul.title === l.title && ul.isVisited;
+                            });
+                        });
+                    }
+
                     return res
                         .status(200)
                         .render('destinations/all', {

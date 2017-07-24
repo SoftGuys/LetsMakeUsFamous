@@ -163,3 +163,11 @@ small {
     line-height: 1.428571429;
     color: #999;
 }
+
+#badge {
+    position: absolute;
+    width: 60%;
+    bottom: 1%;
+    top: 45%;
+    left: 15%;
+}

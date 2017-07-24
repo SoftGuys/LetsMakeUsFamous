@@ -15,10 +15,9 @@ block content
             else
             .col-md-4.portfolio-item.landmark 
                     a(href='/destinations/' + landmark._id)
-                        if (landmark.pictureUrl)
-                            img.img-responsive.thumbnail(src=landmark.pictureUrl)
-                        else
-                             img.img-responsive.thumbnail(src='/static/images/areas/с.Златналивада–манастир„Св.Атанасий“.jpeg')
+                        img.img-responsive.thumbnail(src=landmark.pictureUrl)
+                    if (landmark.isVisited)
+                            img(id="badge" src="/static/images/complete.png")
                     h3
                         | #{landmark.title}
                     p.landmark-description
