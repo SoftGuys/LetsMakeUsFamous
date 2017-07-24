@@ -1,5 +1,4 @@
 /* globals $ toastr */
-
 const ADD_COMMENT_URL = 'http://localhost:3001/api/destinations/';
 
 $(() => {

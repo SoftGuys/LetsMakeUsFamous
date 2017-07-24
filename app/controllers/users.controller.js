@@ -64,7 +64,8 @@ const usersController = (data) => {
                         .status(200)
                         .render('users/info', {
                             context: {
-                                user,
+                                current: user,
+                                user: req.user,
                                 isAuthenticated: req.isAuthenticated(),
                             },
                         });
@@ -78,7 +79,6 @@ const usersController = (data) => {
                 .then((users) => {
                     const pages = utils
                         .getPagination(Number(page), DEFAULT_VISIBLE_PAGES);
-
                     return res
                         .status(200)
                         .render('users/all', {
@@ -92,6 +92,20 @@ const usersController = (data) => {
                             },
                         });
                 });
+        },
+        getMessagesView(req, res) {
+            if (!req.isAuthenticated()) {
+                res.status(401).redirect('/');
+            } else {
+                res
+                    .status(200)
+                    .render('messages', {
+                        context: {
+                            user: req.user,
+                            isAuthenticated: req.isAuthenticated(),
+                        },
+                    });
+            }
         },
     };
 };

@@ -4,29 +4,65 @@ include ../utils/pagination
 block content
     .container
         each user in context.users
-            .col-xs-4.col-sm-4.col-md-4
-                .well.well-sm
-                    .row
-                        .col-sm-6.col-md-4
-                            img.img-rounded.img-responsive(src=user.pictureUrl alt='')
-                        .col-sm-6.col-md-8
-                            h4
-                                a(href='/users/' + user.username)
-                                | #{user.username}
-                            small
-                                cite(title='San Francisco, USA')
-                                    i.glyphicon.glyphicon-map-marker
-                                    | Visited #{user.visitedPlaces} places!
-                            p
-                                i.glyphicon.glyphicon-envelope
-                                |  #{user.email}
-                                br
-                                i.glyphicon.glyphicon-star
-                                |  #{user.rank}
-                                br
-                                i.glyphicon.glyphicon-gift
-                                | #{user.age}
-                            .btn-group
-                                a.btn.btn-primary(href='/users/' + user.username)
-                                    | View
+            if !context.isAuthenticated
+                .col-xs-4.col-sm-4.col-md-4
+                    .well.well-sm
+                        .row
+                            .col-sm-6.col-md-4
+                                img.img-rounded.img-responsive(src=user.pictureUrl alt='')
+                            .col-sm-6.col-md-8
+                                h4
+                                    a(href='/users/' + user.username)
+                                    | #{user.username}
+                                small
+                                    cite(title='San Francisco, USA')
+                                        i.glyphicon.glyphicon-map-marker
+                                        | Visited #{user.visitedPlaces} places!
+                                p
+                                    i.glyphicon.glyphicon-envelope
+                                    |  #{user.email}
+                                    br
+                                    i.glyphicon.glyphicon-star
+                                    |  #{user.rank}
+                                    br
+                                    i.glyphicon.glyphicon-gift
+                                    | #{user.age}
+                                .btn-group
+                                    a.btn.btn-primary(href='/users/' + user.username)
+                                        | View                                
+            else
+                if user._id.toString() !== context.user._id.toString()
+                    .col-xs-4.col-sm-4.col-md-4
+                        .well.well-sm
+                            .row.user-id(user-id=user._id)
+                                .col-sm-6.col-md-4
+                                    img.img-rounded.img-responsive(src=user.pictureUrl alt='')
+                                .col-sm-6.col-md-8
+                                    h4
+                                        a(href='/users/' + user.username)
+                                        | #{user.username}
+                                    small
+                                        cite(title='San Francisco, USA')
+                                            i.glyphicon.glyphicon-map-marker
+                                            | Visited #{user.visitedPlaces} places!
+                                    p
+                                        i.glyphicon.glyphicon-envelope
+                                        |  #{user.email}
+                                        br
+                                        i.glyphicon.glyphicon-star
+                                        |  #{user.rank}
+                                        br
+                                        i.glyphicon.glyphicon-gift
+                                        | #{user.age}
+                                    .btn-group
+                                        a.btn.btn-primary(href='/users/' + user.username)
+                                            | View
+                                    if context.user.friends.some(x=> x._id.toString() === user._id.toString())
+                                        .btn-group.col-sm-offset-1
+                                            a.btn.btn-danger#chat
+                                                | Chat
+                                    else
+                                        .btn-group.col-sm-offset-1
+                                            a.btn.btn-danger#add-friend
+                                                | Add friend
     +pagination

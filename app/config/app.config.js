@@ -1,16 +1,19 @@
 /* globals __dirname */
 
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const multer = require('multer');
 
+const multer = require('multer');
 const morgan = require('morgan');
 const path = require('path');
 
 const messages = require('express-messages');
 const flash = require('connect-flash');
 const toastr = require('express-toastr');
+
+const config = require('../../config');
 
 const configApp = (app) => {
     app.set('view engine', 'pug');
@@ -21,6 +24,7 @@ const configApp = (app) => {
 
     app.use(cookieParser());
     app.use(session({
+        store: new MongoStore({ url: config.LOCAL_CONNECTION_STRING }),
         saveUninitialized: true,
         resave: false,
         secret: 'bobidjei',

@@ -14,6 +14,8 @@ const authController = (data) => {
         register(req, res) {
             const user = req.body;
             user.pictureUrl = DEFAULT_PICTURE_URL;
+            user.friends = [];
+            user.notifications = [];
             user.rank = DEFAULT_RANK;
             user.visitedPlaces = DEFAULT_VISITED_PLACES;
 

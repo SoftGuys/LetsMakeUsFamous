@@ -18,9 +18,7 @@ $(() => {
                 infoWindow.setPosition(pos);
                 infoWindow.setContent('Location found.');
                 // infoWindow.open(map);
-                if (document.getElementById('location') === null) {
-                    console.log(pos);
-                } else {
+                if (document.getElementById('location') !== null) {
                     document.getElementById('location').innerHTML =
                         `Longtitude:${pos.lat} Latitude${pos.lng}`;
                 }

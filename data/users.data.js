@@ -39,6 +39,26 @@ class UsersData extends Data {
         }, user);
     }
 
+    addFriendship(user, friend) {
+        const friendModel = (userData) => {
+            return {
+                _id: userData._id,
+                username: userData.username,
+                rank: userData.rank,
+                email: userData.email,
+                pictureUrl: userData.pictureUrl,
+                messages: [],
+            };
+        };
+
+        user.friends.push(friendModel(friend));
+        this.update(user);
+
+        friend.notifications.push(`${user.username} added you as a friend!`);
+        friend.friends.push(friendModel(user));
+        this.update(friend);
+    }
+
     add(user) {
         if (typeof user === 'undefined') {
             return Promise.reject('Model is undefined!');

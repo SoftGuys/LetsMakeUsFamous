@@ -27,9 +27,20 @@ mixin nav
                         span.glyphicon.glyphicon-log-in
                             |  Login
             else
+                li.dropdown#alert-dropdown
+                    a.dropdown-toggle(data-toggle='dropdown', href='#')
+                        img(src='/static/images/notification.png').img-responsive.notification
+                        if context.user.notifications.length
+                            img(src='/static/images/alert.jpg').img-responsive.notification-alert
+                        else
+                            img(src='/static/images/alert.jpg').img-responsive.notification-alert.hidden
+                    ul.dropdown-menu#alerts
+                        li#no-alert.btn No alerts!
+                        each alert in context.user.notifications
+                            li.btn.alert #{alert}
                 li
                     a(href='/users/profile')
-                        img.img-responsive.thumbnail.navbar-brand.small-profile-pic(src=context.user.pictureUrl)
+                        img.img-responsive.thumbnail.navbar-brand.small-pic(src=context.user.pictureUrl)
                 li
                     a(href='/users/profile')
                             | #{context.user.username}
