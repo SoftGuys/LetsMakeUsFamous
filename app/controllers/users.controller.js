@@ -93,6 +93,20 @@ const usersController = (data) => {
                         });
                 });
         },
+        getMessagesView(req, res) {
+            if (!req.isAuthenticated()) {
+                res.status(401).redirect('/');
+            } else {
+                res
+                    .status(200)
+                    .render('messages', {
+                        context: {
+                            user: req.user,
+                            isAuthenticated: req.isAuthenticated(),
+                        },
+                    });
+            }
+        },
     };
 };
 

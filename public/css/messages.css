@@ -1,0 +1,17 @@
+.messages-box {
+    border: 3px solid green;
+    height: 50%;
+}
+
+#friends {
+    list-style-type: none;
+}
+
+.friend-name {
+    color: black;
+}
+
+.friends-box {
+    border: 3px solid green;
+    height: 50%;
+}

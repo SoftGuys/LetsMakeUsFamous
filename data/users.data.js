@@ -40,21 +40,22 @@ class UsersData extends Data {
     }
 
     addFriendship(user, friend) {
-        const userMaker = (userData) => {
+        const friendModel = (userData) => {
             return {
                 _id: userData._id,
                 username: userData.username,
                 rank: userData.rank,
                 email: userData.email,
                 pictureUrl: userData.pictureUrl,
+                messages: [],
             };
         };
 
-        user.friends.push(userMaker(friend));
+        user.friends.push(friendModel(friend));
         this.update(user);
 
         friend.notifications.push(`${user.username} added you as a friend!`);
-        friend.friends.push(userMaker(user));
+        friend.friends.push(friendModel(user));
         this.update(friend);
     }
 
