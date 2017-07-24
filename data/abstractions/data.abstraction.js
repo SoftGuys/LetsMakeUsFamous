@@ -47,6 +47,16 @@ class Data {
         return this.collection.insert(model);
     }
 
+    update(model) {
+        if (typeof model === 'undefined') {
+            return Promise.reject('Model is undefined!');
+        }
+
+        return this.collection.update({
+            _id: model._id,
+        }, model);
+    }
+
     getRange(start, size) {
         start = Number(start);
         size = Number(size);

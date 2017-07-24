@@ -37,10 +37,23 @@ const configSocket = (app, { users }) => {
                         socket.request.user,
                         friend
                     );
+                })
+                .then(() => {
+                    // target specific user
+                    socket.broadcast.emit('add-friend', socket.request.user);
                 });
+        });
 
-            socket.broadcast.emit('add-friend',
-                `${socket.request.user.username} added you as a friend!`);
+        socket.on('remove-notification', (notification) => {
+            const notifications = socket.request.user.notifications;
+            const index = notifications.findIndex((x) => x === notification);
+            notifications.splice(index, 1);
+
+            users.findById(socket.request.user._id.toString())
+                .then((user) => {
+                    user.notifications = notifications;
+                    users.update(user);
+                });
         });
     });
 

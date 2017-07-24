@@ -64,8 +64,8 @@ const usersController = (data) => {
                         .status(200)
                         .render('users/info', {
                             context: {
-                                user,
-                                current: req.user,
+                                current: user,
+                                user: req.user,
                                 isAuthenticated: req.isAuthenticated(),
                             },
                         });

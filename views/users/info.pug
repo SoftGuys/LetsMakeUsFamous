@@ -1,49 +1,50 @@
 extends ../master
 
 block content
-    .row#user-id(user-id=context.user._id)
-        .col-md-offset-1.col-md-6
-             .col-sm-4.text-center
-                figure
-                    img.img-circle.img-responsive(src=context.user.pictureUrl alt='user profile picture')
-             .col-sm-12
-                h2 #{context.user.username}
-                if context.isAuthenticated
-                    if context.current.friends.some(x=> x._id.toString() === context.user._id.toString())
-                        a.btn.btn-primary#chat
-                            | Chat
+    .container    
+        .row.user-id(user-id=context.current._id)
+            .col-md-offset-1.col-md-6
+                .col-sm-4.text-center
+                    figure
+                        img.img-circle.img-responsive(src=context.current.pictureUrl alt='user profile picture')
+                .col-sm-12
+                    h2 #{context.current.username}
+                    if context.isAuthenticated
+                        if context.user.friends.some(x=> x._id.toString() === context.current._id.toString())
+                            a.btn.btn-primary#chat
+                                | Chat
+                        else
+                            a.btn.btn-primary#add-friend
+                                | Add friend
+                    hr
+                    .col-xs-12.col-sm-4.col-sm-4.emphasis
+                        h2
+                            strong  #{context.current.rank}
+                        p
+                            span Rank
+                    .col-xs-12.col-sm-4.emphasis
+                        h2
+                            strong #{context.current.visitedPlaces} / #{context.current.landmarks.length}
+                        p
+                            small  Visited Places
+                    .col-xs-12.col-sm-4.emphasis
+                        h2
+                            strong 15h
+                        p
+                            small  Last active
+        .row
+            .col-md-offset-1
+                each landmark, index in context.current.landmarks
+                    if (index % 5) == 0
+                        .row
                     else
-                        a.btn.btn-primary#add-friend
-                            | Add friend
-                hr
-                .col-xs-12.col-sm-4.col-sm-4.emphasis
-                    h2
-                        strong  #{context.rank}
-                    p
-                        span Rank
-                .col-xs-12.col-sm-4.emphasis
-                    h2
-                        strong #{context.user.visitedPlaces} / #{context.user.landmarks.length}
-                    p
-                        small  Visited Places
-                .col-xs-12.col-sm-4.emphasis
-                    h2
-                        strong 15h
-                    p
-                        small  Last active
-    .row
-        .col-md-offset-1
-            each landmark, index in context.user.landmarks
-                if (index % 5) == 0
-                    .row
-                else
-                .col-md-2.portfolio-item.landmark 
-                        a(href='#')
-                            if (landmark.isVisited)
-                                img.img-responsive.thumbnail(src=landmark.pictureUrl)
-                            else
-                                img.img-responsive.thumbnail.transparent(src=landmark.pictureUrl)
-                        h5
-                            | #{landmark.title}
-                        p.landmark-description
-                            | #{landmark.description}
+                    .col-md-2.portfolio-item.landmark 
+                            a(href='#')
+                                if (landmark.isVisited)
+                                    img.img-responsive.thumbnail(src=landmark.pictureUrl)
+                                else
+                                    img.img-responsive.thumbnail.transparent(src=landmark.pictureUrl)
+                            h5
+                                | #{landmark.title}
+                            p.landmark-description
+                                | #{landmark.description}

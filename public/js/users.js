@@ -6,31 +6,43 @@ $(() => {
         event.preventDefault();
         $('.notification-alert').addClass('hidden');
 
-        if ($('#alerts').children().length === 0) {
-            $('#alerts').append($('<li>').append($('<a>').html('No alerts!')));
-            return;
+        if ($('#alerts').children().length > 1) {
+            $('#no-alert').addClass('hidden');
         }
     });
 
-    $('#add-friend').on('click', (event) => {
-        const friendId = $(event.target).parents('#user-id').attr('user-id');
+    $('#alerts').on('click', '.alert', (event) => {
+        event.preventDefault();
+
+        $(event.target).remove();
+        if ($('#alerts').children().length === 1) {
+            $('#no-alert').removeClass('hidden');
+        }
+
+        socket.emit('remove-notification', $(event.target).first().html());
+    });
+
+    $('.container').on('click', '#add-friend', (event) => {
+        const friendId = $(event.target)
+            .html('Chat')
+            .attr('id', 'chat')
+            .parents('.user-id')
+            .attr('user-id');
 
         socket.emit('add-friend', friendId);
         toastr.success('You added new friend!');
     });
 
-    socket.on('add-friend', (message) => {
+    socket.on('add-friend', (sender) => {
+        $('.user-id[user-id=' + sender._id.toString() + ']')
+            .find('#add-friend').html('Chat').attr('id', 'chat');
+
         $('.notification-alert').removeClass('hidden');
         $('#alerts').append(
             $('<li>')
             .addClass('btn')
-            .addClass('btn-success')
-            .on('click', (ev) => {
-                $(ev.target).remove();
-            })
-            .append(
-                $('<a>')
-                .html(message))
+            .addClass('alert')
+            .html(`${sender.username} added you as a friend!`)
         );
     });
 });

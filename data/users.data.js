@@ -51,15 +51,11 @@ class UsersData extends Data {
         };
 
         user.friends.push(userMaker(friend));
-        this.collection.update({
-            _id: user._id,
-        }, user);
+        this.update(user);
 
         friend.notifications.push(`${user.username} added you as a friend!`);
         friend.friends.push(userMaker(user));
-        this.collection.update({
-            _id: friend._id,
-        }, friend);
+        this.update(friend);
     }
 
     add(user) {
