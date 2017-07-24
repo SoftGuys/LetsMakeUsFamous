@@ -3,6 +3,7 @@ const path = require('path');
 
 const express = require('express');
 const app = express();
+const utils = require('./utils');
 
 const init = (data) => {
     require('./config/app.config')(app);
@@ -12,7 +13,7 @@ const init = (data) => {
     app.use('/scripts', express.static(path.join(__dirname, '../build')));
     app.use('/libs', express.static(path.join(__dirname, '../node_modules')));
 
-    const controllers = require('./controllers')(data);
+    const controllers = require('./controllers')(data, utils);
     require('./routes')(app, controllers);
 
     const server = require('./config/socket.config')(app, data);

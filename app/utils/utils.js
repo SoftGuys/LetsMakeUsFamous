@@ -1,3 +1,8 @@
+/* globals __dirname */
+
+const path = require('path');
+const fs = require('fs');
+
 const utils = {
     getPagination(currentPage, pagesVisibleCount) {
         if (Number.isNaN(Number(currentPage))) {
@@ -20,6 +25,22 @@ const utils = {
         }
 
         return pages;
+    },
+    getDistanceFromLatLong(lat1, lon1, lat2, lon2) {
+        const p = 0.017453292519943295;
+        const c = Math.cos;
+        const a = 0.5 - c((lat2 - lat1) * p) / 2 +
+            c(lat1 * p) * c(lat2 * p) *
+            (1 - c((lon2 - lon1) * p)) / 2;
+
+        return 12742 * Math.asin(Math.sqrt(a));
+    },
+    deleteFile(filePath) {
+        if (typeof filePath !== 'string') {
+            throw new Error('filePath must be a string!');
+        }
+        console.log(filePath);
+        fs.unlinkSync(filePath);
     },
 };
 

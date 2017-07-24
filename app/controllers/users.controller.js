@@ -1,9 +1,7 @@
 const DEFAULT_VISIBLE_PAGES = 5;
 const DEFAULT_PAGE = 1;
 
-const usersController = (data) => {
-    const utils = require('../utils');
-
+const usersController = (data, utils) => {
     return {
         getLoginView(req, res) {
             if (req.isAuthenticated()) {

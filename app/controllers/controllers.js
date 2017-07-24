@@ -3,7 +3,7 @@
 const path = require('path');
 const fs = require('fs');
 
-const getControllers = (data) => {
+const getControllers = (data, utils) => {
     const controllers = {};
 
     fs.readdirSync(__dirname)
@@ -12,7 +12,9 @@ const getControllers = (data) => {
             const modulePath = path.join(__dirname, fileName);
             const currentController = require(modulePath);
 
-            controllers[currentController.name] = currentController(data);
+            controllers[currentController.name] = currentController(
+                data,
+                utils);
         });
 
     return controllers;

@@ -1,15 +1,11 @@
 /* globals __dirname */
-
-const fs = require('fs');
 const path = require('path');
 
 const DEFAULT_VISIBLE_PAGES = 5;
 const DEFAULT_PAGE = 1;
 const MAX_DISTANCE_FROM_DESTINATION = 15;
 
-const destinationsController = (data) => {
-    const utils = require('../utils');
-
+const destinationsController = (data, utils) => {
     return {
         getDestinationsView(req, res) {
             const page = req.query.page || DEFAULT_PAGE;
@@ -85,15 +81,17 @@ const destinationsController = (data) => {
                     const landmarkLongitude = Number(landmark.longitude);
                     const landmarkLatitude = Number(landmark.latitude);
 
-                    const distance = getDistance(
+                    const distance = utils.getDistanceFromLatLong(
                         userLatitude,
                         userLongitude,
                         landmarkLatitude,
                         landmarkLongitude);
 
                     if (distance > MAX_DISTANCE_FROM_DESTINATION) {
-                        fs.unlinkSync(
-                            path.join(__dirname,
+                        console.log(utils.deleteFile);
+                        utils.deleteFile(
+                            path.join(
+                                __dirname,
                                 '../../public/images/uploads/' +
                                 req.file.filename));
                         return Promise.reject(
@@ -123,16 +121,6 @@ const destinationsController = (data) => {
                 });
         },
     };
-};
-
-const getDistance = (lat1, lon1, lat2, lon2) => {
-    const p = 0.017453292519943295;
-    const c = Math.cos;
-    const a = 0.5 - c((lat2 - lat1) * p) / 2 +
-        c(lat1 * p) * c(lat2 * p) *
-        (1 - c((lon2 - lon1) * p)) / 2;
-
-    return 12742 * Math.asin(Math.sqrt(a));
 };
 
 module.exports = destinationsController;
