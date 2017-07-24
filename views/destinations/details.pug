@@ -24,6 +24,13 @@ block content
             textarea#comment-destination.form-control(rows='5' name="comment-text")
             button.btn.btn-success.btn-add-destination-comment(data-landmarkId=context.landmark._id)
                 | Add
+          if (context.user)
+            form#verify-destination-form(action='/destinations/' + context.landmark._id method='post' enctype='multipart/form-data')
+                label(for='btn-upload-destination-picture')
+                    |   Upload picture from here
+                input.btn.btn-success#btn-upload-destination-picture(type='file', name='uploadFile', accept='image/*')
+                button.btn.btn-success#btn-verify-visited-destination
+                    | Verify destination
           h4
             | Comments
             hr
@@ -40,3 +47,4 @@ block content
                             a(href='/users/#{comment.author._id}') 
                                 | #{comment.user.username} 
                         hr.col-md-8
+    script(src="/scripts/verify.destination.js")

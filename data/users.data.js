@@ -82,6 +82,38 @@ class UsersData extends Data {
             });
     }
 
+    markVisitedLandmark(user, landmarkTitle, pictureUrl) {
+        if (typeof user === 'undefined') {
+            return Promise.reject('User is undefined!');
+        }
+
+        if (typeof landmarkTitle !== 'string') {
+            return Promise.reject('LandmarkTitle must be a string!');
+        }
+
+        const landmark = user.landmarks
+            .find((l) => l.title === landmarkTitle);
+
+        if (typeof landmark === 'undefined') {
+            return Promise.reject('No such landmark found');
+        }
+
+        if (!landmark.isVisited) {
+            console.log('must not show');
+            user.visitedPlaces = Number(user.visitedPlaces) + 1;
+        }
+
+        landmark.isVisited = true;
+        landmark.pictureUrl = pictureUrl;
+
+        return this.collection.update({
+                _id: user._id,
+            }, user)
+            .then(() => {
+                return `${landmarkTitle} has been marked visited!`;
+            });
+    }
+
     isModelValid(model) {
         return typeof model !== 'undefined' &&
             typeof model.username === 'string' &&

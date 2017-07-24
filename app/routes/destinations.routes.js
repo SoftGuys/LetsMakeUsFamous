@@ -5,7 +5,9 @@ const attachRoutes = (app, { destinationsController }) => {
 
     router
         .get('/', destinationsController.getDestinationsView)
-        .get('/:id', destinationsController.getDestinationDetailsView);
+        .get('/:id', destinationsController.getDestinationDetailsView)
+        .post('/:id',
+            destinationsController.verifyVisitedDestinations);
 
     app.use('/destinations', router);
 };
