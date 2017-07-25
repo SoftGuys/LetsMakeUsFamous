@@ -19,11 +19,7 @@ block content
 
             //a(href='./' + context.landmark._id + '/map')
             button.btn.btn.pull-right.glyphicon.glyphicon-map-marker#googleMapActivate(type='button') Map
-            if (context.user)
-                label.btn.btn-primary(for='btn-upload-destination-picture')
-                    |   Upload picture from here
-                    input#btn-upload-destination-picture(type='file', name='avatar', accept='image/*' data-destination-id=context.landmark._id)
-          hr
+
           #add-destination-comment.form-group.hidden
             | Comment:
             textarea#comment-destination.form-control(rows='5' name="comment-text")
@@ -68,9 +64,10 @@ block content
                       #map
                   .modal-footer
                       button.btn.btn-default(type='button', data-dismiss='modal') Close
-    script(src="/scripts/modalshow.js")
     script(src="/scripts/destgoogle.js")
     script(src="/scripts/verify.destination.js")
     script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCswzaSDzKsdAdfPRt9ssO0YzrbiCOgkQo&libraries=places&callback=initMap')
+    script(src="/scripts/modalshow.js")
+
 
 
