@@ -1,10 +1,10 @@
 /* globals google $ */
 function initMap() {
     const cords = $('#landmarkTitle').text();
-    const longitude = Number($('#cordslong').attr('data-lon')).toFixed(3);
-    const latitude = Number($('#cordslat').attr('data-lat')).toFixed(3);
+    const longitude = Number($('#cordslong').attr('data-lon'));
+    const latitude = Number($('#cordslat').attr('data-lat'));
     const map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 10,
+        zoom: 9,
         center: { lat: latitude, lng: longitude },
     });
 

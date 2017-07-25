@@ -1,5 +1,5 @@
 /* globals google $ */
-function initMap() {
+(function initMap() {
     const cords = $('#cords').text();
     const details = cords.split(/[<>+ ]/)
         .filter((x) => x !== '')
@@ -14,9 +14,10 @@ function initMap() {
     const geocoder = new google.maps.Geocoder();
 
     setTimeout((x) => {
+        google.maps.event.trigger(map, 'resize');
         geocodeAddress(geocoder, map);
     }, 300);
-}
+}());
 
 function geocodeAddress(geocoder, resultsMap) {
     const address = document.getElementById('address').value;
