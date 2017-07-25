@@ -14,7 +14,9 @@ const apiController = (data) => {
         },
         addDestinationComment(req, res) {
             if (!req.user) {
-                return res.status(401).send({});
+                return res
+                    .status(401)
+                    .send('You must be logged in in order to comment!');
             }
 
             const landmarkId = req.params.id;
@@ -29,7 +31,7 @@ const apiController = (data) => {
                 .then((landmark) => {
                     if (landmark === null) {
                         return res.status(404)
-                            .send({ message: 'Landmark not found!' });
+                            .send('Landmark not found!');
                     }
 
                     return data.landmarks.addComment(landmark, comment);
@@ -40,7 +42,6 @@ const apiController = (data) => {
                 });
         },
         verifyVisitedDestinations(req, res) {
-            console.log('here');
             if (!req.user) {
                 return res.status(401)
                     .redirect('/destinations');
@@ -48,9 +49,6 @@ const apiController = (data) => {
 
             const landmarkId = req.params.landmarkId;
             const file = req.params.file;
-
-            console.log(landmarkId);
-            console.log(file.name);
 
             return res.status(200).redirect('/');
         },

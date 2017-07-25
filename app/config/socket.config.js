@@ -61,6 +61,39 @@ const configSocket = (app, { users }) => {
                     users.update(user);
                 });
         });
+
+        socket.on('show-messages', (friendId) => {
+            users.findById(socket.request.user._id.toString())
+                .then((user) => {
+                    return user.friends
+                        .find((x) => x._id.toString() === friendId);
+                })
+                .then((friend) => {
+                    const messages = friend.messages;
+                    socket.emit('show-messages', messages);
+                });
+        });
+        socket.on('send-message', ({ friendId, message }) => {
+            Promise.all([
+                    users.findById(socket.request.user._id.toString()),
+                    users.findById(friendId),
+                ])
+                .then(([user, friend]) => {
+                    users.addChatMessage(user, friend, message)
+                        .then((messageModel) => {
+                            passportSocket.filterSocketsByUser(io,
+                                    (userModel) => {
+                                        return userModel._id.toString() ===
+                                            user._id.toString() ||
+                                            userModel._id.toString() ===
+                                            friend._id.toString();
+                                    })
+                                .forEach((sock) => {
+                                    sock.emit('send-message', messageModel);
+                                });
+                        });
+                });
+        });
     });
 
     return server;

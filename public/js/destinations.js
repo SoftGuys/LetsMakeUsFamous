@@ -30,8 +30,8 @@ $(() => {
                     displayComment(data, $commentsContainer);
                     toastr.success('Comment added successfully!');
                 },
-                error: (err) => {
-                    toastr.error('You must be logged in in order to comment!');
+                error: (error) => {
+                    toastr.error(error.responseText);
                 },
             });
         });

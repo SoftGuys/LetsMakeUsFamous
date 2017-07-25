@@ -59,6 +59,37 @@ class UsersData extends Data {
         this.update(friend);
     }
 
+    addChatMessage(user, friend, message) {
+        const userRelation = user.friends
+            .find((x) => x._id.toString() === friend._id.toString());
+
+        const friendRelation = friend.friends
+            .find((x) => x._id.toString() === user._id.toString());
+
+        // eslint-disable-next-line
+        if (userRelation === undefined || friendRelation === undefined) {
+            return Promise
+                .reject('The users must be friends in order to chat!');
+        }
+
+        const date = new Date();
+        const messageModel = {
+            senderId: user._id,
+            pictureUrl: user.pictureUrl,
+            username: user.username,
+            time: date.getHours() + ':' + date.getMinutes(),
+            message,
+        };
+
+        userRelation.messages.push(messageModel);
+        this.update(user);
+
+        friendRelation.messages.push(messageModel);
+        this.update(friend);
+
+        return Promise.resolve(messageModel);
+    }
+
     add(user) {
         if (typeof user === 'undefined') {
             return Promise.reject('Model is undefined!');

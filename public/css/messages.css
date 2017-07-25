@@ -1,9 +1,23 @@
-.messages-box {
+#messages-box {
     border: 3px solid green;
     height: 50%;
+    overflow-y: auto;
 }
 
-#friends {
+.sender {
+    background-color: lightblue;
+}
+
+.recever {
+    background-color: lightcoral;
+}
+
+.chat-pic {
+    width: 10%;
+}
+
+#friends,
+#messages {
     list-style-type: none;
 }
 
@@ -11,7 +25,7 @@
     color: black;
 }
 
-.friends-box {
+#friends-box {
     border: 3px solid green;
     height: 50%;
 }
