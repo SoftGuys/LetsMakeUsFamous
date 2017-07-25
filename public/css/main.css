@@ -220,32 +220,39 @@ small {
     color: #999;
 }
 
-
 #badge {
     position: absolute;
     width: 60%;
     bottom: 1%;
     top: 45%;
     left: 15%;
+    z-index: 15;
 }
 
-#googleMapActivate{
+#googleMapActivate {
     width: 100px;
     background-color: sandybrown;
     color: black;
 }
 
+
 /*GOOGLE CSS*/
+
 #map {
     height: 80%;
 }
-#cordslong{
+
+#cordslong {
     display: none;
 }
-#cordslat{
+
+#cordslat {
     display: none;
 }
+
+
 /* Optional: Makes the sample page fill the window. */
+
 #floating-panel {
     position: absolute;
     top: 10px;
@@ -255,7 +262,12 @@ small {
     padding: 5px;
     border: 1px solid #999;
     text-align: center;
-    font-family: 'Roboto','sans-serif';
+    font-family: 'Roboto', 'sans-serif';
     line-height: 30px;
     padding-left: 10px;
+}
+
+#imageToBeUploaded {
+    width: 60%;
+    height: 40%
 }

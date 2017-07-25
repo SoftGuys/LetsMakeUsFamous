@@ -80,7 +80,8 @@ const destinationsController = (data, utils) => {
 
                     const landmarkLongitude = Number(landmark.longitude);
                     const landmarkLatitude = Number(landmark.latitude);
-
+                    console.log(userLongitude);
+                    console.log(userLongitude);
                     const distance = utils.getDistanceFromLatLong(
                         userLatitude,
                         userLongitude,
