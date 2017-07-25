@@ -11,13 +11,14 @@ block content
           p.landmark-details-description
             | #{context.landmark.description}
           button.btn.btn-primary
-            | Read More 
+            | Read More
             span.glyphicon.glyphicon-chevron-right
           button.btn.btn-success.pull-right.btn-comment-form
             span.glyphicon.glyphicon-comment
             |  Comment
+            //a(href='./' + context.landmark._id + '/map')
             button.btn.btn.pull-right.glyphicon.glyphicon-map-marker#googleMapActivate(type='button') Map
-          if (context.user)
+            if (context.user)
                 label.btn.btn-primary(for='btn-upload-destination-picture')
                     |   Upload picture from here
                     input#btn-upload-destination-picture(type='file', name='avatar', accept='image/*' data-destination-id=context.landmark._id)
@@ -35,15 +36,34 @@ block content
             if (context.landmark.comments)
                 each comment in context.landmark.comments
                     .col-md-8.destination-comment
-                        p.destination-comment-text 
+                        p.destination-comment-text
                             | #{comment.text}
                         p.destination-comment-details.text-primary
                             span.glyphicon.glyphicon-time
-                            |  #{comment.postedOn} 
-                            img.img-comment-user(src=comment.user.pictureUrl) 
-                            a(href='/users/#{comment.author._id}') 
-                                | #{comment.user.username} 
+                            |  #{comment.postedOn}
+                            img.img-comment-user(src=comment.user.pictureUrl)
+                            a(href='/users/#{comment.author._id}')
+                                | #{comment.user.username}
                         hr.col-md-8
-    script(src="/scripts/destinations.js")
-    script(src="/scripts/verify.destination.js")
-    script(src="/scripts/showgooglemap.js")
+      #myModal.modal.fade(role='dialog')
+        .modal-dialog
+              // Modal content
+              .modal-content
+                  .modal-header
+                      button.close(type='button', data-dismiss='modal') ×
+                      h4.modal-title #{context.landmark.title}
+                          #cordslong(data-lon=context.landmark.longitude)
+                          #cordslat(data-lat=context.landmark.latitude)
+                  .modal-body
+                      #floating-panel
+                          input#address(type='textbox', value=context.landmark.title)
+                          input#submit(type='button', value='Geocode')
+                      #map
+                  .modal-footer
+                      button.btn.btn-default(type='button', data-dismiss='modal') Close
+    script(src="/scripts/modalshow.js")
+    script(src="/scripts/destgoogle.js")
+    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCswzaSDzKsdAdfPRt9ssO0YzrbiCOgkQo&libraries=places&callback=initMap')
+
+
+

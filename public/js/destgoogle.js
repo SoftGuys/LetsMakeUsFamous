@@ -1,11 +1,8 @@
 /* globals google $ */
 function initMap() {
-    const cords = $('#cords').text();
-    const details = cords.split(/[<>+ ]/)
-        .filter((x) => x !== '')
-        .map((x) => Number(x));
-    const longitude = +details[0].toFixed(3);
-    const latitude = +details[1].toFixed(3);
+    const cords = $('#landmarkTitle').text();
+    const longitude = Number($('#cordslong').attr('data-lon')).toFixed(3);
+    const latitude = Number($('#cordslat').attr('data-lat')).toFixed(3);
     const map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
         center: { lat: latitude, lng: longitude },

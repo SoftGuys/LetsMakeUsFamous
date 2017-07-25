@@ -55,9 +55,19 @@ const destinationsController = (data) => {
         showMap(req, res) {
             const id = req.params.id;
             data.landmarks.findById(id)
-                .then((details)=>{
-                    console.log(details);
-                    return res.render('destinations/googlemap', {});
+                .then((details) => {
+                    const cords = {
+                        lon: details.longitude,
+                        lat: details.latitude,
+                        name: details.title,
+                    };
+                    return res
+                        .status(200)
+                        .render('destinations/googlemap', {
+                            context: {
+                                cords: cords,
+                            },
+                        });
                 });
         },
     };
