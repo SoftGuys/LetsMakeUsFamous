@@ -120,6 +120,24 @@ const destinationsController = (data, utils) => {
                         .redirect('/destinations/' + req.params.id);
                 });
         },
+        showMap(req, res) {
+            const id = req.params.id;
+            data.landmarks.findById(id)
+                .then((details) => {
+                    const cords = {
+                        lon: details.longitude,
+                        lat: details.latitude,
+                        name: details.title,
+                    };
+                    return res
+                        .status(200)
+                        .render('destinations/googlemap', {
+                            context: {
+                                cords: cords,
+                            },
+                        });
+                });
+        },
     };
 };
 

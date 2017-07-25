@@ -220,10 +220,42 @@ small {
     color: #999;
 }
 
+
 #badge {
     position: absolute;
     width: 60%;
     bottom: 1%;
     top: 45%;
     left: 15%;
+}
+
+#googleMapActivate{
+    width: 100px;
+    background-color: sandybrown;
+    color: black;
+}
+
+/*GOOGLE CSS*/
+#map {
+    height: 80%;
+}
+#cordslong{
+    display: none;
+}
+#cordslat{
+    display: none;
+}
+/* Optional: Makes the sample page fill the window. */
+#floating-panel {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: 'Roboto','sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
 }
