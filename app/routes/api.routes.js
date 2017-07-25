@@ -6,8 +6,8 @@ const attachRoutes = (app, { apiController }) => {
     router.get('/areas', apiController.getAreas)
         .get('/landmarks', apiController.getLandmarks)
         .get('/users', apiController.getUsers)
-        .post('/destinations/comments/:id', apiController.addDestinationComment)
-        .post('/destinations/:id', apiController.verifyVisitedDestinations);
+        .post('/destinations/comments/:id',
+            apiController.addDestinationComment);
 
     app.use('/api', router);
 };

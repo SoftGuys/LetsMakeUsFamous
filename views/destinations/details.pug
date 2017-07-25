@@ -4,33 +4,30 @@ block content
     .container.col-sm-offset-3
       .row
         .col-md-6.landmark-details
-          h1
+          h1#landmarkTitle
             | #{context.landmark.title}
-            small 
-                |  Secondary Text
           img.img-responsive.landmark-details-img.img-thumbnail(src=context.landmark.pictureUrl)
           hr
           p.landmark-details-description
             | #{context.landmark.description}
-          button.btn.btn-primary
-            | Read More 
-            span.glyphicon.glyphicon-chevron-right
+          if (context.user)
+            button.btn.btn-primary.pull-left#btn-show--mark-visited-modal
+                | Mark Visited 
+                spang.glyphicon.glyphicon-chevron-right
           button.btn.btn-success.pull-right.btn-comment-form
             span.glyphicon.glyphicon-comment
             |  Comment
-          hr
+          button.btn.btn.pull-right#googleMapActivate.text-success(type='button')
+            span.glyphicon.glyphicon-map-marker
+            | Map 
           #add-destination-comment.form-group.hidden
-            | Comment:
+            p.col-md-pull-left
+                .row
             textarea#comment-destination.form-control(rows='5' name="comment-text")
             button.btn.btn-success.btn-add-destination-comment(data-landmarkId=context.landmark._id)
                 | Add
-          if (context.user)
-            form#verify-destination-form(action='/destinations/' + context.landmark._id method='post' enctype='multipart/form-data')
-                label(for='btn-upload-destination-picture')
-                    |   Upload picture from here
-                input.btn.btn-success#btn-upload-destination-picture(type='file', name='uploadFile', accept='image/*')
-                button.btn.btn-success#btn-verify-visited-destination
-                    | Verify destination
+          hr
+          br
           h4
             | Comments
             hr
@@ -38,13 +35,54 @@ block content
             if (context.landmark.comments)
                 each comment in context.landmark.comments
                     .col-md-8.destination-comment
-                        p.destination-comment-text 
+                        p.destination-comment-text
                             | #{comment.text}
                         p.destination-comment-details.text-primary
                             span.glyphicon.glyphicon-time
-                            |  #{comment.postedOn} 
-                            img.img-comment-user(src=comment.user.pictureUrl) 
-                            a(href='/users/#{comment.author._id}') 
-                                | #{comment.user.username} 
+                            |  #{comment.postedOn}
+                            img.img-comment-user(src=comment.user.pictureUrl)
+                            a(href='/users/#{comment.author._id}')
+                                | #{comment.user.username}
                         hr.col-md-8
+      #myModal.modal.fade(role='dialog')
+        .modal-dialog
+              // Modal content
+              .modal-content
+                  .modal-header
+                      button.close(type='button', data-dismiss='modal') ×
+                      h4.modal-title #{context.landmark.title}
+                          #cordslong(data-lon=context.landmark.longitude)
+                          #cordslat(data-lat=context.landmark.latitude)
+                  .modal-body
+                      #floating-panel
+                          input#address(type='textbox', value=context.landmark.title)
+                          input#submit(type='button', value='Geocode')
+                      #map
+                  .modal-footer
+                      button.btn.btn-default(type='button', data-dismiss='modal') Close
+      #verifyDestinationModal.modal.fade(role='dialog')
+        .modal-dialog
+              .modal-content
+                  .modal-header
+                      button.close(type='button', data-dismiss='modal') ×
+                      h4.modal-title 
+                        | Upload you own picture from #{context.landmark.title}!
+                  .modal-body
+                          h3
+                            | Show us your picture while you are still here at 
+                            | #{context.landmark.title} and we'll' save your memory in your personal album
+                          form#verify-destination-form.text-center(action='/destinations/' + context.landmark._id method='post' enctype='multipart/form-data')
+                                img#imageToBeUploaded.img-responsive.img-thumbnail(src='/static/images/no-image-selected.png')
+                                input.col-md-offset-3.btn.btn-primary#btn-upload-destination-picture(type='file', name='uploadFile', accept='image/*')
+                  .modal-footer
+                      button.btn.btn-primary#btn-send-verify-destination-picture
+                        | Upload
+                      button.btn.btn-default(type='button', data-dismiss='modal')
+                        | Close
+    script(src="/scripts/destgoogle.js")
     script(src="/scripts/verify.destination.js")
+    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCswzaSDzKsdAdfPRt9ssO0YzrbiCOgkQo&libraries=places&callback=initMap')
+    script(src="/scripts/modalshow.js")
+
+
+

@@ -80,7 +80,8 @@ const destinationsController = (data, utils) => {
 
                     const landmarkLongitude = Number(landmark.longitude);
                     const landmarkLatitude = Number(landmark.latitude);
-
+                    console.log(userLongitude);
+                    console.log(userLongitude);
                     const distance = utils.getDistanceFromLatLong(
                         userLatitude,
                         userLongitude,
@@ -118,6 +119,24 @@ const destinationsController = (data, utils) => {
                     res
                         .status(404)
                         .redirect('/destinations/' + req.params.id);
+                });
+        },
+        showMap(req, res) {
+            const id = req.params.id;
+            data.landmarks.findById(id)
+                .then((details) => {
+                    const cords = {
+                        lon: details.longitude,
+                        lat: details.latitude,
+                        name: details.title,
+                    };
+                    return res
+                        .status(200)
+                        .render('destinations/googlemap', {
+                            context: {
+                                cords: cords,
+                            },
+                        });
                 });
         },
     };

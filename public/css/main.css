@@ -226,4 +226,10 @@ small {
     bottom: 1%;
     top: 45%;
     left: 15%;
+    z-index: 15;
+}
+
+#imageToBeUploaded {
+    width: 60%;
+    height: 40%
 }
