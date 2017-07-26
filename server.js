@@ -1,4 +1,4 @@
-const config = require('./config');
+const config = require('./confi');
 
 Promise.resolve()
     .then(() => require('./database')(config.LOCAL_CONNECTION_STRING))
