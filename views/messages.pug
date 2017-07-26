@@ -12,15 +12,21 @@ block content
         .row
             .col-sm-6.col-sm-offset-1#messages-box
                 ul#messages
-
+                
             .col-sm-3.col-sm-offset-1#friends-box
                 ul#friends
                     each friend in context.user.friends
-                        li(user-id=friend._id).row.btn.btn-success.panel.pull-left.friend-panel
-                            img.col-sm-3(src=friend.pictureUrl)
-                            span.col-sm-9.friend-name #{friend.username}
+                        if(friend.username === context.friend)
+                            li(user-id=friend._id).row.btn.btn-success.panel.pull-left.friend-panel.msg-friend
+                                img.col-sm-3(src=friend.pictureUrl)
+                                span.col-sm-9.friend-name #{friend.username}
+                        else
+                            li(user-id=friend._id).row.btn.btn-success.panel.pull-left.friend-panel
+                                img.col-sm-3(src=friend.pictureUrl)
+                                span.col-sm-9.friend-name #{friend.username}
         .row
             .col-sm-6.col-sm-offset-1.hidden#input-message
                 form#chat.form-group
                     input#message.form-control(autocomplete='off')
                     button.btn.btn-success.col-sm-2#send-message Send
+    script(src='/scripts/trigger-chat.js')

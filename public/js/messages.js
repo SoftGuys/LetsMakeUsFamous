@@ -1,4 +1,4 @@
-/* globals $ toastr io */
+/* globals $ io */
 const socket = io.connect('http://localhost:3001');
 
 $(() => {

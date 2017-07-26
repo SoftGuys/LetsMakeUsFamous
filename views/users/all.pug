@@ -39,7 +39,7 @@ block content
                                     img.img-rounded.img-responsive(src=user.pictureUrl alt='')
                                 .col-sm-6.col-md-8
                                     h4
-                                        a(href='/users/' + user.username)
+                                        a(href='/users/' + user.username).username
                                         | #{user.username}
                                     small
                                         cite(title='San Francisco, USA')
@@ -59,10 +59,10 @@ block content
                                             | View
                                     if context.user.friends.some(x=> x._id.toString() === user._id.toString())
                                         .btn-group.col-sm-offset-1
-                                            a.btn.btn-danger#chat
+                                            a(href=`/users/messages?user=${user.username}`).btn.btn-danger#chat
                                                 | Chat
                                     else
                                         .btn-group.col-sm-offset-1
-                                            a.btn.btn-danger#add-friend
+                                            a(href=`/users/messages?user=${user.username}`).btn.btn-danger#add-friend
                                                 | Add friend
     +pagination
