@@ -74,6 +74,7 @@ class UsersData extends Data {
 
         const date = new Date();
         const messageModel = {
+            newMessage: false,
             senderId: user._id,
             pictureUrl: user.pictureUrl,
             username: user.username,
@@ -83,6 +84,12 @@ class UsersData extends Data {
 
         userRelation.messages.push(messageModel);
         this.update(user);
+
+        const notification = `${user.username} texted you!`;
+        if (!friend.notifications.some((x) => x === notification)) {
+            friend.notifications.push(notification);
+            messageModel.newMessage = true;
+        }
 
         friendRelation.messages.push(messageModel);
         this.update(friend);
