@@ -80,8 +80,7 @@ const destinationsController = (data, utils) => {
 
                     const landmarkLongitude = Number(landmark.longitude);
                     const landmarkLatitude = Number(landmark.latitude);
-                    console.log(userLongitude);
-                    console.log(userLongitude);
+
                     const distance = utils.getDistanceFromLatLong(
                         userLatitude,
                         userLongitude,
@@ -89,12 +88,12 @@ const destinationsController = (data, utils) => {
                         landmarkLongitude);
 
                     if (distance > MAX_DISTANCE_FROM_DESTINATION) {
-                        console.log(utils.deleteFile);
                         utils.deleteFile(
                             path.join(
                                 __dirname,
                                 '../../public/images/uploads/' +
                                 req.file.filename));
+
                         return Promise.reject(
                             'Destination is too far ' +
                             'from you current location!');
@@ -102,6 +101,7 @@ const destinationsController = (data, utils) => {
 
                     const pictureUrl = '/static/images/uploads/' +
                         req.file.filename;
+
                     return data.users
                         .markVisitedLandmark(
                             req.user,

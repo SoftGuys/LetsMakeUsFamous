@@ -7,9 +7,7 @@ const attachRoutes = (app, { destinationsController }) => {
         .get('/:id/map', destinationsController.showMap)
         .get('/', destinationsController.getDestinationsView)
         .get('/:id', destinationsController.getDestinationDetailsView)
-        .post('/:id',
-            destinationsController.verifyVisitedDestinations);
-
+        .post('/:id', destinationsController.verifyVisitedDestinations);
 
     app.use('/destinations', router);
 };
