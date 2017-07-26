@@ -8,23 +8,33 @@ $(() => {
     button.on('click', (event) => {
         event.preventDefault();
         const editable = $('.edittable');
+
         button.hide();
         save.show();
-        console.log('editvam');
+
         for (const i of editable) {
-            // eslint-disable-next-line
-            $(i).replaceWith($(`<input value="${$(i).text()}">`).addClass('form-control').css('background-color', '73ff00'));
+            $(i).replaceWith(
+                $(`<input value="${$(i).text()}">`)
+                .addClass('form-control')
+                .css('background-color', '73ff00'));
         }
     });
 
     save.on('click', (event) => {
         event.preventDefault();
         const formControl = $('.form-control');
+
         save.hide();
         button.show();
+
+        const newUserInfo = {};
         for (const j of formControl) {
-            // eslint-disable-next-line
-            $(j).replaceWith($(`<td>${$(j).val()}</td>`).addClass('edittable'));
+            // collect property values here
+            $(j).replaceWith(
+                $(`<td>${$(j).val()}</td>`)
+                .addClass('edittable'));
         }
+
+        // do some ajax here
     });
 });

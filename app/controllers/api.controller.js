@@ -53,19 +53,22 @@ const apiController = (data) => {
                                 .send('Landmark is not existing');
                         }
                         const index = landmark.comments
-                            .findIndex((c) =>c.text===comment);
-                        if (index <0) {
+                            .findIndex((c) => c.text === comment);
+                        if (index < 0) {
                             return res.status(404)
                                 .send('No such comment');
                         }
                         landmark.comments.splice(index, 1);
                         return data.landmarks.update(landmark);
-                    }).then((x)=>{
+                    }).then((x) => {
                         return res.send(x);
                     });
             }
             return res.status(401)
                 .send('You are not admin');
+        },
+        editProfile(req, res) {
+            // handle client ajax and update user info
         },
         verifyVisitedDestinations(req, res) {
             if (!req.user) {
