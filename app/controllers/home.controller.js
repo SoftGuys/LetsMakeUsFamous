@@ -6,6 +6,7 @@ const homeController = (data) => {
                 .redirect('/home');
         },
         getHomeView(req, res) {
+            console.log(req);
             return res
                 .status(200)
                 .render('home', {
@@ -13,6 +14,7 @@ const homeController = (data) => {
                         dev: true,
                         isAuthenticated: req.isAuthenticated(),
                         user: req.user,
+                        // isAdmin: req.user.isAdmin,
                     },
                 });
         },

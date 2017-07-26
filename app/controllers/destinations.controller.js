@@ -75,7 +75,6 @@ const destinationsController = (data, utils) => {
                     if (landmark.comments && landmark.comments.length) {
                         landmark.comments.reverse();
                     }
-
                     return res
                         .status(200)
                         .render('destinations/details', {
@@ -105,6 +104,7 @@ const destinationsController = (data, utils) => {
 
                     const landmarkLongitude = Number(landmark.longitude);
                     const landmarkLatitude = Number(landmark.latitude);
+
                     const distance = utils.getDistanceFromLatLong(
                         userLatitude,
                         userLongitude,
@@ -117,6 +117,7 @@ const destinationsController = (data, utils) => {
                                 __dirname,
                                 '../../public/images/uploads/' +
                                 req.file.filename));
+
                         return Promise.reject(
                             'Destination is too far ' +
                             'from you current location!');
@@ -124,6 +125,7 @@ const destinationsController = (data, utils) => {
 
                     const pictureUrl = '/static/images/uploads/' +
                         req.file.filename;
+
                     return data.users
                         .markVisitedLandmark(
                             req.user,

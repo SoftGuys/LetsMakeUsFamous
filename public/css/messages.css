@@ -28,4 +28,5 @@
 #friends-box {
     border: 3px solid green;
     height: 50%;
+    overflow: auto;
 }

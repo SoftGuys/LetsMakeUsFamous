@@ -238,6 +238,11 @@ small {
     min-height: 75%;
 }
 
-.search-panel {
-    margin-top: 30%;
+
+/* Admin Button */
+
+#Admin {
+    font-size: 2em;
+    padding-left: 500px;
+    color: #ead0af;
 }

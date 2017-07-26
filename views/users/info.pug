@@ -11,10 +11,10 @@ block content
                     h2 #{context.current.username}
                     if context.isAuthenticated
                         if context.user.friends.some(x=> x._id.toString() === context.current._id.toString())
-                            a.btn.btn-primary#chat
+                            a(href=`/users/messages?user=${context.current.username}`).btn.btn-primary#chat
                                 | Chat
                         else
-                            a.btn.btn-primary#add-friend
+                            a(href=`/users/messages?user=${context.current.username}`).btn.btn-primary#add-friend
                                 | Add friend
                     hr
                     .col-xs-12.col-sm-4.col-sm-4.emphasis

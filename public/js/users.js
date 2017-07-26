@@ -23,6 +23,8 @@ $(() => {
     });
 
     $('.container').on('click', '#add-friend', (event) => {
+        event.preventDefault();
+
         const friendId = $(event.target)
             .html('Chat')
             .attr('id', 'chat')
@@ -35,7 +37,9 @@ $(() => {
 
     socket.on('add-friend', (sender) => {
         $('.user-id[user-id=' + sender._id.toString() + ']')
-            .find('#add-friend').html('Chat').attr('id', 'chat');
+            .find('#add-friend')
+            .html('Chat')
+            .attr('id', 'chat');
 
         $('.notification-alert').removeClass('hidden');
         $('#alerts').append(

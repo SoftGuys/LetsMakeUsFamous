@@ -1,7 +1,18 @@
-/* globals $ toastr */
+/* globals $ toastr io */
+const socket = io.connect('http://localhost:3001');
 const ADD_COMMENT_URL = 'http://localhost:3001/api/destinations/';
 
 $(() => {
+    socket.on('add-comment', ({ senderName, landmarkTitle }) => {
+        $('.notification-alert').removeClass('hidden');
+        $('#alerts').append(
+            $('<li>')
+            .addClass('btn')
+            .addClass('alert')
+            .html(`${senderName} commented on ${landmarkTitle}!`)
+        );
+    });
+
     $('.btn-comment-form').on('click', (ev) => {
         $('#add-destination-comment').toggleClass('hidden');
     });
@@ -28,6 +39,7 @@ $(() => {
                 contentType: 'application/json',
                 success: (data) => {
                     displayComment(data, $commentsContainer);
+                    socket.emit('add-comment', landmarkId);
                     toastr.success('Comment added successfully!');
                 },
                 error: (error) => {

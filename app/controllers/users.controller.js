@@ -99,14 +99,19 @@ const usersController = (data, utils) => {
             if (!req.isAuthenticated()) {
                 res.status(401).redirect('/');
             } else {
+                const context = {
+                    user: req.user,
+                    isAuthenticated: req.isAuthenticated(),
+                    friend: '',
+                };
+
+                if (req.query.user) {
+                    context.friend = req.query.user;
+                }
+
                 res
                     .status(200)
-                    .render('messages', {
-                        context: {
-                            user: req.user,
-                            isAuthenticated: req.isAuthenticated(),
-                        },
-                    });
+                    .render('messages', { context });
             }
         },
     };

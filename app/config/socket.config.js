@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const passportSocket = require('passport.socketio');
 const config = require('../../config');
 
-const configSocket = (app, { users }) => {
+const configSocket = (app, { users, landmarks }) => {
     // eslint-disable-next-line
     const server = require('http').Server(app);
     const io = require('socket.io')(server);
@@ -81,15 +81,60 @@ const configSocket = (app, { users }) => {
                 .then(([user, friend]) => {
                     users.addChatMessage(user, friend, message)
                         .then((messageModel) => {
+                            socket.emit('send-message', messageModel);
+
                             passportSocket.filterSocketsByUser(io,
                                     (userModel) => {
                                         return userModel._id.toString() ===
-                                            user._id.toString() ||
-                                            userModel._id.toString() ===
                                             friend._id.toString();
                                     })
                                 .forEach((sock) => {
                                     sock.emit('send-message', messageModel);
+                                    if (messageModel.newMessage) {
+                                        sock.emit('message-notification',
+                                            messageModel.username);
+                                    }
+                                });
+                        });
+                });
+        });
+
+        socket.on('add-comment', (room) => {
+            landmarks.findById(room)
+                .then((landmark) => {
+                    const notification = socket.request.user.username +
+                        ' commented on ' + landmark.title + '!';
+
+                    return Promise.all(
+                            landmark
+                            .comments
+                            .filter((x) => x.user._id.toString() !==
+                                socket.request.user._id.toString())
+                            .map((x) => users.findById(x.user._id.toString()))
+                        )
+                        .then((commenters) => {
+                            commenters.forEach((x) => {
+                                x.notifications.push(notification);
+                                users.update(x);
+                            });
+
+                            return commenters;
+                        })
+                        .then((commenters) => {
+                            passportSocket.filterSocketsByUser(io,
+                                    (userModel) => {
+                                        return commenters
+                                            .some((x) => x._id.toString() ===
+                                                userModel._id.toString());
+                                    })
+                                .forEach((sock) => {
+                                    sock.emit('add-comment', {
+                                        landmarkTitle: landmark.title,
+                                        senderName: socket
+                                            .request
+                                            .user
+                                            .username,
+                                    });
                                 });
                         });
                 });

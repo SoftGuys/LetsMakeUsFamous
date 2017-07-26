@@ -7,7 +7,10 @@ const attachRoutes = (app, { apiController }) => {
         .get('/landmarks', apiController.getLandmarks)
         .get('/users', apiController.getUsers)
         .post('/destinations/comments/:id',
-            apiController.addDestinationComment);
+            apiController.addDestinationComment)
+        .delete('/destinations/comments/:id',
+            apiController.deleteDestinationComment)
+        .put('/profile', apiController.editProfile);
 
     app.use('/api', router);
 };
