@@ -81,15 +81,19 @@ const configSocket = (app, { users }) => {
                 .then(([user, friend]) => {
                     users.addChatMessage(user, friend, message)
                         .then((messageModel) => {
+                            socket.emit('send-message', messageModel);
+
                             passportSocket.filterSocketsByUser(io,
                                     (userModel) => {
                                         return userModel._id.toString() ===
-                                            user._id.toString() ||
-                                            userModel._id.toString() ===
                                             friend._id.toString();
                                     })
                                 .forEach((sock) => {
                                     sock.emit('send-message', messageModel);
+                                    if (messageModel.newMessage) {
+                                        sock.emit('message-notification',
+                                            messageModel.username);
+                                    }
                                 });
                         });
                 });
