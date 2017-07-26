@@ -2,7 +2,7 @@ extends ../master
 include ../utils/pagination
 
 block content
-    .container
+    .container#users-container
         each user in context.users
             if !context.isAuthenticated
                 .col-xs-4.col-sm-4.col-md-4
@@ -29,7 +29,7 @@ block content
                                     | #{user.age}
                                 .btn-group
                                     a.btn.btn-primary(href='/users/' + user.username)
-                                        | View                                
+                                        | View
             else
                 if user._id.toString() !== context.user._id.toString()
                     .col-xs-4.col-sm-4.col-md-4

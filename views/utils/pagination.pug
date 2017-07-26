@@ -1,11 +1,11 @@
 mixin pagination
     div.text-center
         ul.pagination.pagination-lg
-            if (context.currentPage - 1 > 0)
+            if (context.pagination.currentPage > 1)
                 li
-                    a(href='/' + context.pageLink + '?page=' + (context.currentPage - 1)) «
-            each page in context.pages
-                if (page == context.currentPage)
+                    a(href='/' + context.pageLink + '?page=' + (context.pagination.currentPage - 1)) «
+            each page in context.pagination.pages
+                if (page == context.pagination.currentPage)
                     li.active
                         a(href='/' + context.pageLink + '?page=' + (page))
                             | #{page}
@@ -13,5 +13,6 @@ mixin pagination
                     li
                         a(href='/' + context.pageLink + '?page=' + (page))
                             | #{page}
-            li
-                a(href='/' + context.pageLink + '?page=' + (context.currentPage + 1)) »
+            if (context.pagination.currentPage < context.pagination.lastPage)
+                li
+                    a(href='/' + context.pageLink + '?page=' + (context.pagination.currentPage + 1)) »

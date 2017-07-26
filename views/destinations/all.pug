@@ -3,11 +3,13 @@ include ../utils/pagination
 
 block content
     .main.container
-        .row
-            .col-lg-12
-                h1.page-header
-                    | Bulgarian Destinations 
-                    span.glyphicon.glyphicon-globe
+        form#search-destination-form.form-inline(action='/destinations' method='GET')
+            input.col-md-5.form-control(name='title' type='text' placeholder='Destination title')
+            button.btn.btn-success
+                span.glyphicon.glyphicon-search
+        h1.page-header
+            |  Bulgarian Destinations 
+            span.glyphicon.glyphicon-globe
         .row
         each landmark, index in context.landmarks
             if (index % 3) == 0

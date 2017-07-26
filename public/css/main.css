@@ -233,3 +233,11 @@ small {
     width: 60%;
     height: 40%
 }
+
+#users-container {
+    min-height: 75%;
+}
+
+.search-panel {
+    margin-top: 30%;
+}

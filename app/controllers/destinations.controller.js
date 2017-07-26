@@ -1,36 +1,61 @@
 /* globals __dirname */
 const path = require('path');
-
-const DEFAULT_VISIBLE_PAGES = 5;
-const DEFAULT_PAGE = 1;
 const MAX_DISTANCE_FROM_DESTINATION = 15;
 
 const destinationsController = (data, utils) => {
     return {
         getDestinationsView(req, res) {
-            const page = req.query.page || DEFAULT_PAGE;
-            const size = req.query.size;
+            const page = Number(req.query.page);
+            const title = req.query.title;
 
-            data.landmarks.getRange(page, size)
-                .then((landmarks) => {
-                    const pages = utils
-                        .getPagination(Number(page), DEFAULT_VISIBLE_PAGES);
-
-                    if (req.user) {
-                        landmarks.forEach((l) => {
-                            l.isVisited = req.user.landmarks.some((ul) => {
-                                return ul.title === l.title && ul.isVisited;
-                            });
+            if (title) {
+                return data.landmarks.getByTitle(title)
+                    .then((landmarks) => {
+                        const pagination = utils
+                            .getPagination(page, landmarks.length);
+                        const resultLandmarks = landmarks
+                            .splice(
+                                pagination.currentPage,
+                                pagination.pageSize);
+                        return [
+                            utils.getPagination(page, landmarks.length),
+                            resultLandmarks,
+                        ];
+                    })
+                    .then(([pagination, landmarks]) => {
+                        return res.render('destinations/all', {
+                            context: {
+                                landmarks,
+                                isAuthenticated: req.isAuthenticated(),
+                                user: req.user,
+                                pageLink: 'destinations',
+                                pagination,
+                            },
                         });
-                    }
+                    });
+            }
 
+            return data.landmarks.count()
+                .then((landmarksCount) => {
+                    const pagination = utils
+                        .getPagination(page, landmarksCount);
+
+                    return pagination;
+                })
+                .then((pagination) => {
+                    return Promise.all([
+                        data.landmarks
+                        .getRange(pagination.currentPage, pagination.pageSize),
+                        pagination,
+                    ]);
+                })
+                .then(([landmarks, pagination]) => {
                     return res
                         .status(200)
                         .render('destinations/all', {
                             context: {
                                 landmarks,
-                                pages,
-                                currentPage: Number(page),
+                                pagination,
                                 isAuthenticated: req.isAuthenticated(),
                                 user: req.user,
                                 pageLink: 'destinations',
@@ -80,8 +105,6 @@ const destinationsController = (data, utils) => {
 
                     const landmarkLongitude = Number(landmark.longitude);
                     const landmarkLatitude = Number(landmark.latitude);
-                    console.log(userLongitude);
-                    console.log(userLongitude);
                     const distance = utils.getDistanceFromLatLong(
                         userLatitude,
                         userLongitude,
@@ -89,7 +112,6 @@ const destinationsController = (data, utils) => {
                         landmarkLongitude);
 
                     if (distance > MAX_DISTANCE_FROM_DESTINATION) {
-                        console.log(utils.deleteFile);
                         utils.deleteFile(
                             path.join(
                                 __dirname,

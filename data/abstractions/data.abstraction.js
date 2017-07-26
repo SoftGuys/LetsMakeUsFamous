@@ -18,6 +18,10 @@ class Data {
         this.collection = this.database.collection(this.collectionName);
     }
 
+    count() {
+        return this.collection.count();
+    }
+
     getAll() {
         return this.filter({});
     }

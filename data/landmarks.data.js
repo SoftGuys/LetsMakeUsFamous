@@ -13,7 +13,7 @@ class LandmarksData extends Data {
             .then((landmarks) => {
                 return landmarks.filter((l) => {
                     return l.title.includes(title);
-                })[0];
+                });
             });
     }
 

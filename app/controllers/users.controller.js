@@ -1,6 +1,3 @@
-const DEFAULT_VISIBLE_PAGES = 5;
-const DEFAULT_PAGE = 1;
-
 const usersController = (data, utils) => {
     return {
         getLoginView(req, res) {
@@ -70,13 +67,20 @@ const usersController = (data, utils) => {
                 });
         },
         getUsersView(req, res) {
-            const page = req.query.page || DEFAULT_PAGE;
-            const size = req.query.size;
+            const page = Number(req.query.page);
 
-            return data.users.getRange(page, size)
-                .then((users) => {
-                    const pages = utils
-                        .getPagination(Number(page), DEFAULT_VISIBLE_PAGES);
+            data.users.count()
+                .then((usersCount) => {
+                    const pagination = utils
+                        .getPagination(page, usersCount);
+
+                    return Promise.all([
+                        data.users
+                        .getRange(pagination.currentPage, pagination.pageSize),
+                        pagination,
+                    ]);
+                })
+                .then(([users, pagination]) => {
                     return res
                         .status(200)
                         .render('users/all', {
@@ -84,7 +88,7 @@ const usersController = (data, utils) => {
                                 users,
                                 isAuthenticated: req.isAuthenticated(),
                                 user: req.user,
-                                pages,
+                                pagination,
                                 currentPage: Number(page),
                                 pageLink: 'users',
                             },
