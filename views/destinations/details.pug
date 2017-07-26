@@ -31,6 +31,28 @@ block content
           h4
             | Comments
             hr
+      if(context.user.isAdmin)
+          section.destination-comments
+              if (context.landmark.comments )
+                  each comment in context.landmark.comments
+                      .col-md-8.destination-comment
+                          p.destination-comment-text
+                            span
+                              | #{comment.text}
+                          p.destination-comment-details.text-primary
+                              span.glyphicon.glyphicon-time
+                              |  #{comment.postedOn}
+                              img.img-comment-user(src=comment.user.pictureUrl)
+                              a(href='/users/#{comment.author._id}')
+                                  | #{comment.user.username}
+                              td
+                                  button.btn.btn-primary.btn-ms.blue(data-title='Edit', data-toggle='modal', data-target='#edit')
+                                      span.glyphicon.glyphicon-pencil.blue
+                                  button.btn.btn-danger.btn-ms.red(data-title='Delete', data-toggle='modal', data-target='#delete')
+                                      span.glyphicon.glyphicon-trash.red
+                          hr.col-md-8
+
+      else
         section.destination-comments
             if (context.landmark.comments)
                 each comment in context.landmark.comments
@@ -83,6 +105,7 @@ block content
     script(src="/scripts/verify.destination.js")
     script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCswzaSDzKsdAdfPRt9ssO0YzrbiCOgkQo&libraries=places&callback=initMap')
     script(src="/scripts/modalshow.js")
+    script(src="/scripts/editordeletecomments.js")
 
 
 

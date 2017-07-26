@@ -50,7 +50,6 @@ const destinationsController = (data, utils) => {
                     if (landmark.comments && landmark.comments.length) {
                         landmark.comments.reverse();
                     }
-
                     return res
                         .status(200)
                         .render('destinations/details', {

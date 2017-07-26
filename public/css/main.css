@@ -233,3 +233,9 @@ small {
     width: 60%;
     height: 40%
 }
+/* Admin Button */
+#Admin{
+font-size: 2em;
+padding-left: 500px;
+color: #ead0af;
+}

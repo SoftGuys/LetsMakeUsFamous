@@ -16,6 +16,9 @@ mixin nav
           a(href='/users')
             span.glyphicon.glyphicon-book
             |  Users
+        if context.isAuthenticated && context.user.isAdmin
+            li
+                a.nav#Admin(href='/admin') ADMIN: #{context.user.username}
       ul.nav.navbar-nav.navbar-right
             if !context.isAuthenticated
                 li
