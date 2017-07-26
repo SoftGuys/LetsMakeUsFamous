@@ -234,7 +234,8 @@ small {
     height: 40%
 }
 
-#users-container {
+#users-container,
+#destinations-container {
     min-height: 75%;
 }
 

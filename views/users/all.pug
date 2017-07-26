@@ -3,6 +3,10 @@ include ../utils/pagination
 
 block content
     .container#users-container
+        form#search-destination-form.form-inline(action='/users' method='GET')
+                input.col-sm-3.form-control(name='username' type='text' placeholder='User\'s username' required)
+                button.btn.btn-success(type='submit')
+                    span.glyphicon.glyphicon-search
         each user in context.users
             if !context.isAuthenticated
                 .col-xs-4.col-sm-4.col-md-4

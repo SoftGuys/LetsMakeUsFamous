@@ -12,7 +12,7 @@ class LandmarksData extends Data {
             .toArray()
             .then((landmarks) => {
                 return landmarks.filter((l) => {
-                    return l.title.includes(title);
+                    return l.title.toLowerCase().includes(title.toLowerCase());
                 });
             });
     }

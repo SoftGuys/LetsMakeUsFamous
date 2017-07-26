@@ -68,8 +68,38 @@ const usersController = (data, utils) => {
         },
         getUsersView(req, res) {
             const page = Number(req.query.page);
+            const username = req.query.username;
 
-            data.users.count()
+            if (username && username.trim().length > 0) {
+                return data.users.filterByUsername(username)
+                    .then((users) => {
+                        const pagination = utils
+                            .getPagination(page, users.length);
+                        const resultUsers = users
+                            .splice(
+                                (pagination.currentPage - 1) *
+                                pagination.pageSize,
+                                pagination.pageSize);
+                        return [pagination, resultUsers];
+                    })
+                    .then(([pagination, users]) => {
+                        return res.render('users/all', {
+                            context: {
+                                users,
+                                isAuthenticated: req.isAuthenticated(),
+                                user: req.user,
+                                pageLink: 'users',
+                                pagination,
+                                isSearchQuery: true,
+                                searchKey: 'username',
+                                searchValue: username,
+                            },
+
+                        });
+                    });
+            }
+
+            return data.users.count()
                 .then((usersCount) => {
                     const pagination = utils
                         .getPagination(page, usersCount);

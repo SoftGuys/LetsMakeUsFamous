@@ -6,7 +6,6 @@ const homeController = (data) => {
                 .redirect('/home');
         },
         getHomeView(req, res) {
-            console.log(req);
             return res
                 .status(200)
                 .render('home', {

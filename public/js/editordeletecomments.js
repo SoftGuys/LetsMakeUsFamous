@@ -1,6 +1,6 @@
 /* globals $ toastr*/
 const EDIT_DELETE_URL = 'http://localhost:3001/api/destinations/';
-$('.btn').on('click', function() {
+$('.btn').on('click', (event) => {
     const target = event.target;
     const targetClass = $(target).attr('class');
     const landmarkId = $('.btn.btn-success.btn-add-destination-comment')
@@ -38,5 +38,5 @@ $('.btn').on('click', function() {
 });
 
 function remove(data) {
- data.hide();
+    data.hide();
 }

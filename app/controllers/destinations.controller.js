@@ -15,12 +15,10 @@ const destinationsController = (data, utils) => {
                             .getPagination(page, landmarks.length);
                         const resultLandmarks = landmarks
                             .splice(
-                                pagination.currentPage,
+                                (pagination.currentPage - 1) *
+                                pagination.pageSize,
                                 pagination.pageSize);
-                        return [
-                            utils.getPagination(page, landmarks.length),
-                            resultLandmarks,
-                        ];
+                        return [pagination, resultLandmarks];
                     })
                     .then(([pagination, landmarks]) => {
                         return res.render('destinations/all', {
@@ -30,6 +28,9 @@ const destinationsController = (data, utils) => {
                                 user: req.user,
                                 pageLink: 'destinations',
                                 pagination,
+                                isSearchQuery: true,
+                                searchKey: 'title',
+                                searchValue: title,
                             },
                         });
                     });
@@ -50,6 +51,15 @@ const destinationsController = (data, utils) => {
                     ]);
                 })
                 .then(([landmarks, pagination]) => {
+                    if (req.user) {
+                        landmarks.forEach((l) => {
+                            l.isVisited = req.user.landmarks.some((ul) => {
+                                return l.title === ul.title &&
+                                    ul.isVisited;
+                            });
+                        });
+                    }
+
                     return res
                         .status(200)
                         .render('destinations/all', {

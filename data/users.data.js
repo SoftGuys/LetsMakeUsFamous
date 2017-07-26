@@ -15,6 +15,20 @@ class UsersData extends Data {
         return this.collection.findOne({ username });
     }
 
+    filterByUsername(username) {
+        if (typeof username !== 'string') {
+            return Promise.reject('Invalid username');
+        }
+
+        const filterExpression = new RegExp(`.*${username}.*`, 'ig');
+        return this.collection.find({
+                username: {
+                    $regex: filterExpression,
+                },
+            })
+            .toArray();
+    }
+
     validateUserPassword(user, password) {
         if (user === null) {
             return Promise.reject('Invalid user!');

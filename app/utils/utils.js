@@ -10,9 +10,9 @@ const utils = {
         if (Number.isNaN(Number(currentPage))) {
             currentPage = 1;
         }
-
+        console.log(totalElementsCount);
         const lastPage = Math.ceil(totalElementsCount / PAGE_SIZE);
-        if (currentPage > lastPage) {
+        if (currentPage > lastPage || currentPage < 1) {
             currentPage = 1;
         }
 
