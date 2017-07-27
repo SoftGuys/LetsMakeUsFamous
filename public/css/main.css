@@ -235,7 +235,8 @@ small {
 }
 
 #users-container,
-#destinations-container {
+#destinations-container,
+#ranking-container {
     min-height: 75%;
 }
 

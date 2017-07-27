@@ -94,7 +94,6 @@ const usersController = (data, utils) => {
                                 searchKey: 'username',
                                 searchValue: username,
                             },
-
                         });
                     });
             }

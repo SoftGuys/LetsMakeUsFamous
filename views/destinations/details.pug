@@ -31,7 +31,7 @@ block content
           h4
             | Comments
             hr
-      if(context.user.isAdmin)
+      if(context.isAdmin)
           section.destination-comments
               if (context.landmark.comments )
                   each comment in context.landmark.comments

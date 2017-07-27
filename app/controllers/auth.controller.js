@@ -1,6 +1,6 @@
 const passport = require('passport');
 const DEFAULT_PICTURE_URL = 'http://www.gibbahouse.com/wp-content/uploads/2014/12/Funny-Animals-With-Makeup_.jpg';
-const DEFAULT_RANK = 1;
+const RANK_DIVIDER = 10;
 const DEFAULT_VISITED_PLACES = 0;
 
 const authController = (data) => {
@@ -16,7 +16,6 @@ const authController = (data) => {
             user.pictureUrl = DEFAULT_PICTURE_URL;
             user.friends = [];
             user.notifications = [];
-            user.rank = DEFAULT_RANK;
             user.visitedPlaces = DEFAULT_VISITED_PLACES;
 
             return data.landmarks.getAll()
@@ -29,6 +28,10 @@ const authController = (data) => {
                         };
                     });
 
+                    user.rank = parseInt(
+                        (user.landmarks.length -
+                            user.visitedPlaces) / RANK_DIVIDER,
+                        10);
                     return user;
                 })
                 .then((userToAdd) => {

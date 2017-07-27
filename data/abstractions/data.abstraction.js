@@ -65,12 +65,8 @@ class Data {
         start = Number(start);
         size = Number(size);
 
-        if (Number.isNaN(start) || start < 1) {
-            start = DEFAULT_PAGE;
-        }
-
-        if (Number.isNaN(size) || size < 1) {
-            size = DEFAULT_PAGE_SIZE;
+        if (Number.isNaN(start) || Number.isNaN(size)) {
+            throw new Error('Start and size must be of type number');
         }
 
         return this.collection.find()

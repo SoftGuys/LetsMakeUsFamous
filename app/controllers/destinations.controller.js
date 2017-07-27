@@ -85,14 +85,21 @@ const destinationsController = (data, utils) => {
                     if (landmark.comments && landmark.comments.length) {
                         landmark.comments.reverse();
                     }
+
+                    const context = {
+                        landmark,
+                        isAuthenticated: req.isAuthenticated(),
+                        user: req.user,
+                    };
+
+                    if (req.user) {
+                        context.isAdmin = req.user.isAdmin;
+                    }
+
                     return res
                         .status(200)
                         .render('destinations/details', {
-                            context: {
-                                landmark,
-                                isAuthenticated: req.isAuthenticated(),
-                                user: req.user,
-                            },
+                            context,
                         });
                 });
         },

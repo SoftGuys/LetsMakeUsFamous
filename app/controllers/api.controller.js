@@ -58,6 +58,7 @@ const apiController = (data) => {
                             return res.status(404)
                                 .send('No such comment');
                         }
+
                         landmark.comments.splice(index, 1);
                         return data.landmarks.update(landmark);
                     }).then((x) => {
@@ -69,17 +70,6 @@ const apiController = (data) => {
         },
         editProfile(req, res) {
             // handle client ajax and update user info
-        },
-        verifyVisitedDestinations(req, res) {
-            if (!req.user) {
-                return res.status(401)
-                    .redirect('/destinations');
-            }
-
-            const landmarkId = req.params.landmarkId;
-            const file = req.params.file;
-
-            return res.status(200).redirect('/');
         },
     };
 };
