@@ -99,6 +99,10 @@ iframe {
     background-repeat: no-repeat;
     background-size: cover;
 }
+.img-rounded.img-responsive{
+    max-height: 50%;
+    max-width: 60%;
+}
 
 #content {
     border: 1px solid transparent;
@@ -179,7 +183,6 @@ button {
     bottom: 1px;
     top: 6px;
 }
-
 #profileMenu {
     background-color: #222222;
 }
@@ -187,6 +190,21 @@ button {
 #profileMenu li a {
     color: #9d9d9d;
     background-color: #222222;
+}
+
+#profileMenu li a:hover{
+    color: white;
+}
+#imgProfile{
+    background-color: #222222;
+}
+
+#alerts{
+    background-color: #222222;
+    color: #9d9d9d;
+}
+#alerts li:hover{
+    color: white;
 }
 
 .transparent {

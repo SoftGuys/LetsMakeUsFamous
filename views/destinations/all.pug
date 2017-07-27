@@ -15,7 +15,7 @@ block content
             if (index % 3) == 0
                 .row
             else
-            .col-md-4.portfolio-item.landmark 
+            .col-md-4.portfolio-item.landmark
                     a(href='/destinations/' + landmark._id)
                         img.img-responsive.thumbnail(src=landmark.pictureUrl)
                     if (landmark.isVisited)
