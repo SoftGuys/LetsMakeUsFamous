@@ -16,7 +16,6 @@ $('.btn').on('click', (event) => {
 
     if (targetClass === 'glyphicon glyphicon-pencil blue' ||
         targetClass === 'btn btn-primary btn-ms blue') {
-        console.log('sinio');
         // eslint-disable-next-line
         $(span[0]).replaceWith($(`<textarea rows="4" cols="50" value="${$(span[0]).text()}">`)
             .css('background-color', '73ff00')
@@ -69,6 +68,7 @@ $('.btn').on('click', (event) => {
         });
     }
 });
+
 function replaceTextAreaWithSpan(comment) {
     // eslint-disable-next-line
     // $(span[0]).replaceWith($(`<textarea rows="4" cols="50" value="${$(span[0]).text()}">`)

@@ -32,15 +32,15 @@ const requester = (() => {
         return request(url, 'GET', 'application/json', {}, headers);
     };
 
-    const patchJSON = (url, body = {}, headers = {}) => {
-        return request(url, 'PATCH', 'application/json', body, headers);
+    const deleteJSON = (url, body = {}, headers = {}) => {
+        return request(url, 'DELETE', 'application/json', body, headers);
     };
 
     return {
         postJSON,
         putJSON,
         getJSON,
-        patchJSON,
+        deleteJSON,
     };
 })();
 

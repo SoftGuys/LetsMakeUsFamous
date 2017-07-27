@@ -1,4 +1,4 @@
-/* globals $ toastr io */
+/* globals $ toastr io requester */
 const socket = io.connect('http://localhost:3001');
 const ADD_COMMENT_URL = 'http://localhost:3001/api/destinations/';
 
@@ -32,20 +32,16 @@ $(() => {
 
             const url = ADD_COMMENT_URL + 'comments/' + landmarkId;
             const $commentsContainer = $('.destination-comments');
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: JSON.stringify(comment),
-                contentType: 'application/json',
-                success: (data) => {
+
+            requester.postJSON(url, comment)
+                .then((data) => {
                     displayComment(data, $commentsContainer);
                     socket.emit('add-comment', landmarkId);
                     toastr.success('Comment added successfully!');
-                },
-                error: (error) => {
-                    toastr.error(error.responseText);
-                },
-            });
+                })
+                .catch((err) => {
+                    toastr.error(err.responseText);
+                });
         });
 
     const displayComment = (comment, rootElement) => {

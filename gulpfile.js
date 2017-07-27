@@ -18,7 +18,7 @@ gulp.task('compile:lint', () => {
 });
 
 gulp.task('compile:transpile', () => {
-    return gulp.src(['public/js/*.js'])
+    return gulp.src(['public/js/**/*.js'])
         .pipe(babel({
             presets: ['es2015'],
         }))

@@ -1,4 +1,4 @@
-/* globals $ toastr */
+/* globals $ toastr requester */
 
 // must validate user input :)))
 
@@ -56,17 +56,12 @@ $(() => {
         save.hide();
         button.show();
 
-        $.ajax({
-            url: '/api/profile',
-            type: 'PUT',
-            data: JSON.stringify(newUserInfo),
-            contentType: 'application/json',
-            success: (message) => {
+        requester.putJSON('/api/profile', newUserInfo)
+            .then((message) => {
                 toastr.success(message);
-            },
-            error: (error) => {
+            })
+            .catch((error) => {
                 toastr.error(error.responseText);
-            },
-        });
+            });
     });
 });
