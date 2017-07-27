@@ -16,7 +16,6 @@ $('.btn').on('click', (event) => {
 
     if (targetClass === 'glyphicon glyphicon-pencil blue' ||
         targetClass === 'btn btn-primary btn-ms blue') {
-        console.log('sinio');
         // eslint-disable-next-line
         $(span[0]).replaceWith($(`<textarea rows="4" cols="50" value="${$(span[0]).text()}">`)
             .css('background-color', '73ff00')
@@ -25,7 +24,6 @@ $('.btn').on('click', (event) => {
         $('.Save').show();
     } else if (targetClass === 'glyphicon glyphicon-trash red' ||
         targetClass === 'btn btn-danger btn-ms red') {
-        console.log('cherveno');
         const url = EDIT_DELETE_URL + 'comments/' + landmarkId;
         $.ajax({
             url: url,
@@ -37,19 +35,17 @@ $('.btn').on('click', (event) => {
                 remove(parrent);
             },
             error: (error) => {
-                console.log(error);
                 toastr.error(error.responseText);
             },
         });
     } else if (targetClass === 'glyphicon glyphicon-ok' ||
         targetClass === 'btn btn-primary btn-ms green Save') {
-        console.log('zeleno');
         const newText = $('#edit-comment').val();
         const user = $(event.target).parent().prev().prev().prev().text();
+
         comment.user = user;
         comment.newText = newText;
         comment.oldText = $('#edit-comment').attr('value');
-        console.log(comment);
 
         const url = EDIT_DELETE_URL + 'comments/' + landmarkId;
         $.ajax({
@@ -63,12 +59,12 @@ $('.btn').on('click', (event) => {
                 replaceTextAreaWithSpan(comment);
             },
             error: (error) => {
-                console.log(error);
                 toastr.error(error.responseText);
             },
         });
     }
 });
+
 function replaceTextAreaWithSpan(comment) {
     // eslint-disable-next-line
     // $(span[0]).replaceWith($(`<textarea rows="4" cols="50" value="${$(span[0]).text()}">`)

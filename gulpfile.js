@@ -14,9 +14,26 @@ const cleanCss = require('gulp-clean-css');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 
-gulp.task('server', ['build-clean'], () => {
+gulp.task('server', ['build:lint'], () => {
     express.run(['server.js']);
 });
+
+gulp.task('clean-build', gulpsync.sync([
+    'clean',
+    'build',
+]));
+
+gulp.task('clean', () => {
+    return gulp
+        .src('build', { read: false })
+        .pipe(clean());
+});
+
+gulp.task('build', [
+    'build:lint',
+    'build:js',
+    'build:css',
+]);
 
 gulp.task('build:lint', () => {
     return gulp.src(['**/*.js', '!node_modules/**', '!build/**'])
@@ -27,7 +44,7 @@ gulp.task('build:lint', () => {
 
 gulp.task('build:js', () => {
     return pump([
-        gulp.src(['public/js/*.js']),
+        gulp.src(['public/js/**/*.js']),
         babel({ presets: ['es2015'] }),
         uglify(),
         gulp.dest('build'),
@@ -42,23 +59,6 @@ gulp.task('build:css', () => {
         gulp.dest('build'),
     ]);
 });
-
-gulp.task('build', [
-    'build:lint',
-    'build:js',
-    'build:css',
-]);
-
-gulp.task('clean', () => {
-    return gulp
-        .src('build', { read: false })
-        .pipe(clean());
-});
-
-gulp.task('build-clean', gulpsync.sync([
-    'clean',
-    'build',
-]));
 
 gulp.task('dev', () => {
     nodemon({

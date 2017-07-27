@@ -17,7 +17,7 @@ function initMap() {
 
 function geocodeAddress(geocoder, resultsMap) {
     const address = document.getElementById('address').value;
-    geocoder.geocode({ 'address': address }, function(results, status) {
+    geocoder.geocode({ 'address': address }, function (results, status) {
         if (status === 'OK') {
             resultsMap.setCenter(results[0].geometry.location);
             const marker = new google.maps.Marker({
@@ -27,10 +27,7 @@ function geocodeAddress(geocoder, resultsMap) {
                 animation: google.maps.Animation.BOUNCE,
             });
         } else {
-            console.log('Geocode was not successful for the following reason:' +
-                ' ' + status);
+            console.log('Geocode was not successful for the following reason: ' + status);
         }
     });
 }
-
-

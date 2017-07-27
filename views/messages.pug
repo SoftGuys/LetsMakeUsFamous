@@ -18,11 +18,11 @@ block content
                     each friend in context.user.friends
                         if(friend.username === context.friend)
                             li(user-id=friend._id).row.btn.btn-success.panel.pull-left.friend-panel.msg-friend
-                                img.col-sm-3(src=friend.pictureUrl)
+                                img.img-responsive.col-sm-3(src=friend.pictureUrl)
                                 span.col-sm-9.friend-name #{friend.username}
                         else
-                            li(user-id=friend._id).row.btn.btn-success.panel.pull-left.friend-panel
-                                img.col-sm-3(src=friend.pictureUrl)
+                            li(user-id=friend._id).row.btn.btn-success.panel.thumbnail.friend-panel
+                                img.img-fixed.img-responsive.col-sm-3(src=friend.pictureUrl)
                                 span.col-sm-9.friend-name #{friend.username}
         .row
             .col-sm-6.col-sm-offset-1.hidden#input-message
@@ -30,4 +30,4 @@ block content
                     input#message.form-control(autocomplete='off')
                     button.btn.btn-success.col-sm-2#send-message Send
     //- dont move the script from here
-    script(src='/dist/trigger-chat.js')
+    script(src='/static/js/trigger-chat.js')

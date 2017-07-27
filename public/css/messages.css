@@ -12,6 +12,10 @@
     background-color: lightcoral;
 }
 
+.img-fixed {
+    max-width: 100%;
+}
+
 .chat-pic {
     width: 10%;
 }

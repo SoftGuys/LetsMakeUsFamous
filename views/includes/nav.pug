@@ -60,8 +60,10 @@ mixin nav
                         span.caret
                     ul.dropdown-menu#profileMenu
                         li
-                            a.glyphicon.glyphicon-cog(href='/users/profile')   Profile
+                            a.glyphicon.glyphicon-cog(href='/users/profile')  Profile
                         li
-                            a.glyphicon.glyphicon-hand-right(href='/users/'+ context.user.username)                                             MyLandmarks
+                            a.glyphicon.glyphicon-envelope(href='/users/messages')  Messages
                         li
-                            a.glyphicon.glyphicon-off(href='/users/logout')    Logout
+                            a.glyphicon.glyphicon-hand-right(href='/users/'+ context.user.username)  MyLandmarks
+                        li
+                            a.glyphicon.glyphicon-off(href='/users/logout')  Logout
