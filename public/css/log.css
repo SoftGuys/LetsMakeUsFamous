@@ -17,7 +17,7 @@
     font-weight: 600;
 }
 
-body {
+.login-background {
     background: url('/static/images/register.jpg');
     background-attachment: fixed;
     background-size: cover;

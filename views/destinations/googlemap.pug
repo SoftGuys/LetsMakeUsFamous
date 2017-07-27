@@ -5,14 +5,14 @@ head
     meta(charset='utf-8')
     link(href='/static/css/googlemap.css' rel='stylesheet')
 #cords
-    #{context.cords.lon} +
+    #{context.cords.lon}
     #{context.cords.lat}
 #floating-panel
     input#address(type='textbox', value=context.cords.name)
     input#submit(type='button', value='Geocode')
 #map
     script(src='/libs/jquery/dist/jquery.min.js')
-    script(src="/scripts/showgooglemap.js")
+    script(src="/static/js/showgooglemap.js")
     script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCswzaSDzKsdAdfPRt9ssO0YzrbiCOgkQo&libraries=places&callback=initMap')
 
 

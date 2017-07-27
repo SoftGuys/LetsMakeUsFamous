@@ -37,22 +37,22 @@ mixin nav
             else
                 li
                     a(href='/users/profile')
-                        img.img-responsive.thumbnail.navbar-brand.small-pic(src=context.user.pictureUrl)
+                        img#imgProfile.img-responsive.thumbnail.navbar-brand.small-pic(src=context.user.pictureUrl)
                 li
                     a(href='/users/profile')
                             | #{context.user.username}
 
                 li.dropdown#alert-dropdown
-                    a.dropdown-toggle.notification-dropdown(data-toggle='dropdown' href='#')
+                    a.dropdown-toggle#notification-dropdown(data-toggle='dropdown' href='#')
                         span.glyphicon.glyphicon-pushpin.notification
                         if context.user.notifications.length
                             span.glyphicon.glyphicon-exclamation-sign.notification-alert.text-danger
                         else
                             span.glyphicon.glyphicon-exclamation-sign.notification-alert.text-danger.hidden
-                    ul.dropdown-menu#alerts
-                        li#no-alert.btn No alerts!
+                    div(aria-labelledby="navbarDropdownMenuLink").dropdown-menu#alerts
+                        a#no-alert.dropdown-item No alerts!
                         each alert in context.user.notifications
-                            li.btn.alert #{alert}
+                            a(href='#').alert.dropdown-item #{alert}
                
                 li.dropdown
                     a.dropdown-toggle(data-toggle='dropdown', href='#')
@@ -60,8 +60,10 @@ mixin nav
                         span.caret
                     ul.dropdown-menu#profileMenu
                         li
-                            a.glyphicon.glyphicon-cog(href='/users/profile')   Profile
+                            a.glyphicon.glyphicon-cog(href='/users/profile')  Profile
                         li
-                            a.glyphicon.glyphicon-hand-right(href='/users/'+ context.user.username)                                             MyLandmarks
+                            a.glyphicon.glyphicon-envelope(href='/users/messages')  Messages
                         li
-                            a.glyphicon.glyphicon-off(href='/users/logout')    Logout
+                            a.glyphicon.glyphicon-hand-right(href='/users/'+ context.user.username)  MyLandmarks
+                        li
+                            a.glyphicon.glyphicon-off(href='/users/logout')  Logout

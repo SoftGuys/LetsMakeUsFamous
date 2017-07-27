@@ -45,18 +45,17 @@ const apiController = (data) => {
             const isAdmin = req.user.isAdmin;
             if (isAdmin) {
                 const comment = req.body;
-                console.log(comment);
-
                 const id = req.body.id;
+
                 return data.landmarks.findById(id)
                     .then((landmark) => {
                         const commentToUpdate = landmark.comments
                             .find((x) => x.text === comment.oldText);
-                        console.log(commentToUpdate);
 
-                        if (typeof(commentToUpdate) === 'undefined') {
+                        if (typeof (commentToUpdate) === 'undefined') {
                             return Promise.reject('Not Find');
                         }
+
                         commentToUpdate.text = comment.newText;
                         return data.landmarks.update(landmark);
                     })
@@ -64,7 +63,7 @@ const apiController = (data) => {
                         return res.send('Its Ok');
                     })
                     .catch((x) => {
-                        console.log(x);
+                        console.log(x); // toastr
                     });
             }
             return res.status(401)
