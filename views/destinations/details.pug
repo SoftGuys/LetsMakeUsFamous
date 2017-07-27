@@ -43,13 +43,15 @@ block content
                               span.glyphicon.glyphicon-time
                               |  #{comment.postedOn}
                               img.img-comment-user(src=comment.user.pictureUrl)
-                              a(href='/users/#{comment.author._id}')
+                              a(href='/users/'+comment.user.username)
                                   | #{comment.user.username}
                               td
                                   button.btn.btn-primary.btn-ms.blue(data-title='Edit', data-toggle='modal', data-target='#edit')
                                       span.glyphicon.glyphicon-pencil.blue
                                   button.btn.btn-danger.btn-ms.red(data-title='Delete', data-toggle='modal', data-target='#delete')
                                       span.glyphicon.glyphicon-trash.red
+                                  button.btn.btn-primary.btn-ms.green.Save(data-title='Save', data-toggle='modal', data-target='#save')
+                                      span.glyphicon.glyphicon-ok
                           hr.col-md-8
 
       else
