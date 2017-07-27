@@ -40,7 +40,7 @@ mixin nav
                         img#imgProfile.img-responsive.thumbnail.navbar-brand.small-pic(src=context.user.pictureUrl)
                 li
                     a(href='/users/profile')
-                            | #{context.user.username}
+                        | #{context.user.username}
 
                 li.dropdown#alert-dropdown
                     a.dropdown-toggle#notification-dropdown(data-toggle='dropdown' href='#')
@@ -49,16 +49,18 @@ mixin nav
                             span.glyphicon.glyphicon-exclamation-sign.notification-alert.text-danger
                         else
                             span.glyphicon.glyphicon-exclamation-sign.notification-alert.text-danger.hidden
-                    div(aria-labelledby="navbarDropdownMenuLink").dropdown-menu#alerts
-                        a#no-alert.dropdown-item No alerts!
+                    ul.dropdown-menu.dropdown-custom#alerts
+                        li
+                            a(href='#')#no-alert.glyphicon.glyphicon-ok  No alerts!
                         each alert in context.user.notifications
-                            a(href='#').alert.dropdown-item #{alert}
+                            li
+                                a(href='#').alert #{alert}
                
                 li.dropdown
                     a.dropdown-toggle(data-toggle='dropdown', href='#')
                         | Profile
                         span.caret
-                    ul.dropdown-menu#profileMenu
+                    ul.dropdown-menu.dropdown-custom#profileMenu
                         li
                             a.glyphicon.glyphicon-cog(href='/users/profile')  Profile
                         li

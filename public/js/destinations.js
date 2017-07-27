@@ -1,5 +1,6 @@
 /* globals $ toastr io */
-const socket = io.connect('http://localhost:3001');
+// eslint-disable-next-line
+var socket = io.connect('http://localhost:3001');
 const ADD_COMMENT_URL = 'http://localhost:3001/api/destinations/';
 
 $(() => {

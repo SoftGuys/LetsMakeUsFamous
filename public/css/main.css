@@ -99,7 +99,8 @@ iframe {
     background-repeat: no-repeat;
     background-size: cover;
 }
-.img-rounded.img-responsive{
+
+.img-rounded.img-responsive {
     max-height: 50%;
     max-width: 60%;
 }
@@ -183,28 +184,18 @@ button {
     bottom: 1px;
     top: 6px;
 }
-#profileMenu {
+
+.dropdown-custom {
     background-color: #222222;
 }
 
-#profileMenu li a {
+.dropdown-custom li a {
     color: #9d9d9d;
     background-color: #222222;
 }
 
-#profileMenu li a:hover{
-    color: white;
-}
-#imgProfile{
+#imgProfile {
     background-color: #222222;
-}
-
-#alerts{
-    background-color: #222222;
-    color: #9d9d9d;
-}
-#alerts li:hover{
-    color: white;
 }
 
 .transparent {

@@ -1,5 +1,6 @@
 /* globals $ io toastr */
-const socket = io.connect('http://localhost:3001');
+// eslint-disable-next-line
+var socket = io.connect('http://localhost:3001');
 
 $(() => {
     $('#alert-dropdown').on('click', (event) => {

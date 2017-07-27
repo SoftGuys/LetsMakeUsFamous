@@ -1,5 +1,6 @@
 /* globals $ io */
-const socket = io.connect('http://localhost:3001');
+// eslint-disable-next-line
+var socket = io.connect('http://localhost:3001');
 
 $(() => {
     $('#friends').on('click', '.friend-panel', (event) => {
