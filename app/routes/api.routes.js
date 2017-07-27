@@ -10,6 +10,8 @@ const attachRoutes = (app, { apiController }) => {
             apiController.addDestinationComment)
         .delete('/destinations/comments/:id',
             apiController.deleteDestinationComment)
+        .put('/destinations/comments/:id',
+            apiController.editDestinationComment)
         .put('/profile', apiController.editProfile);
 
     app.use('/api', router);

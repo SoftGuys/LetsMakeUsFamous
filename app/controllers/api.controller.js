@@ -41,6 +41,35 @@ const apiController = (data) => {
                         .send(newComment);
                 });
         },
+        editDestinationComment(req, res) {
+            const isAdmin = req.user.isAdmin;
+            if (isAdmin) {
+                const comment = req.body;
+                console.log(comment);
+
+                const id = req.body.id;
+                return data.landmarks.findById(id)
+                    .then((landmark) => {
+                        const commentToUpdate = landmark.comments
+                            .find((x) => x.text === comment.oldText);
+                        console.log(commentToUpdate);
+
+                        if (typeof(commentToUpdate) === 'undefined') {
+                            return Promise.reject('Not Find');
+                        }
+                        commentToUpdate.text = comment.newText;
+                        return data.landmarks.update(landmark);
+                    })
+                    .then((response) => {
+                        return res.send('Its Ok');
+                    })
+                    .catch((x) => {
+                        console.log(x);
+                    });
+            }
+            return res.status(401)
+                .send('You are not admin');
+        },
         deleteDestinationComment(req, res) {
             const isAdmin = req.user.isAdmin;
             if (isAdmin) {

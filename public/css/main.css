@@ -247,3 +247,10 @@ small {
     padding-left: 500px;
     color: #ead0af;
 }
+.Save{
+    display:none;
+    background-color: #73ff00;
+}
+.Save:hover{
+ background-color: darkgreen;
+}
