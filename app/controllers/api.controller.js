@@ -41,6 +41,35 @@ const apiController = (data) => {
                         .send(newComment);
                 });
         },
+        editDestinationComment(req, res) {
+            const isAdmin = req.user.isAdmin;
+            if (isAdmin) {
+                const comment = req.body;
+                console.log(comment);
+
+                const id = req.body.id;
+                return data.landmarks.findById(id)
+                    .then((landmark) => {
+                        const commentToUpdate = landmark.comments
+                            .find((x) => x.text === comment.oldText);
+                        console.log(commentToUpdate);
+
+                        if (typeof(commentToUpdate) === 'undefined') {
+                            return Promise.reject('Not Find');
+                        }
+                        commentToUpdate.text = comment.newText;
+                        return data.landmarks.update(landmark);
+                    })
+                    .then((response) => {
+                        return res.send('Its Ok');
+                    })
+                    .catch((x) => {
+                        console.log(x);
+                    });
+            }
+            return res.status(401)
+                .send('You are not admin');
+        },
         deleteDestinationComment(req, res) {
             const isAdmin = req.user.isAdmin;
             if (isAdmin) {
@@ -58,6 +87,7 @@ const apiController = (data) => {
                             return res.status(404)
                                 .send('No such comment');
                         }
+
                         landmark.comments.splice(index, 1);
                         return data.landmarks.update(landmark);
                     }).then((x) => {
@@ -89,17 +119,6 @@ const apiController = (data) => {
                         .status(200)
                         .send('Profile eddited successfully!');
                 });
-        },
-        verifyVisitedDestinations(req, res) {
-            if (!req.user) {
-                return res.status(401)
-                    .redirect('/destinations');
-            }
-
-            const landmarkId = req.params.landmarkId;
-            const file = req.params.file;
-
-            return res.status(200).redirect('/');
         },
     };
 };

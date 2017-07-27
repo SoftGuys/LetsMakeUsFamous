@@ -1,0 +1,37 @@
+extends ../master
+include ../utils/pagination
+
+block content
+    main.container#ranking-container
+        table.table.table-striped
+            thead
+                tr.active
+                    th #
+                    th Username
+                    th Visited Places
+                    th Rank
+            tbody
+                - var trClass = ''
+                each user, userIndex in context.users
+                    if (context.pagination.pageSize * (context.pagination.currentPage - 1) + (userIndex + 1) < 4)
+                        - trClass = 'success'
+                    else if (context.pagination.pageSize * (context.pagination.currentPage - 1) + (userIndex + 1) < 6)
+                        - trClass = 'info'
+                    else if (context.pagination.pageSize * (context.pagination.currentPage - 1) + (userIndex + 1) < 7)
+                        - trClass = 'danger'
+                    else if (context.user && context.user.username === user.username)
+                        - trClass= 'warning'
+                    else
+                        - trClass = ''
+                    tr(class=trClass)
+                        th(scope='row') 
+                            | #{context.pagination.pageSize * (context.pagination.currentPage - 1) + (userIndex + 1)}
+                        td 
+                            img.img-responsive.img-thumbnail#user-rankig-profile(src=user.pictureUrl)
+                            a(href='/users/' + user.username)
+                                | #{user.username}
+                        td 
+                            | #{user.visitedPlaces}
+                        td
+                            | #{user.rank}
+    +pagination

@@ -13,11 +13,22 @@ const destinationsController = (data, utils) => {
                     .then((landmarks) => {
                         const pagination = utils
                             .getPagination(page, landmarks.length);
-                        const resultLandmarks = landmarks
+                        let resultLandmarks = landmarks
                             .splice(
                                 (pagination.currentPage - 1) *
                                 pagination.pageSize,
                                 pagination.pageSize);
+
+                        if (req.user) {
+                            resultLandmarks = resultLandmarks.map((l) => {
+                                l.isVisited = req.user.landmarks.some((ul) => {
+                                    return ul.title === l.title && ul.isVisited;
+                                });
+
+                                return l;
+                            });
+                        }
+
                         return [pagination, resultLandmarks];
                     })
                     .then(([pagination, landmarks]) => {
@@ -85,14 +96,21 @@ const destinationsController = (data, utils) => {
                     if (landmark.comments && landmark.comments.length) {
                         landmark.comments.reverse();
                     }
+
+                    const context = {
+                        landmark,
+                        isAuthenticated: req.isAuthenticated(),
+                        user: req.user,
+                    };
+
+                    if (req.user) {
+                        context.isAdmin = req.user.isAdmin;
+                    }
+
                     return res
                         .status(200)
                         .render('destinations/details', {
-                            context: {
-                                landmark,
-                                isAuthenticated: req.isAuthenticated(),
-                                user: req.user,
-                            },
+                            context,
                         });
                 });
         },

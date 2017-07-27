@@ -229,7 +229,8 @@ small {
 }
 
 #users-container,
-#destinations-container {
+#destinations-container,
+#ranking-container {
     min-height: 75%;
 }
 
@@ -244,4 +245,18 @@ small {
     font-size: 2em;
     padding-left: 500px;
     color: #ead0af;
+}
+
+.Save {
+    display: none;
+    background-color: #73ff00;
+}
+
+.Save:hover {
+    background-color: darkgreen;
+}
+
+#user-rankig-profile {
+    width: 40px;
+    height: 30px;
 }

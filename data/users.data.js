@@ -1,6 +1,7 @@
 const Data = require('./abstractions');
 const CryptoJS = require('crypto-js');
 const COLLECTION_NAME = 'users';
+const RANK_DIVIDER = 10;
 
 class UsersData extends Data {
     constructor(database) {
@@ -26,6 +27,23 @@ class UsersData extends Data {
                     $regex: filterExpression,
                 },
             })
+            .toArray();
+    }
+
+    getSortedByVisitedPlaces(start, size) {
+        start = Number(start);
+        size = Number(size);
+
+        if (Number.isNaN(start) || Number.isNaN(size)) {
+            throw new Error('start and size must be of type number!');
+        }
+
+        return this.collection.find()
+            .sort({
+                visitedPlaces: -1,
+            })
+            .skip((start - 1) * size)
+            .limit(size)
             .toArray();
     }
 
@@ -151,8 +169,13 @@ class UsersData extends Data {
         }
 
         if (!landmark.isVisited) {
-            console.log('must not show');
             user.visitedPlaces = Number(user.visitedPlaces) + 1;
+            user.rank = parseInt((Number(user.landmarks.length) -
+                    user.visitedPlaces) / 10,
+                10);
+            if (user.rank < 1) {
+                user.rank = 1;
+            }
         }
 
         landmark.isVisited = true;
