@@ -97,7 +97,27 @@ const apiController = (data) => {
                 .send('You are not admin');
         },
         editProfile(req, res) {
-            // handle client ajax and update user info
+            if (!req.user) {
+                return res
+                    .status(401)
+                    .send('You must be logged in in order to edit profile!');
+            }
+
+            const newUserInfo = req.body;
+            return data.users.findById(req.user._id.toString())
+                .then((user) => {
+                    Object.keys(newUserInfo)
+                        .forEach((key) => {
+                            user[key] = newUserInfo[key];
+                        });
+
+                    data.users.update(user);
+                })
+                .then(() => {
+                    res
+                        .status(200)
+                        .send('Profile eddited successfully!');
+                });
         },
         verifyVisitedDestinations(req, res) {
             if (!req.user) {

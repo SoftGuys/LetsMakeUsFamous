@@ -163,19 +163,13 @@ button {
 }
 
 .notification {
-    position: absolute;
-    width: 35px;
-    height: 35px;
-    top: 6px;
-    right: 4px;
+    font-size: 1.4em;
 }
 
 .notification-alert {
     position: absolute;
-    width: 15px;
-    height: 15px;
-    top: 26px;
-    right: 4px;
+    top: 50%;
+    right: 10%;
 }
 
 .small-pic {
@@ -237,6 +231,10 @@ small {
 #users-container,
 #destinations-container {
     min-height: 75%;
+}
+
+.glyphicon-exclamation-sign {
+    position: absolute;
 }
 
 
