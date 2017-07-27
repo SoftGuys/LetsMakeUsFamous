@@ -1,4 +1,7 @@
 /* globals $ toastr */
+
+// must validate user input :)))
+
 $(() => {
     const button = $('#buttonEditProfile');
     const save = $('#saveButton');
@@ -15,8 +18,16 @@ $(() => {
                 .val(`${$(element).text()}`)
                 .addClass('eddited')
                 .addClass('form-control')
-                .css('background-color', '73ff00'));
+                .css('background-color', '73ff00')
+                .animate({
+                    backgroundColor: 'white',
+                }, 800));
         });
+
+        $('#user-info')
+            .find('.eddited')
+            .first()
+            .focus();
 
         button.hide();
         save.show();
@@ -38,7 +49,7 @@ $(() => {
             newUserInfo[$userData.attr('data-name')] = $userInfo.val().trim();
             $userInfo.replaceWith(
                 $('<td>')
-                .html(`${$userInfo.val()}`)
+                .text(`${$userInfo.val()}`)
                 .addClass('edittable'));
         });
 
