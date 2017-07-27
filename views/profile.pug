@@ -17,41 +17,32 @@ block content
                                     img.img-circle.img-responsive(alt='User Picture', src="http://www.teluguone.com/tonecmsuserfiles/Programmer%20Funny%20Responses(1).jpg")
                             .col-md-9
                                 table.table.table-user-information
-                                    tbody
+                                    tbody#user-info
                                         tr
-                                            td
-                                                |   Department:
+                                            td.user-data(data-name='birthDate')
+                                                |   Date of Birth
                                             td.edittable
-                                                |   Programming
+                                                | #{context.user.birthDate}
                                         tr
-                                            td
-                                                |   Date of Birth:
+                                            td.user-data(data-name='city')
+                                                |   City
                                             td.edittable
-                                                |   01/24/1988
+                                                | #{context.user.city}
                                         tr
-                                        tr
-                                            td
-                                                |   Gender
-                                            td.edittable
-                                                |   Male
-                                        tr
-                                            td
-                                                |   Home Address
-                                            td.edittable
-                                                |   Bulgaria
-                                        tr
-                                            td
+                                            td.user-data(data-name='email')
                                                 |   Email
                                             td.edittable
-                                                a(href=result) #{context.user.email}
+                                                | #{context.user.email}
                                         tr
-                                            td
-                                                |   Your Last Location
-                                            td#location
-                                        td
-                                            |   Phone Number
-                                        td.edittable(contenteditable=true)
-                                            |   555-4567-890(Mobile)
+                                            td.user-data(data-name='phoneNumber')
+                                                |   Phone Number
+                                            td.edittable
+                                                | #{context.user.phoneNumber}
+                                        tr
+                                            td.user-data(data-name='description')
+                                                |   Description
+                                            td.edittable
+                                                | #{context.user.description}
                     .panel-footer
                         form#profile-picture-form(action='/users/profile' method='post', enctype='multipart/form-data')
                             label.btn.btn-primary(for="profile-picture")

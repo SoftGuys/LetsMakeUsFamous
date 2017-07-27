@@ -2,6 +2,10 @@ const passport = require('passport');
 const DEFAULT_PICTURE_URL = 'http://www.gibbahouse.com/wp-content/uploads/2014/12/Funny-Animals-With-Makeup_.jpg';
 const DEFAULT_RANK = 1;
 const DEFAULT_VISITED_PLACES = 0;
+const DEFAULT_BIRTH_DATE = '01/24/1988';
+const DEFAULT_CITY = 'Sofia';
+const DEFAULT_PHONE_NUMBER = '555-4567-890';
+const DEFAULT_DESCRIPTION = 'No description!';
 
 const authController = (data) => {
     return {
@@ -18,6 +22,11 @@ const authController = (data) => {
             user.notifications = [];
             user.rank = DEFAULT_RANK;
             user.visitedPlaces = DEFAULT_VISITED_PLACES;
+
+            user.birthDate = DEFAULT_BIRTH_DATE;
+            user.city = DEFAULT_CITY;
+            user.phoneNumber = DEFAULT_PHONE_NUMBER;
+            user.description = DEFAULT_DESCRIPTION;
 
             return data.landmarks.getAll()
                 .then((landmarks) => {
