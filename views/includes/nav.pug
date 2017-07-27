@@ -16,9 +16,14 @@ mixin nav
           a(href='/users')
             span.glyphicon.glyphicon-book
             |  Users
+        li
+            a(href='/users/ranking')
+                span.glyphicon.glyphicon-flag
+                |  Users Ranking
         if context.isAuthenticated && context.user.isAdmin
             li
-                a.nav#Admin(href='/admin') ADMIN: #{context.user.username}
+                a.nav#Admin(href='/admin') 
+                | ADMIN: #{context.user.username}
       ul.nav.navbar-nav.navbar-right
             if !context.isAuthenticated
                 li

@@ -13,11 +13,22 @@ const destinationsController = (data, utils) => {
                     .then((landmarks) => {
                         const pagination = utils
                             .getPagination(page, landmarks.length);
-                        const resultLandmarks = landmarks
+                        let resultLandmarks = landmarks
                             .splice(
                                 (pagination.currentPage - 1) *
                                 pagination.pageSize,
                                 pagination.pageSize);
+
+                        if (req.user) {
+                            resultLandmarks = resultLandmarks.map((l) => {
+                                l.isVisited = req.user.landmarks.some((ul) => {
+                                    return ul.title === l.title && ul.isVisited;
+                                });
+
+                                return l;
+                            });
+                        }
+
                         return [pagination, resultLandmarks];
                     })
                     .then(([pagination, landmarks]) => {

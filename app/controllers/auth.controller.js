@@ -41,6 +41,7 @@ const authController = (data) => {
                         (user.landmarks.length -
                             user.visitedPlaces) / RANK_DIVIDER,
                         10);
+                    user.isAdmin = false;
                     return user;
                 })
                 .then((userToAdd) => {

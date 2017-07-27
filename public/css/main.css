@@ -246,10 +246,17 @@ small {
     padding-left: 500px;
     color: #ead0af;
 }
-.Save{
-    display:none;
+
+.Save {
+    display: none;
     background-color: #73ff00;
 }
-.Save:hover{
- background-color: darkgreen;
+
+.Save:hover {
+    background-color: darkgreen;
+}
+
+#user-rankig-profile {
+    width: 40px;
+    height: 30px;
 }
