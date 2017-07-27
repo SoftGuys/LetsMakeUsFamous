@@ -1,43 +1,63 @@
 const gulp = require('gulp');
 const gulpsync = require('gulp-sync')(gulp);
-const babel = require('gulp-babel');
-const clean = require('gulp-clean');
-const nodemon = require('gulp-nodemon');
-const express = require('gulp-express');
-const eslint = require('gulp-eslint');
 
-gulp.task('server', ['build'], () => {
+const eslint = require('gulp-eslint');
+const pump = require('pump');
+const clean = require('gulp-clean');
+
+const express = require('gulp-express');
+const nodemon = require('gulp-nodemon');
+
+const concat = require('gulp-concat');
+const cleanCss = require('gulp-clean-css');
+
+const babel = require('gulp-babel');
+const uglify = require('gulp-uglify');
+
+gulp.task('server', ['build-clean'], () => {
     express.run(['server.js']);
 });
 
-gulp.task('compile:lint', () => {
+gulp.task('build:lint', () => {
     return gulp.src(['**/*.js', '!node_modules/**', '!build/**'])
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
 });
 
-gulp.task('compile:transpile', () => {
-    return gulp.src(['public/js/*.js'])
-        .pipe(babel({
-            presets: ['es2015'],
-        }))
-        .pipe(gulp.dest('build'));
+gulp.task('build:js', () => {
+    return pump([
+        gulp.src(['public/js/*.js']),
+        babel({ presets: ['es2015'] }),
+        uglify(),
+        gulp.dest('build'),
+    ]);
 });
 
-gulp.task('compile', [
-    'compile:lint',
-    'compile:transpile',
+gulp.task('build:css', () => {
+    return pump([
+        gulp.src(['public/css/*.css']),
+        concat('all.css'),
+        cleanCss({ compatibility: 'ie8' }),
+        gulp.dest('build'),
+    ]);
+});
+
+gulp.task('build', [
+    'build:lint',
+    'build:js',
+    'build:css',
 ]);
 
 gulp.task('clean', () => {
-    return gulp.src('build', { read: false })
+    return gulp
+        .src('build', { read: false })
         .pipe(clean());
 });
 
-gulp.task('build', gulpsync.sync([
+gulp.task('build-clean', gulpsync.sync([
     'clean',
-    'compile',
+    'build',
 ]));
 
 gulp.task('dev', () => {
