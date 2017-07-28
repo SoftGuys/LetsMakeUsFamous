@@ -1,7 +1,13 @@
-#messages-box {
+#messages-box,
+#friends-box {
     border: 3px solid green;
     height: 50%;
     overflow-y: auto;
+}
+
+.box-title {
+    border: 2px solid green;
+    background-color: rgb(183, 215, 104);
 }
 
 .recever,
@@ -11,13 +17,9 @@
     border-radius: 10px;
 }
 
-.img-fixed {
-    max-width: 100%;
-}
-
 .chat-pic {
-    width: 50px;
     max-width: 100%;
+    width: 50px;
 }
 
 #friends,
@@ -25,12 +27,20 @@
     list-style-type: none;
 }
 
+.friend-pic {
+    max-width: 100%;
+    width: 20%;
+    height: 100%;
+}
+
 .friend-name {
     color: black;
 }
 
-#friends-box {
-    border: 3px solid green;
-    height: 50%;
-    overflow: auto;
+.friend-panel {
+    border-color: green;
+    height: 13%;
+    width: 100%;
+    display: block;
+    margin: 1%;
 }

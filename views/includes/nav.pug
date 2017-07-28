@@ -42,7 +42,7 @@ mixin nav
                 else
                     li
                         a(href='/users/profile')
-                    | #{context.user.username}
+                            | #{context.user.username}
 
                 li.dropdown#alert-dropdown
                     a.dropdown-toggle#notification-dropdown(data-toggle='dropdown' href='#')

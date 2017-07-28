@@ -23,7 +23,8 @@ $(() => {
                     .append(
                         $('<img>')
                         .attr('src', msgInfo.pictureUrl)
-                        .addClass('chat-pic'))
+                        .addClass('chat-pic')
+                        .addClass('img-thumbnail'))
                     .append(
                         $('<label>')
                         .addClass('chat-username')
