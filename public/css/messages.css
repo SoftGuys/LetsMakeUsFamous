@@ -4,20 +4,27 @@
     overflow-y: auto;
 }
 
+.recever,
 .sender {
+    width: 100%;
+}
+
+
+/* .sender {
     background-color: lightblue;
 }
 
 .recever {
     background-color: lightcoral;
-}
+} */
 
 .img-fixed {
     max-width: 100%;
 }
 
 .chat-pic {
-    width: 10%;
+    width: 50px;
+    max-width: 100%;
 }
 
 #friends,

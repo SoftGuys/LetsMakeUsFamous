@@ -28,12 +28,7 @@ class LandmarksData extends Data {
             landmark.comments = [];
         }
 
-        const postDate = new Date(comment.postedOn);
-        comment.postedOn = `${postDate.getDate()}.` +
-            `${postDate.getMonth()}.` +
-            `${postDate.getFullYear()} ` +
-            `${postDate.getHours()}:${postDate.getMinutes()}`;
-
+        comment.postedOn = Date.now();
         landmark.comments.push(comment);
 
         return this.collection.update({

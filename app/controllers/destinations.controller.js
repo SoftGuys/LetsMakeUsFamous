@@ -99,6 +99,7 @@ const destinationsController = (data, utils) => {
 
                     const context = {
                         landmark,
+                        timeFromNow: utils.getPassedTime,
                         isAuthenticated: req.isAuthenticated(),
                         user: req.user,
                     };
