@@ -48,7 +48,6 @@ const authController = (data) => {
                     return data.users.add(userToAdd);
                 })
                 .then((message) => {
-                    console.log(message);
                     const resMessage =
                         `${message.ops[0].username} registered successfully`;
                     req.toastr

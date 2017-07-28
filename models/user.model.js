@@ -17,6 +17,8 @@ class User {
         }
 
         delete user.password_confirm;
+        // eslint-disable-next-line
+        user.password = CryptoJS.SHA1(user.password).toString();
         return Promise.resolve(user);
     }
 
