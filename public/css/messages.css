@@ -3,6 +3,7 @@
     border: 3px solid green;
     height: 50%;
     overflow-y: auto;
+    border-radius: 5px;
 }
 
 .box-title {

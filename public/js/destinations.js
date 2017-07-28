@@ -7,10 +7,13 @@ $(() => {
     socket.on('add-comment', ({ senderName, landmarkTitle }) => {
         $('.notification-alert').removeClass('hidden');
         $('#alerts').append(
-            $('<li>')
-            .addClass('btn')
-            .addClass('alert')
-            .html(`${senderName} commented on ${landmarkTitle}!`)
+            $('<li>').append(
+                $('<a>')
+                .attr('href', '#')
+                .addClass('alert')
+                .addClass('glyphicon')
+                .addClass('glyphicon-hand-left')
+                .html(`${senderName} commented on ${landmarkTitle}!`))
         );
     });
 
@@ -77,4 +80,18 @@ $(() => {
 
         $destinationComment.prependTo($(rootElement));
     };
+
+    $('#landmarks-search').on('click', () => {
+        requester.getJSON('/api/landmarks')
+            .then((landmarks) => {
+                return landmarks.map((x) => x.title);
+            })
+            .then((titles) => {
+                $('#landmarks-search').autocomplete({
+                    source: titles,
+                });
+            });
+    });
+
+    $('.landmark-description').popover();
 });

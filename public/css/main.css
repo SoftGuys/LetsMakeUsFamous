@@ -202,21 +202,6 @@ button {
     filter: grayscale(90%);
 }
 
-.form-control::selection {
-    background: #ffb7b7;
-    /* WebKit/Blink Browsers */
-}
-
-.form-control::-moz-selection {
-    background: #ffb7b7;
-    /* Gecko Browsers */
-}
-
-.edittable:focus {
-    background: #fc9fff;
-    /* sexy hot pink */
-}
-
 small {
     display: block;
     line-height: 1.428571429;
@@ -266,4 +251,9 @@ small {
 #user-rankig-profile {
     width: 40px;
     height: 30px;
+}
+
+.alert,
+#no-alert {
+    word-spacing: -10px;
 }

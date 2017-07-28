@@ -90,10 +90,13 @@ $(() => {
     socket.on('message-notification', (senderName) => {
         $('.notification-alert').removeClass('hidden');
         $('#alerts').append(
-            $('<li>')
-            .addClass('btn')
-            .addClass('alert')
-            .html(`${senderName} texted you!`)
+            $('<li>').append(
+                $('<a>')
+                .attr('href', '#')
+                .addClass('alert')
+                .addClass('glyphicon')
+                .addClass('glyphicon-pencil')
+                .html(`${senderName} texted you!`))
         );
     });
 
