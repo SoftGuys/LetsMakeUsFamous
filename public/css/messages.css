@@ -6,17 +6,10 @@
 
 .recever,
 .sender {
-    width: 100%;
+    width: 70%;
+    margin-bottom: 1%;
+    border-radius: 10px;
 }
-
-
-/* .sender {
-    background-color: lightblue;
-}
-
-.recever {
-    background-color: lightcoral;
-} */
 
 .img-fixed {
     max-width: 100%;
