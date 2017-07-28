@@ -121,6 +121,7 @@ const destinationsController = (data, utils) => {
                         .redirect('/users/' + req.user.username);
                 })
                 .catch((message) => {
+                    req.toastr.error(message);
                     return res
                         .status(404)
                         .redirect('/destinations/' + req.params.id);
