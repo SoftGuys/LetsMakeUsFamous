@@ -43,5 +43,3 @@ const requester = (() => {
         deleteJSON,
     };
 })();
-
-console.log(requester.postJSON);

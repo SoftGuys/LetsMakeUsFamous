@@ -13,7 +13,11 @@ block content
           if (context.user)
             button.btn.btn-primary.pull-left#btn-show--mark-visited-modal
                 | Mark Visited 
-                spang.glyphicon.glyphicon-chevron-right
+                span.glyphicon.glyphicon-chevron-right
+
+          button.btn.btn-danger.pull-left.landmark-description(data-content=context.landmark.description data-placement='right' data-trigger='hover')
+            span.glyphicon.glyphicon-zoom-in
+            |  Read More
           button.btn.btn-success.pull-right.btn-comment-form
             span.glyphicon.glyphicon-comment
             |  Comment
