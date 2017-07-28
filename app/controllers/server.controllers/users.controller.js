@@ -70,58 +70,52 @@ const usersController = (data, utils) => {
             const page = Number(req.query.page);
             const username = req.query.username;
 
-            if (username && username.trim().length > 0) {
-                return data.users.filterByUsername(username)
-                    .then((users) => {
-                        const pagination = utils
-                            .getPagination(page, users.length);
-                        const resultUsers = users
-                            .splice(
-                                (pagination.currentPage - 1) *
-                                pagination.pageSize,
-                                pagination.pageSize);
-                        return [pagination, resultUsers];
-                    })
-                    .then(([pagination, users]) => {
-                        return res.render('users/all', {
-                            context: {
-                                users,
-                                isAuthenticated: req.isAuthenticated(),
-                                user: req.user,
-                                pageLink: 'users',
-                                pagination,
-                                isSearchQuery: true,
-                                searchKey: 'username',
-                                searchValue: username,
-                            },
-                        });
-                    });
-            }
+            const isSearchQuery = username && username.trim() !== '';
+            const getUsersCountPromise = isSearchQuery ?
+                data.users.getCountByUsername(username) :
+                data.users.count();
 
-            return data.users.count()
+            return getUsersCountPromise
                 .then((usersCount) => {
                     const pagination = utils
                         .getPagination(page, usersCount);
 
-                    return Promise.all([
-                        data.users
-                        .getRange(pagination.currentPage, pagination.pageSize),
-                        pagination,
-                    ]);
+                    return pagination;
                 })
-                .then(([users, pagination]) => {
-                    return res
-                        .status(200)
-                        .render('users/all', {
-                            context: {
-                                users,
-                                isAuthenticated: req.isAuthenticated(),
-                                user: req.user,
-                                pagination,
-                                currentPage: Number(page),
-                                pageLink: 'users',
-                            },
-                        });
+                .then((pagination) => {
+                    let getUsersPromise;
+                    if (!isSearchQuery) {
+                        getUsersPromise =
+                            data.users.getRange(
+                                pagination.currentPage,
+                                pagination.pageSize);
+                    } else {
+                        getUsersPromise =
+                            data.users.getByUsername(username)
+                            .then((users) => {
+                                return users.splice(
+                                    ((pagination.current - 1) *
+                                        pagination.pageSize),
+                                    pagination.pageSize,
+                                );
+                            });
+                    }
+
+                    return Promise.all([getUsersPromise, pagination]);
+                })
+                .then(([resultUsers, pagination]) => {
+                    const context = {
+                        users: resultUsers,
+                        isAuthenticated: req.isAuthenticated(),
+                        user: req.user,
+                        pageLink: 'users',
+                        pagination,
+                        isSearchQuery: isSearchQuery,
+                        searchKey: 'username',
+                        searchValue: username,
+                    };
+
+                    return res.render('users/all', { context });
                 });
         },
         getMessagesView(req, res) {

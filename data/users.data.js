@@ -1,7 +1,7 @@
 const Data = require('./abstractions');
 const CryptoJS = require('crypto-js');
 const COLLECTION_NAME = 'users';
-const RANK_DIVIDER = 10;
+const RANK_DIVISOR = 10;
 
 class UsersData extends Data {
     constructor(database) {
@@ -16,7 +16,17 @@ class UsersData extends Data {
         return this.collection.findOne({ username });
     }
 
-    filterByUsername(username) {
+    getCountByUsername(username) {
+        const filterExpression = new RegExp(`.*${username}.*`, 'ig');
+        return this.collection.find({
+                username: {
+                    $regex: filterExpression,
+                },
+            })
+            .count();
+    }
+
+    getByUsername(username) {
         if (typeof username !== 'string') {
             return Promise.reject('Invalid username');
         }
@@ -171,7 +181,7 @@ class UsersData extends Data {
         if (!landmark.isVisited) {
             user.visitedPlaces = Number(user.visitedPlaces) + 1;
             user.rank = parseInt((Number(user.landmarks.length) -
-                    user.visitedPlaces) / 10,
+                    user.visitedPlaces) / RANK_DIVISOR,
                 10);
             if (user.rank < 1) {
                 user.rank = 1;
