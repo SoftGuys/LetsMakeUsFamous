@@ -16,12 +16,11 @@ html(lang='en')
         link(href='/static/css/main.css' rel='stylesheet')
         link(href='/static/css/modal.css' rel='stylesheet')
         link(href='/static/css/messages.css' rel='stylesheet')
-        link(href='/static/css/admin.css' rel='stylesheet')
 
         script(src='/libs/jquery/dist/jquery.min.js')
+        script(src='/libs/bootstrap/dist/js/bootstrap.min.js')
         script(src='/libs/jquery-ui-dist/jquery-ui.min.js')
         script(src="/libs/toastr/build/toastr.min.js")
-        script(src='/libs/bootstrap/dist/js/bootstrap.min.js')
         script(src='/libs/moment/min/moment.min.js')
         script(src="/socket.io/socket.io.js")
 
@@ -36,7 +35,8 @@ html(lang='en')
 
     body.background
         +nav
+
         != toasts()
-        
+        //- div#loader
+
         block content
-        // +footer

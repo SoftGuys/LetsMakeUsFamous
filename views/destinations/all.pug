@@ -4,7 +4,7 @@ include ../utils/pagination
 block content
     .main.container#destinations-container
         form#search-destination-form.form-inline(action='/destinations' method='GET')
-            input.col-md-5.form-control(name='title' type='text' placeholder='Destination title' required value=context.searchValue || '')
+            input#landmarks-search.col-md-5.form-control(name='title' type='text' placeholder='Destination title' required value=context.searchValue || '')
             button.btn.btn-success(type='submit')
                 span.glyphicon.glyphicon-search
         h1.page-header
@@ -25,3 +25,4 @@ block content
                     p.landmark-description
                         | #{landmark.description}
     +pagination
+    script(src='/static/js/loader.js')

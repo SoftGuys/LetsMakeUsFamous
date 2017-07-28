@@ -23,7 +23,8 @@ $(() => {
                     .append(
                         $('<img>')
                         .attr('src', msgInfo.pictureUrl)
-                        .addClass('chat-pic'))
+                        .addClass('chat-pic')
+                        .addClass('img-thumbnail'))
                     .append(
                         $('<label>')
                         .addClass('chat-username')
@@ -34,7 +35,7 @@ $(() => {
                         .text(moment(msgInfo.time).fromNow())))
                 .append(
                     $('<div>')
-                    .addClass('col-sm-8')
+                    .addClass('col-sm-10')
                     .append(
                         $('<span>')
                         .addClass('chat-message')
@@ -50,7 +51,10 @@ $(() => {
                 .find('.chat-pic, .chat-username')
                 .addClass('pull-right')
                 .siblings('.chat-time')
-                .addClass('pull-left');
+                .addClass('pull-left')
+                .parents('.list-group-item')
+                .find('.chat-message')
+                .addClass('pull-right');
         } else {
             $(`.${msgInfo.senderId}`)
                 .addClass('sender')
@@ -59,7 +63,10 @@ $(() => {
                 .find('.chat-pic, .chat-username')
                 .addClass('pull-left')
                 .siblings('.chat-time')
-                .addClass('pull-right');
+                .addClass('pull-right')
+                .parents('.list-group-item')
+                .find('.chat-message')
+                .addClass('pull-left');
         }
     };
 
@@ -68,19 +75,28 @@ $(() => {
 
         $('#messages').removeClass('hidden').empty();
         messages.forEach(appendMessage);
+
+        $('#messages-box')
+            .animate({ scrollTop: $('#messages-box').prop('scrollHeight') }, 0);
     });
 
     socket.on('send-message', (message) => {
         appendMessage(message);
+
+        $('#messages-box')
+            .animate({ scrollTop: $('#messages-box').prop('scrollHeight') }, 0);
     });
 
     socket.on('message-notification', (senderName) => {
         $('.notification-alert').removeClass('hidden');
         $('#alerts').append(
-            $('<li>')
-            .addClass('btn')
-            .addClass('alert')
-            .html(`${senderName} texted you!`)
+            $('<li>').append(
+                $('<a>')
+                .attr('href', '#')
+                .addClass('alert')
+                .addClass('glyphicon')
+                .addClass('glyphicon-pencil')
+                .html(`${senderName} texted you!`))
         );
     });
 

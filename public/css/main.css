@@ -18,6 +18,7 @@ body {
 #jumbo h1 {
     color: white;
 }
+
 #jumbo .motivation {
     color: white;
 }
@@ -201,32 +202,18 @@ button {
     filter: grayscale(90%);
 }
 
-.form-control::selection {
-    background: #ffb7b7;
-    /* WebKit/Blink Browsers */
-}
-
-.form-control::-moz-selection {
-    background: #ffb7b7;
-    /* Gecko Browsers */
-}
-
-.edittable:focus {
-    background: #fc9fff;
-    /* sexy hot pink */
-}
-
 small {
     display: block;
     line-height: 1.428571429;
     color: #999;
 }
+
+
 /* Admin Button */
 
-#Admin a{
+#Admin a {
     color: #ead0af;
 }
-
 
 #badge {
     position: absolute;
@@ -251,6 +238,7 @@ small {
 .glyphicon-exclamation-sign {
     position: absolute;
 }
+
 .Save {
     display: none;
     background-color: #73ff00;
@@ -264,7 +252,17 @@ small {
     width: 40px;
     height: 30px;
 }
-body{
-    font-family: sans-serif; !important;
-    font-size: 16px; !important;
+
+.alert,
+#no-alert {
+    word-spacing: -10px;
+}
+
+#loader {
+    z-index: 9999;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('../videos/Ripple.gif') no-repeat center center;
+    background-color: white;
 }

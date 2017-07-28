@@ -1,12 +1,17 @@
 const Data = require('./abstractions');
 const COLLECTION_NAME = 'landmarks';
+const Landmark = require('../models/landmark.model');
 
 class LandmarksData extends Data {
     constructor(database) {
-        super(database, COLLECTION_NAME);
+        super(database, COLLECTION_NAME, Landmark);
     }
 
     getByTitle(title) {
+        if (typeof title !== 'string' || title.trim() === '') {
+            return Promise.reject('title must be a non-empty string!');
+        }
+
         return this.collection
             .find()
             .toArray()
@@ -17,25 +22,34 @@ class LandmarksData extends Data {
             });
     }
 
+    getByTitleCount(title) {
+        return this.getByTitle(title)
+            .then((landmarks) => {
+                return landmarks.length;
+            });
+    }
+
     addComment(landmark, comment) {
-        if (typeof comment === 'undefined' ||
-            typeof comment.text !== 'string' ||
-            comment.text.length > 200) {
-            return Promise.reject('Invalid comment!');
-        }
+        const validations = [
+            this.validator.validateModel(landmark),
+            this.validator.validateComment(comment),
+        ];
 
-        if (!Array.isArray(landmark.comments)) {
-            landmark.comments = [];
-        }
+        return Promise.all(validations)
+            .then(([validatedLandmark, validatedComment]) => {
+                if (!Array.isArray(validatedLandmark.comments)) {
+                    validatedLandmark.comments = [];
+                }
 
-        comment.postedOn = Date.now();
-        landmark.comments.push(comment);
+                validatedComment.postedOn = Date.now();
+                validatedLandmark.comments.push(comment);
 
-        return this.collection.update({
-                _id: landmark._id,
-            }, landmark)
-            .then(() => {
-                return comment;
+                return this.collection.update({
+                        _id: validatedLandmark._id,
+                    }, validatedLandmark)
+                    .then(() => {
+                        return validatedComment;
+                    });
             });
     }
 }

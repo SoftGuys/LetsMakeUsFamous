@@ -42,7 +42,7 @@ mixin nav
                 else
                     li
                         a(href='/users/profile')
-                    | #{context.user.username}
+                            | #{context.user.username}
 
                 li.dropdown#alert-dropdown
                     a.dropdown-toggle#notification-dropdown(data-toggle='dropdown' href='#')
@@ -56,7 +56,7 @@ mixin nav
                             a(href='#')#no-alert.glyphicon.glyphicon-ok  No alerts!
                         each alert in context.user.notifications
                             li
-                                a(href='#').alert #{alert}
+                                a(href='#').alert.glyphicon.glyphicon-info-sign  #{alert}
 
                 li.dropdown
                     a.dropdown-toggle(data-toggle='dropdown', href='#')

@@ -1,4 +1,4 @@
-/* globals $ io toastr */
+/* globals $ io toastr requester */
 // eslint-disable-next-line
 var socket = io.connect('http://localhost:3001');
 
@@ -9,13 +9,16 @@ $(() => {
 
         if ($('#alerts').children().length > 1) {
             $('#no-alert').addClass('hidden');
+        } else {
+            $('#no-alert').removeClass('hidden');
         }
     });
 
     $('#alerts').on('click', '.alert', (event) => {
         event.preventDefault();
+        event.stopPropagation();
 
-        $(event.target).remove();
+        $(event.target).parent().remove();
         if ($('#alerts').children().length === 1) {
             $('#no-alert').removeClass('hidden');
         }
@@ -44,10 +47,25 @@ $(() => {
 
         $('.notification-alert').removeClass('hidden');
         $('#alerts').append(
-            $('<li>')
-            .addClass('btn')
-            .addClass('alert')
-            .html(`${sender.username} added you as a friend!`)
+            $('<li>').append(
+                $('<a>')
+                .attr('href', '#')
+                .addClass('alert')
+                .addClass('glyphicon')
+                .addClass('glyphicon-user')
+                .html(`${sender.username} added you as a friend!`))
         );
+    });
+
+    $('#users-search').on('click', () => {
+        requester.getJSON('/api/users')
+            .then((users) => {
+                return users.map((x) => x.username);
+            })
+            .then((usernames) => {
+                $('#users-search').autocomplete({
+                    source: usernames,
+                });
+            });
     });
 });

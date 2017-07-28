@@ -1,10 +1,7 @@
 const ObjectId = require('mongodb').ObjectID;
 
-const DEFAULT_PAGE = 1;
-const DEFAULT_PAGE_SIZE = 12;
-
 class Data {
-    constructor(database, collectionName) {
+    constructor(database, collectionName, validator) {
         if (typeof database === 'undefined') {
             throw new Error('Database is undefined!');
         }
@@ -13,8 +10,14 @@ class Data {
             throw new Error('Incorrect collection name!');
         }
 
+        if (typeof validator === 'undefined' ||
+            typeof validator.validateModel === 'undefined') {
+            throw new Error('validator is undefined!');
+        }
+
         this.database = database;
         this.collectionName = collectionName;
+        this.validator = validator;
         this.collection = this.database.collection(this.collectionName);
     }
 
@@ -40,15 +43,10 @@ class Data {
     }
 
     add(model) {
-        if (typeof model === 'undefined') {
-            return Promise.reject('Model is undefined!');
-        }
-
-        if (!this.isModelValid(model)) {
-            return Promise.reject('Invalid model for ' + this.collectionName);
-        }
-
-        return this.collection.insert(model);
+        return this.validator.validateModel(model)
+            .then((resultModel) => {
+                return this.collection.insert(resultModel);
+            });
     }
 
     update(model) {
@@ -73,10 +71,6 @@ class Data {
             .skip((start - 1) * size)
             .limit(size)
             .toArray();
-    }
-
-    isModelValid() {
-        return true;
     }
 }
 
