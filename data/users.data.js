@@ -114,13 +114,13 @@ class UsersData extends Data {
                 .reject('The users must be friends in order to chat!');
         }
 
-        const date = new Date();
+        const date = Date.now();
         const messageModel = {
             newMessage: false,
             senderId: user._id,
             pictureUrl: user.pictureUrl,
             username: user.username,
-            time: date.getHours() + ':' + date.getMinutes(),
+            time: date,
             message,
         };
 

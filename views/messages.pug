@@ -3,26 +3,27 @@ extends master
 block content
     .container
         .row
-            h1.col-lg-offset-2 Messages
+            h1.col-lg-offset-2 
+                strong Messages
         .row
-            .col-sm-6.col-sm-offset-1
-                h3 Messages
-            .col-sm-3.col-sm-offset-1
-                h3 Friends
+            .col-sm-6.col-sm-offset-1.box-title
+                h2 Messages
+            .col-sm-3.col-sm-offset-1.box-title
+                h2 Friends
         .row
             .col-sm-6.col-sm-offset-1#messages-box
-                ul#messages
+                ul#messages.list-group
                 
             .col-sm-3.col-sm-offset-1#friends-box
-                ul#friends
+                ul#friends.list-group
                     each friend in context.user.friends
                         if(friend.username === context.friend)
-                            li(user-id=friend._id).row.btn.btn-success.panel.pull-left.friend-panel.msg-friend
-                                img.img-responsive.col-sm-3(src=friend.pictureUrl)
+                            li(user-id=friend._id).row.btn.btn-success.friend-panel.list-group-item.list-group-item-action.msg-friend
+                                img.img-responsive.col-sm-3.friend-pic(src=friend.pictureUrl)
                                 span.col-sm-9.friend-name #{friend.username}
                         else
-                            li(user-id=friend._id).row.btn.btn-success.panel.thumbnail.friend-panel
-                                img.img-fixed.img-responsive.col-sm-3(src=friend.pictureUrl)
+                            li(user-id=friend._id).row.btn.btn-success.friend-panel.list-group-item.list-group-item-action
+                                img.img-responsive.col-sm-3.friend-pic(src=friend.pictureUrl)
                                 span.col-sm-9.friend-name #{friend.username}
         .row
             .col-sm-6.col-sm-offset-1.hidden#input-message

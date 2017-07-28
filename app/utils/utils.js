@@ -1,4 +1,5 @@
 const fs = require('fs');
+const moment = require('moment');
 
 const PAGE_SIZE = 12;
 const VISIBLE_PAGES = 5;
@@ -70,6 +71,9 @@ const utils = {
                 return ul.title === vl.title && ul.isVisited;
             });
         });
+    },
+    getPassedTime(time) {
+        return moment(time).fromNow();
     },
 };
 

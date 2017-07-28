@@ -223,6 +223,13 @@ small {
     color: #999;
 }
 
+
+/* Admin Button */
+
+#Admin a {
+    color: #ead0af;
+}
+
 #badge {
     position: absolute;
     width: 60%;
@@ -245,15 +252,6 @@ small {
 
 .glyphicon-exclamation-sign {
     position: absolute;
-}
-
-
-/* Admin Button */
-
-#Admin {
-    font-size: 2em;
-    padding-left: 500px;
-    color: #ead0af;
 }
 
 .Save {

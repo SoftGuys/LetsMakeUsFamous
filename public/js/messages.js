@@ -1,4 +1,4 @@
-/* globals $ io */
+/* globals $ io moment */
 // eslint-disable-next-line
 var socket = io.connect('http://localhost:3001');
 
@@ -16,32 +16,57 @@ $(() => {
             .append(
                 $('<li>')
                 .addClass(msgInfo.senderId)
+                .addClass('row')
+                .addClass('list-group-item')
                 .append(
                     $('<div>')
-                    .addClass('pull-left')
                     .append(
                         $('<img>')
                         .attr('src', msgInfo.pictureUrl)
-                        .addClass('chat-pic'))
+                        .addClass('chat-pic')
+                        .addClass('img-thumbnail'))
                     .append(
                         $('<label>')
-                        .html(msgInfo.username))
+                        .addClass('chat-username')
+                        .text(msgInfo.username))
                     .append(
                         $('<span>')
-                        .html(msgInfo.time)
-                        .addClass('pull-right')))
+                        .addClass('chat-time')
+                        .text(moment(msgInfo.time).fromNow())))
                 .append(
                     $('<div>')
+                    .addClass('col-sm-10')
                     .append(
                         $('<span>')
-                        .html(msgInfo.message)))
+                        .addClass('chat-message')
+                        .text(msgInfo.message)))
             );
 
         const friendId = $('#messages-box').attr('current-friend');
         if (typeof friendId === 'undefined' || msgInfo.senderId === friendId) {
-            $(`.${msgInfo.senderId}`).addClass('recever');
+            $(`.${msgInfo.senderId}`)
+                .addClass('recever')
+                .addClass('list-group-item-danger')
+                .addClass('pull-right')
+                .find('.chat-pic, .chat-username')
+                .addClass('pull-right')
+                .siblings('.chat-time')
+                .addClass('pull-left')
+                .parents('.list-group-item')
+                .find('.chat-message')
+                .addClass('pull-right');
         } else {
-            $(`.${msgInfo.senderId}`).addClass('sender');
+            $(`.${msgInfo.senderId}`)
+                .addClass('sender')
+                .addClass('list-group-item-info')
+                .addClass('pull-left')
+                .find('.chat-pic, .chat-username')
+                .addClass('pull-left')
+                .siblings('.chat-time')
+                .addClass('pull-right')
+                .parents('.list-group-item')
+                .find('.chat-message')
+                .addClass('pull-left');
         }
     };
 
@@ -50,10 +75,16 @@ $(() => {
 
         $('#messages').removeClass('hidden').empty();
         messages.forEach(appendMessage);
+
+        $('#messages-box')
+            .animate({ scrollTop: $('#messages-box').prop('scrollHeight') }, 0);
     });
 
     socket.on('send-message', (message) => {
         appendMessage(message);
+
+        $('#messages-box')
+            .animate({ scrollTop: $('#messages-box').prop('scrollHeight') }, 0);
     });
 
     socket.on('message-notification', (senderName) => {
