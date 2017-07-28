@@ -17,7 +17,7 @@ $('.btn').on('click', (event) => {
     if (targetClass === 'glyphicon glyphicon-pencil blue' ||
         targetClass === 'btn btn-primary btn-ms blue') {
         // eslint-disable-next-line
-        $(span[0]).replaceWith($(`<textarea rows="4" cols="50" value="${$(span[0]).text()}">`)
+        $(span[0]).replaceWith($(`<textarea rows="4" cols="50" width="200px" value="${$(span[0]).text()}">`)
             .css('background-color', '73ff00')
             .attr('id', 'edit-comment')
             .val(text));
