@@ -60,6 +60,17 @@ const utils = {
 
         fs.unlinkSync(filePath);
     },
+    markVisitedLandmarks(userLandmarks, viewLandmarks) {
+        if (!Array.isArray(userLandmarks) || !Array.isArray(viewLandmarks)) {
+            throw new Error('Userlandmarks and viewLandmakrs must be arrays');
+        }
+
+        viewLandmarks.forEach((vl) => {
+            vl.isVisited = userLandmarks.some((ul) => {
+                return ul.title === vl.title && ul.isVisited;
+            });
+        });
+    },
 };
 
 module.exports = utils;

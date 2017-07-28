@@ -7,6 +7,10 @@ class LandmarksData extends Data {
     }
 
     getByTitle(title) {
+        if (typeof title !== 'string' || title.trim() === '') {
+            return Promise.reject('title must be a non-empty string!');
+        }
+
         return this.collection
             .find()
             .toArray()
@@ -14,6 +18,13 @@ class LandmarksData extends Data {
                 return landmarks.filter((l) => {
                     return l.title.toLowerCase().includes(title.toLowerCase());
                 });
+            });
+    }
+
+    getByTitleCount(title) {
+        return this.getByTitle(title)
+            .then((landmarks) => {
+                return landmarks.length;
             });
     }
 
