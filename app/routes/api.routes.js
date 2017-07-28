@@ -1,18 +1,22 @@
 const { Router } = require('express');
 
-const attachRoutes = (app, { apiController }) => {
+const attachRoutes = (app, {
+    usersApiController,
+    commentsApiController,
+    destinationsApiController,
+}) => {
     const router = new Router();
 
-    router.get('/areas', apiController.getAreas)
-        .get('/landmarks', apiController.getLandmarks)
-        .get('/users', apiController.getUsers)
+    router.get('/areas', destinationsApiController.getAreas)
+        .get('/landmarks', destinationsApiController.getLandmarks)
+        .get('/users', usersApiController.getUsers)
         .post('/destinations/comments/:id',
-            apiController.addDestinationComment)
+            commentsApiController.addDestinationComment)
         .delete('/destinations/comments/:id',
-            apiController.deleteDestinationComment)
+            commentsApiController.deleteDestinationComment)
         .put('/destinations/comments/:id',
-            apiController.editDestinationComment)
-        .put('/profile', apiController.editProfile);
+            commentsApiController.editDestinationComment)
+        .put('/profile', usersApiController.editProfile);
 
     app.use('/api', router);
 };
