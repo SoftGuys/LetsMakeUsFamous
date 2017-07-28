@@ -7,7 +7,7 @@ const attachRoutes = (app, {
 }) => {
     const router = new Router();
 
-    router.get('/areas', destinationsApiController.getAreas)
+    router
         .get('/landmarks', destinationsApiController.getLandmarks)
         .get('/users', usersApiController.getUsers)
         .post('/destinations/comments/:id',

@@ -53,6 +53,10 @@ const commentsApiController = (data, utils) => {
                 .then((newComment) => {
                     return res.status(201)
                         .send(newComment);
+                })
+                .catch((errMessage) => {
+                    return res.status(400)
+                        .send(errMessage);
                 });
         },
         deleteDestinationComment(req, res) {

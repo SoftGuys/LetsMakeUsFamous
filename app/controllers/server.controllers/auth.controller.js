@@ -48,7 +48,11 @@ const authController = (data) => {
                     return data.users.add(userToAdd);
                 })
                 .then((message) => {
-                    req.toastr.success(message);
+                    console.log(message);
+                    const resMessage =
+                        `${message.ops[0].username} registered successfully`;
+                    req.toastr
+                        .success(resMessage);
                     return res.status(201).redirect('/users/login');
                 })
                 .catch((message) => {
