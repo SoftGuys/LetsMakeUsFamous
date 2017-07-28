@@ -34,7 +34,7 @@ mixin nav
 
                 li
                     a(href='/users/profile')
-                        img#imgProfile.img-responsive.thumbnail.navbar-brand.small-pic(src=context.user.pictureUrl)
+                        img#imgProfile.img-responsive.thumbnail.navbar-brand.small-pic(src=context.user.pictureUrl data-name=context.user.username)
                 if context.isAuthenticated && context.user.isAdmin
                     li#Admin
                         a(href='/users/profile')
