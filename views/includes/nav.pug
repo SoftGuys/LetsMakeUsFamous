@@ -20,10 +20,6 @@ mixin nav
             a(href='/users/ranking')
                 span.glyphicon.glyphicon-flag
                 |  Users Ranking
-        if context.isAuthenticated && context.user.isAdmin
-            li
-                a.nav#Admin(href='/admin') 
-                | ADMIN: #{context.user.username}
       ul.nav.navbar-nav.navbar-right
             if !context.isAuthenticated
                 li
@@ -35,12 +31,18 @@ mixin nav
                         span.glyphicon.glyphicon-log-in
                             |  Login
             else
+
                 li
                     a(href='/users/profile')
                         img#imgProfile.img-responsive.thumbnail.navbar-brand.small-pic(src=context.user.pictureUrl)
-                li
-                    a(href='/users/profile')
-                        | #{context.user.username}
+                if context.isAuthenticated && context.user.isAdmin
+                    li#Admin
+                        a(href='/users/profile')
+                            | Admin: #{context.user.username}
+                else
+                    li
+                        a(href='/users/profile')
+                    | #{context.user.username}
 
                 li.dropdown#alert-dropdown
                     a.dropdown-toggle#notification-dropdown(data-toggle='dropdown' href='#')
@@ -55,7 +57,7 @@ mixin nav
                         each alert in context.user.notifications
                             li
                                 a(href='#').alert #{alert}
-               
+
                 li.dropdown
                     a.dropdown-toggle(data-toggle='dropdown', href='#')
                         | Profile

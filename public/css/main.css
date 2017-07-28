@@ -18,7 +18,6 @@ body {
 #jumbo h1 {
     color: white;
 }
-
 #jumbo .motivation {
     color: white;
 }
@@ -222,6 +221,12 @@ small {
     line-height: 1.428571429;
     color: #999;
 }
+/* Admin Button */
+
+#Admin a{
+    color: #ead0af;
+}
+
 
 #badge {
     position: absolute;
@@ -246,16 +251,6 @@ small {
 .glyphicon-exclamation-sign {
     position: absolute;
 }
-
-
-/* Admin Button */
-
-#Admin {
-    font-size: 2em;
-    padding-left: 500px;
-    color: #ead0af;
-}
-
 .Save {
     display: none;
     background-color: #73ff00;
@@ -268,4 +263,8 @@ small {
 #user-rankig-profile {
     width: 40px;
     height: 30px;
+}
+body{
+    font-family: sans-serif; !important;
+    font-size: 16px; !important;
 }
