@@ -1,4 +1,4 @@
-/* globals $ toastr io requester */
+/* globals $ toastr io requester moment */
 // eslint-disable-next-line
 var socket = io.connect('http://localhost:3001');
 const ADD_COMMENT_URL = 'http://localhost:3001/api/destinations/';
@@ -28,7 +28,7 @@ $(() => {
 
             const comment = {
                 text: commentText,
-                postedOn: new Date(),
+                postedOn: Date.now(),
             };
 
             const url = ADD_COMMENT_URL + 'comments/' + landmarkId;
@@ -66,7 +66,8 @@ $(() => {
             .text(' ' + comment.user.username);
 
         $timeGlyphicon.appendTo($destinationCommentDetails);
-        $destinationCommentDetails.append(' ' + comment.postedOn + ' ');
+        $destinationCommentDetails
+            .append(' ' + moment(comment.postedOn).fromNow() + ' ');
         $userImage.appendTo($destinationCommentDetails);
         $userHref.appendTo($destinationCommentDetails);
 

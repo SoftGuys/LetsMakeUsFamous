@@ -41,7 +41,7 @@ block content
                               | #{comment.text}
                           p.destination-comment-details.text-primary
                               span.glyphicon.glyphicon-time
-                              |  #{comment.postedOn}
+                              |  #{context.timeFromNow(comment.postedOn)}
                               img.img-comment-user(src=comment.user.pictureUrl)
                               a(href='/users/'+comment.user.username)
                                   | #{comment.user.username}
@@ -63,7 +63,7 @@ block content
                             | #{comment.text}
                         p.destination-comment-details.text-primary
                             span.glyphicon.glyphicon-time
-                            |  #{comment.postedOn}
+                            |  #{context.timeFromNow(comment.postedOn)}
                             img.img-comment-user(src=comment.user.pictureUrl)
                             a(href='/users/#{comment.author._id}')
                                 | #{comment.user.username}
