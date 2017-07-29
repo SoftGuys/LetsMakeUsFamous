@@ -1,10 +1,9 @@
 const Data = require('./abstractions');
-const COLLECTION_NAME = 'landmarks';
 const Landmark = require('../models/landmark.model');
 
 class LandmarksData extends Data {
     constructor(database) {
-        super(database, COLLECTION_NAME, Landmark);
+        super(database, Landmark, Landmark);
     }
 
     getByTitle(title) {

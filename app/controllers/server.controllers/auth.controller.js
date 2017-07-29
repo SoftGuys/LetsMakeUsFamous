@@ -37,14 +37,19 @@ const authController = (data) => {
                         };
                     });
 
-                    user.rank = parseInt(
+                    const rankIndex = parseInt(
                         (user.landmarks.length -
-                            user.visitedPlaces) / RANK_DIVIDER,
+                            user.visitedPlaces) / RANK_DIVIDER - 1,
                         10);
                     user.isAdmin = false;
-                    return user;
+                    return Promise.all([
+                        data.users.getRankName(rankIndex),
+                        user,
+                    ]);
                 })
-                .then((userToAdd) => {
+                .then(([userRank, userToAdd]) => {
+                    userToAdd.rank = userRank;
+                    console.log(userToAdd);
                     return data.users.add(userToAdd);
                 })
                 .then((message) => {
@@ -55,6 +60,7 @@ const authController = (data) => {
                     return res.status(201).redirect('/users/login');
                 })
                 .catch((message) => {
+                    console.log(message);
                     req.toastr.error(message);
                     res.status(406).redirect('/users/register');
                 });

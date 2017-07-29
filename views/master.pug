@@ -32,11 +32,12 @@ html(lang='en')
         script(src="/static/js/destinations.js")
         script(src='/static/js/users.js')
         script(src='/static/js/messages.js')
+        script(src='/static/js/loader.js')
 
     body.background
-        +nav
+        div#loader
 
+        +nav
         != toasts()
-        //- div#loader
 
         block content

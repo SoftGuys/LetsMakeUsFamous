@@ -30,7 +30,7 @@ const usersController = (data, utils) => {
             } else {
                 res
                     .status(200)
-                    .render('profile', {
+                    .render('users/profile', {
                         context: {
                             isAuthenticated: req.isAuthenticated(),
                             user: req.user,

@@ -1,0 +1,55 @@
+extends master
+
+block content
+    main.container.text-center#page-not-found-container
+        .row
+                h1#page-not-found
+                    | Oooops! 
+                    small.text-danger
+                        | This page doesn't exist!
+        br
+        .row.text-center
+            img.img-responsive.img-thumbnail(src='/static/images/page-not-found-sad-dog.jpg')
+        p
+            | The page you requested could not be found, but that is not a problem. Use your browsers 
+            b Back
+            |  button to navigate to the page you have prevously come from
+        p
+            b Or you could just press this neat little button:
+        a.btn.btn-large.btn-info(href='/home')
+            i.icon-home.icon-white
+            |  Take Me Home
+        br
+        br
+        .thumbnail
+            h2 Recent Content :
+            .col-sm-4
+                h3 You could try
+                p
+                    | Exploring Bulgaria's most amazing places
+                p
+                    img.img-responsive.img-thumbnail(src='/static/images/register.jpg')
+                    p
+                a.btn.btn-danger.btn-large(href='/destinations')
+                    i.glyphicon.glyphicon-share
+                    |  Take Me There...
+            .col-sm-4
+                h3 Or ...
+                p
+                    | Find new friends in our community
+                p
+                    img.img-responsive.img-thumbnail(src='/static/images/page-not-found-community.jpg')
+                    p
+                a.btn.btn-danger.btn-large(href='/users')
+                    i.glyphicon.glyphicon-share
+                    |  Take Me There...
+            .col-sm-4
+                h3 Or maybe ...
+                p
+                    | Compete for a place at the top
+                p
+                    img.img-responsive.img-thumbnail(src='/static/images/page-not-found-ranking.jpg')
+                    p
+                a.btn.btn-danger.btn-large(href='/users/ranking')
+                    i.glyphicon.glyphicon-share
+                    |  Take Me There...

@@ -260,9 +260,27 @@ small {
 
 #loader {
     z-index: 9999;
+    min-width: 100%;
+    min-height: 100%;
     position: absolute;
-    width: 100%;
-    height: 100%;
     background: url('../videos/Ripple.gif') no-repeat center center;
     background-color: white;
+}
+
+#page-not-found {
+    display: inline-block;
+    font-size: 300%;
+}
+
+#page-not-found-container img {
+    height: 30%;
+    margin: 0;
+}
+
+.button-glyph {
+    font-size: 1.2em;
+}
+
+.popover {
+    max-width: 100%;
 }
