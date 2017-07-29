@@ -175,7 +175,8 @@ describe(`Bulgaria's National Tourist Sites Selenium Tests`, function() {
             })
             .then((text) => {
                 expect(text).to.contain(
-                    `гр. Мелник - Градски исторически музей (История, етнография)`);
+                    `гр. Мелник - Градски исторически музей
+                     (История, етнография)`);
                 done();
             });
     });
@@ -345,7 +346,8 @@ describe(`Bulgaria's National Tourist Sites Selenium Tests`, function() {
             .then(() => {
                 driver.sleep(3000);
                 return driver.findElement(
-                    webdriver.By.css('body > div > div:nth-child(1) > h1 > strong')
+                    webdriver.By.css(
+                        'body > div > div:nth-child(1) > h1 > strong')
                 );
             })
             .then((el) => {

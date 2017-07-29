@@ -1,5 +1,5 @@
 const passport = require('passport');
-const DEFAULT_PICTURE_URL = 'http://www.gibbahouse.com/wp-content/uploads/2014/12/Funny-Animals-With-Makeup_.jpg';
+const DEFAULT_PICTURE_URL = '/static/images/default.png';
 const RANK_DIVIDER = 10;
 const DEFAULT_VISITED_PLACES = 0;
 const DEFAULT_BIRTH_DATE = '01/24/1988';
