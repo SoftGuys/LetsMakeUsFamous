@@ -1,11 +1,35 @@
 const Data = require('./abstractions');
 const User = require('../models/user.model');
-const COLLECTION_NAME = 'users';
 const RANK_DIVISOR = 10;
+
+const USER_RANK_NAMES = [
+    'freakpazo',
+    'God',
+    'Guru',
+    'Superuser',
+    'Master',
+    'Adventure Superhero',
+    'Adventure Beast',
+    'Seargant',
+    'Crunked',
+    'Bender',
+    'Superstar',
+    'Wild Racer',
+    'Boyscout',
+    'Journey man',
+    'Adventurer',
+    'Explorer',
+    'Local',
+    'Enthusiast',
+    'Rookie',
+    'Amateur',
+    'Newbie',
+];
+
 
 class UsersData extends Data {
     constructor(database) {
-        super(database, COLLECTION_NAME, User);
+        super(database, User, User);
     }
 
     findUserByUsername(username) {
@@ -70,6 +94,13 @@ class UsersData extends Data {
         return this.collection.update({
             _id: user._id,
         }, user);
+    }
+
+    getRankName(rankIndex) {
+        return this.validator.validateRank(rankIndex)
+            .then((validatedRankIndex) => {
+                return USER_RANK_NAMES[validatedRankIndex];
+            });
     }
 
     addFriendship(user, friend) {
@@ -148,12 +179,15 @@ class UsersData extends Data {
 
         if (!landmark.isVisited) {
             user.visitedPlaces = Number(user.visitedPlaces) + 1;
-            user.rank = parseInt((Number(user.landmarks.length) -
-                    user.visitedPlaces) / RANK_DIVISOR,
+            const rankIndex = parseInt((Number(user.landmarks.length) -
+                    user.visitedPlaces) / RANK_DIVISOR - 1,
                 10);
-            if (user.rank < 1) {
-                user.rank = 1;
+
+            if (rankIndex < 0) {
+                rankIndex = 0;
             }
+
+            user.rank = USER_RANK_NAMES[rankIndex];
         }
 
         landmark.isVisited = true;
