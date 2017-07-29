@@ -120,6 +120,11 @@ iframe {
     color: black;
 }
 
+.landmark:hover {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
 .landmark-description {
     max-height: 100px;
     overflow-y: hidden;
