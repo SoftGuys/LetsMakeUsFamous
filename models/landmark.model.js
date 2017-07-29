@@ -1,4 +1,4 @@
-const MIN_COMMENT_LENGTH = 20;
+const MIN_COMMENT_LENGTH = 5;
 const MAX_COMMENT_LENGTH = 200;
 
 class Landmark {
