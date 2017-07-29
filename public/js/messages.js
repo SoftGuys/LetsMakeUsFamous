@@ -74,15 +74,27 @@ $(() => {
         $('#input-message').removeClass('hidden');
 
         $('#messages').removeClass('hidden').empty();
-        messages.forEach(appendMessage);
+        if (!messages.length) {
+            $('#messages').append(
+                $('<li>')
+                .addClass('no-messages')
+                .addClass('list-group-item')
+                .addClass('list-group-item-default')
+                .addClass('text-center')
+                .text('You have no messages yet.'));
 
+            return;
+        }
+
+        messages.forEach(appendMessage);
         $('#messages-box')
             .animate({ scrollTop: $('#messages-box').prop('scrollHeight') }, 0);
     });
 
     socket.on('send-message', (message) => {
-        appendMessage(message);
+        $('.no-messages').addClass('hidden');
 
+        appendMessage(message);
         $('#messages-box')
             .animate({ scrollTop: $('#messages-box').prop('scrollHeight') }, 0);
     });

@@ -1,25 +1,34 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,300);
 footer {
-    background-color: #34728c;
+    background-color: #222222;
     font-family: 'Open Sans', sans-serif;
-}
-
-.copyright {
-    background: black;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
     /* Old browsers */
     background: -moz-linear-gradient(top, #1e5799 0%, #051c1e 0%, #207cca 100%, #7db9e8 100%);
     /* FF3.6-15 */
     background: -webkit-linear-gradient(top, #1e5799 0%, #051c1e 0%, #207cca 100%, #7db9e8 100%);
     /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #1e5799 0%, #051c1e 0%, #207cca 100%, #7db9e8 100%);
+    background: linear-gradient(to bottom, #222222 0%, #051c1e 0%, #222222 100%, #7db9e8 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8', GradientType=0);
     /* IE6-9 */
 }
+@media screen and (max-width: 1200px) {
+    footer { display: none; }
+}
+#sg{
+    text-decoration: none;
+}
+
 
 .copyright p {
     text-align: left;
-    color: #FFF;
+    color: #9d9d9d;
     padding: 10px 0;
     float: left;
     margin-bottom: 0px;
@@ -37,21 +46,31 @@ footer {
 
 .bottom_ul li:after {
     content: "/";
-    color: #FFF;
+    color: #9d9d9d;
+    font-size: 14px;
+    font-family: sans-serif;
     margin-right: 8px;
     margin-left: 8px;
+
 }
 
 .bottom_ul li a {
-    color: #FFF;
-    font-size: 12px;
+    color: #9d9d9d;
+    font-size: 14px;
+    font-family: sans-serif;
+    text-decoration: none;
+
+}
+.bottom_ul li a:hover{
+    color: white;
 }
 
 #aboutli {
     margin-left: 35%;
 }
-
-
+bottom_ul.footer-right li a {
+    color: #ead0af;
+}
 .destinationsPara {
     padding:20px;
     background-color: rgba(15, 15, 15, 0.0);

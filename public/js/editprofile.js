@@ -1,7 +1,5 @@
 /* globals $ toastr requester */
 
-// must validate user input :)))
-
 $(() => {
     const button = $('#buttonEditProfile');
     const save = $('#saveButton');
@@ -47,17 +45,21 @@ $(() => {
             }
 
             newUserInfo[$userData.attr('data-name')] = $userInfo.val().trim();
-            $userInfo.replaceWith(
-                $('<td>')
-                .text(`${$userInfo.val()}`)
-                .addClass('edittable'));
         });
-
-        save.hide();
-        button.show();
 
         requester.putJSON('/api/profile', newUserInfo)
             .then((message) => {
+                $('#user-info').children().each((_, element) => {
+                    const $userInfo = $(element).find('.eddited');
+                    $userInfo.replaceWith(
+                        $('<td>')
+                        .text(`${$userInfo.val()}`)
+                        .addClass('edittable'));
+                });
+
+                save.hide();
+                button.show();
+
                 toastr.success(message);
             })
             .catch((error) => {

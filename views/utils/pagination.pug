@@ -4,7 +4,7 @@ mixin pagination
             if (context.pagination.currentPage > 1)
                 if (context.isSearchQuery)
                     li
-                        a(href='/' + context.pageLink + '?page=' + (context.pagination.currentPage - 1) + '&' + context.searchKey + '=' +  context.searchValue) «
+                        a#n(href='/' + context.pageLink + '?page=' + (context.pagination.currentPage - 1) + '&' + context.searchKey + '=' +  context.searchValue) «
                 else 
                     li
                         a(href='/' + context.pageLink + '?page=' + (context.pagination.currentPage - 1)) «
