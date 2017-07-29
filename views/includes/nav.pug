@@ -1,73 +1,80 @@
 mixin nav
   nav.navbar.navbar-inverse.navbar-static-top
     .container-fluid
-      .navbar-header
-        img.navbar-brand(href='/' src='/static/images/logo.png')
-      ul.nav.navbar-nav
-        li#go
-          a(href='/home')
-            span.glyphicon.glyphicon-home
-            |  Home
-        li
-          a(href='/destinations')
-            span.glyphicon.glyphicon-leaf
-            |  Destinations
-        li
-          a(href='/users')
-            span.glyphicon.glyphicon-book
-            |  Users
-        li
-            a(href='/users/ranking')
-                span.glyphicon.glyphicon-flag
-                |  Users Ranking
-      ul.nav.navbar-nav.navbar-right
-            if !context.isAuthenticated
+        button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbarNavDropdown')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+        .navbar-header
+            img.navbar-brand(href='/' src='/static/images/logo.png')
+        #navbarNavDropdown.collapse.navbar-collapse
+            ul.nav.navbar-nav
+                li#go
+                    a(href='/home')
+                        span.glyphicon.glyphicon-home
+                        |  Home
                 li
-                    a(href='/users/register')
-                        span.glyphicon.glyphicon-user
-                            |  Register
+                    a(href='/destinations')
+                        span.glyphicon.glyphicon-leaf
+                        |  Destinations
                 li
-                     a(href='/users/login')
-                        span.glyphicon.glyphicon-log-in
-                            |  Login
-            else
+                    a(href='/users')
+                        span.glyphicon.glyphicon-book
+                        |  Users
+                li
+                    a(href='/users/ranking')
+                        span.glyphicon.glyphicon-flag
+                        |  Users Ranking
+            ul.nav.navbar-nav.navbar-right
+                    if !context.isAuthenticated
+                        li
+                            a(href='/users/register')
+                                span.glyphicon.glyphicon-user
+                                    |  Register
+                        li
+                            a(href='/users/login')
+                                span.glyphicon.glyphicon-log-in
+                                    |  Login
+                    else
 
-                li
-                    a(href='/users/profile')
-                        img#imgProfile.img-responsive.thumbnail.navbar-brand.small-pic(src=context.user.pictureUrl data-name=context.user.username)
-                if context.isAuthenticated && context.user.isAdmin
-                    li#Admin
-                        a(href='/users/profile')
-                            | Admin: #{context.user.username}
-                else
-                    li
-                        a(href='/users/profile')
-                            | #{context.user.username}
-
-                li.dropdown#alert-dropdown
-                    a.dropdown-toggle#notification-dropdown(data-toggle='dropdown' href='#')
-                        span.glyphicon.glyphicon-pushpin.notification
-                        if context.user.notifications.length
-                            span.glyphicon.glyphicon-exclamation-sign.notification-alert.text-danger
+                        li
+                            a(href='/users/profile')
+                                img#imgProfile.img-responsive.thumbnail.navbar-brand.small-pic(src=context.user.pictureUrl data-name=context.user.username)
+                        if context.isAuthenticated && context.user.isAdmin
+                            li#Admin
+                                a(href='/users/profile')
+                                    span
+                                        | Admin: #{context.user.username}
                         else
-                            span.glyphicon.glyphicon-exclamation-sign.notification-alert.text-danger.hidden
-                    ul.dropdown-menu.dropdown-custom#alerts
-                        li
-                            a(href='#')#no-alert.glyphicon.glyphicon-ok  No alerts!
-                        each alert in context.user.notifications
                             li
-                                a(href='#').alert.glyphicon.glyphicon-info-sign  #{alert}
+                                a(href='/users/profile')
+                                    span
+                                        | #{context.user.username}
 
-                li.dropdown
-                    a.dropdown-toggle(data-toggle='dropdown', href='#')
-                        | Profile
-                        span.caret
-                    ul.dropdown-menu.dropdown-custom#profileMenu
-                        li
-                            a.glyphicon.glyphicon-cog(href='/users/profile')  Profile
-                        li
-                            a.glyphicon.glyphicon-envelope(href='/users/messages')  Messages
-                        li
-                            a.glyphicon.glyphicon-hand-right(href='/users/'+ context.user.username)  MyLandmarks
-                        li
-                            a.glyphicon.glyphicon-off(href='/users/logout')  Logout
+                        li.dropdown#alert-dropdown
+                            a.dropdown-toggle#notification-dropdown(data-toggle='dropdown' href='#')
+                                span.glyphicon.glyphicon-pushpin.notification
+                                if context.user.notifications.length
+                                    span.glyphicon.glyphicon-exclamation-sign.notification-alert.text-danger
+                                else
+                                    span.glyphicon.glyphicon-exclamation-sign.notification-alert.text-danger.hidden
+                            ul.dropdown-menu.dropdown-custom#alerts
+                                li
+                                    a(href='#')#no-alert.glyphicon.glyphicon-ok  No alerts!
+                                each alert in context.user.notifications
+                                    li
+                                        a(href='#').alert.glyphicon.glyphicon-info-sign  #{alert}
+
+                        li.dropdown
+                            a.dropdown-toggle(data-toggle='dropdown', href='#')
+                                | Profile
+                                span.caret
+                            ul.dropdown-menu.dropdown-custom#profileMenu
+                                li
+                                    a.glyphicon.glyphicon-cog(href='/users/profile')  Profile
+                                li
+                                    a.glyphicon.glyphicon-envelope(href='/users/messages')  Messages
+                                li
+                                    a.glyphicon.glyphicon-hand-right(href='/users/'+ context.user.username)  MyLandmarks
+                                li
+                                    a.glyphicon.glyphicon-off(href='/users/logout')  Logout
