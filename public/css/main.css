@@ -284,3 +284,8 @@ small {
 .popover {
     max-width: 100%;
 }
+
+.edit-comment-text-area {
+    max-width: 50%;
+    margin-bottom: 1%;
+}

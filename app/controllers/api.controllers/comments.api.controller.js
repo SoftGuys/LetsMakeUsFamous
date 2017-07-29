@@ -1,30 +1,36 @@
 const commentsApiController = (data, utils) => {
     return {
         editDestinationComment(req, res) {
-            const isAdmin = req.user.isAdmin;
-            if (isAdmin) {
-                const comment = req.body;
-                const id = req.body.id;
+            const comment = req.body;
+            const landmarkId = req.params.id;
 
-                return data.landmarks.findById(id)
-                    .then((landmark) => {
-                        const commentToUpdate = landmark.comments
-                            .find((x) => x.text === comment.oldText);
+            data.landmarks.findById(landmarkId)
+                .then((landmark) => {
+                    const commentToUpdate = landmark.comments
+                        .find((x) => x.text === comment.oldText);
 
-                        if (typeof (commentToUpdate) === 'undefined') {
-                            return Promise.reject('Not Find');
-                        }
+                    if (typeof (commentToUpdate) === 'undefined') {
+                        return Promise.reject('Such comment does not exist');
+                    }
 
-                        commentToUpdate.text = comment.newText;
-                        return data.landmarks.update(landmark);
-                    })
-                    .then((response) => {
-                        return res.send('Its Ok');
-                    })
-                    .catch((x) => {});
-            }
-            return res.status(401)
-                .send('You are not admin');
+                    if (!req.user && !req.user.isAdmin &&
+                        req.user.username !== commentToUpdate.user.username) {
+                        return Promise
+                            .reject(
+                                'You are not allowed to edit this comment!');
+                    }
+
+                    commentToUpdate.text = comment.newText;
+                    return data.landmarks.update(landmark);
+                })
+                .then((response) => {
+                    return res.send(response);
+                })
+                .catch((err) => {
+                    return res
+                        .status(400)
+                        .send(err);
+                });
         },
         addDestinationComment(req, res) {
             if (!req.user) {

@@ -29,13 +29,13 @@ block content
                 .row
             textarea#comment-destination.form-control(rows='5' name="comment-text")
             button.btn.btn-success.btn-add-destination-comment(data-landmarkId=context.landmark._id)
-                | Add 
+                    | Add 
           hr
           br
           h4
             | Comments
             hr
-        section.destination-comments
+        section.destination-comments(data-logged-username=context.isAuthenticated ? context.user.username : '')
             if (context.landmark.comments)
                 each comment in context.landmark.comments
                     .col-md-8.destination-comment
@@ -47,8 +47,14 @@ block content
                             img.img-comment-user(src=comment.user.pictureUrl)
                             a(href='/users/' + comment.user.username)
                                 |  #{comment.user.username} 
-                            button.btn.btn-danger.btn-delete-comment
-                                 span.glyphicon.glyphicon-trash
+                            button.btn.btn-primary.btn-xs.btn-edit-comment(data-author=comment.user.username)
+                                span.glyphicon.glyphicon-pencil
+                            button.btn.btn-danger.btn-xs.btn-delete-comment
+                                 span.glyphicon.glyphicon-trash 
+                            button.btn.btn-success.btn-xs.btn-save-comment.hidden(data-author=comment.user.username data-is-admin=(context.user && context.user.isAdmin))
+                                span.glyphicon.glyphicon-ok
+                            button.btn.btn-danger.btn-xs.btn-exit-save.hidden(data-author=comment.user.username)
+                                span.glyphicon.glyphicon-remove
                         hr.col-md-8
       #myModal.modal.fade(role='dialog')
         .modal-dialog
@@ -89,7 +95,6 @@ block content
     script(src="/static/js/verify.destination.js")
     script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCswzaSDzKsdAdfPRt9ssO0YzrbiCOgkQo&libraries=places&callback=initMap')
     script(src="/static/js/modalshow.js")
-    script(src="/static/js/editordeletecomments.js")
 
 
 
