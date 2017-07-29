@@ -1,6 +1,23 @@
 /* Globals $ */
 const webdriver = require('selenium-webdriver');
-const describe = require('mocha');
+const describe = require('../node_modules/mocha');
+const assert = require('../node_modules/chai');
+
+webdriver.describe('Google Search', function() {
+    webdriver.it('should work', function() {
+        const driver = new webdriver.Builder().
+        withCapabilities(webdriver.Capabilities.chrome()).
+        build();
+        driver.get('http://www.google.com');
+        const searchBox = driver.findElement(webdriver.By.name('q'));
+        searchBox.sendKeys('simple programmer');
+        searchBox.getAttribute('value').then(function(value) {
+            assert.equal(value, 'simple programmer');
+        });
+        driver.quit();
+    });
+});
+
 
 const setupDriver = () => {
     // eslint-disable-next-line
@@ -24,6 +41,9 @@ const getTitleHomePage = () => {
         })
         .then((text) => {
             console.log(text);
+        })
+        .then(() => {
+            driver.quit();
         });
 };
 // RegisterPage Test
@@ -75,6 +95,9 @@ const registerPage = () => {
         })
         .then((url) => {
             console.log(url);
+        })
+        .then(() => {
+            driver.quit();
         });
 };
 // LoginPage Test
@@ -115,6 +138,9 @@ const loginPageAdmin = () => {
         })
         .then((text) => {
             console.log(text);
+        })
+        .then(() => {
+            driver.quit();
         });
 };
 // loginPageUser Test
@@ -160,6 +186,9 @@ const loginPageUser = () => {
         })
         .then((el) => {
             console.log(el);
+        })
+        .then(() => {
+            driver.quit();
         });
 };
 // Destinations Test
@@ -177,6 +206,9 @@ const destinationsPage = () => {
         })
         .then((text) => {
             console.log(text);
+        })
+        .then(() => {
+            driver.quit();
         });
 };
 // Search Test
@@ -200,18 +232,182 @@ const searchButton = () => {
         .then((el) => {
             el.click();
         })
-        .then(()=>{
-        driver.sleep(3000);
+        .then(() => {
+            driver.sleep(3000);
             return driver.findElement(
                 webdriver.By.xpath(
                     '//*[@id="destinations-container"]/div[4]/h3')
             );
         })
-        .then((el)=> {
+        .then((el) => {
             return el.getText();
         })
-        .then((text)=>{
-        console.log(text);
+        .then((text) => {
+            console.log(text);
+        })
+        .then(() => {
+            driver.quit();
+        });
+};
+// Users Test
+const searchButtonUsers = () => {
+    const driver = setDriver();
+    return driver.get('http://localhost:3001/users')
+        .then(() => {
+            return driver.findElement(
+                webdriver.By.css('form[id=search-destination-form] input')
+            );
+        })
+        .then((el) => {
+            el.sendKeys('rosenpedal');
+        })
+        .then(() => {
+            driver.sleep(3000);
+            return driver.findElement(
+                webdriver.By.xpath(
+                    '//*[@id="users-container"]/div/div/div/div[2]/h4')
+            );
+        })
+        .then((el) => {
+            return el.getText();
+        })
+        .then((text) => {
+            console.log(text);
+        })
+        .then(() => {
+            driver.quit();
+        });
+};
+const checkViewButtonOnUsersPage = () => {
+    const driver = setDriver();
+    return driver.get('http://localhost:3001/users')
+        .then(() => {
+            return driver.findElement(
+                webdriver.By.xpath('' +
+                    '//*[@id="users-container"]/div[1]/div/div/div[2]/div/a')
+            );
+        })
+        .then((el) => {
+            el.click();
+        })
+        .then(() => {
+            driver.sleep(3000);
+            return driver.findElement(
+                webdriver.By.xpath(
+                    '/html/body/div/div[1]/div/div[2]/h2'
+                )
+            );
+        })
+        .then((el) => {
+            return el.getText();
+        })
+        .then((text) => {
+            console.log(text + 'Profile Page');
+        })
+        .then(() => {
+            driver.quit();
+        });
+};
+// Users Ranking Tests
+const usersRanking = () => {
+    const driver = setDriver();
+    return driver.get('http://localhost:3001/users/ranking')
+        .then(() => {
+            return driver.findElement(
+                webdriver.By.css('' +
+                    'body > div > ul > li:nth-child(6) > a')
+            );
+        })
+        .then((el) => {
+            el.click();
+            driver.sleep(3000);
+        })
+        .then(() => {
+            return driver.findElement(
+                webdriver.By.css(
+                    'body > div > ul > li.active > a'
+                )
+            );
+        })
+        .then((el) => {
+            return el.getText();
+        })
+        .then((text) => {
+            console.log(text);
+        })
+        .then(() => {
+            driver.quit();
+        });
+};
+
+// Chat Test
+const chatView = () => {
+    const driver = setDriver();
+    // eslint-disable-next-line
+    driver.executeScript('var s=window.document.createElement(\'script\');\
+                  s.src=\'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js\';\
+                  window.document.head.appendChild(s);');
+    return driver.get('http://localhost:3001/users/login')
+        .then(() => {
+            return driver.findElement(
+                webdriver.By.id('usernamesignup')
+            );
+        })
+        .then((el) => {
+            return el.sendKeys('vladoshax');
+        })
+        .then(() => {
+            return driver.findElement(
+                webdriver.By.id('passwordsignup')
+            );
+        })
+        .then((el) => {
+            return el.sendKeys('xaxa');
+        })
+        .then(() => {
+            return driver.findElement(
+                webdriver.By.id('loginToTheSite')
+            );
+        })
+        .then((el) => {
+            return el.click();
+        })
+        .then(() => {
+            driver.sleep(1000);
+            const url = driver.getCurrentUrl();
+            driver.get(url);
+            driver.sleep(2000);
+        })
+        .then(() => {
+            return driver.findElement(
+                webdriver.By.xpath('/html/body/nav/div/ul[2]/li[4]/a')
+            );
+        })
+        .then((el) => {
+            el.click();
+        })
+        .then(() => {
+            return driver.findElement(
+                webdriver.By.xpath('//*[@id="profileMenu"]/li[2]/a')
+            );
+        })
+        .then((el) => {
+            el.click();
+        })
+        .then(() => {
+            driver.sleep(3000);
+            return driver.findElement(
+                webdriver.By.css('body > div > div:nth-child(1) > h1 > strong')
+            );
+        })
+        .then((el) => {
+            return el.getText();
+        })
+        .then((text) => {
+            console.log(text);
+        })
+        .then(() => {
+            driver.quit();
         });
 };
 
@@ -233,10 +429,14 @@ function generateRandomName() {
     return text;
 }
 
-console.log(getTitleHomePage()); // test 1
-console.log(registerPage()); // test 2
-console.log(loginPageAdmin()); // test 3
-console.log(loginPageUser()); // test 4
-console.log(destinationsPage());// test 5
-console.log(searchButton()); // test 6
+// console.log(getTitleHomePage()); // test 1
+// console.log(registerPage()); // test 2
+// console.log(loginPageAdmin()); // test 3
+// console.log(loginPageUser()); // test 4
+// console.log(destinationsPage());// test 5
+// console.log(searchButton()); // test 6
+// console.log(searchButtonUsers()); // test 7
+// console.log(checkViewButtonOnUsersPage()); // test 8
+// console.log(usersRanking()); // test 9
+// console.log(chatView()); // test 10
 module.exports = { setupDriver };
