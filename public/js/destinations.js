@@ -93,5 +93,5 @@ $(() => {
             });
     });
 
-    $('.landmark-description').popover();
+    $('.landmark-description').popover({ container: 'body' });
 });
