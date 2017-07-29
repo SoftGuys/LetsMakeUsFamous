@@ -12,8 +12,8 @@ block content
             | #{context.landmark.description}
           if (context.user)
             button.btn.btn-primary.pull-left#btn-show--mark-visited-modal
-                | Mark Visited 
-                span.glyphicon.glyphicon-chevron-right
+                span.glyphicon.glyphicon-camera
+                |  Mark Visited 
 
           button.btn.btn-danger.pull-left.landmark-description(data-content=context.landmark.description data-placement='right' data-trigger='click')
             span.glyphicon.glyphicon-zoom-in
@@ -21,7 +21,7 @@ block content
           button.btn.btn-success.pull-right.btn-comment-form
             span.glyphicon.glyphicon-comment
             |  Comment
-          button.btn.btn.pull-right#googleMapActivate.text-success(type='button')
+          button.btn.btn.pull-right#googleMapActivate(type='button')
             span.glyphicon.glyphicon-map-marker
             | Map 
           #add-destination-comment.form-group.hidden
@@ -74,25 +74,24 @@ block content
                         hr.col-md-8
       #myModal.modal.fade(role='dialog')
         .modal-dialog
-              // Modal content
-              .modal-content
-                  .modal-header
-                      button.close(type='button', data-dismiss='modal') ×
-                      h4.modal-title #{context.landmark.title}
-                          #cordslong(data-lon=context.landmark.longitude)
-                          #cordslat(data-lat=context.landmark.latitude)
-                  .modal-body
-                      #floating-panel
-                          input#address(type='textbox', value=context.landmark.title)
-                          input#submit(type='button', value='Geocode')
-                      #map
-                  .modal-footer
-                      button.btn.btn-default(type='button', data-dismiss='modal') Close
+            .modal-content
+                .modal-header
+                    button.close.text-danger.glyphicon.glyphicon-remove(type='button', data-dismiss='modal')
+                    h4.modal-title #{context.landmark.title}
+                        #cordslong(data-lon=context.landmark.longitude)
+                        #cordslat(data-lat=context.landmark.latitude)
+                .modal-body
+                    #floating-panel
+                        input#address(type='textbox', value=context.landmark.title)
+                        input#submit(type='button', value='Geocode')
+                    #map
+                .modal-footer
+                    button.btn.btn-default(type='button', data-dismiss='modal') Close
       #verifyDestinationModal.modal.fade(role='dialog')
         .modal-dialog
               .modal-content
                   .modal-header
-                      button.close(type='button', data-dismiss='modal') ×
+                      button.close.text-danger.glyphicon.glyphicon-remove(type='button', data-dismiss='modal')
                       h4.modal-title 
                         | Upload you own picture from #{context.landmark.title}!
                   .modal-body

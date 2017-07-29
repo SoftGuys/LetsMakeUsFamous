@@ -115,6 +115,11 @@ iframe {
     padding-top: 30px;
 }
 
+.landmark a {
+    text-decoration: none;
+    color: black;
+}
+
 .landmark-description {
     max-height: 100px;
     overflow-y: hidden;
@@ -200,6 +205,12 @@ button {
 
 .transparent {
     filter: grayscale(90%);
+    opacity: 0.4;
+}
+
+.img-landmark {
+    max-height: 100%;
+    max-width: 100%;
 }
 
 small {

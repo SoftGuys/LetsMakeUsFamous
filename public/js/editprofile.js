@@ -1,7 +1,5 @@
 /* globals $ toastr requester */
 
-// must validate user input :)))
-
 $(() => {
     const button = $('#buttonEditProfile');
     const save = $('#saveButton');

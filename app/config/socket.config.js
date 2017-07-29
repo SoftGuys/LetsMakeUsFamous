@@ -99,8 +99,8 @@ const configSocket = (app, { users, landmarks }) => {
                 });
         });
 
-        socket.on('add-comment', (room) => {
-            landmarks.findById(room)
+        socket.on('add-comment', (landmarkId) => {
+            landmarks.findById(landmarkId)
                 .then((landmark) => {
                     const notification = socket.request.user.username +
                         ' commented on ' + landmark.title + '!';
