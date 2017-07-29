@@ -1,23 +1,6 @@
 /* Globals $ */
 const webdriver = require('selenium-webdriver');
-const describe = require('../node_modules/mocha');
-const assert = require('../node_modules/chai');
-
-webdriver.describe('Google Search', function() {
-    webdriver.it('should work', function() {
-        const driver = new webdriver.Builder().
-        withCapabilities(webdriver.Capabilities.chrome()).
-        build();
-        driver.get('http://www.google.com');
-        const searchBox = driver.findElement(webdriver.By.name('q'));
-        searchBox.sendKeys('simple programmer');
-        searchBox.getAttribute('value').then(function(value) {
-            assert.equal(value, 'simple programmer');
-        });
-        driver.quit();
-    });
-});
-
+const describe = require('mocha');
 
 const setupDriver = () => {
     // eslint-disable-next-line
@@ -429,14 +412,14 @@ function generateRandomName() {
     return text;
 }
 
-// console.log(getTitleHomePage()); // test 1
-// console.log(registerPage()); // test 2
-// console.log(loginPageAdmin()); // test 3
-// console.log(loginPageUser()); // test 4
-// console.log(destinationsPage());// test 5
-// console.log(searchButton()); // test 6
-// console.log(searchButtonUsers()); // test 7
-// console.log(checkViewButtonOnUsersPage()); // test 8
-// console.log(usersRanking()); // test 9
-// console.log(chatView()); // test 10
+console.log(getTitleHomePage()); // test 1
+console.log(registerPage()); // test 2
+console.log(loginPageAdmin()); // test 3
+console.log(loginPageUser()); // test 4
+console.log(destinationsPage());// test 5
+console.log(searchButton()); // test 6
+console.log(searchButtonUsers()); // test 7
+console.log(checkViewButtonOnUsersPage()); // test 8
+console.log(usersRanking()); // test 9
+console.log(chatView()); // test 10
 module.exports = { setupDriver };
