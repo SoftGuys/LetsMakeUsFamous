@@ -1,5 +1,5 @@
 /* globals $ */
 
 $(() => {
-    $('#loader').hide();
+    $('#loader').fadeOut(900);
 });
