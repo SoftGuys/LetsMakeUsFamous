@@ -16,6 +16,22 @@ const init = (data) => {
     const controllers = require('./controllers')(data, utils);
     require('./routes')(app, controllers);
 
+    app.get('/404', (req, res) => {
+        return res
+            .status(404)
+            .render('404', {
+                context: {
+                    user: req.user,
+                    isAuthenticated: req.isAuthenticated(),
+                },
+            });
+    });
+
+    app.get('/*', (req, res) => {
+        return res
+            .redirect('/404');
+    });
+
     const server = require('./config/socket.config')(app, data);
     return Promise.resolve(server);
 };

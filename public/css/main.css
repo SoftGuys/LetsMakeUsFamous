@@ -266,3 +266,12 @@ small {
     background: url('../videos/Ripple.gif') no-repeat center center;
     background-color: white;
 }
+
+#page-not-found {
+    display: inline-block;
+    font-size: 300%;
+}
+
+#page-not-found-container img {
+    height: 30%;
+}
