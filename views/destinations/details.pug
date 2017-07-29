@@ -29,36 +29,12 @@ block content
                 .row
             textarea#comment-destination.form-control(rows='5' name="comment-text")
             button.btn.btn-success.btn-add-destination-comment(data-landmarkId=context.landmark._id)
-                | Add
+                | Add 
           hr
           br
           h4
             | Comments
             hr
-      if(context.isAdmin)
-          section.destination-comments
-              if (context.landmark.comments )
-                  each comment in context.landmark.comments
-                      .col-md-8.destination-comment
-                          p.destination-comment-text
-                            span
-                              | #{comment.text}
-                          p.destination-comment-details.text-primary
-                              span.glyphicon.glyphicon-time
-                              |  #{context.timeFromNow(comment.postedOn)}
-                              img.img-comment-user(src=comment.user.pictureUrl)
-                              a(href='/users/'+comment.user.username)
-                                  | #{comment.user.username}
-                              td
-                                  button.btn.btn-primary.btn-ms.blue(data-title='Edit', data-toggle='modal', data-target='#edit')
-                                      span.glyphicon.glyphicon-pencil.blue
-                                  button.btn.btn-danger.btn-ms.red(data-title='Delete', data-toggle='modal', data-target='#delete')
-                                      span.glyphicon.glyphicon-trash.red
-                                  button.btn.btn-primary.btn-ms.green.Save(data-title='Save', data-toggle='modal', data-target='#save')
-                                      span.glyphicon.glyphicon-ok
-                          hr.col-md-8
-
-      else
         section.destination-comments
             if (context.landmark.comments)
                 each comment in context.landmark.comments
@@ -67,10 +43,12 @@ block content
                             | #{comment.text}
                         p.destination-comment-details.text-primary
                             span.glyphicon.glyphicon-time
-                            |  #{context.timeFromNow(comment.postedOn)}
+                            |  #{context.timeFromNow(comment.postedOn)} 
                             img.img-comment-user(src=comment.user.pictureUrl)
-                            a(href='/users/#{comment.author._id}')
-                                | #{comment.user.username}
+                            a(href='/users/' + comment.user.username)
+                                |  #{comment.user.username} 
+                            button.btn.btn-danger.btn-delete-comment
+                                 span.glyphicon.glyphicon-trash
                         hr.col-md-8
       #myModal.modal.fade(role='dialog')
         .modal-dialog

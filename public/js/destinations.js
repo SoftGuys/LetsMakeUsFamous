@@ -1,7 +1,7 @@
 /* globals $ toastr io requester moment */
 // eslint-disable-next-line
 var socket = io.connect('http://localhost:3001');
-const ADD_COMMENT_URL = 'http://localhost:3001/api/destinations/';
+const COMMENT_URL = 'http://localhost:3001/api/destinations/comments/';
 
 $(() => {
     socket.on('add-comment', ({ senderName, landmarkTitle }) => {
@@ -34,7 +34,7 @@ $(() => {
                 postedOn: Date.now(),
             };
 
-            const url = ADD_COMMENT_URL + 'comments/' + landmarkId;
+            const url = COMMENT_URL + landmarkId;
             const $commentsContainer = $('.destination-comments');
 
             requester.postJSON(url, comment)
@@ -67,12 +67,21 @@ $(() => {
         const $userHref = $('<a />')
             .attr('href', '/users/' + comment.user._id)
             .text(' ' + comment.user.username);
+        const $trashSpan = $('<span/> </span>')
+            .addClass('glyphicon glyphicon-trash');
+        const $deleteCommentButton = $('<button>')
+            .addClass('btn')
+            .addClass('btn-danger')
+            .addClass('btn-delete-comment');
+
+        $trashSpan.appendTo($deleteCommentButton);
 
         $timeGlyphicon.appendTo($destinationCommentDetails);
         $destinationCommentDetails
             .append(' ' + moment(comment.postedOn).fromNow() + ' ');
         $userImage.appendTo($destinationCommentDetails);
         $userHref.appendTo($destinationCommentDetails);
+        $deleteCommentButton.appendTo($destinationCommentDetails);
 
         $destinationCommentText.appendTo($destinationComment);
         $destinationCommentDetails.appendTo($destinationComment);
@@ -94,4 +103,37 @@ $(() => {
     });
 
     $('.landmark-description').popover({ container: 'body' });
+
+    $('.destination-comments').on('click', '.btn-delete-comment', (ev) => {
+        const $clickedButton = $(ev.target);
+
+        const landmarkId =
+            $('.btn-add-destination-comment')
+            .attr('data-landmarkId');
+
+        const url = COMMENT_URL + landmarkId;
+        const commentText = $clickedButton
+            .parent('.destination-comment-details')
+            .prev()
+            .text();
+
+        const comment = {
+            text: commentText,
+        };
+
+        requester.deleteJSON(url, comment)
+            .then((_) => {
+                toastr.warning('Comment deleted successfully!');
+                $clickedButton
+                    .parent('.destination-comment-details')
+                    .parent()
+                    .remove();
+            })
+            .catch((message) => {
+                const errMessage = typeof message === 'string' ?
+                    message :
+                    'You are not allowed to delete this comment!';
+                toastr.error(errMessage);
+            });
+    });
 });

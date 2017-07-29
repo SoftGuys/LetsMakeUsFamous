@@ -12,7 +12,7 @@ block content
                     input#landmarks-search.form-control(name='title' type='text' placeholder='Destination title' required value=context.searchValue || '')
                     span.input-group-btn
                         button.btn.btn-success(type='submit')
-                            span.glyphicon.glyphicon-search.button-glyph        
+                            span.glyphicon.glyphicon-search.button-glyph
         .row
         each landmark, index in context.landmarks
             if (index % 3) == 0

@@ -60,31 +60,41 @@ const commentsApiController = (data, utils) => {
                 });
         },
         deleteDestinationComment(req, res) {
-            const isAdmin = req.user.isAdmin;
-            if (isAdmin) {
-                const comment = req.body.text;
-                const id = req.body.id;
-                return data.landmarks.findById(id)
-                    .then((landmark) => {
-                        if (landmark === null) {
-                            return res.status(404)
-                                .send('Landmark is not existing');
-                        }
-                        const index = landmark.comments
-                            .findIndex((c) => c.text === comment);
-                        if (index < 0) {
-                            return res.status(404)
-                                .send('No such comment');
-                        }
+            const isAdmin = req.user && req.user.isAdmin;
+            const landmarkId = req.params.id;
 
-                        landmark.comments.splice(index, 1);
-                        return data.landmarks.update(landmark);
-                    }).then((x) => {
-                        return res.send(x);
-                    });
-            }
-            return res.status(401)
-                .send('You are not admin');
+            const commentText = req.body.text;
+
+            return data.landmarks.findById(landmarkId)
+                .then((landmark) => {
+                    if (landmark === null) {
+                        return res.status(404)
+                            .send('Landmark does not exist');
+                    }
+
+                    const index = landmark.comments
+                        .findIndex((c) => c.text === commentText);
+                    if (index < 0) {
+                        return res.status(404)
+                            .send('No such comment!');
+                    }
+
+                    if (landmark.comments[index].user.username !==
+                        req.user.username &&
+                        !isAdmin) {
+                        return res
+                            .status(401)
+                            .send('You must be an admin in order to delete ');
+                    }
+
+                    landmark.comments.splice(index, 1);
+                    return data.landmarks.update(landmark);
+                }).then((result) => {
+                    return res
+                        .status(200)
+                        .send(result);
+                })
+                .catch((err) => {});
         },
     };
 };
