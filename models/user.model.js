@@ -1,3 +1,6 @@
+const MIN_RANK_NUMBER = 0;
+const MAX_RANK_NUMBER = 20;
+
 const CryptoJS = require('crypto-js');
 
 class User {
@@ -20,6 +23,18 @@ class User {
         // eslint-disable-next-line
         user.password = CryptoJS.SHA1(user.password).toString();
         return Promise.resolve(user);
+    }
+
+    static validateRank(rankIndex) {
+        if (Number.isNaN(Number(rankIndex))) {
+            return Promise.reject('rank must be a valid number!');
+        }
+
+        if (rankIndex < MIN_RANK_NUMBER || rankIndex > MAX_RANK_NUMBER) {
+            return Promise.reject('Invalid rank range!');
+        }
+
+        return Promise.resolve(Number(rankIndex));
     }
 
     static validatePassword(user, password) {

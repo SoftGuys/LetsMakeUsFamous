@@ -1,13 +1,13 @@
 const ObjectId = require('mongodb').ObjectID;
 
 class Data {
-    constructor(database, collectionName, validator) {
+    constructor(database, ModelClass, validator) {
         if (typeof database === 'undefined') {
             throw new Error('Database is undefined!');
         }
 
-        if (typeof collectionName !== 'string') {
-            throw new Error('Incorrect collection name!');
+        if (typeof ModelClass === 'undefined') {
+            throw new Error('Model class is undefined!');
         }
 
         if (typeof validator === 'undefined' ||
@@ -16,7 +16,8 @@ class Data {
         }
 
         this.database = database;
-        this.collectionName = collectionName;
+        this.ModelClass = ModelClass;
+        this.collectionName = this.ModelClass.name.toLowerCase() + 's';
         this.validator = validator;
         this.collection = this.database.collection(this.collectionName);
     }
