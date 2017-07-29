@@ -5,11 +5,14 @@ const CryptoJS = require('crypto-js');
 
 class User {
     static validateModel(user) {
-        const isUserValid = typeof user !== 'undefined' &&
+        const isUserValid =
+            typeof user !== 'undefined' &&
             typeof user.username === 'string' &&
             typeof user.password === 'string' &&
+            typeof user.email === 'string' &&
             user.username.match(/^\w{3,20}$/g) &&
-            user.password.match(/^\w{4,20}$/g);
+            user.password.match(/^\w{4,20}$/g) &&
+            user.email.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/g);
 
         if (!isUserValid) {
             return Promise.reject('Incorrect username or password characters!');
@@ -45,6 +48,32 @@ class User {
         // eslint-disable-next-line new-cap
         if (user.password !== CryptoJS.SHA1(password).toString()) {
             return Promise.reject('Invalid password!');
+        }
+
+        return Promise.resolve(user);
+    }
+
+    static validateUserInfo(user) {
+        console.log(user.description);
+        if (typeof user.birthDate !== 'string' ||
+            // eslint-disable-next-line
+            !/^(0?[1-9]|[12][0-9]|3[01])[-.\/](0?[1-9]|1[012])[-.\/]\d{2,4}$/g.test(user.birthDate)) {
+            return Promise.reject('Invalid birth date!');
+        } else if (typeof user.city !== 'string' ||
+            !/^[A-Z]{1}[a-z]{2,15}$/g.test(user.city)) {
+            return Promise.reject(
+                'City name must be valid and begin with capital letter!');
+        } else if (typeof user.email !== 'string' ||
+            !/^[^@\s]+@[^@\s]+\.[^@\s]+$/g.test(user.email)) {
+            return Promise.reject('Invalid email!');
+        } else if (Number.isNaN(+user.phoneNumber) ||
+            !/^[0-9]{10}$/g.test(user.phoneNumber)) {
+            return Promise.reject('Phone number must be valid 10 digits!');
+        } else if (typeof user.description !== 'string' ||
+            !/^[\w!.?, ]{3,20}$/g.test(user.description)) {
+            return Promise.reject(
+                'Description must be between 3 and 20 characters' +
+                ' and contain numbers letters and punctuation only!');
         }
 
         return Promise.resolve(user);

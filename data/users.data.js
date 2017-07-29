@@ -52,6 +52,13 @@ class UsersData extends Data {
             });
     }
 
+    updateUserInfo(user) {
+        return User.validateUserInfo(user)
+            .then(() => {
+                return this.update(user);
+            });
+    }
+
     getCountByUsername(username) {
         const filterExpression = new RegExp(`.*${username}.*`, 'ig');
         return this.collection.find({

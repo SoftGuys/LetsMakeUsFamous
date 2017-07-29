@@ -2,9 +2,9 @@ const passport = require('passport');
 const DEFAULT_PICTURE_URL = '/static/images/default.png';
 const RANK_DIVIDER = 10;
 const DEFAULT_VISITED_PLACES = 0;
-const DEFAULT_BIRTH_DATE = '01/24/1988';
+const DEFAULT_BIRTH_DATE = '22/08/1996';
 const DEFAULT_CITY = 'Sofia';
-const DEFAULT_PHONE_NUMBER = '555-4567-890';
+const DEFAULT_PHONE_NUMBER = '5554567890';
 const DEFAULT_DESCRIPTION = 'No description!';
 
 const authController = (data) => {

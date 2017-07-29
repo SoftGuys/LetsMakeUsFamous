@@ -19,12 +19,17 @@ const usersApiController = (data) => {
                             user[key] = newUserInfo[key];
                         });
 
-                    data.users.update(user);
+                    return data.users.updateUserInfo(user);
                 })
                 .then(() => {
                     res
                         .status(200)
                         .send('Profile eddited successfully!');
+                })
+                .catch((error) => {
+                    res
+                        .status(400)
+                        .send(error);
                 });
         },
     };
