@@ -1,6 +1,7 @@
 extends master
 
 block content
+    script(src='/static/js/watch.js')
     main.container.pull-left
         #jumbo.jumbotron
             h1 Bulgaria's National Tourist Sites
@@ -10,3 +11,4 @@ block content
                 a.btn.btn-primary.btn-lg#explore(href="/destinations")
     video(loop autoplay)
              source(src="/static/videos/home.webm" type="video/webm")
+    +footer
