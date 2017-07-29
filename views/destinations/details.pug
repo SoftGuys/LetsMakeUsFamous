@@ -69,7 +69,7 @@ block content
                             span.glyphicon.glyphicon-time
                             |  #{context.timeFromNow(comment.postedOn)}
                             img.img-comment-user(src=comment.user.pictureUrl)
-                            a(href='/users/#{comment.author._id}')
+                            a(href='/users/'+comment.user.username)
                                 | #{comment.user.username}
                         hr.col-md-8
       #myModal.modal.fade(role='dialog')
