@@ -16,6 +16,18 @@ class UsersData extends Data {
         return this.collection.findOne({ username });
     }
 
+    add(user) {
+        return this.findUserByUsername(user.username)
+            .then((currUser) => {
+                if (currUser !== null) {
+                    return Promise.reject(
+                        'There is already user with such username!');
+                }
+
+                return super.add(user);
+            });
+    }
+
     getCountByUsername(username) {
         const filterExpression = new RegExp(`.*${username}.*`, 'ig');
         return this.collection.find({

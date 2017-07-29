@@ -21,10 +21,10 @@ block content
             .col-md-4.portfolio-item.landmark
                     a(href='/destinations/' + landmark._id)
                         img.img-responsive.thumbnail(src=landmark.pictureUrl)
-                    if (landmark.isVisited)
+                        if (landmark.isVisited)
                             img(id="badge" src="/static/images/complete.png")
-                    h3
-                        | #{landmark.title}
-                    p.landmark-description
-                        | #{landmark.description}
+                        h3
+                            | #{landmark.title}
+                        p.landmark-description
+                            | #{landmark.description}
     +pagination
