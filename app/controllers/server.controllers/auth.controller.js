@@ -60,7 +60,6 @@ const authController = (data) => {
                     return res.status(201).redirect('/users/login');
                 })
                 .catch((message) => {
-                    console.log(message);
                     req.toastr.error(message);
                     res.status(406).redirect('/users/register');
                 });

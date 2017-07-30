@@ -10,6 +10,7 @@ const attachRoutes = (app, {
     router
         .get('/landmarks', destinationsApiController.getLandmarks)
         .get('/users', usersApiController.getUsers)
+        .put('/users/:id/admin', usersApiController.promoteUserToAdmin)
         .post('/destinations/comments/:id',
             commentsApiController.addDestinationComment)
         .delete('/destinations/comments/:id',

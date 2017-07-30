@@ -32,6 +32,31 @@ const usersApiController = (data) => {
                         .send(error);
                 });
         },
+        promoteUserToAdmin(req, res) {
+            const userId = req.params.id;
+            if (!req.user || !req.user.isAdmin) {
+                return res.status(401)
+                    .send('You must be an admin to promote others!');
+            }
+
+            return data.users.findById(userId)
+                .then((usertoPromote) => {
+                    if (usertoPromote === null) {
+                        return Promise.reject('User not found!');
+                    }
+
+                    usertoPromote.isAdmin = true;
+                    return data.users.promoteToAdmin(usertoPromote);
+                })
+                .then((resUser) => {
+                    return res.status(204)
+                        .send(resUser);
+                })
+                .catch((err) => {
+                    res.status(400)
+                        .send(err);
+                });
+        },
     };
 };
 

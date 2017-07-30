@@ -59,6 +59,23 @@ class UsersData extends Data {
             });
     }
 
+    promoteToAdmin(user) {
+        if (typeof user === 'undefined') {
+            return Promise.reject('user is undefined!');
+        }
+
+        return this.collection.update({
+                _id: user._id,
+            }, {
+                $set: {
+                    isAdmin: true,
+                },
+            })
+            .then(() => {
+                return user;
+            });
+    }
+
     getCountByUsername(username) {
         const filterExpression = new RegExp(`.*${username}.*`, 'ig');
         return this.collection.find({

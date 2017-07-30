@@ -64,7 +64,7 @@ block content
                                         |  #{user.rank}
                                         br
                                         i.glyphicon.glyphicon-gift
-                                        | #{user.age}
+                                        |  #{user.birthDate}
                                     .btn-group
                                         a.btn.btn-primary(href='/users/' + user.username)
                                             | View
@@ -76,4 +76,9 @@ block content
                                         .btn-group.col-sm-offset-1
                                             a(href=`/users/messages?user=${user.username}`).btn.btn-danger#add-friend
                                                 | Add friend
+                                    if (context.user && context.user.isAdmin && !user.isAdmin)
+                                         .btn-group.col-sm-offset-1
+                                            button.btn.btn-warning.btn-promote-admin(href=`/users/messages?user=${user.username}`, data-user-id=user._id.toString())
+                                                span.glyphicon.glyphicon-font
+
     +pagination

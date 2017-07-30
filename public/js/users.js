@@ -68,4 +68,20 @@ $(() => {
                 });
             });
     });
+
+    $('#users-container').on('click', '.btn-promote-admin', (ev) => {
+        const $clickedButton = $(ev.target);
+        const userToPromoteId = $clickedButton
+            .attr('data-user-id');
+
+        const url = 'http://localhost:3001/api/users/' + userToPromoteId + '/admin';
+        requester.putJSON(url)
+            .then((res) => {
+                toastr.success('Requested user is now an admin!');
+                $clickedButton.hide();
+            })
+            .catch((err) => {
+                toastr.error('You do not have rights to promote users!');
+            });
+    });
 });
