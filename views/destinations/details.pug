@@ -48,14 +48,15 @@ block content
                             img.img-comment-user(src=comment.user.pictureUrl)
                             a(href='/users/' + comment.user.username)
                                 |  #{comment.user.username} 
-                            button.btn.btn-primary.btn-xs.btn-edit-comment(data-author=comment.user.username)
-                                span.glyphicon.glyphicon-pencil
-                            button.btn.btn-danger.btn-xs.btn-delete-comment
-                                 span.glyphicon.glyphicon-trash 
-                            button.btn.btn-success.btn-xs.btn-save-comment.hidden(data-author=comment.user.username)
-                                span.glyphicon.glyphicon-ok
-                            button.btn.btn-danger.btn-xs.btn-exit-save.hidden(data-author=comment.user.username)
-                                span.glyphicon.glyphicon-remove
+                            if context.isAuthenticated && (context.user.isAdmin || context.user.username === comment.user.username)
+                                button.btn.btn-primary.btn-xs.btn-edit-comment(data-author=comment.user.username)
+                                    span.glyphicon.glyphicon-pencil
+                                button.btn.btn-danger.btn-xs.btn-delete-comment
+                                    span.glyphicon.glyphicon-trash 
+                                button.btn.btn-success.btn-xs.btn-save-comment.hidden(data-author=comment.user.username)
+                                    span.glyphicon.glyphicon-ok
+                                button.btn.btn-danger.btn-xs.btn-exit-save.hidden(data-author=comment.user.username)
+                                    span.glyphicon.glyphicon-remove
                         hr.col-md-8
       #myModal.modal.fade(role='dialog')
         .modal-dialog
