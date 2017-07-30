@@ -44,7 +44,7 @@ footer {
 
 .bottom_ul li {
     float: left;
-    line-height: 40px;
+    line-height: 30px;
 }
 
 .bottom_ul li:after {
@@ -65,10 +65,6 @@ footer {
 
 .bottom_ul li a:hover {
     color: white;
-}
-
-#aboutli {
-    margin-left: 35%;
 }
 
 .destinationsPara {
