@@ -3,7 +3,6 @@ body {
     background: url('http://localhost:3001/static/images/background.jpg') repeat;
     background-size: 50px;
 }
-
 #jumbo {
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
