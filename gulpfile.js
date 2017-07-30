@@ -14,7 +14,7 @@ const cleanCss = require('gulp-clean-css');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 
-gulp.task('server', ['build:lint'], () => {
+gulp.task('server', ['clean-build'], () => {
     express.run(['server.js']);
 });
 
@@ -44,7 +44,7 @@ gulp.task('build:lint', () => {
 
 gulp.task('build:js', () => {
     return pump([
-        gulp.src(['public/js/**/*.js']),
+        gulp.src(['public/**/*.js']),
         babel({ presets: ['es2015'] }),
         uglify(),
         gulp.dest('build'),
@@ -53,7 +53,7 @@ gulp.task('build:js', () => {
 
 gulp.task('build:css', () => {
     return pump([
-        gulp.src(['public/css/*.css']),
+        gulp.src(['public/**/*.css']),
         concat('all.css'),
         cleanCss({ compatibility: 'ie8' }),
         gulp.dest('build'),
