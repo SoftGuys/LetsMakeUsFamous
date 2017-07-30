@@ -39,6 +39,7 @@ $(() => {
         });
 
     $('.destination-comments').on('click', '.btn-delete-comment', (ev) => {
+        console.log(ev.target);
         const $clickedButton = $(ev.target);
 
         const landmarkId =
@@ -117,7 +118,7 @@ $(() => {
             .nextAll('.btn-exit-save')
             .removeClass('hidden');
 
-        $saveCommentButton.on('click', (e) => {
+        $saveCommentButton.one('click', (e) => {
             const newCommentText = $textArea.val();
             const oldCommentText = $commentParagraph.text();
             const comment = {
@@ -129,8 +130,9 @@ $(() => {
             requester.putJSON(url, comment)
                 .then((result) => {
                     toastr.success('Comment edited successfully!');
-                    $saveCommentButton.addClass('hidden');
-                    $exitSaveButton.addClass('hidden');
+
+                    $saveCommentButton.addClass('hidden').unbind();
+                    $exitSaveButton.addClass('hidden').unbind();
                     $clickedButton.removeClass('hidden');
                     $deleteCommentButton.removeClass('hidden');
 
@@ -145,9 +147,9 @@ $(() => {
                 });
         });
 
-        $exitSaveButton.on('click', (e) => {
-            $saveCommentButton.addClass('hidden');
-            $exitSaveButton.addClass('hidden');
+        $exitSaveButton.one('click', (e) => {
+            $saveCommentButton.addClass('hidden').unbind();
+            $exitSaveButton.addClass('hidden').unbind();
             $clickedButton.removeClass('hidden');
             $deleteCommentButton.removeClass('hidden');
 

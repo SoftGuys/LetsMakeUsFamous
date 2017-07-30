@@ -82,6 +82,7 @@ iframe {
     margin: 0%;
     padding: 0%;
     height: 100%;
+    overflow-x: hidden;
     background: url('http://localhost:3001/static/images/background.jpg') repeat;
     background-position: center;
     background-size: cover;
