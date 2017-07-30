@@ -1,2 +1,2 @@
 # LetsMakeUsFamous
-Telerik Academy Node.js Project
+Node.js Project
