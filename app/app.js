@@ -16,12 +16,6 @@ const init = (data) => {
     const controllers = require('./controllers')(data, utils);
     require('./routes')(app, controllers);
 
-    app.get('/*', (req, res) => {
-        return res
-            .status(301)
-            .redirect('/404');
-    });
-
     app.get('/404', (req, res) => {
         return res
             .status(404)
@@ -31,6 +25,12 @@ const init = (data) => {
                     isAuthenticated: req.isAuthenticated(),
                 },
             });
+    });
+
+    app.get('/*', (req, res) => {
+        return res
+            .status(301)
+            .redirect('/404');
     });
 
     const sockets = require('./sockets');

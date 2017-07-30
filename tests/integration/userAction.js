@@ -17,7 +17,7 @@ describe('/User Actions Tests', () => {
     describe('GET /', () => {
         it('expect to return 200 and redirect to users', (done) => {
             request(app)
-                .get('/users', function(req, res) {
+                .get('/users', (req, res) => {
                     req.isAuthenticated();
                 })
                 .expect(200)
