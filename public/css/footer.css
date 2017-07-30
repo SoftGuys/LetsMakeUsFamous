@@ -18,13 +18,16 @@ footer {
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8', GradientType=0);
     /* IE6-9 */
 }
+
 @media screen and (max-width: 1200px) {
-    footer { display: none; }
-}
-#sg{
-    text-decoration: none;
+    footer {
+        display: none;
+    }
 }
 
+#sg {
+    text-decoration: none;
+}
 
 .copyright p {
     text-align: left;
@@ -51,7 +54,6 @@ footer {
     font-family: sans-serif;
     margin-right: 8px;
     margin-left: 8px;
-
 }
 
 .bottom_ul li a {
@@ -59,42 +61,41 @@ footer {
     font-size: 14px;
     font-family: sans-serif;
     text-decoration: none;
-
 }
-.bottom_ul li a:hover{
+
+.bottom_ul li a:hover {
     color: white;
 }
 
 #aboutli {
     margin-left: 35%;
 }
-bottom_ul.footer-right li a {
-    color: #ead0af;
-}
+
 .destinationsPara {
-    padding:20px;
+    padding: 20px;
     background-color: rgba(15, 15, 15, 0.0);
     overflow-wrap: break-word;
     -webkit-box-shadow: 0px -9px 58px 6px rgba(0, 0, 0, 0.0);
     -moz-box-shadow: 0px -9px 58px 6px rgba(0, 0, 0, 0.0);
     box-shadow: 0px -9px 58px 6px rgba(0, 0, 0, 0.0);
 }
-.destinationsPara a{
-    padding:20px;
+
+.destinationsPara a {
+    padding: 20px;
     background: rgba(8, 8, 8, 0.04);
 }
-.destinationsPara a:hover{
-    padding:20px;
+
+.destinationsPara a:hover {
+    padding: 20px;
     background: rgba(8, 8, 8, 0.04);
 }
-.destinationsPara a:after{
+
+.destinationsPara a:after {
     background-color: rgba(8, 8, 8, 0.04);
     content: 'Explore sites';
 }
-.destinationsPara a:hover:after{
+
+.destinationsPara a:hover:after {
     background-color: rgba(8, 8, 8, 0.04);
     content: '100 Most Famous Landmarks Around the Bulgaria';
-}
-.container{
-    width: 100%;
 }

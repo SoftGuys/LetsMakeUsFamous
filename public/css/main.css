@@ -120,7 +120,7 @@ iframe {
     overflow-y: hidden;
 }
 
-video {
+.home-video {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -142,10 +142,6 @@ video {
 .landmark-details-description {
     max-height: 100px;
     overflow-y: hidden;
-}
-
-button {
-    margin-top: 3px;
 }
 
 .img-comment-user {
@@ -208,14 +204,11 @@ button {
     max-width: 100%;
 }
 
-small {
+.about-contributors {
     display: block;
     line-height: 1.428571429;
     color: #999;
 }
-
-
-/* Admin Button */
 
 #Admin a {
     color: #ead0af;
