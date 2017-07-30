@@ -1,7 +1,4 @@
-/* globals $ io domAppender */
-
-// eslint-disable-next-line
-var socket = io.connect('http://localhost:3001');
+/* globals $ domAppender socket */
 
 $(() => {
     $('#friends').on('click', '.friend-panel', (event) => {
@@ -38,12 +35,6 @@ $(() => {
         domAppender.appendChatMessage(message);
         $('#messages-box')
             .animate({ scrollTop: $('#messages-box').prop('scrollHeight') }, 0);
-    });
-
-    socket.on('message-notification', (senderName) => {
-        domAppender.appendNotification(
-            'glyphicon-pencil',
-            `${senderName} texted you!`);
     });
 
     $('#input-message').on('click', () => {

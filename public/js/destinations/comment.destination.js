@@ -1,14 +1,8 @@
-/* globals $ toastr io requester domAppender */
-// eslint-disable-next-line
-var socket = io.connect('http://localhost:3001');
-const COMMENT_URL = 'http://localhost:3001/api/destinations/comments/';
+/* globals $ toastr requester domAppender socket */
 
+const COMMENT_URL = 'http://localhost:3001/api/destinations/comments/';
 $(() => {
-    socket.on('add-comment', ({ senderName, landmarkTitle }) => {
-        domAppender.appendNotification(
-            'glyphicon-hand-left',
-            `${senderName} commented on ${landmarkTitle}!`);
-    });
+    $('.landmark-description').popover({ container: 'body' });
 
     $('.btn-comment-form').on('click', (ev) => {
         $('#add-destination-comment').toggleClass('hidden');
@@ -44,20 +38,6 @@ $(() => {
                 });
         });
 
-    $('#landmarks-search').on('click', () => {
-        requester.getJSON('/api/landmarks')
-            .then((landmarks) => {
-                return landmarks.map((x) => x.title);
-            })
-            .then((titles) => {
-                $('#landmarks-search').autocomplete({
-                    source: titles,
-                });
-            });
-    });
-
-    $('.landmark-description').popover({ container: 'body' });
-
     $('.destination-comments').on('click', '.btn-delete-comment', (ev) => {
         const $clickedButton = $(ev.target);
 
@@ -87,6 +67,7 @@ $(() => {
                 const errMessage = typeof message === 'string' ?
                     message :
                     'You are not allowed to delete this comment!';
+
                 toastr.error(errMessage);
             });
     });

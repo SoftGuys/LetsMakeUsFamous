@@ -10,6 +10,7 @@ $(() => {
             zoom: 9,
             center: { lat: latitude, lng: longitude },
         });
+
         const marker = new google.maps.Marker({
             map: map,
             position: map.center,
