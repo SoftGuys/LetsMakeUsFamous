@@ -36,7 +36,7 @@ class Landmark {
         if (comment.text.length < MIN_COMMENT_LENGTH ||
             comment.text.length > MAX_COMMENT_LENGTH) {
             return Promise.reject(`Comment length must be between
-${MIN_COMMENT_LENGTH} and ${MAX_COMMENT_LENGTH} symbols long`);
+                ${MIN_COMMENT_LENGTH} and ${MAX_COMMENT_LENGTH} symbols long`);
         }
 
         return Promise.resolve(comment);

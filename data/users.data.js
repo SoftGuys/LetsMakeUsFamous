@@ -1,7 +1,7 @@
 const Data = require('./abstractions');
 const User = require('../models/user.model');
-const RANK_DIVISOR = 10;
 
+const RANK_DIVISOR = 10;
 const USER_RANK_NAMES = [
     'freakpazo',
     'God',
@@ -61,29 +61,21 @@ class UsersData extends Data {
 
     promoteToAdmin(user) {
         if (typeof user === 'undefined') {
-            return Promise.reject('user is undefined!');
+            return Promise.reject('User is undefined!');
         }
 
-        return this.collection.update({
-                _id: user._id,
-            }, {
-                $set: {
-                    isAdmin: true,
-                },
-            })
+        user.isAdmin = true;
+        return this.update(user)
             .then(() => {
                 return user;
             });
     }
 
     getCountByUsername(username) {
-        const filterExpression = new RegExp(`.*${username}.*`, 'ig');
-        return this.collection.find({
-                username: {
-                    $regex: filterExpression,
-                },
-            })
-            .count();
+        return this.getByUsername(username)
+            .then((users) => {
+                return users.length;
+            });
     }
 
     getByUsername(username) {
@@ -127,9 +119,7 @@ class UsersData extends Data {
         }
 
         user.pictureUrl = pictureUrl;
-        return this.collection.update({
-            _id: user._id,
-        }, user);
+        return this.update(user);
     }
 
     getRankName(rankIndex) {
@@ -140,22 +130,11 @@ class UsersData extends Data {
     }
 
     addFriendship(user, friend) {
-        const friendModel = (userData) => {
-            return {
-                _id: userData._id,
-                username: userData.username,
-                rank: userData.rank,
-                email: userData.email,
-                pictureUrl: userData.pictureUrl,
-                messages: [],
-            };
-        };
-
-        user.friends.push(friendModel(friend));
+        user.friends.push(User.getFriendModel(friend));
         this.update(user);
 
         friend.notifications.push(`${user.username} added you as a friend!`);
-        friend.friends.push(friendModel(user));
+        friend.friends.push(User.getFriendModel(user));
         this.update(friend);
     }
 
@@ -229,9 +208,7 @@ class UsersData extends Data {
         landmark.isVisited = true;
         landmark.pictureUrl = pictureUrl;
 
-        return this.collection.update({
-                _id: user._id,
-            }, user)
+        return this.update(user)
             .then(() => {
                 return `${landmarkTitle} has been marked visited!`;
             });

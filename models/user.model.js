@@ -1,7 +1,7 @@
+const CryptoJS = require('crypto-js');
+
 const MIN_RANK_NUMBER = 0;
 const MAX_RANK_NUMBER = 20;
-
-const CryptoJS = require('crypto-js');
 
 class User {
     static validateModel(user) {
@@ -54,7 +54,6 @@ class User {
     }
 
     static validateUserInfo(user) {
-        console.log(user.description);
         if (typeof user.birthDate !== 'string' ||
             // eslint-disable-next-line
             !/^(0?[1-9]|[12][0-9]|3[01])[-.\/](0?[1-9]|1[012])[-.\/]\d{2,4}$/g.test(user.birthDate)) {
@@ -77,6 +76,17 @@ class User {
         }
 
         return Promise.resolve(user);
+    }
+
+    static getFriendModel(userData) {
+        return {
+            _id: userData._id,
+            username: userData.username,
+            rank: userData.rank,
+            email: userData.email,
+            pictureUrl: userData.pictureUrl,
+            messages: [],
+        };
     }
 }
 

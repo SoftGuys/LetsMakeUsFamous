@@ -43,9 +43,7 @@ class LandmarksData extends Data {
                 validatedComment.postedOn = Date.now();
                 validatedLandmark.comments.push(comment);
 
-                return this.collection.update({
-                        _id: validatedLandmark._id,
-                    }, validatedLandmark)
+                return this.update(validatedLandmark)
                     .then(() => {
                         return validatedComment;
                     });
