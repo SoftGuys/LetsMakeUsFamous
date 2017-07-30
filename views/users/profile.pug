@@ -54,7 +54,8 @@ block content
                                 i.glyphicon.glyphicon-envelope
                             a.btn.btn-sm.btn-warning#buttonEditProfile(data-original-title='Edit this user', data-toggle='tooltip', type='button')
                                 i.glyphicon.glyphicon-edit
-                            a.btn.btn-sm.btn-success#saveButton(data-original-title='Edit this user', data-toggle='tooltip', type='button')
+                            a.btn.btn-sm.btn-success#saveButton.hidden(data-original-title='Edit this user', data-toggle='tooltip', type='button')
                                 i.glyphicon.glyphicon-ok
                             a.btn.btn-sm.btn-danger(href='/')
                                 i.glyphicon.glyphicon-remove
+    script(src='/dist/js/profile.js')

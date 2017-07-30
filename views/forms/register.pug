@@ -12,25 +12,25 @@ block wrapper
             label.uname(for='username')
                 |   Your username
 
-            input#usernamesignup(name='username', required='required', type='text', placeholder='mysuperusername690' title="Give the best of your originality")
+            input#usernamesignup.log-input(name='username', required='required', type='text', placeholder='mysuperusername690')
         p
             label.youmail(for='email')
                 |   Your email
 
-            input#emailsignup(name='email', required='required', type='email', placeholder='mysupermail@mail.com')
+            input#emailsignup.log-input(name='email', required='required', type='email', placeholder='mysupermail@mail.com')
         p
             label.youpasswd(for='password')
                 |   Your password
 
-            input#passwordsignup(name='password', required='required', type='password', placeholder='eg. X8df!90EO')
+            input#passwordsignup.log-input(name='password', required='required', type='password', placeholder='eg. X8df!90EO')
         p
             label.youpasswd(for='password_confirm')
                 |   Please confirm your password
-            input#passwordsignup_confirm(name='password_confirm', required='required', type='password', placeholder='eg. X8df!90EO')
+            input#passwordsignup_confirm.log-input(name='password_confirm', required='required', type='password', placeholder='eg. X8df!90EO')
         p
-            input.btn.btn-info#signUp(type='submit', value='Sign up')
+            input.btn.btn-info#signUp.log-input(type='submit', value='Sign up')
         a.btn-danger.p.back.button(href='/')
-            input.btn-danger.p.back.button(type='submit', value='Back')
+            input.btn-danger.p.back.button.log-input(type='submit', value='Back')
         p.change_link
             |   Already a member ?
             

@@ -38,7 +38,7 @@ block content
                         .row
                     else
                     .col-md-2.portfolio-item.landmark 
-                            a(href='#')
+                            a
                                 if (landmark.isVisited)
                                     img.img-responsive.thumbnail.img-landmark(src=landmark.pictureUrl)
                                 else
@@ -47,3 +47,5 @@ block content
                                 | #{landmark.title}
                             p.landmark-description
                                 | #{landmark.description}
+
+    script(src='/dist/js/users.js')

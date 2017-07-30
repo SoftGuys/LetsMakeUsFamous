@@ -13,28 +13,24 @@ html(lang='en')
         link(rel="stylesheet", href="/libs/toastr/build/toastr.min.css")
         link(rel="stylesheet", href="/libs/jquery-ui-dist/jquery-ui.min.css")
 
-        link(href='/static/css/main.css' rel='stylesheet')
-        link(href='/static/css/modal.css' rel='stylesheet')
-        link(href='/static/css/footer.css' rel='stylesheet')
-        link(href='/static/css/messages.css' rel='stylesheet')
+        link(href='/dist/all.css' rel='stylesheet')
 
         script(src='/libs/jquery/dist/jquery.min.js')
         script(src='/libs/bootstrap/dist/js/bootstrap.min.js')
         script(src='/libs/jquery-ui-dist/jquery-ui.min.js')
         script(src="/libs/toastr/build/toastr.min.js")
         script(src='/libs/moment/min/moment.min.js')
+        
         script(src="/socket.io/socket.io.js")
 
-        script(src='/static/js/requests/requester.js')
-        script(src='/static/js/profile.js')
-        script(src='/static/js/editProfile.js')
-        //script(src='/static/js/cordinates.js')
-        script(src="/static/js/destinations.js")
-        script(src='/static/js/users.js')
-        script(src='/static/js/messages.js')
-        script(src='/static/js/loader.js')
+        script(src='/dist/js/utils/requester.js')
+        script(src='/dist/js/utils/domAppender.js')
 
-    body
+        script(src='/dist/js/common/notificator.js')
+        script(src='/dist/js/common/loader.js')
+        script(src='/dist/js/common/searchbars.js')
+
+    body.background
         div#loader
 
         +nav

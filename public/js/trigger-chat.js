@@ -1,4 +1,0 @@
-/* globals $ */
-$(() => {
-    $('.msg-friend').click();
-});

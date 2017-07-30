@@ -1,5 +1,5 @@
 extends ../master
-include ../utils/pagination
+include ../includes/pagination
 
 block content
     .container#users-container
@@ -82,3 +82,6 @@ block content
                                                 span.glyphicon.glyphicon-font
 
     +pagination
+
+    script(src='/dist/js/users.js')
+

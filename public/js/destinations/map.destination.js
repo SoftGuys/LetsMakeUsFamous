@@ -1,9 +1,8 @@
-/* globals $ google map*/
-const mapBtn = $('#googleMapActivate');
-const modalContext = $('#myModal');
-mapBtn.on('click', () => {
-    $('#myModal').modal('show');
-    setTimeout(() => {
+/* globals $ google*/
+$(() => {
+    $('#googleMapActivate').on('click', () => {
+        $('#myModal').modal('show');
+
         const longitude = Number($('#cordslong').attr('data-lon'));
         const latitude = Number($('#cordslat').attr('data-lat'));
 
@@ -11,12 +10,11 @@ mapBtn.on('click', () => {
             zoom: 9,
             center: { lat: latitude, lng: longitude },
         });
+
         const marker = new google.maps.Marker({
             map: map,
             position: map.center,
-            // Animation can be DROP,BOUNCE,no,po
             animation: google.maps.Animation.BOUNCE,
         });
-        // google.maps.event.trigger(map, 'resize');
-    }, 300);
+    });
 });
