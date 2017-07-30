@@ -1,0 +1,8 @@
+/* globals $ */
+const notificator = (() => {
+
+
+    return {
+
+    };
+})();

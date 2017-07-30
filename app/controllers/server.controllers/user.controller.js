@@ -58,8 +58,17 @@ const userController = (data, utils) => {
             const pictureUrl = '/static/images/uploads/' + req.file.filename;
             return data.users.updateProfilePicture(req.user, pictureUrl)
                 .then(() => {
+                    req.toastr.success('Successfully changed profile picture!');
+
                     return res
                         .status(201)
+                        .redirect('/users/profile');
+                })
+                .catch((error) => {
+                    req.toastr.error(error);
+
+                    return res
+                        .status(400)
                         .redirect('/users/profile');
                 });
         },

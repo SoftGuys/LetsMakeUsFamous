@@ -1,4 +1,4 @@
-/* globals $ io toastr requester */
+/* globals $ io toastr requester domAppender */
 // eslint-disable-next-line
 var socket = io.connect('http://localhost:3001');
 
@@ -45,16 +45,9 @@ $(() => {
             .html('Chat')
             .attr('id', 'chat');
 
-        $('.notification-alert').removeClass('hidden');
-        $('#alerts').append(
-            $('<li>').append(
-                $('<a>')
-                .attr('href', '#')
-                .addClass('alert')
-                .addClass('glyphicon')
-                .addClass('glyphicon-user')
-                .html(`${sender.username} added you as a friend!`))
-        );
+        domAppender.appendNotification(
+            'glyphicon-user',
+            `${sender.username} added you as a friend!`);
     });
 
     $('#users-search').on('click', () => {
