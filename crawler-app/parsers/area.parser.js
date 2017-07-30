@@ -32,6 +32,7 @@ const parseAreas = (url) => {
             .then(($) => {
                 const $elements = $(selectors.ITEMLIST);
                 $elements.each((_, elem) => {
+                    // eslint-disable-next-line
                     console.log('.');
                     const $elem = $(elem);
                     const hrefParts = $elem.attr('href').split('/');

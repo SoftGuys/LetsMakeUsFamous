@@ -13,9 +13,9 @@
             "error",
             "always"
         ],
-        "linebreak-style": 0, // development only
-        "no-console": 0, // must fix
 
+        "linebreak-style": 2,
+        "no-console": 2,
         "semi": 2,
         "no-undef": 2,
         "no-use-before-define": 0,

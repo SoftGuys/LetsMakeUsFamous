@@ -1,6 +1,5 @@
 /* Globals $ */
 const webdriver = require('selenium-webdriver');
-const describe = require('mocha');
 
 const setupDriver = () => {
     // eslint-disable-next-line
@@ -8,7 +7,6 @@ const setupDriver = () => {
         .usingServer().withCapabilities({ 'browserName': 'chrome' })
         .build();
 };
-
 
 //    Homepage Test
 const getTitleHomePage = () => {
@@ -21,9 +19,6 @@ const getTitleHomePage = () => {
         })
         .then((el) => {
             return el.getText();
-        })
-        .then((text) => {
-            console.log(text);
         })
         .then(() => {
             driver.quit();
@@ -76,9 +71,6 @@ const registerPage = () => {
         .then(() => {
             return driver.getCurrentUrl();
         })
-        .then((url) => {
-            console.log(url);
-        })
         .then(() => {
             driver.quit();
         });
@@ -118,9 +110,6 @@ const loginPageAdmin = () => {
         })
         .then((el) => {
             return el.getText();
-        })
-        .then((text) => {
-            console.log(text);
         })
         .then(() => {
             driver.quit();
@@ -167,9 +156,6 @@ const loginPageUser = () => {
         .then((el) => {
             return el.getAttribute('data-name');
         })
-        .then((el) => {
-            console.log(el);
-        })
         .then(() => {
             driver.quit();
         });
@@ -186,9 +172,6 @@ const destinationsPage = () => {
         })
         .then((el) => {
             return el.getText();
-        })
-        .then((text) => {
-            console.log(text);
         })
         .then(() => {
             driver.quit();
@@ -225,9 +208,6 @@ const searchButton = () => {
         .then((el) => {
             return el.getText();
         })
-        .then((text) => {
-            console.log(text);
-        })
         .then(() => {
             driver.quit();
         });
@@ -253,9 +233,6 @@ const searchButtonUsers = () => {
         })
         .then((el) => {
             return el.getText();
-        })
-        .then((text) => {
-            console.log(text);
         })
         .then(() => {
             driver.quit();
@@ -284,9 +261,6 @@ const checkViewButtonOnUsersPage = () => {
         .then((el) => {
             return el.getText();
         })
-        .then((text) => {
-            console.log(text + 'Profile Page');
-        })
         .then(() => {
             driver.quit();
         });
@@ -314,9 +288,6 @@ const usersRanking = () => {
         })
         .then((el) => {
             return el.getText();
-        })
-        .then((text) => {
-            console.log(text);
         })
         .then(() => {
             driver.quit();
@@ -386,9 +357,6 @@ const chatView = () => {
         .then((el) => {
             return el.getText();
         })
-        .then((text) => {
-            console.log(text);
-        })
         .then(() => {
             driver.quit();
         });
@@ -400,6 +368,7 @@ function setDriver() {
         .usingServer().withCapabilities({ 'browserName': 'chrome' })
         .build();
 }
+
 function generateRandomName() {
     let text = '';
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcd' +
@@ -412,14 +381,4 @@ function generateRandomName() {
     return text;
 }
 
-console.log(getTitleHomePage()); // test 1
-console.log(registerPage()); // test 2
-console.log(loginPageAdmin()); // test 3
-console.log(loginPageUser()); // test 4
-console.log(destinationsPage());// test 5
-console.log(searchButton()); // test 6
-console.log(searchButtonUsers()); // test 7
-console.log(checkViewButtonOnUsersPage()); // test 8
-console.log(usersRanking()); // test 9
-console.log(chatView()); // test 10
 module.exports = { setupDriver };

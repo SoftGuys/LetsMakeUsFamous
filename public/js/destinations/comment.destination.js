@@ -39,7 +39,6 @@ $(() => {
         });
 
     $('.destination-comments').on('click', '.btn-delete-comment', (ev) => {
-        console.log(ev.target);
         const $clickedButton = $(ev.target);
 
         const landmarkId =

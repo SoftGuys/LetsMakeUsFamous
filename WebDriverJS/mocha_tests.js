@@ -1,20 +1,19 @@
 /* globals */
 const { expect } = require('chai');
-const { assert } = require('chai');
 
 const test = require('selenium-webdriver/testing');
 const webdriver = require('selenium-webdriver');
 
-describe(`Bulgaria's National Tourist Sites Selenium Tests`, function() {
+describe(`Bulgaria's National Tourist Sites Selenium Tests`, () => {
     let driver = null;
-    beforeEach(function() {
+    beforeEach(() => {
         driver = setDriver();
     });
-    afterEach(function() {
+    afterEach(() => {
         driver.quit();
     });
 
-    test.it('Should see if app is on and homepage is ok', function(done) {
+    test.it('Should see if app is on and homepage is ok', (done) => {
         return driver.get('http://localhost:3001/home')
             .then(() => {
                 return driver.findElement(
@@ -29,7 +28,7 @@ describe(`Bulgaria's National Tourist Sites Selenium Tests`, function() {
                 done();
             });
     });
-    test.it('Should register new user successful', function(done) {
+    test.it('Should register new user successful', (done) => {
         return driver.get('http://localhost:3001/users/register')
             .then(() => {
                 return driver.findElement(
@@ -79,7 +78,7 @@ describe(`Bulgaria's National Tourist Sites Selenium Tests`, function() {
                 done();
             });
     });
-    test.it('Should login as a user successful', function(done) {
+    test.it('Should login as a user successful', (done) => {
         return driver.get('http://localhost:3001/users/login')
             .then(() => {
                 return driver.findElement(
@@ -118,7 +117,7 @@ describe(`Bulgaria's National Tourist Sites Selenium Tests`, function() {
                 done();
             });
     });
-    test.it('Should have or can upload picture successful', function(done) {
+    test.it('Should have or can upload picture successful', (done) => {
         // eslint-disable-next-line
         driver.executeScript('var s=window.document.createElement(\'script\');\
                   s.src=\'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js\';\
@@ -162,7 +161,7 @@ describe(`Bulgaria's National Tourist Sites Selenium Tests`, function() {
                 done();
             });
     });
-    test.it('Destinations page is working', function(done) {
+    test.it('Destinations page is working', (done) => {
         return driver.get('http://localhost:3001/destinations')
             .then(() => {
                 return driver.findElement(
@@ -180,7 +179,7 @@ describe(`Bulgaria's National Tourist Sites Selenium Tests`, function() {
                 done();
             });
     });
-    test.it('Search button to be working for destinations', function(done) {
+    test.it('Search button to be working for destinations', (done) => {
         return driver.get('http://localhost:3001/destinations')
             .then(() => {
                 return driver.findElement(
@@ -210,13 +209,13 @@ describe(`Bulgaria's National Tourist Sites Selenium Tests`, function() {
                 return el.getText();
             })
             .then((text) => {
-            expect(text)
-                .to
-                .contain('гр. Благоевград - Регионален исторически музей');
+                expect(text)
+                    .to
+                    .contain('гр. Благоевград - Регионален исторически музей');
                 done();
             });
     });
-    test.it('Seach button should work for users', function(done) {
+    test.it('Seach button should work for users', (done) => {
         return driver.get('http://localhost:3001/users')
             .then(() => {
                 return driver.findElement(
@@ -241,12 +240,13 @@ describe(`Bulgaria's National Tourist Sites Selenium Tests`, function() {
                 done();
             });
     });
-    test.it('View button should work for user', function(done) {
+    test.it('View button should work for user', (done) => {
         return driver.get('http://localhost:3001/users')
             .then(() => {
                 return driver.findElement(
-                    webdriver.By.xpath('' +
-                    '//*[@id="users-container"]/div[1]/div/div/div[2]/div/a')
+                    webdriver.By.xpath(
+                        '//*[@id="users-container"]' +
+                        '/div[1]/div/div/div[2]/div/a')
                 );
             })
             .then((el) => {
@@ -264,11 +264,13 @@ describe(`Bulgaria's National Tourist Sites Selenium Tests`, function() {
                 return el.getText();
             })
             .then((text) => {
-            expect(text + 'Profile Page').to.be.equal('rosenpedalProfile Page');
+                expect(text + 'Profile Page').to
+                    .be.equal('rosenpedalProfile Page');
+
                 done();
             });
     });
-    test.it('Expect next page to go one page forward', function(done) {
+    test.it('Expect next page to go one page forward', (done) => {
         return driver.get('http://localhost:3001/users/ranking')
             .then(() => {
                 return driver.findElement(
@@ -295,7 +297,7 @@ describe(`Bulgaria's National Tourist Sites Selenium Tests`, function() {
                 done();
             });
     });
-    test.it('Chat page should load succesful', function(done) {
+    test.it('Chat page should load succesful', (done) => {
         return driver.get('http://localhost:3001/users/login')
             .then(() => {
                 return driver.findElement(
@@ -366,6 +368,7 @@ function setDriver() {
         .usingServer().withCapabilities({ 'browserName': 'chrome' })
         .build();
 }
+
 function generateRandomName() {
     let text = '';
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcd' +
@@ -377,4 +380,3 @@ function generateRandomName() {
 
     return text;
 }
-
