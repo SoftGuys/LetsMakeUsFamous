@@ -35,7 +35,8 @@ block content
           h4
             | Comments
             hr
-        section.destination-comments(data-logged-username=context.isAuthenticated ? context.user.username : '')
+        - var isloggedUserAdmin = context.user && context.user.isAdmin ? 'true' : 'false'
+        section.destination-comments(data-logged-username=context.isAuthenticated ? context.user.username : '', data-is-admin=isloggedUserAdmin)
             if (context.landmark.comments)
                 each comment in context.landmark.comments
                     .col-md-8.destination-comment
@@ -51,7 +52,7 @@ block content
                                 span.glyphicon.glyphicon-pencil
                             button.btn.btn-danger.btn-xs.btn-delete-comment
                                  span.glyphicon.glyphicon-trash 
-                            button.btn.btn-success.btn-xs.btn-save-comment.hidden(data-author=comment.user.username data-is-admin=(context.user && context.user.isAdmin))
+                            button.btn.btn-success.btn-xs.btn-save-comment.hidden(data-author=comment.user.username)
                                 span.glyphicon.glyphicon-ok
                             button.btn.btn-danger.btn-xs.btn-exit-save.hidden(data-author=comment.user.username)
                                 span.glyphicon.glyphicon-remove

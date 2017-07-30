@@ -49,6 +49,9 @@ $(() => {
         });
 
     const displayComment = (comment, rootElement) => {
+        const loggedUsername = $('.destination-comments')
+            .attr('data-logged-username');
+
         const $destinationComment = $('<div />')
             .addClass('col-md-8')
             .addClass('destination-comment');
@@ -67,21 +70,49 @@ $(() => {
         const $userHref = $('<a />')
             .attr('href', '/users/' + comment.user._id)
             .text(' ' + comment.user.username);
-        const $trashSpan = $('<span/> </span>')
+        const $trashSpan = $('<span/>')
             .addClass('glyphicon glyphicon-trash');
         const $deleteCommentButton = $('<button>')
-            .addClass('btn')
+            .addClass('btn btn-xs')
             .addClass('btn-danger')
             .addClass('btn-delete-comment');
+        const $pencilSpan = $('<span/>')
+            .addClass('glyphicon glyphicon-pencil');
+        const $editCommentButton = $('<button>')
+            .addClass('btn btn-xs')
+            .addClass('btn-primary')
+            .addClass('btn-edit-comment')
+            .attr('data-author', loggedUsername);
+        const $okSpan = $('<span/>')
+            .addClass('glyphicon glyphicon-ok');
+        const $saveCommentButton = $('<button>')
+            .addClass('btn btn-xs')
+            .addClass('btn-success')
+            .addClass('btn-save-comment')
+            .addClass('hidden')
+            .attr('data-author', loggedUsername);
+        const $removeSpan = $('<span/>')
+            .addClass('glyphicon glyphicon-remove');
+        const $exitSaveButton = $('<button>')
+            .addClass('btn btn-xs')
+            .addClass('btn-danger')
+            .addClass('btn-exit-save')
+            .addClass('hidden');
 
         $trashSpan.appendTo($deleteCommentButton);
+        $pencilSpan.appendTo($editCommentButton);
+        $okSpan.appendTo($saveCommentButton);
+        $removeSpan.appendTo($exitSaveButton);
 
         $timeGlyphicon.appendTo($destinationCommentDetails);
         $destinationCommentDetails
             .append(' ' + moment(comment.postedOn).fromNow() + ' ');
         $userImage.appendTo($destinationCommentDetails);
         $userHref.appendTo($destinationCommentDetails);
+        $editCommentButton.appendTo($destinationCommentDetails);
         $deleteCommentButton.appendTo($destinationCommentDetails);
+        $saveCommentButton.appendTo($destinationCommentDetails);
+        $exitSaveButton.appendTo($destinationCommentDetails);
 
         $destinationCommentText.appendTo($destinationComment);
         $destinationCommentDetails.appendTo($destinationComment);
@@ -148,7 +179,8 @@ $(() => {
             .attr('data-logged-username');
         const authorUsername = $clickedButton
             .attr('data-author');
-        const isAdmin = $clickedButton.attr('data-is-admin') === 'true';
+        const isAdmin = $('.destination-comments')
+            .attr('data-is-admin') === 'true';
 
         if (authorUsername !== loggedUsername && !isAdmin) {
             toastr.error(
@@ -162,7 +194,7 @@ $(() => {
             .prev();
         const commentText = $commentParagraph.text();
 
-        // text area to replaceWith
+        // text area to put on paragph comments's place
         const $textArea = $('<textarea/>')
             .addClass('form-control')
             .addClass('edit-comment-text-area')

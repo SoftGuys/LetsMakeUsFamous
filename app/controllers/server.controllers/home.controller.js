@@ -13,7 +13,6 @@ const homeController = (data) => {
                         dev: true,
                         isAuthenticated: req.isAuthenticated(),
                         user: req.user,
-                        // isAdmin: req.user.isAdmin,
                     },
                 });
         },
