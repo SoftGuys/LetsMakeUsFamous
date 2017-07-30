@@ -1,8 +1,3 @@
-body {
-    overflow-x: hidden;
-    background: url('http://localhost:3001/static/images/background.jpg') repeat;
-    background-size: 50px;
-}
 #jumbo {
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
@@ -74,11 +69,6 @@ iframe {
     min-height: 100%;
 }
 
-.background {
-    height: 100%;
-    margin: 0;
-}
-
 .center {
     position: absolute;
     top: -9999px;
@@ -89,13 +79,11 @@ iframe {
 }
 
 .background {
-    /* The image used */
-    /*background-image: url("../images/varna.jpg");*/
-    /* Full height */
+    margin: 0%;
+    padding: 0%;
     height: 100%;
-    /* Center and scale the image nicely */
+    background: url('http://localhost:3001/static/images/background.jpg') repeat;
     background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;
 }
 
