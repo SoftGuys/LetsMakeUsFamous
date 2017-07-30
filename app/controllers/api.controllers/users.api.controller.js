@@ -22,12 +22,12 @@ const usersApiController = (data) => {
                     return data.users.updateUserInfo(user);
                 })
                 .then(() => {
-                    res
+                    return res
                         .status(200)
                         .send('Profile eddited successfully!');
                 })
                 .catch((error) => {
-                    res
+                    return res
                         .status(400)
                         .send(error);
                 });
@@ -35,7 +35,8 @@ const usersApiController = (data) => {
         promoteUserToAdmin(req, res) {
             const userId = req.params.id;
             if (!req.user || !req.user.isAdmin) {
-                return res.status(401)
+                return res
+                    .status(401)
                     .send('You must be an admin to promote others!');
             }
 
@@ -49,11 +50,13 @@ const usersApiController = (data) => {
                     return data.users.promoteToAdmin(usertoPromote);
                 })
                 .then((resUser) => {
-                    return res.status(204)
+                    return res
+                        .status(204)
                         .send(resUser);
                 })
                 .catch((err) => {
-                    res.status(400)
+                    return res
+                        .status(400)
                         .send(err);
                 });
         },

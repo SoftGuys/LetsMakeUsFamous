@@ -37,11 +37,12 @@ const authController = (data) => {
                         };
                     });
 
-                    const rankIndex = parseInt(
-                        (user.landmarks.length -
-                            user.visitedPlaces) / RANK_DIVIDER - 1,
-                        10);
                     user.isAdmin = false;
+                    const rankIndex = parseInt(
+                        (user.landmarks.length - user.visitedPlaces) /
+                        RANK_DIVIDER - 1,
+                        10);
+
                     return Promise.all([
                         data.users.getRankName(rankIndex),
                         user,
@@ -49,19 +50,22 @@ const authController = (data) => {
                 })
                 .then(([userRank, userToAdd]) => {
                     userToAdd.rank = userRank;
-                    console.log(userToAdd);
                     return data.users.add(userToAdd);
                 })
                 .then((message) => {
                     const resMessage =
                         `${message.ops[0].username} registered successfully`;
-                    req.toastr
-                        .success(resMessage);
-                    return res.status(201).redirect('/users/login');
+                    req.toastr.success(resMessage);
+
+                    return res
+                        .status(201)
+                        .redirect('/users/login');
                 })
                 .catch((message) => {
                     req.toastr.error(message);
-                    res.status(406).redirect('/users/register');
+                    return res
+                        .status(406)
+                        .redirect('/users/register');
                 });
         },
         login(req, res, next) {

@@ -17,7 +17,9 @@ const init = (data) => {
     require('./routes')(app, controllers);
 
     app.get('/*', (req, res) => {
-        return res.redirect('/404');
+        return res
+            .status(301)
+            .redirect('/404');
     });
 
     app.get('/404', (req, res) => {
