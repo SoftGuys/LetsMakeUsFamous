@@ -1,7 +1,10 @@
 html(lang='en')
     link(href='/dist/all.css' rel='stylesheet')
     link(href='/libs/bootstrap/dist/css/bootstrap.css' rel='stylesheet')
-body
+    title Bulgaria Attractions
+    link(rel="icon" href="http://www.photonstorm.com/wp-content/uploads/2011/09/step4.gif" type="image/x-icon")
+
+body.background
     .section
         .container
             .row
@@ -10,22 +13,23 @@ body
                         |   SoftGuys
                     p.text-center.about-description
                         |   We are a group of skilled individuals
+                    br
             .row
-                .col-md-4
+                a(href='https://github.com/BorislavBorisov22').col-md-4.about
                     img.about-image.center-block(src='/static/images/authors/b.jpg')
                     h3.text-center
                         |   Bobislav Borisov
                         br
                         small.about-contributors
                             |   C# developer
-                .col-md-4
+                a(href='https://github.com/VVoev').col-md-4.about
                     img.about-image.center-block(src='/static/images/authors/v.jpg')
                     h3.text-center
                         |   Vladimir Voev
                         br
                         small.about-contributors
                             |   Full Stack developer
-                .col-md-4
+                a(href='https://github.com/RosenUrkov').col-md-4.about
                     img.about-image.center-block(src='/static/images/authors/r.jpg')
                     h3.text-center
                         |   Rosen Urkov
