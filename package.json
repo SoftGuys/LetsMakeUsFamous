@@ -37,12 +37,12 @@
         "gulp": "^3.9.1",
         "gulp-babel": "^6.1.2",
         "gulp-clean": "^0.3.2",
-        "gulp-mocha": "3",
         "gulp-clean-css": "^3.7.0",
         "gulp-concat": "^2.6.1",
         "gulp-eslint": "^4.0.0",
         "gulp-express": "^0.3.5",
         "gulp-istanbul": "^1.1.2",
+        "gulp-mocha": "3",
         "gulp-sync": "^0.1.4",
         "gulp-uglify": "^3.0.0",
         "isomorphic-fetch": "^2.2.1",
@@ -60,6 +60,7 @@
         "pug": "^2.0.0-rc.2",
         "pump": "^1.0.2",
         "socket.io": "^2.0.3",
+        "superagent": "^3.5.2",
         "toastr": "^2.1.2"
     },
     "devDependencies": {

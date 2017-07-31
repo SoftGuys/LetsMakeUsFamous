@@ -70,13 +70,13 @@ gulp.task('dev', () => {
     });
 });
 
-gulp.task('test', [
+gulp.task('test', gulpsync.sync([
     'tests:unit',
     'tests:integration',
-]);
+]));
 
 gulp.task('tests:unit', ['pre-test'], () => {
-    return gulp.src('./tests/unit/**/*.js')
+    return gulp.src('./tests/unit/**/*.js', { read: false })
         .pipe(mocha({ reporter: 'nyan' }))
         .pipe(istanbul.writeReports({
             reportOpts: { dir: './coverage/unit-coverage' },
@@ -84,7 +84,7 @@ gulp.task('tests:unit', ['pre-test'], () => {
 });
 
 gulp.task('tests:integration', ['pre-test'], () => {
-    return gulp.src('./tests/integration/**/*.js')
+    return gulp.src('./tests/integration/**/*.js', { read: false })
         .pipe(mocha({ reporter: 'dot' }))
         .pipe(istanbul.writeReports({
             reportOpts: { dir: './coverage/integration-coverage' },
