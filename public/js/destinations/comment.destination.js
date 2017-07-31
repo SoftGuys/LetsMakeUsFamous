@@ -1,6 +1,6 @@
 /* globals $ toastr requester domAppender socket */
 
-const COMMENT_URL = 'http://localhost:3001/api/destinations/comments/';
+const COMMENT_URL = 'http://localhost/api/destinations/comments/';
 $(() => {
     $('.landmark-description').popover({ container: 'body' });
 

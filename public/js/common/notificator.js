@@ -1,7 +1,7 @@
 /* globals $ domAppender */
 
 // eslint-disable-next-line
-var socket = io.connect('http://localhost:3001');
+var socket = io.connect('http://localhost');
 
 $(() => {
     $('#alert-dropdown').on('click', (event) => {
