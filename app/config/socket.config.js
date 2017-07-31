@@ -25,7 +25,7 @@ const configSocket = (app, data, attachSockets) => {
 
     io.use(passportSocket.authorize({
         cookieParser,
-        store: new MongoStore({ url: config.DB_CLOUD_CONNECTION_STRING }),
+        store: new MongoStore({ url: config.DB_LOCAL_CONNECTION_STRING }),
         secret: 'bobidjei',
         success: onAuthorizeSuccess,
         error: onAuthorizeFail,

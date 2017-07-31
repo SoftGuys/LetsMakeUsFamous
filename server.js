@@ -1,9 +1,7 @@
 const config = require('./config');
 
-// eslint-disable-next-line
-console.log(config.DB_CLOUD_CONNECTION_STRING);
 Promise.resolve()
-    .then(() => require('./database')(config.DB_CLOUD_CONNECTION_STRING))
+    .then(() => require('./database')(config.DB_LOCAL_CONNECTION_STRING))
     .then((database) => require('./data')(database))
     .then((data) => require('./app')(data))
     .then((app) => {
