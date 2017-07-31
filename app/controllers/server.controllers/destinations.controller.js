@@ -130,10 +130,6 @@ const destinationsController = (data, utils) => {
         getDestinationDetailsView(req, res) {
             const targetLandmarkId = req.params.id;
 
-            if (typeof targetLandmarkId === 'undefined') {
-                return res.status(304).redirect('/destinations');
-            }
-
             return data.landmarks.findById(targetLandmarkId)
                 .then((landmark) => {
                     if (landmark.comments && landmark.comments.length) {
@@ -156,6 +152,13 @@ const destinationsController = (data, utils) => {
                         .render('destinations/details', {
                             context,
                         });
+                })
+                .catch(() => {
+                    req.toastr.error('There is no such destination!');
+
+                    return res
+                        .status(304)
+                        .redirect('/destinations');
                 });
         },
     };
