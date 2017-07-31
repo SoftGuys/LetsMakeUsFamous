@@ -100,3 +100,14 @@ gulp.task('pre-test', () => {
         .pipe(istanbul({ includeUntested: true }))
         .pipe(istanbul.hookRequire());
 });
+
+gulp.task('davai_ba4e', ['pre-test'], () => {
+    return gulp.src(
+            './tests/integration/**/home.routes.tests.js', {
+                read: false,
+            })
+        .pipe(mocha({ reporter: 'dot' }))
+        .pipe(istanbul.writeReports({
+            reportOpts: { dir: './coverage/integration-coverage' },
+        }));
+});
