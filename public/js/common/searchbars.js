@@ -1,7 +1,7 @@
 /* globals $ requester */
 $(() => {
     $('#landmarks-search').on('click', () => {
-        requester.getJSON('/api/landmarks')
+        requester.getJSON('/api/destinations')
             .then((landmarks) => {
                 return landmarks.map((x) => x.title);
             })
