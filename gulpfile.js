@@ -103,7 +103,7 @@ gulp.task('pre-test', () => {
 
 gulp.task('davai_ba4e', ['pre-test'], () => {
     return gulp.src(
-            './tests/integration/**/home.routes.tests.js', {
+            './tests/integration/**/user.routes.tests.js', {
                 read: false,
             })
         .pipe(mocha({ reporter: 'dot' }))
