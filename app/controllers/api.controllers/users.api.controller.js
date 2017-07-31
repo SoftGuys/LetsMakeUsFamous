@@ -22,12 +22,12 @@ const usersApiController = (data) => {
                     return data.users.updateUserInfo(user);
                 })
                 .then(() => {
-                    res
+                    return res
                         .status(200)
                         .send('Profile eddited successfully!');
                 })
                 .catch((error) => {
-                    res
+                    return res
                         .status(400)
                         .send(error);
                 });
@@ -53,7 +53,7 @@ const usersApiController = (data) => {
                         .send(resUser);
                 })
                 .catch((err) => {
-                    res.status(400)
+                    return res.status(400)
                         .send(err);
                 });
         },

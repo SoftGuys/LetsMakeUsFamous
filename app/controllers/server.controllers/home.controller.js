@@ -2,7 +2,7 @@ const homeController = (data) => {
     return {
         redirectHome(req, res) {
             return res
-                .status(301)
+                .status(302)
                 .redirect('/home');
         },
         getHomeView(req, res) {

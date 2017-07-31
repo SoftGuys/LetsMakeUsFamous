@@ -100,7 +100,7 @@ const destinationsApiController = (data, utils) => {
                         req.user.username && !isAdmin) {
                         return res
                             .status(401)
-                            .send('You must be an admin in order to delete ');
+                            .send('You must be an admin in order to delete!');
                     }
 
                     landmark.comments.splice(index, 1);

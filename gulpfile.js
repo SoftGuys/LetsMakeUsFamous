@@ -70,20 +70,33 @@ gulp.task('dev', () => {
     });
 });
 
+gulp.task('test', gulpsync.sync([
+    'tests:unit',
+    'tests:integration',
+]));
+
+gulp.task('tests:unit', ['pre-test'], () => {
+    return gulp.src('./tests/unit/**/*.js', { read: false })
+        .pipe(mocha({ reporter: 'nyan' }))
+        .pipe(istanbul.writeReports({
+            reportOpts: { dir: './coverage/unit-coverage' },
+        }));
+});
+
+gulp.task('tests:integration', ['pre-test'], () => {
+    return gulp.src('./tests/integration/**/*.js', { read: false })
+        .pipe(mocha({ reporter: 'dot' }))
+        .pipe(istanbul.writeReports({
+            reportOpts: { dir: './coverage/integration-coverage' },
+        }));
+});
+
 gulp.task('pre-test', () => {
     return gulp.src([
             './app/**/*.js',
             './data/**/*.js',
             './models/**/*.js',
         ])
-        .pipe(istanbul({
-            includeUntested: true,
-        }))
+        .pipe(istanbul({ includeUntested: true }))
         .pipe(istanbul.hookRequire());
-});
-
-gulp.task('tests:unit', ['pre-test'], () => {
-    return gulp.src('./tests/unit/**/*.js')
-        .pipe(mocha())
-        .pipe(istanbul.writeReports());
 });
