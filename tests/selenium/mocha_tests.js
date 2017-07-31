@@ -523,57 +523,160 @@ describe(`Bulgaria's National Tourist Sites Selenium Tests`, () => {
     //             done();
     //         });
     // }); // 13
-
-    describe(`Footer Routes`, () => {
-        test.it('About Us', (done) => {
-            return driver.get(`${url}`)
-                .then(() => {
-                    console.log(webdriver)
-                    driver.sleep(1000);
-                    driver.findElement(
-                        webdriver.By.css(
-                            '#aboutli > a'
-                        )
-                    );
-                })
-                .then((el) => {
-                    el.click();
-                });
-        });
-        test.it('Contact Us', (done) => {
-            const window = new webdriver.WebDriver.Window(driver);
-            return driver.get(`${url}`)
-                .then(() => {
-                    window.maximize();
-                    driver.sleep(1000);
-                    driver.findElement(
-                        webdriver.By.css(
-                            'body > footer > ul > li:nth-child(2) > a'
-                        )
-                    );
-                })
-                .then((el) => {
-                    el.click();
-                })
-                .then(()=>{
+    //
+    // test.it('About Us', (done) => {
+    //     return driver.get(`${url}`)
+    //         .then(() => {
+    //             driver.sleep(1000);
+    //             return driver.findElement(
+    //                 webdriver.By.css(
+    //                     '#aboutli > a'
+    //                 )
+    //             );
+    //         })
+    //         .then((el) => {
+    //             el.click();
+    //             return driver.getCurrentUrl();
+    //         })
+    //         .then((newUrl) => {
+    //             expect(newUrl).to.be.equal(`${url}/about`);
+    //             done();
+    //         });
+    // });
+    // test.it('Contact Us', (done) => {
+    //     return driver.get(`${url}`)
+    //         .then(() => {
+    //             driver.sleep(1000);
+    //             return driver.findElement(
+    //                 webdriver.By.css(
+    //                     'body > footer > ul > li:nth-child(2) > a'
+    //                 )
+    //             );
+    //         })
+    //         .then((el) => {
+    //             el.click();
+    //         })
+    //         .then(() => {
+    //             driver.sleep(1000);
+    //             return driver.getCurrentUrl();
+    //         })
+    //         .then((newUrl) => {
+    //             expect(newUrl).to.contain('https://github.com/SoftGuys/LetsMakeUsFamous');
+    //             done();
+    //         });
+    // });
+    // test.it('Report Bug', (done) => {
+    //     return driver.get(`${url}`)
+    //         .then(() => {
+    //             driver.sleep(1000);
+    //             return driver.findElement(
+    //                 webdriver.By.css(
+    //                     'body > footer > ul > li:nth-child(3) > a'
+    //                 )
+    //             );
+    //         })
+    //         .then((el)=>{
+    //         el.click();
+    //         })
+    //         .then(()=>{
+    //         driver.sleep(1000);
+    //         return driver.getCurrentUrl();
+    //         })
+    //         .then((newUrl)=>{
+    //         expect(newUrl).to.be.equal('https://github.com/SoftGuys/LetsMakeUsFamous/issues');
+    //         done();
+    //         });
+    // });
+    // test.it('Check Map', (done) => {
+    //     return driver.get(`${url}/destinations/5974ec36a6f1bac1f0cea529`)
+    //         .then(() => {
+    //             driver.sleep(1000);
+    //             return driver.findElement(
+    //                 webdriver.By.id(
+    //                     'googleMapActivate'
+    //                 )
+    //             );
+    //         })
+    //         .then((el) => {
+    //             el.click();
+    //         })
+    //         .then((el)=>{
+    //         driver.sleep(1000);
+    //         return driver.findElement(
+    //             webdriver.By.xpath('//*[@id="myModal"]/div/div/div[1]/h4')
+    //         );
+    //         })
+    //         .then((el)=>{
+    //          return el.getText();
+    //         })
+    //         .then((text)=>{
+    //         expect(text).to.be.contain('гр. Мелник');
+    //         done();
+    //         });
+    // });
+    test.it('Check Comment', (done) => {
+        return driver.get(`${url}/destinations/5974ec36a6f1bac1f0cea529`)
+            .then(() => {
                 driver.sleep(1000);
-                });
-        });
-        test.it('Report Bug', (done) => {
-            const window = new webdriver.WebDriver.Window(driver);
-            return driver.get(`${url}`)
-                .then(() => {
-                    window.maximize();
-                    driver.sleep(1000);
-                    driver.findElement(
-                        webdriver.By.css(
-                            'body > footer > ul > li:nth-child(3) > a'
-                        )
-                    );
-                })
-                .then((el) => {
-                    el.click();
-                });
+                return driver.findElement(
+                    webdriver.By.xpath(
+                        '/html/body/div[2]/div[1]/div/button[2]'
+                    )
+                );
+            })
+            .then((el) => {
+                el.click();
+            })
+            .then(()=>{
+            driver.sleep(1000);
+            return driver.findElement(
+                webdriver.By.id(
+                    'comment-destination'
+                )
+            );
+        })
+            .then((el)=>{
+            el.sendKeys(generateRandomName());
+            })
+            .then(()=>{
+            return driver.findElement(
+                webdriver.By.css(
+                '#add-destination-comment > button'
+                )
+            );
+            })
+            .then((el)=>{
+            el.click();
+            })
+            .then(()=>{
+            return driver.findElement(
+                webdriver.By.id('toast-container')
+            );
+            })
+            .then((el)=>{
+            return el.getText();
+            })
+            .then((text)=>{
+            expect(text).to.be.equal('You must be logged in in order to comment!');
+            done();
+            });
+    });
+    test.it('Check 404 Error Page', (done) => {
+        return driver.get(`${url}/404`)
+            .then(() => {
+                driver.sleep(1000);
+                return driver.findElement(
+                    webdriver.By.id(
+                        'page-not-found'
+                    )
+                );
+            })
+            .then((el) => {
+               return el.getText();
+            })
+            .then((text)=>{
+            expect(text).to.contain('Oooops! This page');
+            done();
         });
     });
 });
@@ -599,8 +702,6 @@ function generateRandomName() {
 
 function maxWindow() {
     window.moveTo(0, 0);
-
-
     if (document.all) {
         top.window.resizeTo(screen.availWidth, screen.availHeight);
     } else if (document.layers || document.getElementById) {
