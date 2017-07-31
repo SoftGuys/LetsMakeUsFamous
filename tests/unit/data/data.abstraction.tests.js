@@ -4,15 +4,20 @@ const chai = require('chai');
 const mock = require('mock-require');
 const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
-
-const Data = require('../../../data/abstractions/data.abstraction');
+chai.use(sinonChai);
 
 const { expect } = chai;
+
+const Data = require('../../../data/abstractions/data.abstraction');
 
 describe('data.abstraction tests', () => {
     let database = null;
     let ModelClass = null;
     let validator = null;
+
+    const init = () => {
+        return new Data(database, ModelClass, validator);
+    };
 
     describe('constructor tests', () => {
         beforeEach(() => {
@@ -25,10 +30,6 @@ describe('data.abstraction tests', () => {
 
             validator.validateModel = {};
         });
-
-        const init = () => {
-            return new Data(database, ModelClass, validator);
-        };
 
         it('expect to throw when passed databse object is not defined', () => {
             database = undefined;
@@ -66,5 +67,46 @@ describe('data.abstraction tests', () => {
                 const data = init();
                 expect(data.collection).to.equal(expectedCollectionName);
             });
+    });
+
+    describe('count() tests', () => {
+        const collection = {
+            count() {
+
+            },
+        };
+
+        const count = 5;
+        let collectionCountStub;
+        beforeEach(() => {
+            collectionCountStub = sinon.stub(collection, 'count')
+                .callsFake(() => {
+                    return count;
+                });
+
+            database.collection = () => {
+                return collection;
+            };
+        });
+
+        afterEach(() => {
+            collectionCountStub = null;
+            collection.count.restore();
+            database.collection = null;
+        });
+
+        ModelClass = class {};
+        validator = {
+            validateModel(model) {
+                return model;
+            },
+        };
+
+        it('expect to call collection.count once', () => {
+            const data = init();
+
+            data.count();
+            expect(collectionCountStub).to.have.been.callCount(1);
+        });
     });
 });
