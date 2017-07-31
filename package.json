@@ -7,7 +7,7 @@
         "start": "gulp server",
         "dev": "gulp dev",
         "crawler": "node ./crawler-app/capp.js",
-        "test": "gulp tests:unit"
+        "test": "gulp test"
     },
     "repository": {
         "type": "git",
