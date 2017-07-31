@@ -133,12 +133,14 @@ const domAppender = (() => {
         $destinationComment.prependTo($(rootElement));
     };
 
-    const appendNotification = (glyphicon, alert) => {
+    const appendNotification = (glyphicon, alert, href) => {
+        href = href || '#';
+
         $('.notification-alert').removeClass('hidden');
         $('#alerts').append(
             $('<li>').append(
                 $('<a>')
-                .attr('href', '#')
+                .attr('href', href)
                 .addClass('alert')
                 .addClass('glyphicon')
                 .addClass(glyphicon)
