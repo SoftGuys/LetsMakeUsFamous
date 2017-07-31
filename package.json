@@ -56,10 +56,7 @@
         "passport.socketio": "^3.7.0",
         "pug": "^2.0.0-rc.2",
         "pump": "^1.0.2",
-        "selenium-server-standalone": "^2.53.1",
-        "selenium-webdriver": "^3.5.0",
         "socket.io": "^2.0.3",
-        "supertest": "^3.0.0",
         "toastr": "^2.1.2"
     },
     "devDependencies": {
@@ -73,8 +70,11 @@
         "jasmine": "^2.6.0",
         "mocha": "^3.4.2",
         "nyc": "^11.0.3",
+        "selenium-server-standalone": "^2.53.1",
         "selenium-server-standalone-jar": "^3.4.0",
+        "selenium-webdriver": "^3.5.0",
         "sinon": "^2.4.1",
-        "sinon-chai": "^2.12.0"
+        "sinon-chai": "^2.12.0",
+        "supertest": "^3.0.0"
     }
 }

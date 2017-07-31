@@ -19,7 +19,7 @@ $(() => {
         const userToPromoteId = $clickedButton
             .attr('data-user-id');
 
-        const url = 'http://localhost:3001/api/users/' + userToPromoteId + '/admin';
+        const url = '/api/users/' + userToPromoteId + '/admin';
         requester.putJSON(url)
             .then((res) => {
                 toastr.success('Requested user is now an admin!');

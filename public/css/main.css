@@ -83,7 +83,7 @@ iframe {
     padding: 0%;
     height: 100%;
     overflow-x: hidden;
-    background: url('http://localhost:3001/static/images/background.jpg') repeat;
+    background: url('/static/images/background.jpg') repeat;
     background-position: center;
     background-size: cover;
 }
@@ -262,7 +262,7 @@ iframe {
     min-width: 100%;
     min-height: 100%;
     position: absolute;
-    background: url('../videos/Ripple.gif') no-repeat center center;
+    background: url('/static/videos/Ripple.gif') no-repeat center center;
     background-color: white;
 }
 

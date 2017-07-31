@@ -8,5 +8,5 @@ Promise.resolve()
     .then((data) => require('./app')(data))
     .then((app) => {
         // eslint-disable-next-line
-        app.listen(config.PORT, () => console.log(`Server running on post ${config.PORT}`));
+        app.listen(config.PORT, () => console.log(`Server running on port ${config.PORT}..`));
     });
