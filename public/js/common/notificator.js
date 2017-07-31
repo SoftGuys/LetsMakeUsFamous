@@ -1,7 +1,5 @@
-/* globals $ domAppender */
-
-// eslint-disable-next-line
-var socket = io.connect();
+/* globals $ domAppender io */
+const socket = io.connect();
 
 $(() => {
     $('#alert-dropdown').on('click', (event) => {
@@ -41,8 +39,7 @@ $(() => {
     socket.on('message-notification', (senderName) => {
         domAppender.appendNotification(
             'glyphicon-pencil',
-            `${senderName} texted you!`,
-            `/users/messages/${senderName}`);
+            `${senderName} texted you!`);
     });
 
     socket.on('add-comment', ({ senderName, landmarkTitle }) => {
