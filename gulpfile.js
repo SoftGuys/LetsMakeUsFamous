@@ -87,8 +87,13 @@ gulp.task('tests:integration', ['pre-test'], () => {
     return gulp.src('./tests/integration/**/*.js', { read: false })
         .pipe(mocha({ reporter: 'dot' }))
         .pipe(istanbul.writeReports({
-            reportOpts: { dir: './coverage/integration-coverage' },
+            reportOpts: { dir: './coverage/functional-coverage' },
         }));
+});
+
+gulp.task('tests:functional', () => {
+    return gulp.src('./tests/selenium/functional.tests.js', { read: false })
+        .pipe(mocha({ reporter: 'nyan', timeout: 20000 }));
 });
 
 gulp.task('pre-test', () => {
@@ -99,15 +104,4 @@ gulp.task('pre-test', () => {
         ])
         .pipe(istanbul({ includeUntested: true }))
         .pipe(istanbul.hookRequire());
-});
-
-gulp.task('davai_ba4e', ['pre-test'], () => {
-    return gulp.src(
-            './tests/integration/**/user.routes.tests.js', {
-                read: false,
-            })
-        .pipe(mocha({ reporter: 'dot' }))
-        .pipe(istanbul.writeReports({
-            reportOpts: { dir: './coverage/integration-coverage' },
-        }));
 });
