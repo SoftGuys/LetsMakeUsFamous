@@ -60,8 +60,7 @@ const usersPresentationController = (data, utils) => {
                                 return users.splice(
                                     ((pagination.current - 1) *
                                         pagination.pageSize),
-                                    pagination.pageSize,
-                                );
+                                    pagination.pageSize);
                             });
                     }
 

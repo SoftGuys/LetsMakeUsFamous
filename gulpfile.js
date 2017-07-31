@@ -14,6 +14,9 @@ const cleanCss = require('gulp-clean-css');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 
+const istanbul = require('gulp-istanbul');
+const mocha = require('gulp-mocha');
+
 gulp.task('server', ['clean-build'], () => {
     express.run(['server.js']);
 });
@@ -65,4 +68,22 @@ gulp.task('dev', () => {
         ext: 'js',
         script: 'server.js',
     });
+});
+
+gulp.task('pre-test', () => {
+    return gulp.src([
+            './app/**/*.js',
+            './data/**/*.js',
+            './models/**/*.js',
+        ])
+        .pipe(istanbul({
+            includeUntested: true,
+        }))
+        .pipe(istanbul.hookRequire());
+});
+
+gulp.task('tests:unit', ['pre-test'], () => {
+    return gulp.src('./tests/unit/**/*.js')
+        .pipe(mocha())
+        .pipe(istanbul.writeReports());
 });
