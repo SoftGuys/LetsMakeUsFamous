@@ -17,6 +17,10 @@ The main purpose of our application is to travel. We have been inspired by peopl
 - [**Video Preview**](https://www.youtube.com/watch?v=wiHO-IkqduQ)
 - [**Telerik Academy Showcase System**](http://best.telerikacademy.com/projects/606/Fansoft-GameStore)
 
+### Application images:
+![](/app-images/home.png)
+![](/app-images/destinations.png)
+
 # Credits
 | Team member         | Username                                                                    |
 | -------------       | :--------:                                                                  |
