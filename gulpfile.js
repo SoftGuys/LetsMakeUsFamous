@@ -107,7 +107,7 @@ gulp.task('pre-test', () => {
 });
 
 gulp.task('pali_ba4e', ['pre-test'], () => {
-    return gulp.src('./tests/**/users.api.controller.tests.js', { read: false })
+    return gulp.src('./tests/**/home.controller.tests.js', { read: false })
         .pipe(mocha({ reporter: 'dot' }))
         .pipe(istanbul.writeReports({
             reportOpts: { dir: './coverage/unit-coverage' },
