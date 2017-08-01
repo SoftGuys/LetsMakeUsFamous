@@ -105,11 +105,3 @@ gulp.task('pre-test', () => {
         .pipe(istanbul({ includeUntested: true }))
         .pipe(istanbul.hookRequire());
 });
-
-gulp.task('pali_ba4e', ['pre-test'], () => {
-    return gulp.src('./tests/**/home.controller.tests.js', { read: false })
-        .pipe(mocha({ reporter: 'dot' }))
-        .pipe(istanbul.writeReports({
-            reportOpts: { dir: './coverage/unit-coverage' },
-        }));
-});
