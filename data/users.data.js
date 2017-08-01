@@ -194,7 +194,7 @@ class UsersData extends Data {
 
         if (!landmark.isVisited) {
             user.visitedPlaces = Number(user.visitedPlaces) + 1;
-            const rankIndex = parseInt((Number(user.landmarks.length) -
+            let rankIndex = parseInt((Number(user.landmarks.length) -
                     user.visitedPlaces) / RANK_DIVISOR - 1,
                 10);
 
