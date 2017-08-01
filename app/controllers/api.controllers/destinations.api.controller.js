@@ -8,20 +8,13 @@ const destinationsApiController = (data, utils) => {
             const comment = req.body;
             const landmarkId = req.params.id;
 
-            data.landmarks.findById(landmarkId)
+            return data.landmarks.findById(landmarkId)
                 .then((landmark) => {
                     const commentToUpdate = landmark.comments
                         .find((x) => x.text === comment.oldText);
 
                     if (typeof (commentToUpdate) === 'undefined') {
                         return Promise.reject('Such comment does not exist');
-                    }
-
-                    if (!req.user && !req.user.isAdmin &&
-                        req.user.username !== commentToUpdate.user.username) {
-                        return Promise
-                            .reject(
-                                'You are not allowed to edit this comment!');
                     }
 
                     commentToUpdate.text = comment.newText;
@@ -56,9 +49,7 @@ const destinationsApiController = (data, utils) => {
             return data.landmarks.findById(landmarkId)
                 .then((landmark) => {
                     if (landmark === null) {
-                        return res
-                            .status(404)
-                            .send('Landmark not found!');
+                        return Promise.reject('Landmark not found!');
                     }
 
                     return data.landmarks.addComment(landmark, comment);
@@ -83,32 +74,33 @@ const destinationsApiController = (data, utils) => {
             return data.landmarks.findById(landmarkId)
                 .then((landmark) => {
                     if (landmark === null) {
-                        return res
-                            .status(404)
-                            .send('Landmark does not exist');
+                        return Promise.reject('Landmark does not exist!');
                     }
 
                     const index = landmark.comments
                         .findIndex((c) => c.text === commentText);
                     if (index < 0) {
-                        return res
-                            .status(404)
-                            .send('No such comment!');
+                        return Promise.reject('No such comment!');
                     }
 
                     if (landmark.comments[index].user.username !==
                         req.user.username && !isAdmin) {
-                        return res
-                            .status(401)
-                            .send('You must be an admin in order to delete!');
+                        return Promise.reject(
+                            'You must be an admin in order to delete!');
                     }
 
                     landmark.comments.splice(index, 1);
                     return data.landmarks.update(landmark);
-                }).then((result) => {
+                })
+                .then((result) => {
                     return res
                         .status(200)
                         .send(result);
+                })
+                .catch((error) => {
+                    return res
+                        .status(400)
+                        .send(error);
                 });
         },
     };
