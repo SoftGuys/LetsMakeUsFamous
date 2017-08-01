@@ -1,8 +1,7 @@
-/* eslint-disable max-len,no-irregular-whitespace */
-/* globals describe */
+/* eslint-disable */
+
 const { expect } = require('chai');
 const { $ } = require('jquery');
-
 
 const test = require('selenium-webdriver/testing');
 const webdriver = require('selenium-webdriver');
@@ -32,7 +31,7 @@ describe(`Bulgaria's National Tourist Sites Selenium Tests`, () => {
                 expect(text).to.contain(`Bulgaria's National Tourist Sites`);
                 done();
             });
-    });// 1
+    }); // 1
     test.it('Should register new user successful', (done) => {
         return driver.get(`${url}/users/register`)
             .then(() => {
@@ -575,16 +574,16 @@ describe(`Bulgaria's National Tourist Sites Selenium Tests`, () => {
                     )
                 );
             })
-            .then((el)=>{
-            el.click();
+            .then((el) => {
+                el.click();
             })
-            .then(()=>{
-            driver.sleep(1000);
-            return driver.getCurrentUrl();
+            .then(() => {
+                driver.sleep(1000);
+                return driver.getCurrentUrl();
             })
-            .then((newUrl)=>{
-            expect(newUrl).to.be.equal('https://github.com/SoftGuys/LetsMakeUsFamous/issues');
-            done();
+            .then((newUrl) => {
+                expect(newUrl).to.be.equal('https://github.com/SoftGuys/LetsMakeUsFamous/issues');
+                done();
             });
     });
     test.it('Check Map', (done) => {
@@ -600,18 +599,18 @@ describe(`Bulgaria's National Tourist Sites Selenium Tests`, () => {
             .then((el) => {
                 el.click();
             })
-            .then((el)=>{
-            driver.sleep(1000);
-            return driver.findElement(
-                webdriver.By.xpath('//*[@id="myModal"]/div/div/div[1]/h4')
-            );
+            .then((el) => {
+                driver.sleep(1000);
+                return driver.findElement(
+                    webdriver.By.xpath('//*[@id="myModal"]/div/div/div[1]/h4')
+                );
             })
-            .then((el)=>{
-             return el.getText();
+            .then((el) => {
+                return el.getText();
             })
-            .then((text)=>{
-            expect(text).to.be.contain('гр. Мелник');
-            done();
+            .then((text) => {
+                expect(text).to.be.contain('гр. Мелник');
+                done();
             });
     });
     test.it('Check Comment', (done) => {
@@ -627,38 +626,38 @@ describe(`Bulgaria's National Tourist Sites Selenium Tests`, () => {
             .then((el) => {
                 el.click();
             })
-            .then(()=>{
-            driver.sleep(1000);
-            return driver.findElement(
-                webdriver.By.id(
-                    'comment-destination'
-                )
-            );
-        })
-            .then((el)=>{
-            el.sendKeys(generateRandomName());
+            .then(() => {
+                driver.sleep(1000);
+                return driver.findElement(
+                    webdriver.By.id(
+                        'comment-destination'
+                    )
+                );
             })
-            .then(()=>{
-            return driver.findElement(
-                webdriver.By.css(
-                '#add-destination-comment > button'
-                )
-            );
+            .then((el) => {
+                el.sendKeys(generateRandomName());
             })
-            .then((el)=>{
-            el.click();
+            .then(() => {
+                return driver.findElement(
+                    webdriver.By.css(
+                        '#add-destination-comment > button'
+                    )
+                );
             })
-            .then(()=>{
-            return driver.findElement(
-                webdriver.By.id('toast-container')
-            );
+            .then((el) => {
+                el.click();
             })
-            .then((el)=>{
-            return el.getText();
+            .then(() => {
+                return driver.findElement(
+                    webdriver.By.id('toast-container')
+                );
             })
-            .then((text)=>{
-            expect(text).to.be.equal('You must be logged in in order to comment!');
-            done();
+            .then((el) => {
+                return el.getText();
+            })
+            .then((text) => {
+                expect(text).to.be.equal('You must be logged in in order to comment!');
+                done();
             });
     });
     test.it('Check 404 Error Page', (done) => {
@@ -672,12 +671,12 @@ describe(`Bulgaria's National Tourist Sites Selenium Tests`, () => {
                 );
             })
             .then((el) => {
-               return el.getText();
+                return el.getText();
             })
-            .then((text)=>{
-            expect(text).to.contain('Oooops! This page');
-            done();
-        });
+            .then((text) => {
+                expect(text).to.contain('Oooops! This page');
+                done();
+            });
     });
 });
 

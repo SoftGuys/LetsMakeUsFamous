@@ -201,7 +201,7 @@ describe('API Routes Tests', () => {
     });
 
     describe('PUT /api/destinations/comments/:id', () => {
-        it('Expect if comment is not found to return status 400', (done) => {
+        it('Expect if comment is incorrect to return status 400', (done) => {
             request(app)
                 .put('/api/destinations/comments/' + destination._id)
                 .expect(400)
@@ -214,7 +214,7 @@ describe('API Routes Tests', () => {
                 });
         });
 
-        it('Expect if comment is not found to return correct message', (done) => {
+        it('Expect if comment is incorrect to return correct message', (done) => {
             request(app)
                 .put('/api/destinations/comments/' + destination._id)
                 .end((err, res) => {
@@ -227,14 +227,40 @@ describe('API Routes Tests', () => {
                 });
         });
 
-        it('Expect if comment is found but request is not auth to return status 400', (done) => {
+        it('Expect if landmark is incorrect to return status 400', (done) => {
+            request(app)
+                .put('/api/destinations/comments/123451234512345123451234')
+                .expect(400)
+                .end((err, res) => {
+                    if (err) {
+                        return done(err);
+                    }
+
+                    return done();
+                });
+        });
+
+        it('Expect if landmark is incorrect to return correct message', (done) => {
+            request(app)
+                .put('/api/destinations/comments/123451234512345123451234')
+                .end((err, res) => {
+                    if (err) {
+                        return done(err);
+                    }
+
+                    expect(res.text).to.be.equal('Such landmark does not exist');
+                    return done();
+                });
+        });
+
+        it('Expect if comment is found to return status 200', (done) => {
             destination.comments.push({ text: 'text' });
             db.collection('landmarks').update({ _id: destination._id }, destination)
                 .then(() => {
                     request(app)
                         .put('/api/destinations/comments/' + destination._id)
                         .send({ oldText: 'text' })
-                        .expect(400)
+                        .expect(200)
                         .end((err, res) => {
                             if (err) {
                                 return done(err);
@@ -246,7 +272,9 @@ describe('API Routes Tests', () => {
                 });
         });
 
-        it('Expect if comment is found but request is auth to return correct message', (done) => {
+        it('Expect if comment is correct to return correct response', (done) => {
+            const defaultUpdateResponce = '{"n":1,"nModified":1,"ok":1}';
+
             destination.comments.push({ text: 'text' });
             db.collection('landmarks').update({ _id: destination._id }, destination)
                 .then(() => {
@@ -259,7 +287,7 @@ describe('API Routes Tests', () => {
                             }
 
                             destination.comments.splice(0, 1);
-                            expect(res.text).to.be.equal('{}');
+                            expect(res.text).to.equal(defaultUpdateResponce);
                             return done();
                         });
                 });
@@ -267,10 +295,10 @@ describe('API Routes Tests', () => {
     });
 
     describe('DELETE /api/destinations/comments/:id', () => {
-        it('Expect if comment is not found to return status 404', (done) => {
+        it('Expect if landmark is not found to return status 400', (done) => {
             request(app)
                 .delete('/api/destinations/comments/11c112141151111615118a1b')
-                .expect(404)
+                .expect(400)
                 .end((err, res) => {
                     if (err) {
                         return done(err);
@@ -280,7 +308,7 @@ describe('API Routes Tests', () => {
                 });
         });
 
-        it('Expect if comment is not found to return correct message', (done) => {
+        it('Expect if landmark is not found to return correct message', (done) => {
             request(app)
                 .delete('/api/destinations/comments/11c112141151111615118a1b')
                 .end((err, res) => {
@@ -288,15 +316,15 @@ describe('API Routes Tests', () => {
                         return done(err);
                     }
 
-                    expect(res.text).to.be.equal('Landmark does not exist');
+                    expect(res.text).to.be.equal('Landmark does not exist!');
                     return done();
                 });
         });
 
-        it('Expect if comment is not found to return status 404', (done) => {
+        it('Expect if comment is not found to return status 400', (done) => {
             request(app)
                 .delete('/api/destinations/comments/' + destination._id)
-                .expect(404)
+                .expect(400)
                 .end((err, res) => {
                     if (err) {
                         return done(err);
@@ -319,14 +347,14 @@ describe('API Routes Tests', () => {
                 });
         });
 
-        it('Expect if comment is found but request is not auth to return status 400', (done) => {
+        it('Expect if comment is found to return status 200', (done) => {
             destination.comments.push({ text: 'text' });
             db.collection('landmarks').update({ _id: destination._id }, destination)
                 .then(() => {
                     request(app)
                         .put('/api/destinations/comments/' + destination._id)
                         .send({ oldText: 'text' })
-                        .expect(400)
+                        .expect(200)
                         .end((err, res) => {
                             if (err) {
                                 return done(err);
@@ -338,7 +366,9 @@ describe('API Routes Tests', () => {
                 });
         });
 
-        it('Expect if comment is found but request is auth to return correct message', (done) => {
+        it('Expect if comment is found but request is auth to return correct response', (done) => {
+            const defaultUpdateResponce = '{"n":1,"nModified":1,"ok":1}';
+
             destination.comments.push({ text: 'text' });
             db.collection('landmarks').update({ _id: destination._id }, destination)
                 .then(() => {
@@ -351,7 +381,7 @@ describe('API Routes Tests', () => {
                             }
 
                             destination.comments.splice(0, 1);
-                            expect(res.text).to.be.equal('{}');
+                            expect(res.text).to.equal(defaultUpdateResponce);
                             return done();
                         });
                 });
