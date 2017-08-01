@@ -93,7 +93,7 @@ describe('destinations.controller tests', () => {
         it('expect to redirect to /destinations when an error occurs', (done) => {
             req.user = {};
             req.isAuthenticated = () => {
-                throw new Error('Invalid landmark!');
+                throw new Error('Invalid landmark')
             }
 
             req.params = {
@@ -114,6 +114,27 @@ describe('destinations.controller tests', () => {
                     expect(res.redirectUrl).to.equal('/destinations');
                 })
                 .then(done, done);
+        });
+
+        it('expect to redirect to /destinations when targetLandmarkId is not defined', () => {
+            req.user = {};
+            req.isAuthenticated = () => {
+                throw new Error('Invalid landmark!');
+            }
+
+            req.params = {};
+
+            req.toastr = {
+                error() {
+
+                },
+            };
+
+            req.user.isAdmin = false;
+
+            controller.getDestinationDetailsView(req, res)
+            expect(res.statusCode).to.equal(304);
+            expect(res.redirectUrl).to.equal('/destinations');
         });
     });
 
