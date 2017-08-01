@@ -66,7 +66,7 @@ const userController = (data, utils) => {
                 })
                 .catch((error) => {
                     req.toastr.error(error);
-
+                    console.log(res, 'res');
                     return res
                         .status(400)
                         .redirect('/users/profile');
@@ -77,6 +77,10 @@ const userController = (data, utils) => {
 
             return data.users.findUserByUsername(targetUsername)
                 .then((user) => {
+                    if (!user) {
+                        return Promise.reject('There is no such user!');
+                    }
+
                     return res
                         .status(200)
                         .render('users/info', {
@@ -86,6 +90,13 @@ const userController = (data, utils) => {
                                 isAuthenticated: req.isAuthenticated(),
                             },
                         });
+                })
+                .catch((message) => {
+                    req.toastr.error(message);
+
+                    return res
+                        .status(404)
+                        .redirect('/users');
                 });
         },
         getMessagesView(req, res) {

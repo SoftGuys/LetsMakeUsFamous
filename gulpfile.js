@@ -14,6 +14,9 @@ const cleanCss = require('gulp-clean-css');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 
+const istanbul = require('gulp-istanbul');
+const mocha = require('gulp-mocha');
+
 gulp.task('server', ['clean-build'], () => {
     express.run(['server.js']);
 });
@@ -65,4 +68,40 @@ gulp.task('dev', () => {
         ext: 'js',
         script: 'server.js',
     });
+});
+
+gulp.task('test', gulpsync.sync([
+    'tests:unit',
+    'tests:integration',
+]));
+
+gulp.task('tests:unit', ['pre-test'], () => {
+    return gulp.src('./tests/unit/**/*.js', { read: false })
+        .pipe(mocha({ reporter: 'nyan' }))
+        .pipe(istanbul.writeReports({
+            reportOpts: { dir: './coverage/unit-coverage' },
+        }));
+});
+
+gulp.task('tests:integration', ['pre-test'], () => {
+    return gulp.src('./tests/integration/**/*.js', { read: false })
+        .pipe(mocha({ reporter: 'dot' }))
+        .pipe(istanbul.writeReports({
+            reportOpts: { dir: './coverage/functional-coverage' },
+        }));
+});
+
+gulp.task('tests:functional', () => {
+    return gulp.src('./tests/selenium/functional.tests.js', { read: false })
+        .pipe(mocha({ reporter: 'nyan', timeout: 20000 }));
+});
+
+gulp.task('pre-test', () => {
+    return gulp.src([
+            './app/**/*.js',
+            './data/**/*.js',
+            './models/**/*.js',
+        ])
+        .pipe(istanbul({ includeUntested: true }))
+        .pipe(istanbul.hookRequire());
 });
