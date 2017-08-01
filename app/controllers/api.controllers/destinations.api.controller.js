@@ -10,6 +10,10 @@ const destinationsApiController = (data, utils) => {
 
             return data.landmarks.findById(landmarkId)
                 .then((landmark) => {
+                    if (landmark === null) {
+                        return Promise.reject('Such landmark does not exist');
+                    }
+
                     const commentToUpdate = landmark.comments
                         .find((x) => x.text === comment.oldText);
 
