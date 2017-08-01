@@ -87,8 +87,7 @@ gulp.task('tests:unit', ['pre-test'], () => {
         .pipe(mocha({ reporter: 'dot' }))
         .pipe(istanbul.writeReports({
             reportOpts: { dir: './coverage/unit-coverage' },
-        }))
-        .pipe(exit());
+        }));
 });
 
 gulp.task('tests:integration', ['pre-test'], () => {
@@ -102,8 +101,7 @@ gulp.task('tests:integration', ['pre-test'], () => {
 
 gulp.task('tests:functional', () => {
     return gulp.src('./tests/selenium/functional.tests.js', { read: false })
-        .pipe(mocha({ reporter: 'dot', timeout: 20000 }))
-        .pipe(exit());
+        .pipe(mocha({ reporter: 'dot', timeout: 20000 }));
 });
 
 gulp.task('pre-test', () => {
