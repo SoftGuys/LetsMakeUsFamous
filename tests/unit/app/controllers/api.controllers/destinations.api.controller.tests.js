@@ -1,5 +1,5 @@
 /* eslint-disable */
-const { expect } = chai;
+const { expect } = require('chai');
 
 describe('destinations api controler tests', () => {
     let data = null;
