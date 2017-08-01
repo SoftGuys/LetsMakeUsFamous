@@ -1,4 +1,4 @@
-const homeController = (data) => {
+const homeController = () => {
     return {
         redirectHome(req, res) {
             return res
@@ -10,7 +10,6 @@ const homeController = (data) => {
                 .status(200)
                 .render('home', {
                     context: {
-                        dev: true,
                         isAuthenticated: req.isAuthenticated(),
                         user: req.user,
                     },
