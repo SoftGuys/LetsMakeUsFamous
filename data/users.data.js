@@ -45,7 +45,7 @@ class UsersData extends Data {
             .then((currUser) => {
                 if (currUser !== null) {
                     return Promise.reject(
-                        'There is already user with such username!');
+                        'There is already a user with such username!');
                 }
 
                 return super.add(user);
@@ -53,7 +53,7 @@ class UsersData extends Data {
     }
 
     updateUserInfo(user) {
-        return User.validateUserInfo(user)
+        return this.validator.validateUserInfo(user)
             .then(() => {
                 return this.update(user);
             });
@@ -130,7 +130,7 @@ class UsersData extends Data {
     }
 
     addFriendship(user, friend) {
-        user.friends.push(User.getFriendModel(friend));
+        user.friends.push(this.ModelClass.getFriendModel(friend));
         this.update(user);
 
         friend.notifications.push(`${user.username} added you as a friend!`);
@@ -194,7 +194,7 @@ class UsersData extends Data {
 
         if (!landmark.isVisited) {
             user.visitedPlaces = Number(user.visitedPlaces) + 1;
-            const rankIndex = parseInt((Number(user.landmarks.length) -
+            let rankIndex = parseInt((Number(user.landmarks.length) -
                     user.visitedPlaces) / RANK_DIVISOR - 1,
                 10);
 
