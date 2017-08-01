@@ -4,6 +4,7 @@ const gulpsync = require('gulp-sync')(gulp);
 const eslint = require('gulp-eslint');
 const pump = require('pump');
 const clean = require('gulp-clean');
+const exit = require('gulp-exit');
 
 const express = require('gulp-express');
 const nodemon = require('gulp-nodemon');
@@ -83,10 +84,11 @@ gulp.task('test', gulpsync.sync([
 
 gulp.task('tests:unit', ['pre-test'], () => {
     return gulp.src('./tests/unit/**/*.js', { read: false })
-        .pipe(mocha({ reporter: 'nyan' }))
+        .pipe(mocha({ reporter: 'dot' }))
         .pipe(istanbul.writeReports({
             reportOpts: { dir: './coverage/unit-coverage' },
-        }));
+        }))
+        .pipe(exit());
 });
 
 gulp.task('tests:integration', ['pre-test'], () => {
@@ -94,12 +96,14 @@ gulp.task('tests:integration', ['pre-test'], () => {
         .pipe(mocha({ reporter: 'dot' }))
         .pipe(istanbul.writeReports({
             reportOpts: { dir: './coverage/functional-coverage' },
-        }));
+        }))
+        .pipe(exit());
 });
 
 gulp.task('tests:functional', () => {
     return gulp.src('./tests/selenium/functional.tests.js', { read: false })
-        .pipe(mocha({ reporter: 'nyan', timeout: 20000 }));
+        .pipe(mocha({ reporter: 'dot', timeout: 20000 }))
+        .pipe(exit());
 });
 
 gulp.task('pre-test', () => {
