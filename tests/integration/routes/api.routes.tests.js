@@ -1,5 +1,5 @@
 /* eslint-disable */
-
+const config = require('../../../config');
 const request = require('supertest');
 const { expect } = require('chai');
 const { MongoClient, ObjectID } = require('mongodb');
@@ -7,7 +7,7 @@ const { MongoClient, ObjectID } = require('mongodb');
 const crypto = require('crypto-js');
 
 describe('API Routes Tests', () => {
-    const connectionString = 'mongodb://localhost/tourist-sites-test';
+    const connectionString = config.DB_CLOUD_TEST_CONNECTION_STRING;
     const user = { username: 'nepesho', password: '123456' };
     const destination = { title: 'pakpesho', comments: [] };
 

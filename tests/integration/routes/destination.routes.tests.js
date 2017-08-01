@@ -1,11 +1,12 @@
 /* eslint-disable */
 
+const config = require('../../../config');
 const request = require('supertest');
 const { expect } = require('chai');
 const { MongoClient, ObjectID } = require('mongodb');
 
 describe('Destination Routes Tests', () => {
-    const connectionString = 'mongodb://localhost/tourist-sites-test';
+    const connectionString = config.DB_CLOUD_TEST_CONNECTION_STRING;
     const destination = { title: 'landmark', comments: [] };
 
     let app = null;
