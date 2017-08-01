@@ -66,7 +66,6 @@ const userController = (data, utils) => {
                 })
                 .catch((error) => {
                     req.toastr.error(error);
-                    console.log(res, 'res');
                     return res
                         .status(400)
                         .redirect('/users/profile');

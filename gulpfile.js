@@ -39,7 +39,13 @@ gulp.task('build', [
 ]);
 
 gulp.task('build:lint', () => {
-    return gulp.src(['**/*.js', '!node_modules/**', '!build/**'])
+    return gulp.src([
+            '**/*.js',
+            '!node_modules/**',
+            '!build/**',
+            '!tests/**',
+            '!coverage/**',
+        ])
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
