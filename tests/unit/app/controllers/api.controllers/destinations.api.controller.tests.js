@@ -1,11 +1,5 @@
 /* eslint-disable */
-
-const sinon = require('sinon');
-const chai = require('chai');
-const sinonChai = require('sinon-chai');
-chai.use(sinonChai);
-
-const { expect } = chai;
+const { expect } = require('chai');
 
 describe('destinations api controler tests', () => {
     let data = null;
