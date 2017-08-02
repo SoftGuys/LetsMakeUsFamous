@@ -14,8 +14,6 @@ The main purpose of our application is to travel. We have been inspired by peopl
 
 ## Application Demo
 - [**Live Preview**](https://tourist-sites.herokuapp.com)
-- [**Video Preview**](https://www.youtube.com/watch?v=o-dU317kRVk&feature=youtu.be)
-- [**Telerik Academy Showcase System**](http://best.telerikacademy.com/projects/681/LetsMakeUsFamous)
 
 ### Application images:
 ![](/app-images/home.png)
@@ -30,5 +28,5 @@ The main purpose of our application is to travel. We have been inspired by peopl
 
 # Honorable mentions
 #### Big admirations to our friends from sky pictures Bulgaria and 100nto for their awesome content - check them out:
-- [**Sky Pictures Bulgaria**](http://skypicturesbulgaria.com/)
-- [**100 National Tourists Attractions**](http://100nto.org/)
+- [**Sky Pictures Bulgaria**]
+- [**100 National Tourists Attractions**]
