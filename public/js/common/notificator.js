@@ -33,18 +33,18 @@ $(() => {
 
         domAppender.appendNotification(
             'glyphicon-user',
-            `${sender.username} added you as a friend!`);
+            ` ${sender.username} added you as a friend!`);
     });
 
     socket.on('message-notification', (senderName) => {
         domAppender.appendNotification(
             'glyphicon-pencil',
-            `${senderName} texted you!`);
+            ` ${senderName} texted you!`);
     });
 
     socket.on('add-comment', ({ senderName, landmarkTitle }) => {
         domAppender.appendNotification(
             'glyphicon-hand-left',
-            `${senderName} commented on ${landmarkTitle}!`);
+            ` ${senderName} commented on ${landmarkTitle}!`);
     });
 });
