@@ -1,5 +1,6 @@
 const config = {
-    PORT: 80,
+    // eslint-disable-next-line
+    PORT: process.env.PORT || 80,
 
     DB_LOCAL_CONNECTION_STRING: 'mongodb://localhost/tourist-sites',
     DB_LOCAL_TEST_CONNECTION_STRING: 'mongodb://localhost/tourist-sites-test',
