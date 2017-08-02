@@ -30,3 +30,16 @@
     text-decoration: underline;
     color: gray;
 }
+
+.mention {
+    background-color: lightblue;
+    border: 1px solid gray;
+}
+
+.mention:hover {
+    text-decoration: none;
+    border: 3px solid gray;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 gray;
+    text-shadow: 2px 2px lightblue;
+    z-index: 10;
+}
