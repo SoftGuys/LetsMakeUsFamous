@@ -13,7 +13,7 @@ The main purpose of our application is to travel. We have been inspired by peopl
 <br/>
 
 ## Application Demo
-- [**Live Preview**](ec2-35-157-128-200.eu-central-1.compute.amazonaws.com)
+- [**Live Preview**](https://tourist-sites.herokuapp.com)
 - [**Video Preview**](https://www.youtube.com/watch?v=o-dU317kRVk&feature=youtu.be)
 - [**Telerik Academy Showcase System**](http://best.telerikacademy.com/projects/681/LetsMakeUsFamous)
 
