@@ -273,8 +273,6 @@ describe('API Routes Tests', () => {
         });
 
         it('Expect if comment is correct to return correct response', (done) => {
-            const defaultUpdateResponce = '{"n":1,"nModified":1,"ok":1}';
-
             destination.comments.push({ text: 'text' });
             db.collection('landmarks').update({ _id: destination._id }, destination)
                 .then(() => {
@@ -287,7 +285,7 @@ describe('API Routes Tests', () => {
                             }
 
                             destination.comments.splice(0, 1);
-                            expect(res.text).to.equal(defaultUpdateResponce);
+                            expect(JSON.parse(res.text).ok).to.equal(1);
                             return done();
                         });
                 });
@@ -367,8 +365,6 @@ describe('API Routes Tests', () => {
         });
 
         it('Expect if comment is found but request is auth to return correct response', (done) => {
-            const defaultUpdateResponce = '{"n":1,"nModified":1,"ok":1}';
-
             destination.comments.push({ text: 'text' });
             db.collection('landmarks').update({ _id: destination._id }, destination)
                 .then(() => {
@@ -381,7 +377,7 @@ describe('API Routes Tests', () => {
                             }
 
                             destination.comments.splice(0, 1);
-                            expect(res.text).to.equal(defaultUpdateResponce);
+                            expect(JSON.parse(res.text).ok).to.equal(1);
                             return done();
                         });
                 });
