@@ -6,7 +6,7 @@ const { expect } = require('chai');
 const { MongoClient, ObjectID } = require('mongodb');
 
 describe('Destination Routes Tests', () => {
-    const connectionString = config.DB_CLOUD_TEST_CONNECTION_STRING;
+    const connectionString = config.DB_LOCAL_TEST_CONNECTION_STRING;
     const destination = { title: 'landmark', comments: [] };
 
     let app = null;
