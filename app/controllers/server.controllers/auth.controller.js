@@ -73,14 +73,14 @@ const authController = (data) => {
                 if (error) {
                     req.toastr.error(error);
                     res.status(404).redirect('/users/login');
-                    return next(error);
+                    return next();
                 }
 
                 req.logIn(user, (err) => {
                     if (err) {
                         req.toastr.error(err);
                         res.status(404).redirect('/users/login');
-                        return next(err);
+                        return next();
                     }
 
                     req.toastr.success('Hello, ' + user.username + '!');
