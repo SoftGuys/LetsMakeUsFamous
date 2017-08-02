@@ -6,7 +6,7 @@ const { expect } = require('chai');
 const { MongoClient } = require('mongodb');
 
 describe('Home Routes Tests', () => {
-    const connectionString = config.DB_LOCAL_TEST_CONNECTION_STRING;
+    const connectionString = config.DB_CLOULD_TEST_CONNECTION_STRING;
 
     let app = null;
     let db = null;

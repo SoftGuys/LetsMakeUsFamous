@@ -7,7 +7,7 @@ const { MongoClient, ObjectID } = require('mongodb');
 const crypto = require('crypto-js');
 
 describe('API Routes Tests', () => {
-    const connectionString = config.DB_LOCAL_TEST_CONNECTION_STRING;
+    const connectionString = config.DB_CLOULD_TEST_CONNECTION_STRING;
     const user = { username: 'nepesho', password: '123456' };
     const destination = { title: 'pakpesho', comments: [] };
 

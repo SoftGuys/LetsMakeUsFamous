@@ -22,7 +22,7 @@ const configApp = (app) => {
 
     app.use(cookieParser());
     app.use(session({
-        store: new MongoStore({ url: config.DB_LOCAL_CONNECTION_STRING }),
+        store: new MongoStore({ url: config.DB_CLOULD_CONNECTION_STRING }),
         saveUninitialized: true,
         resave: false,
         secret: 'bobidjei',
